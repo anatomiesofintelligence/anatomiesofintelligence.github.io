@@ -15,30 +15,16 @@ Site Tags: {{ site.tags }}
 <h2> All Tags </h2>
 <ul>
 {% for tag in site.tags %}
-<li>{{ tag[0] }}</li>
+<li>{{ tag[0] }} | {{ tag[1] }}</li>
 {% endfor %}
 </ul>
 
 <h2> All Categories</h2>
 <ul>
 {% for cat in site.categories %}
-<li>{{ cat[0] }}</li>
+<li>{{ cat[0] }} | {{ tag[1] }}</li>
 {% endfor %}
 </ul>
-
-
-<p>
-	TAGS CODE:
-    {% for tag in site.tags %}
-    <!-- Here's a hack to generate a "tag cloud" where the size of
-    the word is directly proportional to the number of posts with
-    that tag. -->
-    <a href="/tags/{{ tag[0] }}/"
-    style="font-size: {{ tag[1] | size | times: 2 | plus: 10 }}px">
-        {{ tag[0] }} |
-    </a>
-    {% endfor %}
-</p>
 
 
 <h2>All entries</h2>
