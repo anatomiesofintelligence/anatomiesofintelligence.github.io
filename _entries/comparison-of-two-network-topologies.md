@@ -18,7 +18,7 @@ summary: Comparison of a fully-connected network topology (A) and an Erdos-Renyi
 image: poster/Comparison-of-a-fully-connected-network-topology-A-and-an-Erdos-Renyi-graph.jpg
 
 # all tags separated by commas
-tags: neural-network, visualisation, graph
+tags: get some dope tags, Add this.  Separate via spaces or commas!
 
 # permalink: /entry1/
 
