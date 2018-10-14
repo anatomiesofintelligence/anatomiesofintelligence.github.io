@@ -31,10 +31,6 @@ collections:
     output: true
     layout: empty
     permalink: /:collection/:path
-  general:
-     output: true
-     layout: documentation
-     permalink: /:collection/:path
   posts:
     output: true
     layout: empty
