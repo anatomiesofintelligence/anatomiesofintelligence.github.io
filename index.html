@@ -53,16 +53,3 @@ Site Tags: {{ site.tags }}
   {% endif %}
 {% endfor %}
 </ul>
-
-## All Posts
-
-<ul>
-{% for coll in site.collections %}
-  {% if coll.label == "posts" %}
-    {% assign posts = coll.docs %}
-    {% for post in posts %}
-      <li><a class="entrylist" href="{{ post.url }}">{{ post.title }}</a></li>
-    {% endfor %}
-  {% endif %}
-{% endfor %}
-</ul>
