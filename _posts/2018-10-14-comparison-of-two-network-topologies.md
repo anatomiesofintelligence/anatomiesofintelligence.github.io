@@ -1,7 +1,7 @@
 ---
 title: Comparison of Two Network Topologies
 subtitle:
-layout: empty
+layout: image
 entry-type: image
 
 # when the entry was added
@@ -19,20 +19,8 @@ image: poster/Comparison-of-a-fully-connected-network-topology-A-and-an-Erdos-Re
 
 # all tags separated by commas
 tags: [neural network, models, representations]
-categories: [architectures]
+categories: [systems-of-knowing, modelling]
 
 # permalink: /entry1/
 
 ---
-
-![](/img/{{ page.image }})
-
-# TITLE: {{ page.title }}
-
-## SUB: {{ page.subtitle }}
-
-<p>Summary: {{ page.summary }}</p>
-
-<p>Tags: {{ page.tags }} | {{ page.tag }}</p>
-
-<p>Categories: {{ page.categories }}</p>
