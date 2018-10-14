@@ -1,3 +1,0 @@
-{% capture caturl %}{{ category | replace: " ", "_" }}{% endcapture %}
-{% capture catname %}{{ category | replace: "_", " " }}{% endcapture %}
-<a href="/categories/{{ caturl }}.html">{{ catname }}</a>{% if forloop.last != true %}, {% endif %}
