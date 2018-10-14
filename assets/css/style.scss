@@ -11,6 +11,14 @@ font-family: 'Junction', sans-serif;
 background-color: #D3D3D3;
 }
 
+a:link {
+font: blue;
+}
+
+a:visited {
+font: gray;
+}
+
 @font-face {
    font-family: Junction;
    src: url(junction/Junction-regular.otf);
