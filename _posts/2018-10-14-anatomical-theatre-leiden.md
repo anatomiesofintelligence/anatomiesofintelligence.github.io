@@ -10,5 +10,5 @@ summary: An image of the Anatomical Theatre in Leiden
 # permalink: /entry1/
 
 tags: [anatomical theatre]
-categories: [architectures]
+categories: [systems of knowing]
 ---
