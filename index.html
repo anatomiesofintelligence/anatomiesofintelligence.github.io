@@ -5,6 +5,9 @@ layout: default
 Collection: {{ page.collection }}
 <br />
 All Collections: {{ site.collections }}
+<br />
+Site Tags: {{ site.tags }}
+<br />
 
 <h1>Anatomies of Intelligence Landing Page</h1>
 
@@ -12,9 +15,22 @@ All Collections: {{ site.collections }}
 <h2> All Tags </h2>
 <ul>
 {% for tag in site.tags %}
-<li>{{ tag[0] }}</li>
+<li>{{ tag }}</li>
 {% endfor %}
 </ul>
+
+<p>
+	TAGS CODE:
+    {% for tag in site.tags %}
+    <!-- Here's a hack to generate a "tag cloud" where the size of
+    the word is directly proportional to the number of posts with
+    that tag. -->
+    <a href="/tags/{{ tag[0] }}/"
+    style="font-size: {{ tag[1] | size | times: 2 | plus: 10 }}px">
+        {{ tag[0] }} |
+    </a>
+    {% endfor %}
+</p>
 
 
 <h2>All entries</h2>
