@@ -2,9 +2,9 @@
 layout: default
 ---
 
-Collection: {{ page.collection }}
+Collection: {{ page.collection | escape }}
 <br />
-All Collections: {{ site.collections }}
+All Collections: {{ site.collections | escape }}
 
 <h1>Anatomies of Intelligence Landing Page</h1>
 
@@ -21,7 +21,7 @@ All Collections: {{ site.collections }}
   {% if coll.label == "entries" %}
     {% assign entries = coll.docs %}
     {% for entry in entries %}
-      <li><a class="entrylist" href="{{ entry.url }}">{{ entry.title }}</a></li>
+      <li><img width=100 src="/img/{{ entry.image }}"/><a class="entrylist" href="{{ entry.url }}">{{ entry.title }}</a></li>
     {% endfor %}
   {% endif %}
 {% endfor %}
