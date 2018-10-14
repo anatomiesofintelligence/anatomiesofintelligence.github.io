@@ -3,8 +3,11 @@
 
 @import "{{ site.theme }}";
 
+@import url('https://fonts.googleapis.com/css?family=Ruda:400,700');
+
 // Add custom CSS here
 body {
-font-family: monospace;
+font-family: 'Ruda', sans-serif;
+font-weight: 400;
 background-color: #D3D3D3;
 }
