@@ -18,7 +18,7 @@ summary: Excerpt from Elegant Anatomy, Marieke M. A. Hendriksen
 
 # all tags separated by commas
 tags: [aesthesis, preparation]
-categories: [systems of knowing]
+categories: [systems-of-knowing]
 
 # permalink: /entry1/
 
