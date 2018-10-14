@@ -7,7 +7,7 @@ entry-date: 2017-02-06
 
 image: poster/Comparison-of-a-fully-connected-network-topology-A-and-an-Erdos-Renyi-graph.jpg
 summary: This is the summary text of this image.
-permalink: /entry1/
+# permalink: /entry1/
 
 category: visualisation
 subcategory: neural network
