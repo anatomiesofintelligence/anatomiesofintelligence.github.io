@@ -19,6 +19,7 @@ image: poster/Comparison-of-a-fully-connected-network-topology-A-and-an-Erdos-Re
 
 # all tags separated by commas
 tags: get some dope tags, Add this.  Separate via spaces or commas!
+tag: mytag1 mytag2 mytag3
 
 # permalink: /entry1/
 
@@ -26,8 +27,10 @@ tags: get some dope tags, Add this.  Separate via spaces or commas!
 
 ![](/img/{{ page.image }})
 
-# {{ page.title }}
+# TITLE: {{ page.title }}
 
-## {{ page.subtitle }}
+## SUB: {{ page.subtitle }}
 
-<p>{{ page.summary }}</p>
+<p>Summary: {{ page.summary }}</p>
+
+<p>Tags: {{ page.tags }} | {{ page.tag }}
