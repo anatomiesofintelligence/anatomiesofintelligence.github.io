@@ -3,14 +3,14 @@ layout: default
 ---
 
 All Categories: {{ site.categories }}
-<br />
+<br /><br />
 All Tags: {{ site.tags }}
-<br />
+<br /><br />
 
 <h1>Catalog</h1>
 
 <ul>
 {% for post in site.posts %}
-      <li><img width=100 src="/img/{{ entry.image }}"/><a class="entrylist" href="{{ entry.url }}">{{ entry.title }}</a></li>
+      <li><img width=100 src="/img/{{ post.image }}"/><a class="entrylist" href="{{ post.url }}">{{ post.title }}</a></li>
 {% endfor %}
 </ul>
