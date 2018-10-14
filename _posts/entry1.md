@@ -1,7 +1,7 @@
 ---
 title: Comparison of a Fully Connected Network Topology and an Erdos Renyi Graph
 subtitle: This is a Subtitle
-layout: subcategory_overview
+layout: base
 entry-type: image
 entry-date: 2017-02-06
 
