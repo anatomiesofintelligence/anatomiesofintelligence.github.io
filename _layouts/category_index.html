@@ -1,0 +1,21 @@
+{% for cat in site.data.category_order.navigation %}
+    {% if cat.name == include.catname %}
+<hr>
+<table id="breadcrumb">
+<tr>
+<th>{{ cat.name | capitalize }}</th>
+{% for child2 in cat.children %}
+    {% assign childpages = coll.docs | where: "category", cat.name %}
+    {% if childpages.size > 0 %}
+        {% if child2.name == include.subcatname %}
+<td id="currentcat"><a href="#{{ child2.name }}">{{ child2.name | capitalize }}</a></td>
+        {% else %}
+<td><a href="#{{ child2.name }}">{{ child2.name | capitalize }}</a></td>
+        {% endif %}
+    {% endif %}
+{% endfor %}
+</tr>
+</table>
+<hr>
+    {% endif %}
+{% endfor %}

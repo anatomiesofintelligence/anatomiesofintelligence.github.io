@@ -1,0 +1,5 @@
+- Download the [pydon package for windows](https://sensestage.eu/downloads/PydonWindowsPackage.zip)
+- Download and install [Windows usb serial driver](http://arduino.cc/en/Guide/Windows#toc4)
+- Install latest python for windows using the msi installer in the pydon package you downloaded (32 bit or 64 bit). Just doubleclick and follow instructions, just follow the default suggestions for settings.
+- Execute the `install_pydon.bat` file by doubleclicking
+- Execute the `start_pydon.bat` file by doubleclicking to start pydongui

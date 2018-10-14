@@ -1,0 +1,32 @@
+---
+layout: default
+---
+
+<article class="post">
+
+        {% include postheader.html %}
+
+	<div class="post-content">
+
+		<hr>
+
+
+		{% comment %}Overview text{% endcomment %}
+		{% capture cat-subcat %}{{ page.category }}_{{ page.subcategory }}{% endcapture %}
+		{% assign catoverview = site.minibee_overviews | where:"name", cat-subcat | first %}
+		{% if catoverview %}
+		<div class="overview">
+			{{catoverview | markdownify }}
+		</div>
+		{% endif %}
+
+		{{ content }}
+
+		<hr>
+
+        {% include postfooter.html %}
+
+    </div>
+
+
+</article>

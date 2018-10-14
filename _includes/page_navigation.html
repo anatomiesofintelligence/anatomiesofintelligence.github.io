@@ -1,0 +1,24 @@
+{% capture catname %}{{ page.category | replace: "_", " " }}{% endcapture %}
+{% capture subcatname %}{{ page.subcategory | replace: "_", " " }}{% endcapture %}
+{% capture collname %}{{ page.collection }}{% endcapture %}
+
+<table id="breadcrumb"><tr>
+<!-- <th><em>category</em></th> -->
+<td><strong><a href="index.html#sensestage{{collname}}">{{ collname }}</a></strong></td>
+<td>></td>
+<td><em><a href="index.html#{{catname}}">{{ catname }}</a></em></td>
+<td>></td>
+<td id="currentcat"><a href="index.html#{{subcatname}}">{{ subcatname }}</a></td>
+
+{% if page.tags %}
+<td id="tags">
+<strong>tags:</strong>
+    {% assign pagetags = page.tags | join "," %}
+    {{ pagetags }}
+<!--    {% for tag in page.tags %}
+    {{ tag }},
+    {% endfor %}-->
+{% endif %}
+</td>
+</tr>
+</table>
