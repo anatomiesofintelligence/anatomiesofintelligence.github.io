@@ -27,28 +27,20 @@ collections:
   # pages:
   #   output: false # explicitly disable the pages collection from rendering
   #   layout: page
-  sensestage-v1:  # Sense/Stage v1 documentation site
+  entries:  # List of entries
     output: true
-    layout: documentation
-    permalink: /:collection/:path
-  sensestage-v2:  # Sense/Stage v2 documentation site
-    output: true
-    layout: documentation
+    layout: base
     permalink: /:collection/:path
   general:
      output: true
      layout: documentation
      permalink: /:collection/:path
-  nextstage:
-    output: false
-    layout: documentation
-  minibee_overviews:
-    output: false
   posts:
-    output: false
+    output: true
 # Build settings
 markdown: kramdown
 # theme: minima
+theme: jekyll-theme-minimal
 gems:
   - jekyll-feed
 exclude:
@@ -59,6 +51,3 @@ exclude:
   - rsync_site.sh
   - index.md.old
   - index_old.md
-
-
-#theme: jekyll-theme-minimal
