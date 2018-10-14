@@ -1,0 +1,31 @@
+---
+layout: base
+---
+
+<div class="wrapper-narrow">
+
+<div id="docs-content">
+    <h1 class="page-title">{{ page.summary | escape }}</h1>
+    <ul class="breadcrumb">
+      <li><a href="/sensestage-v1">Sense/Stage v1</a></li>
+      <li>{{ page.title }}</li>
+    </ul>
+
+  {{ content }}
+
+  <hr>
+  <table>
+  <tr>
+      <th>page created on:</th>
+      <th>last changed on:</th></tr>
+  <tr>
+      <td>{{ page.creation-date | date: "%-d %B %Y"}}</td>
+      <td>{{ page.date |  date: "%-d %B %Y" }}</td>
+  </tr>
+  </table>
+
+</div>
+
+
+
+</div> <!-- End Wrapper -->

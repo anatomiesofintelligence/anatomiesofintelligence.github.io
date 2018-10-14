@@ -1,0 +1,60 @@
+<footer class="site-footer">
+
+  <div class="wrapperfilled">
+    
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+      <h2 class="footer-heading"><a href="https://sensestage.eu">Sense/Stage News</a></h2>
+      <p>A Low Cost, Open Source Wireless Sensor Infrastructure for Live Performance and Interactive, Real-Time Environments</p>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <h2 class="footer-heading"><a class="page-link" href="{{ site.url }}">{{ site.title | escape }}</a></h2>
+        <p>{{ site.description | escape }}</p>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        {% if site.email %}
+        <h2 class="footer-heading"><a href="mailto:{{ site.email }}">Contact</a></h2>
+        {% else %}
+        <h2 class="footer-heading">Contact</h2>
+        {% endif %}
+        <ul class="contact-list">
+            <li></li>
+            <li>subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></li>            
+        </ul>
+        <ul class="social-media-list">
+          {% if site.github_username %}
+          <li>
+            {% include icon-github.html username=site.github_username %}
+          </li>
+          {% endif %}
+
+          {% if site.twitter_username %}
+          <li>
+            {% include icon-twitter.html username=site.twitter_username %}
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+
+    </div>
+    
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+      <h2 class="footer-heading"><a href="https://shop.sensestage.eu/">getting Sense/Stage</a></h2>      
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <h2 class="footer-heading"><a href="/general">general info</a></h2>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <h2 class="footer-heading"><a href="https://forum.sensestage.eu">forum</a></h2>
+      </div>
+
+    </div>
+
+  </div>
+
+</footer>

@@ -1,0 +1,31 @@
+toplevelcategories:
+    - general
+    - sensestage-v1
+    - sensestage-v2
+navigation:
+    - name: introduction
+      children:
+        - name: getting-started
+        - name: tutorials
+        - name: references
+        - name: glossary
+    - name: hardware
+      children:
+        - name: minibee
+        - name: battery
+        - name: coordinator
+        - name: expansion
+        - name: xbee
+    - name: software
+      children:
+        - name: installation
+        - name: usage
+        - name: configuration
+        - name: examples
+        - name: interfaces
+    - name: firmware
+      children:
+        - name: minibee
+        - name: arduino-ide
+    - name: community
+    - name: contributing

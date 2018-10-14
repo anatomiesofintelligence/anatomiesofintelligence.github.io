@@ -1,0 +1,25 @@
+<header class="post-header">
+    <h1 class="post-title">{{ page.title | escape }}</h1>
+    
+    <div id="sidebar">
+        {% if page.related %}
+        <em>Related pages:</em>
+        <ul>
+        {% for related in page.related %}
+        <li><a href="{{ related | slugify }}">{{ related }}</a></li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+
+    {% if page.summary %}
+    <p class="post-summary">
+            <em>{{page.summary}}</em>
+    </p>
+    {% endif %}
+
+    <p>
+    {% include page_navigation.html %}
+    </p>
+    
+</header>

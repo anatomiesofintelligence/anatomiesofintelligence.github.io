@@ -1,0 +1,56 @@
+{% capture catname %}{{ page.category | replace: "_", " " }}{% endcapture %}
+{% capture subcatname %}{{ page.subcategory | replace: "_", " " }}{% endcapture %}
+{% capture collname %}{{ page.collection }}{% endcapture %}
+
+{% for coll in site.collections %}
+    {% if coll.label == collname %}
+<table id="breadcrumb"><tr>
+<!-- <th><em>category</em></th> -->
+<td><strong><a href="{{site.baseurl}}/index.html#sensestage{{page.collection}}">{{ page.collection }}</a></strong></td>
+{% if page.category %}
+    {% if page.subcategory == null %}
+        {% for cat in site.data.category_order.navigation %}
+            {% assign catpages = coll.docs | where: "category", cat.name %}
+            {% if catpages.size > 0 %}
+                {% if cat.name == catname %}
+<td id="currentcat"><a href="{{site.baseurl}}/index.html#{{cat.name}}">{{ cat.name }}</a></td>
+                {% else %}
+<td><a href="{{site.baseurl}}/index.html#{{cat.name}}">{{ cat.name }}</a></td>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+    {% else %}
+    <td><em><a href="{{site.baseurl}}/index.html#{{catname}}">{{ catname }}</a></em></td>
+    {% endif %}
+{% endif %}
+{% if page.subcategory %}
+    {% for cat in site.data.category_order.navigation %}
+        {% if cat.name == catname %}
+            {% for child2 in cat.children %}
+                {% assign childpages = coll.docs | where: "category", cat.name %}
+                {% if childpages.size > 0 %}
+                    {% if child2.name == subcatname %}
+    <td id="currentcat"><a href="{{site.baseurl}}/index.html#{{child2.name}}">{{ child2.name }}</a></td>
+                    {% else %}
+    <td><a href="{{site.baseurl}}/index.html#{{child2.name}}">{{ child2.name }}</a></td>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+{% endif %}
+{% endfor %}
+
+</tr>
+{% if page.tags %}
+    <tr>
+    <td><em>tags</em></td>
+    {% for tag in page.tags %}
+        <td>{{ tag }}</td>
+    {% endfor %}
+    </tr>
+{% endif %}
+</table>
