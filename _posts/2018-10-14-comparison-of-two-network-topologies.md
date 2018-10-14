@@ -1,7 +1,7 @@
 ---
 title: Comparison of Two Network Topologies
 subtitle:
-layout: empty
+layout: image
 entry-type: image
 
 # when the entry was added
@@ -24,15 +24,3 @@ categories: [architectures]
 # permalink: /entry1/
 
 ---
-
-![](/img/{{ page.image }})
-
-# TITLE: {{ page.title }}
-
-## SUB: {{ page.subtitle }}
-
-<p>Summary: {{ page.summary }}</p>
-
-<p>Tags: {{ page.tags }} | {{ page.tag }}</p>
-
-<p>Categories: {{ page.categories }}</p>
