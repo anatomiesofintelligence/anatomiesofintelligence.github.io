@@ -57,12 +57,7 @@ Site Tags: {{ site.tags }}
 ## All Posts
 
 <ul>
-{% for coll in site.collections %}
-  {% if coll.label == "posts" %}
-    {% assign posts = coll.docs %}
-    {% for post in posts %}
-      <li><a class="entrylist" href="{{ post.url }}">{{ post.title }}</a></li>
-    {% endfor %}
-  {% endif %}
+{% for post in site.posts %}
+      <li><img width=100 src="/img/{{ post.image }}"/><a class="entrylist" href="{{ post.url }}">{{ post.title }}</a></li>
 {% endfor %}
 </ul>
