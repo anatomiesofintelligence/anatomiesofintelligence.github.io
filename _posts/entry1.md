@@ -1,12 +1,12 @@
 ---
 title: Comparison of a Fully Connected Network Topology and an Erdos Renyi Graph
-subtitle: This is a Subtitle
+subtitle: This is the Subtitle
 layout: base
 entry-type: image
 entry-date: 2017-02-06
 
 image: poster/Comparison-of-a-fully-connected-network-topology-A-and-an-Erdos-Renyi-graph.jpg
-summary: This is the summary text.
+summary: This is the summary text of this image.
 permalink: /entry1/
 
 category: visualisation
