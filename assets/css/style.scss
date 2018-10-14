@@ -3,11 +3,15 @@
 
 @import "{{ site.theme }}";
 
-@import url('https://fonts.googleapis.com/css?family=Ruda:400,700');
+// @import url('https://fonts.googleapis.com/css?family=Ruda:400,700');
 
 // Add custom CSS here
 body {
-font-family: 'Ruda', sans-serif;
-font-weight: 400;
+font-family: 'Junction', sans-serif;
 background-color: #D3D3D3;
+}
+
+@font-face {
+   font-family: Junction;
+   src: url(junction/Junction-regular.otf);
 }
