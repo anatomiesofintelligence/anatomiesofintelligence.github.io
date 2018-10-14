@@ -223,3 +223,4 @@ a:visited { color: gray !important; }
 li { list-style-type: none; }
 
 @font-face { font-family: Junction; src: url(junction/Junction-regular.otf); }
+#description { color: black; }

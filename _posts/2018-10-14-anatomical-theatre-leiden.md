@@ -1,7 +1,7 @@
 ---
 title: Anatomical Theatre Leiden
 subtitle: Anatomical Theatre Subtitle
-layout: empty
+layout: image
 entry-type: image
 entry-date: 2018-10-14
 
@@ -12,11 +12,3 @@ summary: An image of the Anatomical Theatre in Leiden
 tags: [anatomical theatre]
 categories: [architectures]
 ---
-
-![](/img/{{ page.image }})
-
-# {{ page.title }}
-
-## {{ page.subtitle }}
-
-<p>{{ page.summary }}</p>
