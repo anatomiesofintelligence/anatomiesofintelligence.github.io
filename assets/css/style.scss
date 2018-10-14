@@ -23,6 +23,10 @@ a:visited {
 font: gray !important;
 }
 
+li {
+    list-style-type: none;
+}
+
 @font-face {
    font-family: Junction;
    src: url(junction/Junction-regular.otf);
