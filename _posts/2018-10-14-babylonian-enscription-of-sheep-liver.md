@@ -10,6 +10,5 @@ summary: This is the summary of a Babylonian inscription.
 # permalink: /entry1/
 
 tags: [inscription]
-categories: [illustration]
-subcategory: anatomical history
+categories: [gesture]
 ---

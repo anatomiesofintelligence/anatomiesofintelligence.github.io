@@ -19,7 +19,7 @@ image: poster/Comparison-of-a-fully-connected-network-topology-A-and-an-Erdos-Re
 
 # all tags separated by commas
 tags: [neural network, models, representations]
-categories: [architectures]
+categories: [systems of knowing, modelling]
 
 # permalink: /entry1/
 
