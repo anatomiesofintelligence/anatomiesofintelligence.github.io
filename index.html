@@ -2,23 +2,26 @@
 layout: default
 ---
 
-Collection: {{ page.collection }}
-All Collections: {{ site.collections }}
+Collection: {{ page.collection | escape }}
+<br />
+All Collections: {{ site.collections | escape }}
 
-# Anatomies of Intelligence Landing Page
+<h1>Anatomies of Intelligence Landing Page</h1>
 
-## ToDos
-* Get catalog working.
-* Figure out css system
+<h2>ToDos</h2>
+<ul>
+<li>Get catalog working</li>
+<li>Figure out css system</li>
+</ul>
 
-## All entries
+<h2>All entries</h2>
 
 <ul>
 {% for coll in site.collections %}
   {% if coll.label == "entries" %}
     {% assign entries = coll.docs %}
     {% for entry in entries %}
-      <li><a class="entrylist" href="{{ entry.url }}">{{ entry.title }}</a></li>
+      <li><img width=100 src="/img/{{ entry.image }}"/><a class="entrylist" href="{{ entry.url }}">{{ entry.title }}</a></li>
     {% endfor %}
   {% endif %}
 {% endfor %}
