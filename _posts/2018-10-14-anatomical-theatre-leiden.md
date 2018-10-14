@@ -9,9 +9,8 @@ image: poster/anatomical-theatre-leiden1.gif
 summary: An image of the Anatomical Theatre in Leiden
 # permalink: /entry1/
 
-tags: [tag2,inscription]
-categories: [illustration,cat2]
-subcategory: anatomical theatre
+tags: [anatomical theatre]
+categories: [architectures]
 ---
 
 ![](/img/{{ page.image }})
