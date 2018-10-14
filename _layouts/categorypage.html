@@ -17,14 +17,17 @@
 			<h1>{{ page.category | capitalize }}</h1>
 
 			<ul>
+{% comment %}
 					{% assign posts_sorted = ( site.categories[page.category] | sort: 'tag' ) %}
 			    {% for post in posts_sorted %}
 			    <li>
-							CATEGORY: {{ post.category }} |||| 
+							CATEGORY: {{ post.category }} ||||
 			        {{ post.date | date: "%B %d, %Y" }}: <a href="{{ post.url }}">{{ post.title }}</a>
 			    </li>
 			    {% endfor %}
+{% endcomment %}
 			</ul>
+
 
     </div>
   </body>
