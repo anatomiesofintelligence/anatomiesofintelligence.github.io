@@ -29,7 +29,7 @@ collections:
   #   layout: page
   entries:  # List of entries
     output: true
-    layout: base
+    layout: empty
     permalink: /:collection/:path
   general:
      output: true
@@ -37,6 +37,9 @@ collections:
      permalink: /:collection/:path
   posts:
     output: true
+    layout: empty
+    permalink: /:collection/:path
+
 # Build settings
 markdown: kramdown
 # theme: minima
