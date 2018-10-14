@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+{% seo %}
+    <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+
+			<h1>{{ page.category | capitalize }}</h1>
+
+			<ul>
+					{% assign posts_sorted = ( site.categories[page.category] | sort: 'tag' ) %}
+			    {% for post in posts_sorted %}
+			    <li>
+							TAG: {{ post.tag }} |||| 
+			        {{ post.date | date: "%B %d, %Y" }}: <a href="{{ post.url }}">{{ post.title }}</a>
+			    </li>
+			    {% endfor %}
+			</ul>
+
+    </div>
+  </body>
+</html>
