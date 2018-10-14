@@ -18,8 +18,8 @@ summary: Comparison of a fully-connected network topology (A) and an Erdos-Renyi
 image: poster/Comparison-of-a-fully-connected-network-topology-A-and-an-Erdos-Renyi-graph.jpg
 
 # all tags separated by commas
-tags: get some dope tags, Add this.  Separate via spaces or commas!
-tag: mytag1 mytag2 mytag3
+tags: [tag1, tag2, tag3]
+categories: [cat1, cat2, cat3]
 
 # permalink: /entry1/
 
@@ -33,4 +33,6 @@ tag: mytag1 mytag2 mytag3
 
 <p>Summary: {{ page.summary }}</p>
 
-<p>Tags: {{ page.tags }} | {{ page.tag }}
+<p>Tags: {{ page.tags }} | {{ page.tag }}</p>
+
+<p>Categories: {{ page.categories }}</p>
