@@ -15,10 +15,7 @@ All Tags: {{ site.tags }}
 
 <ul>
 {% for post in site.posts %}
-	{% if post.layout == "image" %}
-      <li><img height=50 src="/img/{{ post.image }}"/><a class="entrylist" href="{{ post.url }}">{{ post.title }}</a></li>
-	{% elsif post.layout == "text" %}
-			<li><img height=30 src="/img/text-document-icon.jpg"/><a class="entrylist" href="{{ post.url }}">{{ post.summary }}</a></li>
-	{% endif %}
+	<li><a href="{{ post.url }}">{{ post.date | date: "%B %d, %Y" }}: {{ post.title }}</a>
+		<!-- img style="float:right" height=50 src="/img/{% if post.layout == "image" %}{{ post.image }}{% elsif post.layout == "text" %}text-icon.png{% endif %}"/--></li>
 {% endfor %}
 </ul>

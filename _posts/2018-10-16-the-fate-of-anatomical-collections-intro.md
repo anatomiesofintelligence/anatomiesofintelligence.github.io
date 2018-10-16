@@ -1,5 +1,5 @@
 ---
-title: Leiden Anatomical Theatre
+title: An Empirical Description of the Leiden Anatomical Theatre
 subtitle:
 layout: text
 entry-by: Joana Chicau
