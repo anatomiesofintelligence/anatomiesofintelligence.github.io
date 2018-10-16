@@ -1,8 +1,7 @@
 ---
 title: Anatomical Theatre Leiden
-subtitle: Anatomical Theatre Subtitle
+subtitle: Anatomical Theatre Leiden
 layout: image
-entry-type: image
 entry-date: 2018-10-14
 
 image: poster/anatomical-theatre-leiden1.gif

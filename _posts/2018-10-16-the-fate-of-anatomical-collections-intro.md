@@ -2,7 +2,6 @@
 title: Leiden Anatomical Theatre
 subtitle:
 layout: text
-entry-type: text
 
 entry-date: 2018-10-16
 
