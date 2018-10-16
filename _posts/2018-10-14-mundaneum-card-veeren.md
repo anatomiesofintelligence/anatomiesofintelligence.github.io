@@ -1,5 +1,5 @@
 ---
-title: Universal Card Classification System
+title: Universal Card Classification System, Mundaneum
 subtitle:
 layout: image
 entry-by: Joana Chicau

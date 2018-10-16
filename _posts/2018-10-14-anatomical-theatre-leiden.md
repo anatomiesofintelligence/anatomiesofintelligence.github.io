@@ -1,6 +1,6 @@
 ---
-title: Anatomical Theatre Leiden
-subtitle: Anatomical Theatre Leiden
+title: Copperplate Engraving of Anatomical Theatre Leiden (1615)
+subtitle: 
 entry-by: Jonathan Reus
 layout: image
 

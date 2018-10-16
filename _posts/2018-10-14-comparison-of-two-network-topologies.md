@@ -1,5 +1,5 @@
 ---
-title: Comparison of Two Network Topologies
+title: Comparison of Fully-connected Network and Erdos-Renyi Graph
 subtitle:
 layout: image
 entry-by: Jonathan Reus
@@ -21,7 +21,7 @@ summary: Comparison of a fully-connected network topology (A) and an Erdos-Renyi
 image: poster/Comparison-of-a-fully-connected-network-topology-A-and-an-Erdos-Renyi-graph.jpg
 
 # all tags separated by commas
-tags: [neural network, models, representations]
+tags: [models, representations]
 categories: [systems-of-knowing, modelling]
 
 # permalink: /entry1/
