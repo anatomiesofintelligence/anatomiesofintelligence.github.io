@@ -16,9 +16,9 @@ All Tags: {{ site.tags }}
 <ul>
 {% for post in site.posts %}
 	{% if post.layout == "image" %}
-      <li><img width=100 src="/img/{{ post.image }}"/><a class="entrylist" href="{{ post.url }}">{{ post.title }}</a></li>
+      <li><img height=50 src="/img/{{ post.image }}"/><a class="entrylist" href="{{ post.url }}">{{ post.title }}</a></li>
 	{% elsif post.layout == "text" %}
-			<li>TEXT: <a class="entrylist" href="{{ post.url }}">{{ post.summary }}</a></li>
+			<li><img height=30 src="/img/text-document-icon.jpg"/><a class="entrylist" href="{{ post.url }}">{{ post.summary }}</a></li>
 	{% endif %}
 {% endfor %}
 </ul>

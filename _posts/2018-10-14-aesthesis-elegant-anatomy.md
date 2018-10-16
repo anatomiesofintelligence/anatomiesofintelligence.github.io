@@ -2,17 +2,14 @@
 title: The Concept of Aesthesis
 subtitle:
 layout: text
-entry-type: text
 
 entry-date: 2018-10-14
-
 
 # who owns the copyright?
 source: Elegant Anatomy, The Eighteenth-Century Leiden Anatomical Collections. Marieke M. A. Hendriksen (2015)
 
 # if a url is available, put it here, otherwise leave empty
 source-url: https://brill.com/view/title/24846
-
 
 summary: Excerpt from Elegant Anatomy, Marieke M. A. Hendriksen
 
