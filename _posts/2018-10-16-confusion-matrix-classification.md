@@ -18,7 +18,7 @@ image: algorithms/confusion-matrix-classifier-evaluation.png
 
 # all tags separated by commas
 tags: [classification, optimization, evaluation, taxonomy]
-categories: modelling, gesture
+categories: [modelling, gesture]
 
 # permalink: /entry1/
 
