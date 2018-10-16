@@ -1,5 +1,5 @@
 ---
-title: Replica Anatomical Theatre Leiden (1594)
+title: Collection of anatomical instruments: knifes
 subtitle:
 layout: image
 entry-type: image
@@ -13,13 +13,13 @@ source-url:
 # who owns the copyright?
 source: Joana Chicau and Jonathan Reus visit to Leiden Sept 7th 2018
 
-summary: Replica of Anatomical Theatre originally built for Leiden University in 1594 currently at Boerhaave Museum.
+summary: Collection of anatomical instruments or cutting tools, including knifes for amputation at Boerhaave Museum.
 
-image: leidenmuseum/leidenreplica.jpg
+image: leidenmuseum/cutting_tools.jpg
 
 # all tags separated by commas
-tags: [anatomical theatre , spectacle]
-categories: [systems-of-knowing]
+tags: [cutting , tools]
+categories: [gesture]
 
 # permalink: /entry1/
 
