@@ -18,7 +18,7 @@ image: algorithms/3d-brownian-motion-markov-property.png
 
 # all tags separated by commas
 tags: [algorithm, memory]
-categories: [modelling]
+categories: modelling
 
 # permalink: /entry1/
 
