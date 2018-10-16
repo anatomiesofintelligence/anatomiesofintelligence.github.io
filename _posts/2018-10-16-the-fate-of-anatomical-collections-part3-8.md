@@ -1,5 +1,5 @@
 ---
-title: An Empirical Description of the Leiden Anatomical Theatre
+title: Leiden Anatomical Theatre
 subtitle:
 layout: text
 entry-by: Joana Chicau
@@ -14,14 +14,14 @@ source-url: https://books.google.de/books?id=4Ii1CwAAQBAJ&lpg=PT5&ots=7MRH3PJGTy
 copyright: Rina Knoe  and Robert Zwijnenberg have asserted their right under the copyright, Designs and Patents act, 1988, to be identified as the editors of this work.
 
 
-summary: Excerpt from The Fate of Anatomical Collections, Chapter 5 Resilient Collections &#58; The long life of Leiden’s earliest Anatomical Collections by Tim Huisman
+summary: Excerpt from The Fate of Anatomical Collections, Chapter 8 User-Developers, Model Students and Ambassador Users &#58; The Role of the Public in the Global Distribution of Nineteenth- Century Anatomical Models by Anna Maerker
 
 # all tags separated by commas
-tags: [anatomical demonstrations, anatomical theatre]
-categories: [systems-of-knowing]
+tags: [models, labelling]
+categories: [modelling]
 
 # permalink: /entry1/
 
 ---
 
-"Leiden’s anatomy hall is a brick building, the exterior of which looks quite unprepossessing. Inside one  finds two theatres – or ‘snykammer’ as the Dutch call them – for anatomical demonstrations: a public one and a private theatre. ... In the latter various glass cases contain the excellent anatomical preparations of Dr Rau ... next to that one sees the portrait of Solingen, and the famous knife swallower, the head of an elephant, and three mummies."
+"Auzoux developed a special recipe for a paper paste, which enabled the construction of life-sized models of the human body that could be taken apart and reassembled. He coined the term ‘clastic anatomy’ (after the Greek for 'to break, to separate') to highlight the novelty of his ‘dissectible’ models. To facilitate independent study and the identification of anatomical details, the models were extensively labelled."

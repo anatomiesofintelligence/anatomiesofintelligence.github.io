@@ -1,5 +1,5 @@
 ---
-title: An Empirical Description of the Leiden Anatomical Theatre
+title: Leiden Anatomical Theatre
 subtitle:
 layout: text
 entry-by: Joana Chicau
@@ -14,14 +14,14 @@ source-url: https://books.google.de/books?id=4Ii1CwAAQBAJ&lpg=PT5&ots=7MRH3PJGTy
 copyright: Rina Knoe  and Robert Zwijnenberg have asserted their right under the copyright, Designs and Patents act, 1988, to be identified as the editors of this work.
 
 
-summary: Excerpt from The Fate of Anatomical Collections, Chapter 5 Resilient Collections &#58; The long life of Leiden’s earliest Anatomical Collections by Tim Huisman
+summary: Excerpt from The Fate of Anatomical Collections, Chapter 2 Organ Music by Ruth Richardson
 
 # all tags separated by commas
-tags: [anatomical demonstrations, anatomical theatre]
+tags: [preparation, anatomical theatre, aesthesis]
 categories: [systems-of-knowing]
 
 # permalink: /entry1/
 
 ---
 
-"Leiden’s anatomy hall is a brick building, the exterior of which looks quite unprepossessing. Inside one  finds two theatres – or ‘snykammer’ as the Dutch call them – for anatomical demonstrations: a public one and a private theatre. ... In the latter various glass cases contain the excellent anatomical preparations of Dr Rau ... next to that one sees the portrait of Solingen, and the famous knife swallower, the head of an elephant, and three mummies."
+"The Museum shelves are strongly made. The old glass bottles with their thick wax seals bear ponderously down with their soft contents. Even the more modern plastic boxes are weighty with precious specimens and preserving fluids. But the impression is of lightness. Kidneys, livers, brains, spleens and other parts (often delicately tethered with tiny threads to glass splints so as to preserve the impression of levity) float in clear, opaque or ambered liquids; held in suspension like the pathological processes they exemplify – arrested growths, odourless suppurations, pain benumbed, decay forestalled.."
