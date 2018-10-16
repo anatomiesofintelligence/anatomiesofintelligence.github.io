@@ -1,5 +1,5 @@
 ---
-title: Collection of anatomical instruments knifes
+title: Collection of Anatomical Cutting Tools
 subtitle:
 layout: image
 entry-type: image
