@@ -1,5 +1,5 @@
 ---
-title: Leiden Anatomical Theatre
+title: Interdisciplinarity
 subtitle:
 layout: text
 entry-by: Joana Chicau

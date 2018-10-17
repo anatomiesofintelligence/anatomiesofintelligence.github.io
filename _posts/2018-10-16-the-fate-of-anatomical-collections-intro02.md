@@ -1,5 +1,5 @@
 ---
-title: Leiden Anatomical Theatre
+title: The Impression of Lightness
 subtitle:
 layout: text
 entry-by: Joana Chicau
