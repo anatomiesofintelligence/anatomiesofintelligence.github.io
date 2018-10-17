@@ -1,5 +1,5 @@
 ---
-title: Leiden Anatomical Theatre
+title: Azoux' Clastic Anatomy
 subtitle:
 layout: text
 entry-by: Joana Chicau

@@ -1,5 +1,5 @@
 ---
-title: Leiden Anatomical Theatre
+title: God's Work (Early 17th century epistemology)
 subtitle:
 layout: text
 entry-by: Joana Chicau

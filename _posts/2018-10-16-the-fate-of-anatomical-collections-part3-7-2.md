@@ -1,5 +1,5 @@
 ---
-title: Leiden Anatomical Theatre
+title: Representation of Preparations and Models
 subtitle:
 layout: text
 entry-by: Joana Chicau
@@ -24,4 +24,4 @@ categories: [systems-of-knowing]
 
 ---
 
-"Through these reinterpretations, curators and audiences changed the fate of the collections.  ey prolonged their use in research and teaching, while at the same time – as we will see below – impeding the use of preparations as historical objects. But curators and audiences could never have completed the reinterpretations if the collections had not allowed them to. Their reinterpretations depended on the collections (and the objects in them) being sufficiently  flexible. This flexibility depended directly on the material properties of the collections. In particular, with anatomical collections, the fact of whether the objects in the collections are preparations or models is vital, because of a fundamental material difference between the two, pointed out by philosopher of biology Hans-Jörg Rheinberger: preparations are made of what they represent; models (and other anatomical representations, like drawings) are not."
+"Through these reinterpretations, curators and audiences changed the fate of the collections.  They prolonged their use in research and teaching, while at the same time – as we will see below – impeding the use of preparations as historical objects. But curators and audiences could never have completed the reinterpretations if the collections had not allowed them to. Their reinterpretations depended on the collections (and the objects in them) being sufficiently flexible. This flexibility depended directly on the material properties of the collections. In particular, with anatomical collections, the fact of whether the objects in the collections are preparations or models is vital, because of a fundamental material difference between the two, pointed out by philosopher of biology Hans-Jörg Rheinberger: preparations are made of what they represent; models (and other anatomical representations, like drawings) are not."

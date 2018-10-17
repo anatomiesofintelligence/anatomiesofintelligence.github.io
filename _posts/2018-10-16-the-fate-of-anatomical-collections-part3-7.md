@@ -1,5 +1,5 @@
 ---
-title: Leiden Anatomical Theatre
+title: On the Agency of Anatomical Preparations
 subtitle:
 layout: text
 entry-by: Joana Chicau
