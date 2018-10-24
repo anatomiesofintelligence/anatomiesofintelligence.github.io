@@ -19,6 +19,7 @@ image: algorithms/ClusterAnalysis_Mouse-Dataset.png
 
 # all tags separated by commas
 tags: [training, grouping, algorithm]
+weights: [0.4, 0.9, 0.67]
 categories: [gesture, modelling]
 
 # permalink: /entry1/

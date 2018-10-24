@@ -23,6 +23,8 @@ summary: Entry from Universal Card Classification System, Mundaneum Archive, Mon
 
 # all tags separated by commas
 tags: [archive, taxonomy, classification]
+weights: [0.8, 0.9, 0.4]
+
 categories: [corpus]
 
 # permalink: /entry1/
