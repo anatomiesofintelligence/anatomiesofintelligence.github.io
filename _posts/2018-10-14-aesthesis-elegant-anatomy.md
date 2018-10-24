@@ -16,6 +16,8 @@ summary: Excerpt on Aesthesis and the epistemology of 18th century anatomical re
 
 # all tags separated by commas
 tags: [aesthesis, preparation]
+weights: [1.0, 0.6]
+
 categories: [systems-of-knowing]
 
 # permalink: /entry1/
