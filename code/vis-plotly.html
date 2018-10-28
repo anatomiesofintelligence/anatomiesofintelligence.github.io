@@ -6,12 +6,6 @@
 
 	<script src="lib/plotly-latest.min.js"></script>
 
-<style>
-	div {
-		display: inline-block;
-	};
-</style>
-
 </head>
 
 <body>
@@ -22,7 +16,7 @@
 
 <div id="scatter3d" style="width:500px;height:500px;"></div>
 
-<div id="scatter2d" style="width:500px;height:500px;"></div>
+<div id="scatter2d" style="width:800px;height:600px;"></div>
 
 <script>
 	// See: https://plot.ly/javascript/plotlyjs-function-reference/
@@ -80,7 +74,9 @@
 		},
 	};
 
-	var circle = [[0.1,0.1],[0.5,0.5]];
+	var circle01,circle02;
+	circle01 = [[0.1,0.1],[0.3,0.3]];
+	circle02 = [[0.4,0.4],[0.7,0.7]];
 
 
 	var layout1 = {
@@ -95,14 +91,25 @@
        type: 'circle',
        xref: 'x',
        yref: 'y',
-       x0: circle[0][0],
-       y0: circle[0][1],
-       x1: circle[1][0],
-       y1: circle[1][1],
+       x0: circle01[0][0],
+       y0: circle01[0][1],
+       x1: circle01[1][0],
+       y1: circle01[1][1],
        line: {
          color: 'rgba(50, 171, 96, 1)'
        }
-  	}],
+  	},{
+	       type: 'circle',
+	       xref: 'x',
+	       yref: 'y',
+	       x0: circle02[0][0],
+	       y0: circle02[0][1],
+	       x1: circle02[1][0],
+	       y1: circle02[1][1],
+	       line: {
+	         color: 'rgba(150, 71, 56, 1)'
+	       }
+	  	}],
 	};
 
 var layout2 = {
@@ -160,35 +167,51 @@ function randomwalk() {
 		now = Date.now();
 		elapsed = now - lastredraw;
 
-		if(elapsed > (1000/15)) {
+		if(elapsed > (1000/20)) {
 			lastredraw = now;
 
-			circle[0][0] += (Math.random() - 0.5) * 0.1;
-			if(circle[0][0] < 0.0) circle[0][0] = 0.0;
-			if(circle[0][0] > 1.0) circle[0][0] = 1.0;
-			circle[0][1] = circle[0][0];
-
-			circle[1][0] += (Math.random() - 0.5) * 0.1;
-			if(circle[1][0] < 0.0) circle[1][0] = 0.0;
-			if(circle[1][0] > 1.0) circle[1][0] = 1.0;
-			circle[1][1] = circle[1][0]
+			twitchCircle(circle01);
+			twitchCircle(circle02);
 
 			Plotly.relayout(SCATTER2D, {
 				shapes:	[{ // add arbitrary shapes
 					type: 'circle',
 					xref: 'x',
 					yref: 'y',
-					x0: circle[0][0],
-					y0: circle[0][1],
-					x1: circle[1][0],
-					y1: circle[1][1],
+					x0: circle01[0][0],
+					y0: circle01[0][1],
+					x1: circle01[1][0],
+					y1: circle01[1][1],
 					line: {
-						color: 'rgba(50, 171, 96, 1)'
-					}
+ 	         color: 'rgba(50, 171, 96, 1)'
+ 	       }
+				},{
+					type: 'circle',
+					xref: 'x',
+					yref: 'y',
+					x0: circle02[0][0],
+					y0: circle02[0][1],
+					x1: circle02[1][0],
+					y1: circle02[1][1],
+					line: {
+ 	         color: 'rgba(250, 221, 36, 1)'
+ 	       }
 				}],});
 
-				Plotly.redraw(SCATTER3D);
+			Plotly.redraw(SCATTER3D);
 		}
+}
+
+function twitchCircle(circle) {
+	circle[0][0] += (Math.random() - 0.5) * 0.1;
+	if(circle[0][0] < 0.0) circle[0][0] = 0.0;
+	if(circle[0][0] > 1.0) circle[0][0] = 1.0;
+	circle[0][1] = circle[0][0];
+
+	circle[1][0] += (Math.random() - 0.5) * 0.1;
+	if(circle[1][0] < 0.0) circle[1][0] = 0.0;
+	if(circle[1][0] > 1.0) circle[1][0] = 1.0;
+	circle[1][1] = circle[1][0]
 }
 
 
