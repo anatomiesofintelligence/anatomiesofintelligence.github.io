@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="UTF-8" />
+
+	<script src="lib/sylvester.src.js"></script>
+	<script src="lib/simple-statistics.min.js"></script>
+	<script src="lib/shaman-combo.js"></script>
+	<script src="lib/plotly-latest.min.js"></script>
+
+	<script type="text/javascript">
+
+	/**
+	 * Import Modules
+	 */
+	 // Simple Statistics is always globally available as ss, see: https://www.npmjs.com/package/simple-statistics
+	 const stats = ss; //require(‘simple-statistics’);
+
+	 console.log(shaman.euclidean([2.0,3.0],[6.0,12.0]));
+	 mydata = [];
+	 var i;
+	 for (i = 0; i < 10; i++) {
+	 	mydata.push([Math.random() * 10.0, Math.random() * 10.0])
+ 	 }
+
+	 console.log(mydata)
+
+	 /**
+ * Summary function return the overview about the data serie
+ * @param data array
+ */
+ function summary(column) {
+    return {
+       min: stats.min(column),
+       max: stats.max(column),
+       sum: stats.sum(column),
+       median: stats.median(column),
+       mode: stats.mode(column),
+       mean: stats.mean(column),
+       variance: stats.variance(column),
+       stdDeviation: stats.standardDeviation(column),
+       quantile: {
+          q1: stats.quantile(column, 0.25),
+          q3: stats.quantile(column, 0.75)
+       }
+    }
+ }
+ // invoke and show summary function for sepalwidth serie
+ console.log(summary(mydata));
+
+ // build clustering model
+ const kmeans = new KMeans(7);
+
+ // execute clustering using dataset
+ kmeans.cluster(mydata, function (err, clusters, centroids) {
+    // show any errors
+    console.log(err);
+
+ 	// show the clusters founds
+    console.log(clusters);
+
+ // show the centroids
+    console.log(centroids);
+})
+
+	 //const KMeans = require(‘shaman’).KMeans;
+	 //const dataForge = require(‘data-forge’);
+	 //const config = require(‘./config’);
+	 //const plotly = require(‘plotly’)(config.USERNAME, config.API_KEY);
+	 //const opn = require(‘opn’);
+	</script>
+
+</head>
+
+<body>
+<div>
+<h1>Data Goes Here</h1>
+</div>
+<div id="scatter2d" style="width:800px;height:600px;"></div>
+<div id="scatter3d" style="width:800px;height:600px;"></div>
+
+<script>
+	// See: https://plot.ly/javascript/plotlyjs-function-reference/
+	// for a full list of Plotly functions
+
+	SCATTER2D = document.getElementById('scatter2d');
+	SCATTER3D = document.getElementById('scatter3d');
+
+	// Generate some random datapoints and labels
+	data_x = [];
+	data_y = [];
+	data_z = [];
+	labels = [];
+	colors = [];
+	var i;
+	for (i = 0; i < 20; i++) {
+		data_x.push(Math.random())
+		data_y.push(Math.random())
+		data_z.push(Math.random())
+		labels.push('A'+i)
+		colors.push(i % 5)
+	}
+
+	trace1 = {
+		x: data_x,
+		y: data_y,
+		mode: 'markers', type: 'scatter',
+		name: 'My Data Points',
+		text: labels,
+		textposition: 'top center',
+		showlegend: true,
+  	textfont: {
+    	family:  'sans-serif'
+  	},
+		marker: {
+			size: 10,
+		 	color: colors
+		},
+	};
+
+	trace2 = {
+		x: data_x,
+		y: data_y,
+		z: data_z,
+		mode: 'markers', type: 'scatter3d',
+		name: 'My Data Points in 3D',
+		text: labels,
+		textposition: 'top center',
+  	textfont: {
+    	family:  'sans-serif'
+  	},
+		marker: {
+			size: 10,
+		 	color: colors
+		},
+	};
+
+	var circle = [[0.1,0.1],[0.5,0.5]];
+
+
+	var layout1 = {
+  xaxis: {
+    range: [ 0.0, 1.0 ]
+  },
+  yaxis: {
+    range: [0.0, 1.0]
+  },
+  title:'A 2D Scatterplot',
+	shapes:	[{ // add arbitrary shapes
+       type: 'circle',
+       xref: 'x',
+       yref: 'y',
+       x0: circle[0][0],
+       y0: circle[0][1],
+       x1: circle[1][0],
+       y1: circle[1][1],
+       line: {
+         color: 'rgba(50, 171, 96, 1)'
+       }
+  	}],
+	};
+
+var layout2 = {
+xaxis: {
+	range: [ 0.0, 1.0 ]
+},
+yaxis: {
+	range: [0.0, 1.0]
+},
+zaxis: {
+	range: [0.0, 1.0]
+},
+title:'A 3D Scatterplot'
+};
+
+
+Plotly.newPlot( SCATTER2D, [trace1], layout1);
+Plotly.newPlot( SCATTER3D, [trace2], layout2);
+
+var lastredraw = Date.now()
+
+function randomwalk() {
+		var i,j,k;
+		var elapsed, now;
+		for(i=0; i<data_x.length; i++) {
+			data_x[i] = data_x[i] + ((Math.random() - 0.5)*0.1);
+			if(data_x[i] < 0.0) data_x[i] = 0.0;
+			if(data_x[i] > 1.0) data_x[i] = 1.0;
+		}
+		for(j=0; j<data_y.length; j++) {
+			data_y[j] = data_y[j] + ((Math.random() - 0.5)*0.1);
+			if(data_y[j] < 0.0) data_y[j] = 0.0;
+			if(data_y[j] > 1.0) data_y[j] = 1.0;
+		}
+		for(k=0; k<data_z.length; k++) {
+			data_z[k] = data_z[k] + ((Math.random() - 0.5)*0.1);
+			if(data_z[k] < 0.0) data_z[k] = 0.0;
+			if(data_z[k] > 1.0) data_z[k] = 1.0;
+		}
+
+		Plotly.animate(SCATTER2D, {
+			data: [{x: data_x, y: data_y}],
+			traces: [0],
+			layout: {}
+		},{
+			transition: {
+				duration: 200,
+				easing: 'cubic-in-out'
+			},
+			frame: {
+				duration: 100
+			}
+		});
+
+		now = Date.now();
+		elapsed = now - lastredraw;
+
+		if(elapsed > (1000/15)) {
+			lastredraw = now;
+
+			circle[0][0] += (Math.random() - 0.5) * 0.1;
+			if(circle[0][0] < 0.0) circle[0][0] = 0.0;
+			if(circle[0][0] > 1.0) circle[0][0] = 1.0;
+			circle[0][1] = circle[0][0];
+
+			circle[1][0] += (Math.random() - 0.5) * 0.1;
+			if(circle[1][0] < 0.0) circle[1][0] = 0.0;
+			if(circle[1][0] > 1.0) circle[1][0] = 1.0;
+			circle[1][1] = circle[1][0]
+
+			Plotly.relayout(SCATTER2D, {
+				shapes:	[{ // add arbitrary shapes
+					type: 'circle',
+					xref: 'x',
+					yref: 'y',
+					x0: circle[0][0],
+					y0: circle[0][1],
+					x1: circle[1][0],
+					y1: circle[1][1],
+					line: {
+						color: 'rgba(50, 171, 96, 1)'
+					}
+				}],});
+
+				Plotly.redraw(SCATTER3D);
+		}
+}
+
+
+// Standard JS animation methods..
+
+// Update the graph each frame
+function update() {
+	randomwalk();
+	requestAnimationFrame(update);
+}
+
+// Start the animation
+requestAnimationFrame(update);
+
+</script>
+
+</body>
+
+</html>
