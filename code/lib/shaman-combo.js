@@ -1,3 +1,10 @@
+// Added by Jon for inserting delays
+// see: https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep/39914235#39914235
+function sleep(ms) {
+	return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
 /*globals exports */
 // DISTANCE LIB
 
@@ -28,7 +35,7 @@ var KMeans = function(K, options) {
   this.options = options || {};
 }
 
-KMeans.prototype.cluster = function(data, callback) {
+KMeans.prototype.cluster = async function(data, callback) {
   var self = this;
 
   if (!data) {
@@ -82,7 +89,7 @@ KMeans.prototype.cluster = function(data, callback) {
       }
     }
     self.centroids = newCentroids;
-  }
+	}
 
   // denormalize clusters and centroids
   self.centroids = self.denormalize(self.centroids);

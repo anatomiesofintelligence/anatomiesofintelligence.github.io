@@ -77,29 +77,34 @@
 
 <body>
 	<div>
-	Use: makeclusters(NUM_CLUSTERS)
+	Use: makeClusters(NUM_CLUSTERS)
 <br> ...to categorize based on a different number of clusters...</div>
 	<div id="scatter2d" style="width:800px;height:800px;"></div>
 
 
 	<script>
 	// This function is used by the Kmeans object to handle the results of the algorithm
-	function kmeans_results(err, clusters, centroids) {
+	function kmeansResults(err, clusters, centroids) {
 		// show any errors
 		console.log(err);
 
 		// show the clusters found
 		console.log(clusters);
 
-		clusters_to_tracedata(clusters);
-		update_traces();
+		clustersToTracedata(clusters);
+		updateTraces();
 
 		// show the centroids
 		console.log(centroids);
 	}
 
+	// This function gets called after each kmeans iteration...
+	function kmeansIteration(clusters, centroids) {
+			clustersToTracedata(clusters);
+	}
+
 	// Fills tracedata with plot-friendly data from a clusters dataset
-	function clusters_to_tracedata(clusters) {
+	function clustersToTracedata(clusters) {
 		for(var i=0; i<clusters.length; i++) {
 			var clustersize = clusters[i].length;
 			tracedata[i] = [new Array(clustersize),new Array(clustersize)];
@@ -110,7 +115,7 @@
 		}
 	}
 
-	function update_traces() {
+	function updateTraces() {
 		// Update the plot traces array with whatever is in tracedata
 		var numtraces = tracedata.length;
 		traces.length = numtraces; // resize traces
@@ -147,19 +152,28 @@
 		title:'clustering...',
 	};
 
-	update_traces();
+	updateTraces();
 	Plotly.newPlot( SCATTER2D, traces, layout);
 
 	// remap with a different number of clusters
-	function makeclusters(n_clusters) {
+	function makeClusters(n_clusters, delay) {
 		NUM_CLUSTERS = n_clusters;
 		kmeans = new KMeans(NUM_CLUSTERS);
-		kmeans.cluster(mydata, kmeans_results);
+		kmeans.cluster(mydata, kmeansResults);
 		Plotly.redraw(SCATTER2D);
-		//Plotly.restyle(SCATTER2D, traces);
 	}
 
-	makeclusters(3);
+	// Group in 3 clusters, with delay of 10ms between iterations
+	makeClusters(3);
+
+	// Slow animation...
+	// Update the graph each frame
+	function updateFrame() {
+		requestAnimationFrame(updateFrame);
+	}
+
+	// Start the animation
+	requestAnimationFrame(updateFrame);
 
 </script>
 
