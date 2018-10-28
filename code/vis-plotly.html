@@ -6,6 +6,11 @@
 
 	<script src="lib/plotly-latest.min.js"></script>
 
+<style>
+	div {
+		display: inline-block;
+	};
+</style>
 
 </head>
 
@@ -15,8 +20,9 @@
 	</audio>
 
 
-<div id="scatter2d" style="width:800px;height:600px;"></div>
-<div id="scatter3d" style="width:800px;height:600px;"></div>
+<div id="scatter3d" style="width:500px;height:500px;"></div>
+
+<div id="scatter2d" style="width:500px;height:500px;"></div>
 
 <script>
 	// See: https://plot.ly/javascript/plotlyjs-function-reference/
@@ -44,7 +50,7 @@
 		x: data_x,
 		y: data_y,
 		mode: 'markers', type: 'scatter',
-		name: 'My Data Points',
+		name: 'Trace_01',
 		text: labels,
 		textposition: 'top center',
 		showlegend: true,
@@ -62,7 +68,7 @@
 		y: data_y,
 		z: data_z,
 		mode: 'markers', type: 'scatter3d',
-		name: 'My Data Points in 3D',
+		name: 'Trace_02',
 		text: labels,
 		textposition: 'top center',
   	textfont: {
@@ -84,7 +90,7 @@
   yaxis: {
     range: [0.0, 1.0]
   },
-  title:'A 2D Scatterplot',
+  title:'2-Dimensional Scatter',
 	shapes:	[{ // add arbitrary shapes
        type: 'circle',
        xref: 'x',
@@ -109,7 +115,7 @@ yaxis: {
 zaxis: {
 	range: [0.0, 1.0]
 },
-title:'A 3D Scatterplot'
+title:'3-Dimensional Scatter'
 };
 
 
