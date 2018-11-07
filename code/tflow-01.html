@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="UTF-8" />
+
+	<!-- Normally get tensorflow library from CDN -->
+	<!-- script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.13.3/dist/tf.min.js"> </script-->
+
+	<script src="lib/tf.min.js"></script>
+
+	<script src="lib/plotly-latest.min.js"></script>
+
+	<script type="text/javascript">
+	// Super basic linear regression using tensorflow
+
+	// Define a model for linear regression.
+	const model = tf.sequential();
+	model.add(tf.layers.dense({units: 1, inputShape: [1]}));
+
+	// Prepare the model for training: Specify the loss and the optimizer.
+	model.compile({loss: 'meanSquaredError', optimizer: 'sgd'});
+
+	// Generate some synthetic data for training. input vals & output vals
+	const trainingData = [[1,2,3,4],[1,3,5,7]]; // input & output for training a model
+
+	const xs = tf.tensor2d(trainingData[0], [4, 1]);
+	const ys = tf.tensor2d(trainingData[1], [4, 1]);
+
+	// Train the model using the input and output data.
+	model.fit(xs, ys, {epochs: 10}).then(() => {
+		// Use the model to do inference on a data point the model hasn't seen before:
+		// Open the browser devtools to see the output
+		model.predict(tf.tensor2d([5], [1, 1])).print();
+	});
+	</script>
+
+</head>
+
+<body>
+	<div>
+	Use: makeClusters(NUM_CLUSTERS)
+<br> ...to categorize based on a different number of clusters...</div>
+
+	<div id="scatter2d" style="width:600px;height:300px;"></div>
+	<script>
+	SCATTER2D = document.getElementById('scatter2d');
+
+	// Generate some predictions using the linear regression model
+	var predictedData = [[],[]];
+	var x;
+	for (var i = 0; i < 20; i++) {
+		x = Math.random() * 10;
+		predictedData[0].push(x);
+		predictedData[1].push(model.predict([x],[1,1]));
+	}
+
+	// Make the plot Traces
+	t_training = {
+		x: trainingData[0], y: trainingData[1],
+		mode: 'markers', type: 'scatter',
+		name: 'Training',
+		showlegend: true,
+		marker: {
+			size: 10
+		},
+	};
+
+	t_predicted = {
+		x: predictionData[0], y: predictionData[1],
+		mode: 'markers', type: 'scatter',
+		name: 'Predictions',
+		marker: {
+			size: 10,
+		},
+	};
+
+	var layout = {
+  xaxis: {
+    range: [ 0.0, 10.0 ]
+  },
+  yaxis: {
+    range: [0.0, 10.0]
+  },
+  title:'Linear Regression with Tensorflow',
+	};
+
+
+	Plotly.newPlot( SCATTER2D, [t_training, t_predicted], layout);
+
+
+	</script>
+
+</body>
+
+</html>
