@@ -22,6 +22,7 @@ image: poster/ML-Algolit-ElegantAnatomy.png
 
 # all tags separated by commas
 tags: [models, dissection, python, word2vec]
+weights: [0.76, 0.3, 0.8 , 1.0]
 categories: [systems-of-knowing, modelling]
 
 # permalink: /entry1/

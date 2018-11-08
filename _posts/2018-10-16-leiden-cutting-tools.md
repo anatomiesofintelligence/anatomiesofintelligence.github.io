@@ -22,6 +22,7 @@ image: leidenmuseum/cutting_tools.jpg
 
 # all tags separated by commas
 tags: [cutting , tools]
+weights: [0.32, 0.7]
 categories: [gesture]
 
 # permalink: /entry1/

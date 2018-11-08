@@ -17,7 +17,8 @@ copyright: Rina Knoe  and Robert Zwijnenberg have asserted their right under the
 summary: Excerpt from The Fate of Anatomical Collections, Chapter 1 Setting the Stage by Rina Knoeff  and Robert Zwijnenberg
 
 # all tags separated by commas
-tags: [anatomical collections, anatomical theatre, aesthesis, history]
+tags: [anatomical collections, anatomical theatre, aesthesis, history, epistemology]
+weights: [0.41, 0.12, 0.32, 0.34, 0.57]
 categories: [systems-of-knowing]
 
 # permalink: /entry1/

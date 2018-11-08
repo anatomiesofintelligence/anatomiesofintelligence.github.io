@@ -16,6 +16,7 @@ summary: Excerpt on Aesthesis and the epistemology of 18th century anatomical re
 
 # all tags separated by commas
 tags: [preparations, tacit, aesthesis, sensory perception, trial, error, imagination]
+weights: [0.923, 1.0, 0.32, 0.23, 0.6, 0.6, 0.22]
 categories: [systems-of-knowing]
 
 # permalink: /entry1/

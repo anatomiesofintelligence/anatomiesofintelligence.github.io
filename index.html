@@ -20,7 +20,7 @@ All Tags:
 <script>
 // Initialize the catalog
 var catalog = new Catalog()
-var tag_weight;
+var tag_weight, newexample;
 </script>
 
 
@@ -30,24 +30,56 @@ var tag_weight;
 <a href="{{ post.url }}">{{ post.date | date: "%B %d, %Y" }}: {{ post.title }}</a>
 {% if post.layout == "image" %}<img height="100" src="/img/{{ post.image }}"/>{% endif %}
 <script>
-var example = new Example("{{ post_id }}");
+newexample = new Example("{{ post_id }}");
 {% for tag in post.tags %}
 {% assign idx = forloop.index | minus: 1 %}
 tag_weight = ["{{ tag }}", {{ post.weights[idx] }}];
-example.addTag(tag_weight)
+newexample.addTag(tag_weight)
 {% endfor %}
-catalog.addExample(example);
+catalog.addExample(newexample);
 </script>
 </div>
 {% endfor %}
 
 <script>
-catalog.randomize();
 
-//set_random_stage();
+// USAGE TESTS: (if these work then our code is more-or-less done)
 
-var measurement = measures.euclidean; // or another premade function, or one that is created on the fly
-//catalog.cluster(num_clusters, measurement);
+catalog.randomize(); // randomize example divs
 
+// Grab a couple examples to work with
+e1 = Object.values(catalog.examples)[0];
+e2 = Object.values(catalog.examples)[1];
+e3 = Object.values(catalog.examples)[2];
+e4 = Object.values(catalog.examples)[3];
+
+taglist = ["models", "preparations", "aesthesis", "unknown"];
+feature_options = {taglist: taglist};
+
+// Test getting a FeatureVec from an Example
+fv1 = e1.getFeatures(feature_options);
+fv2 = e2.getFeatures(feature_options);
+console.log("Features of",e1,"are",fv1);
+console.log("Features of",e2,"are",fv2);
+easf = catalog.examplesAsFeatures(feature_options);
+console.log("All examples as features:", easf);
+
+// Test distance measurement
+distance = Measures.euclidean(fv1, fv2, feature_options);
+console.log("Distance", e1.id, "to", e2.id, "=", distance);
+
+
+// Test some of the statistical functions used in the KMeans algorithm
+km = new KMeans(3, feature_options);
+feature_avg = km.mean(easf);
+console.log("MEAN of features:", feature_avg);
+normalized = km.normalize(easf);
+console.log("NORMALIZED features:",normalized);
+denormalized = km.denormalize(normalized);
+console.log("DENORMALIZED features:",denormalized);
+
+
+// Test clustering
+catalog.cluster(3, Measures.euclidean, taglist, 100);
 
 </script>

@@ -17,6 +17,7 @@ image: algorithms/CNN-digit-dataset-topology.png
 
 # all tags separated by commas
 tags: [neural networks, model]
+weights: [0.9, 0.44]
 categories: [modelling, corpus]
 
 # permalink: /entry1/

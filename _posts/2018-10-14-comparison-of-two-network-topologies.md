@@ -22,6 +22,7 @@ image: poster/Comparison-of-a-fully-connected-network-topology-A-and-an-Erdos-Re
 
 # all tags separated by commas
 tags: [models, representations]
+weights: [0.67, 0.43]
 categories: [systems-of-knowing, modelling]
 
 # permalink: /entry1/

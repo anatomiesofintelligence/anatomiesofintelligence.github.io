@@ -16,6 +16,7 @@ summary: Excerpt on the role of poetic rhetoric on 18th century anatomical resea
 
 # all tags separated by commas
 tags: [preparations, poetic, rhetoric]
+weights: [0.1, 0.68, 0.89]
 categories: [systems-of-knowing]
 
 # permalink: /entry1/

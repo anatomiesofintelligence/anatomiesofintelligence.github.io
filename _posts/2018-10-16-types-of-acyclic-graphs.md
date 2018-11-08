@@ -18,6 +18,7 @@ image: algorithms/acyclic-graphs.gif
 
 # all tags separated by commas
 tags: [PGM, graphs]
+weights: [0.98, 0.884]
 categories: modelling
 
 # permalink: /entry1/

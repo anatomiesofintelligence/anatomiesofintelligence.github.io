@@ -15,6 +15,7 @@ summary: Excerpt from "Beautiful Monsters", chapter 5 at Elegant Anatomy, Mariek
 
 # all tags separated by commas
 tags: [aesthesis, preparations, tacit, monsters, sensory perceptions, freakish, disgusting, unknown, categories]
+weights: [1.0, 0.6, 0.22, 0.7988, 0.21, 0.81232, 0.911, 0.988, 0.901]
 categories: [systems-of-knowing]
 
 # permalink: /entry1/

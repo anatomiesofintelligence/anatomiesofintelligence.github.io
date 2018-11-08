@@ -16,6 +16,7 @@ summary: Excerpt from the concluding chapter at Elegant Anatomy, Marieke M. A. H
 
 # all tags separated by commas
 tags: [preparations, aesthesis, materiality, collections, actors, history, categories]
+weights: [1.0, 0.6, 0.12, 0.56, 0.54, 0.43, 0.76]
 categories: [systems-of-knowing]
 
 # permalink: /entry1/

@@ -18,6 +18,7 @@ summary: Excerpt from The Fate of Anatomical Collections, Chapter 8 User-Develop
 
 # all tags separated by commas
 tags: [models, labelling]
+weights: [0.961, 0.34]
 categories: [modelling]
 
 # permalink: /entry1/

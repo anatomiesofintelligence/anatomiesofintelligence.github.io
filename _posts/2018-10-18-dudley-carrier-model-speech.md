@@ -18,6 +18,7 @@ image: algorithms/dudley-carrier-model-speech.gif
 
 # all tags separated by commas
 tags: [models, speech]
+weights: [0.8111, 0.97]
 categories: [modelling]
 
 # permalink: /entry1/

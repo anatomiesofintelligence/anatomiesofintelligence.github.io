@@ -22,6 +22,7 @@ image: poster/De-humani-corporis-fabrica.png
 
 # all tags separated by commas
 tags: [models, dissection, human body]
+weights: [1.0, 0.6, 0.7]
 categories: [systems-of-knowing, modelling]
 
 # permalink: /entry1/

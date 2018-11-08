@@ -18,6 +18,7 @@ summary: Excerpt from The Fate of Anatomical Collections, Chapter 2 Organ Music 
 
 # all tags separated by commas
 tags: [preparation, anatomical theatre, aesthesis]
+weights: [0.78, 0.2, 0.65]
 categories: [systems-of-knowing]
 
 # permalink: /entry1/
