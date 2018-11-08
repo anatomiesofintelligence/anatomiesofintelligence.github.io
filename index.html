@@ -27,7 +27,7 @@ var tag_weight, newexample;
 {% for post in site.posts %}
 {% assign post_id = post.title | slugify:"latin" %}
 <div class="refs" id="{{ post_id }}">
-<a href="{{ post.url }}">{{ post.date | date: "%B %d, %Y" }}: {{ post.title }}</a>
+  <a href="{{ post.url }}"><span style="display:none">{{ post.date | date: "%B %d, %Y" }}:</span>{{ post.title }}</a>
 {% if post.layout == "image" %}<img height="100" src="/img/{{ post.image }}"/>{% endif %}
 <script>
 newexample = new Example("{{ post_id }}");
