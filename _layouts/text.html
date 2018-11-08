@@ -5,6 +5,7 @@ entry-type: text
 
 <h1>{{ page.title }}</h1>
 <h2>{{ page.subtitle }}</h2>
+<p>{{ page.date | date: "%B %d, %Y" }}</p>
 <p>{{ page.summary }}</p>
 <p>{{ content }}</p>
 <p>Source: {{ page.source }}</p>
