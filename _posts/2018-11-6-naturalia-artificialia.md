@@ -23,6 +23,7 @@ image: poster/naturalia-artificialia.png
 
 # all tags separated by commas
 tags: [preparations, sensory experience, hands-on, anatomy, naturalia, artificialia]
+weights: [0.81232, 0.6, 0.99, 0.302, 0.71, 0.83]
 categories: [systems-of-knowing, modelling]
 
 # permalink: /entry1/

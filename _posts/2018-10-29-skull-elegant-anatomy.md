@@ -16,10 +16,11 @@ summary: Excerpt on Aesthesis and the epistemology of 18th century anatomical re
 
 # all tags separated by commas
 tags: [categories, colonialism, history]
+weights: [0.56, 0.79, 0.698]
 categories: [systems-of-knowing]
 
 # permalink: /entry1/
 
 ---
 
-...by the end of the eighteenth century, to simply claim that a skull was from a particular country or area was no longer enough for some anatomists to prove the existence of this region and its inhabitants, and they resorted to taking and filing endless measurements of skulls to distinguish certain categories into which particular ‘species’ of humans could be made to fit. 
+...by the end of the eighteenth century, to simply claim that a skull was from a particular country or area was no longer enough for some anatomists to prove the existence of this region and its inhabitants, and they resorted to taking and filing endless measurements of skulls to distinguish certain categories into which particular ‘species’ of humans could be made to fit.

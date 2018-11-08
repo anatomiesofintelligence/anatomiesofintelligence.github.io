@@ -18,5 +18,6 @@ summary: Liver of a sheep. Babylonian model of terracotta with inscriptions from
 # permalink: /entry1/
 
 tags: [inscription]
+weights: [1.0]
 categories: [gesture]
 ---

@@ -16,10 +16,11 @@ summary: Excerpt on Aesthesis and the epistemology of 18th century anatomical re
 
 # all tags separated by commas
 tags: [commodification, preparations, knowledge, sensory perception, aesthesis]
+weights: [1.0, 0.334, 0.3, 0.1, 0.3]
 categories: [systems-of-knowing]
 
 # permalink: /entry1/
 
 ---
 
-...unlike most other forms of commodification of the human body, the creation of anatomical preparations was not aimed at the consumption of the body or its services, nor at stabilizing it for primarily sym- bolic, ritual, spiritual or decorative reasons (although these could also play a role). Making an anatomical preparation is first and foremost aimed at rendering knowledge, gained through sensory perception and experimentation with the body, stable and tradable. Sometimes this tradability was only of secondary importance, as for the many anatomists and collectors who made anatomical preparations primarily for their own research and teaching collections. 
+...unlike most other forms of commodification of the human body, the creation of anatomical preparations was not aimed at the consumption of the body or its services, nor at stabilizing it for primarily sym- bolic, ritual, spiritual or decorative reasons (although these could also play a role). Making an anatomical preparation is first and foremost aimed at rendering knowledge, gained through sensory perception and experimentation with the body, stable and tradable. Sometimes this tradability was only of secondary importance, as for the many anatomists and collectors who made anatomical preparations primarily for their own research and teaching collections.

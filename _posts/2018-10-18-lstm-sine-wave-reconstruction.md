@@ -18,6 +18,7 @@ image: algorithms/LSTM-sine-wave-reconstruction.png
 
 # all tags separated by commas
 tags: [models, LSTM, RNN, forecasting, time-series]
+weights: [0.67, 0.85, 0.42, 0.71, 0.92]
 categories: [modelling, gesture]
 
 # permalink: /entry1/

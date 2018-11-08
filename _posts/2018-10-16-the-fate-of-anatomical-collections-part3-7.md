@@ -18,6 +18,7 @@ summary: Excerpt from The Fate of Anatomical Collections, Chapter 7 Adieu Albinu
 
 # all tags separated by commas
 tags: [agency, preparation, anatomical theatre, aesthesis]
+weights: [0.956, 0.6, 0.14, 0.76621]
 categories: [systems-of-knowing]
 
 # permalink: /entry1/

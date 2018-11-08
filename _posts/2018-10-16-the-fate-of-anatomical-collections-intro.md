@@ -18,6 +18,7 @@ summary: Excerpt from The Fate of Anatomical Collections, Chapter 5 Resilient Co
 
 # all tags separated by commas
 tags: [anatomical demonstrations, anatomical theatre]
+weights: [0.77, 0.83]
 categories: [systems-of-knowing]
 
 # permalink: /entry1/

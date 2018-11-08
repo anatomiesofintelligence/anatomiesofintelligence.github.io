@@ -1,6 +1,6 @@
 ---
 title: Copperplate Engraving of Anatomical Theatre Leiden (1615)
-subtitle: 
+subtitle:
 entry-by: Jonathan Reus
 layout: image
 
@@ -16,5 +16,6 @@ summary: Theatrum anatomicum in Leiden. Anatomical lecture at the time of Peter 
 # permalink: /entry1/
 
 tags: [anatomical theatre]
+weights: [1.0]
 categories: [systems-of-knowing]
 ---

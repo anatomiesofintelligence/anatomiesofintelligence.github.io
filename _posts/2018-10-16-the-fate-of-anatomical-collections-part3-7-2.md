@@ -18,6 +18,7 @@ summary: Excerpt from The Fate of Anatomical Collections, Chapter 7 Adieu Albinu
 
 # all tags separated by commas
 tags: [history, anatomical collections, anatomical theatre, aesthesis, models, preparation]
+weights: [0.68, 0.72, 0.11, 0.67, 0.87, 0.88]
 categories: [systems-of-knowing]
 
 # permalink: /entry1/

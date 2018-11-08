@@ -16,11 +16,12 @@ summary: Excerpt on Aesthesis and the epistemology of 18th century anatomical re
 
 # all tags separated by commas
 tags: [hacking, ontologies, history]
+weights: [1.0, 0.6, 0.2]
 categories: [systems-of-knowing]
 
 # permalink: /entry1/
 
 ---
 
-Hacking advocates: the need to examine the ideas we use to organize knowledge and inquiry, and to propose, advocate, or refute theories of knowledge. 
+Hacking advocates: the need to examine the ideas we use to organize knowledge and inquiry, and to propose, advocate, or refute theories of knowledge.
 Footnote: Hacking. Historical Ontology

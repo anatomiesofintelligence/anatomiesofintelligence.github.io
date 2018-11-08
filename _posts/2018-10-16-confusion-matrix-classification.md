@@ -18,6 +18,7 @@ image: algorithms/confusion-matrix-classifier-evaluation.png
 
 # all tags separated by commas
 tags: [classification, optimization, evaluation, taxonomy]
+weights: [0.65, 0.9, 0.78, 0.3]
 categories: [modelling, gesture]
 
 # permalink: /entry1/

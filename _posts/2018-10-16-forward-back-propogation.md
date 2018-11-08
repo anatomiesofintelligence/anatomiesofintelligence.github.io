@@ -17,6 +17,7 @@ image: algorithms/forward-back-propagation-neuralnetworks.gif
 
 # all tags separated by commas
 tags: [training, neural networks]
+weights: [0.95, 0.99]
 categories: modelling
 
 # permalink: /entry1/
