@@ -54,23 +54,23 @@ e3 = Object.values(catalog.examples)[2];
 e4 = Object.values(catalog.examples)[3];
 
 taglist = ["models", "preparations", "aesthesis", "unknown"];
-feature_options = {taglist: taglist};
+options = {taglist: taglist};
 
 // Test getting a FeatureVec from an Example
-fv1 = e1.getFeatures(feature_options);
-fv2 = e2.getFeatures(feature_options);
+fv1 = e1.getFeatures(options);
+fv2 = e2.getFeatures(options);
 console.log("Features of",e1,"are",fv1);
 console.log("Features of",e2,"are",fv2);
-easf = catalog.examplesAsFeatures(feature_options);
+easf = catalog.examplesAsFeatures(options);
 console.log("All examples as features:", easf);
 
 // Test distance measurement
-distance = Measures.euclidean(fv1, fv2, feature_options);
+distance = Measures.euclidean(fv1, fv2, options);
 console.log("Distance", e1.id, "to", e2.id, "=", distance);
 
 
 // Test some of the statistical functions used in the KMeans algorithm
-km = new KMeans(3, feature_options);
+km = new KMeans(3, options);
 feature_avg = km.mean(easf);
 console.log("MEAN of features:", feature_avg);
 normalized = km.normalize(easf);
@@ -79,7 +79,7 @@ denormalized = km.denormalize(normalized);
 console.log("DENORMALIZED features:",denormalized);
 
 
-// Test clustering
-catalog.cluster(3, Measures.euclidean, taglist, 100);
+// Test clustering with ten iterations
+catalog.cluster(5, Measures.euclidean, taglist, 10);
 
 </script>
