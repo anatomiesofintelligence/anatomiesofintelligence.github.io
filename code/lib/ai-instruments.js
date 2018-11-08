@@ -238,7 +238,7 @@ KMeans.prototype.cluster = function(examples, callback) {
     self.centroids.push(newcentroid);
   }
 
-  console.log("RANDOM CENTROIDS:", self.centroids);
+  //console.log("RANDOM CENTROIDS:", self.centroids);
 
   // Clustering Refinement Iterations...
   for (var j = 0; j < self.iterations; j++) {
@@ -246,32 +246,39 @@ KMeans.prototype.cluster = function(examples, callback) {
     var clusterIndexes = [];
     for (var i = 0; i < normalizedExamples.length; i++) {
       // How close is each point to centroid 0
-      var min = this.similarityFunc(normalizedExamples[i], self.centroids[0]);
+      var min;
+      min = this.similarityFunc(normalizedExamples[i], self.centroids[0]);
       var closestCentroid = 0;
       for (k = 0; k < self.K; k++) { // compare to other centroids
-        var tmpDistance = this.similarityFunc(normalizedExamples[i], self.centroids[k]);
+        var tmpDistance;
+        tmpDistance = this.similarityFunc(normalizedExamples[i], self.centroids[k]);
         if (tmpDistance < min) {
           min = tmpDistance;
           closestCentroid = k;
         }
       }
-      clusterIndexes.push(closestCentroid);
+      clusterIndexes.push(closestCentroid); // for each example, push index of closest centroid
     }
 
-    // move centroids to better fit clusters
+    console.log("ITERATION:",j,"CLOSEST CENTROIDS", clusterIndexes);
+
+    // Make new centroids that better fit clusters
+    // Create clusters of examples as an array of arrays
     var newCentroids = [];
     self.clusters = [];
-    for (var k = 0; k < self.centroids.length; k++) {
-      var points = [];
+    for (var k = 0; k < self.centroids.length; k++) { // for each centroid k
+      var cluster = [];
       clusterIndexes.forEach(function(clusterIndex, index) {
         if (clusterIndex == k) {
-          points.push(normalizedExamples[index]);
+          cluster.push(normalizedExamples[index]);
         }
       });
-      self.clusters.push(points);
-      if (points.length > 0) {
-        newCentroids.push( self.mean(points) );
-      } else {
+      self.clusters.push(cluster);
+
+      if (cluster.length > 0) {
+        // Add a new centroid for each new cluster, with its center at the mean of all examples in the cluster
+        newCentroids.push(new FeatureVec("centroid"+k, self.mean(cluster)));
+      } else { // clusters with no entries keep their old centroid
         newCentroids.push(self.centroids[k]);
       }
     }
