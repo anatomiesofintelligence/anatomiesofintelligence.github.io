@@ -170,14 +170,15 @@ Catalog.prototype.randomize = function() {
 
 // Clusters using a number of clusters and a comparison function
 // uses KMEANS clustering/unsupervised learning
-Catalog.prototype.cluster = function(num_clusters, measure, thetaglist, iters) {
+Catalog.prototype.cluster = function(num_clusters, measure, thetaglist, iters, process_result_func) {
     var options, iterations, measurement, examples_as_features;
     iterations = iters || 100;
     measurement = measure || Measures.euclidean;
     options = {taglist: thetaglist, similarityFunc: measurement, iterations: iterations};
     this.kmeans = new KMeans(num_clusters, options);
     examplesAsFeatures = this.examplesAsFeatures(options);
-    this.kmeans.cluster(examplesAsFeatures, this.processClusters);
+    process_result_func = process_result_func || this.processClusters;
+    this.kmeans.cluster(examplesAsFeatures, process_result_func);
 }
 
 // Callback function for KMEANS algorithm

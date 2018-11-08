@@ -39,6 +39,8 @@ body.performance {
         background-color: white;
         width: 100%;
         height: 100%;
+        margin-left: 200px;
+        margin-right: 200px;
 }
 
 .performance .refs {
@@ -58,11 +60,18 @@ body.performance {
         font-family: JunctionBold, monospace;
 }
 
+.performance .centroid {
+    font-weight: bold;
+    font-size: 24pt;
+    color: #DB7093;
+}
+
 .performance img{
         max-width: 250px;
         height: 50px;
         width: 50px;
         float: left;
+        filter: grayscale(100%);
         mix-blend-mode: difference; /*   or: screen  saturation  difference */
         /*	display: none; */
 }

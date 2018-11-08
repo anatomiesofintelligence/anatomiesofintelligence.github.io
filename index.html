@@ -14,7 +14,7 @@ All Categories:
 {% capture site_tags %}{% for tag in site.tags %}{{ tag[0] }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
 {% assign tag_words = site_tags | split:',' | sort %}
 All Tags:
-<br />{% for tag in tag_words %}{{ tag }} | {% endfor %}
+<br />{% for tag in tag_words %}"{{ tag }}", {% endfor %}
 </div>
 
 <script>
@@ -44,6 +44,10 @@ catalog.addExample(newexample);
 <script>
 
 // USAGE TESTS: (if these work then our code is more-or-less done)
+
+function clean_surface() {
+    location.reload();
+}
 
 catalog.randomize(); // randomize example divs
 
@@ -78,8 +82,58 @@ console.log("NORMALIZED features:",normalized);
 denormalized = km.denormalize(normalized);
 console.log("DENORMALIZED features:",denormalized);
 
+var SCALING = 100;
 
 // Test clustering with ten iterations
-catalog.cluster(5, Measures.euclidean, taglist, 10);
+resultfunc = function(err, clusters, centroids) {
+    var centroid_divs = [];
+    var centroidnumber = 0;
+
+    var old_centroid_divs = document.getElementsByClassName("centroid");
+    for(let oldiv of old_centroid_divs) {
+        console.log("OLDIV:",oldiv);
+        oldiv.remove();
+    }
+
+    for(let centroid of centroids) {
+        newdiv = document.createElement("div");
+        newtext = document.createTextNode("*");
+        newdiv.appendChild(newtext);
+        newdiv.id = centroid.example;
+        newdiv.className = "centroid";
+        newdiv.style.position = "absolute";
+        newdiv.style.top = ((900 / 3) + 100) + 'px';
+        newdiv.style.left = (centroidnumber * (3000 / centroids.length) + 300) + 'px';
+        document.body.appendChild(newdiv);
+        centroid_divs.push(newdiv);
+        centroidnumber += 1;
+    }
+
+    for(var i = 0; i < centroid_divs.length; i++) {
+        var x,y,theta,c, e, distance, cdiv = centroid_divs[i];
+        c = centroids[i];
+        for(var j = 0; j < clusters[i].length; j++) {
+            var examplediv, item = clusters[i][j];
+            distance = Measures.euclidean(c, item);
+
+            theta = j * (2 * Math.PI / clusters[i].length);
+
+            // Convert polar to cartesian
+            x = Math.floor(distance * Math.cos(theta) * SCALING);
+            y = Math.floor(distance * Math.sin(theta) * SCALING);
+
+            examplediv = document.querySelector("#"+item.example.id);
+            examplediv.style.position = "absolute";
+            examplediv.style.top = y + 'px';
+            examplediv.style.left = x + 'px';
+            cdiv.appendChild(examplediv);
+
+        }
+    }
+};
+
+//catalog.cluster(3, Measures.euclidean, taglist, 10, resultfunc);
+
+
 
 </script>
