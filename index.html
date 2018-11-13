@@ -1,139 +1,43 @@
 ---
-layout: performance
+layout: default
 ---
+<script>
 
-<div id="categories" style="display:none">
+	var entries = [];
+
+</script>
+
+
 All Categories:
 {% assign sortedcats = site.categories | sort: '' %}
 {% for cat in sortedcats %}
 <br/><a href="{{ site.url }}/{{ cat[0] }}/">{{ cat[0] }}</a>
 {% endfor %}
-</div>
 
-<div id="tags" style="display:none">
+<br /><br />
 {% capture site_tags %}{% for tag in site.tags %}{{ tag[0] }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
 {% assign tag_words = site_tags | split:',' | sort %}
 All Tags:
-<br />{% for tag in tag_words %}"{{ tag }}", {% endfor %}
-</div>
-
-<script>
-// Initialize the catalog
-var catalog = new Catalog()
-var tag_weight, newexample;
-</script>
+<br />{% for tag in tag_words %}{{ tag }} | {% endfor %}
+<br /><br />
 
 
+
+<h1>Catalog</h1>
+
+<ul>
 {% for post in site.posts %}
-{% assign post_id = post.title | slugify:"latin" %}
-<div class="refs" id="{{ post_id }}">
-  <a href="{{ post.url }}"><span style="display:none">{{ post.date | date: "%B %d, %Y" }}:</span>{{ post.title }}</a>
-{% if post.layout == "image" %}<img height="100" width="auto" src="/img/{{ post.image }}"/>{% endif %}
-<script>
-newexample = new Example("{{ post_id }}");
-{% for tag in post.tags %}
-{% assign idx = forloop.index | minus: 1 %}
-tag_weight = ["{{ tag }}", {{ post.weights[idx] }}];
-newexample.addTag(tag_weight)
+	<li><a href="{{ post.url }}">{{ post.date | date: "%B %d, %Y" }}: {{ post.title }}</a>
+		<!-- img style="float:right" height=50 src="/img/{% if post.layout == "image" %}{{ post.image }}{% elsif post.layout == "text" %}text-icon.png{% endif %}"/--></li>
+	<script>
+		var tagweights = [];
+		{% for tag in post.tags %}
+			{% assign idx = forloop.index | minus: 1 %}
+			// For index: {{ idx }}
+		  var tagweight = ["{{ tag }}", {{ post.weights[idx] }}];
+			tagweights.push(tagweight)
+		{% endfor %}
+		entries.push(["{{ post.title }}", tagweights])
+	</script>
 {% endfor %}
-catalog.addExample(newexample);
-</script>
-</div>
-{% endfor %}
-
-<script>
-
-// USAGE TESTS: (if these work then our code is more-or-less done)
-
-function clean_surface() {
-    location.reload();
-}
-
-catalog.randomize(); // randomize example divs
-
-// Grab a couple examples to work with
-e1 = Object.values(catalog.examples)[0];
-e2 = Object.values(catalog.examples)[1];
-e3 = Object.values(catalog.examples)[2];
-e4 = Object.values(catalog.examples)[3];
-
-taglist = ["models", "preparations", "aesthesis", "unknown"];
-options = {taglist: taglist};
-
-// Test getting a FeatureVec from an Example
-fv1 = e1.getFeatures(options);
-fv2 = e2.getFeatures(options);
-console.log("Features of",e1,"are",fv1);
-console.log("Features of",e2,"are",fv2);
-easf = catalog.examplesAsFeatures(options);
-console.log("All examples as features:", easf);
-
-// Test distance measurement
-distance = Measures.euclidean(fv1, fv2, options);
-console.log("Distance", e1.id, "to", e2.id, "=", distance);
-
-
-// Test some of the statistical functions used in the KMeans algorithm
-km = new KMeans(3, options);
-feature_avg = km.mean(easf);
-console.log("MEAN of features:", feature_avg);
-normalized = km.normalize(easf);
-console.log("NORMALIZED features:",normalized);
-denormalized = km.denormalize(normalized);
-console.log("DENORMALIZED features:",denormalized);
-
-var SCALING = 100;
-
-// Test clustering with ten iterations
-resultfunc = function(err, clusters, centroids) {
-    var centroid_divs = [];
-    var centroidnumber = 0;
-
-    var old_centroid_divs = document.getElementsByClassName("centroid");
-    for(let oldiv of old_centroid_divs) {
-        console.log("OLDIV:",oldiv);
-        oldiv.remove();
-    }
-
-    for(let centroid of centroids) {
-        newdiv = document.createElement("div");
-        newtext = document.createTextNode("*");
-        newdiv.appendChild(newtext);
-        newdiv.id = centroid.example;
-        newdiv.className = "centroid";
-        newdiv.style.position = "absolute";
-        newdiv.style.top = ((900 / 3) + 100) + 'px';
-        newdiv.style.left = (centroidnumber * (3000 / centroids.length) + 300) + 'px';
-        document.body.appendChild(newdiv);
-        centroid_divs.push(newdiv);
-        centroidnumber += 1;
-    }
-
-    for(var i = 0; i < centroid_divs.length; i++) {
-        var x,y,theta,c, e, distance, cdiv = centroid_divs[i];
-        c = centroids[i];
-        for(var j = 0; j < clusters[i].length; j++) {
-            var examplediv, item = clusters[i][j];
-            distance = Measures.euclidean(c, item);
-
-            theta = j * (2 * Math.PI / clusters[i].length);
-
-            // Convert polar to cartesian
-            x = Math.floor(distance * Math.cos(theta) * SCALING);
-            y = Math.floor(distance * Math.sin(theta) * SCALING);
-
-            examplediv = document.querySelector("#"+item.example.id);
-            examplediv.style.position = "absolute";
-            examplediv.style.top = y + 'px';
-            examplediv.style.left = x + 'px';
-            cdiv.appendChild(examplediv);
-
-        }
-    }
-};
-
-//catalog.cluster(3, Measures.euclidean, taglist, 10, resultfunc);
-
-
-
-</script>
+</ul>
