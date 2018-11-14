@@ -3,12 +3,11 @@ layout: default
 ---
 <script>
 
-	var entries = [];
+	var examples = [];
 
 </script>
 
 
-All Categories:
 {% assign sortedcats = site.categories | sort: '' %}
 {% for cat in sortedcats %}
 <br/><a href="{{ site.url }}/{{ cat[0] }}/">{{ cat[0] }}</a>
@@ -17,7 +16,6 @@ All Categories:
 <br /><br />
 {% capture site_tags %}{% for tag in site.tags %}{{ tag[0] }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
 {% assign tag_words = site_tags | split:',' | sort %}
-All Tags:
 <br />{% for tag in tag_words %}{{ tag }} | {% endfor %}
 <br /><br />
 
@@ -37,7 +35,7 @@ All Tags:
 		  var tagweight = ["{{ tag }}", {{ post.weights[idx] }}];
 			tagweights.push(tagweight)
 		{% endfor %}
-		entries.push(["{{ post.title }}", tagweights])
+		examples.push(["{{ post.title }}", tagweights])
 	</script>
 {% endfor %}
 </ul>
