@@ -1,5 +1,6 @@
 ---
 layout: performance
+permalink: /theatre
 ---
 
 <div id="categories" style="display:none">
@@ -41,7 +42,8 @@ catalog.addExample(newexample);
 </div>
 {% endfor %}
 
-<div id="api" style="float: left;">
+<div id="api">
+<code>
 clean_surface()
 catalog.randomize()
 SCALING = 50
@@ -53,6 +55,7 @@ fv1 = e1.getFeatures(options)
 fv2 = e2.getFeatures(options)
 catalog.examplesAsFeatures(options)
 catalog.cluster(3, Measures.euclidean, options["taglist"], 10, resultfunc);
+</code>
 </div>
 
 <script>
