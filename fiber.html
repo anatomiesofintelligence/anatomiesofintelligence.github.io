@@ -1,0 +1,156 @@
+---
+layout: performance
+permalink: fiber
+---
+
+<!-- slides & stories -->
+<script>
+var slides = [];
+function place(id,xpos,ypos) {
+    document.querySelector("#"+id).style.left = xpos + 'px';
+    document.querySelector("#"+id).style.top = ypos + 'px';
+}
+function nudge(id,xnudge,ynudge) {
+    var newleft,newtop;
+    newleft = parseInt(document.querySelector("#"+id).style.left.slice(0,-2)) + xnudge;
+    newtop = parseInt(document.querySelector("#"+id).style.top.slice(0,-2)) + ynudge;
+    document.querySelector("#"+id).style.left = newleft + 'px';
+    document.querySelector("#"+id).style.top = newtop + 'px';
+}
+</script>
+
+
+<script>slides.push("pt1-anatomies-of-intelligence")</script>
+<div class="slide" id="pt1-anatomies-of-intelligence">
+    <h1>Anatomies of Intelligence</h1> <h2>a corporeal investigation of codes</h2>
+
+    <p>Following from a shared interest in livecoding and real-time algorithmic performance, we propose a research investigation into techniques for in-situ processual dissection of machine learning algorithms. In this research project, we seek to better understand the habitual and fixed objects of machine learning as well as their terminologies, and provide counter-techniques for conditions of emergence, movement-centered engagement and becoming.
+    The anatomical theatre, which paralleled the emergence of the university as the premier learning institute in Europe, has been a time-space where bodies and their organ[isation] became spectacles of scientific knowledge. It informed and disseminated new classification systems and taxonomies, as well as a specific understanding of the body as a complex system reducible to its constituent parts.</p>
+
+    <p>In our processual approach, we aim to develop an online repository of terminology and techniques for a critical examination of the “anatomy” of learning and prediction processes, data corpus and models of machine learning algorithms. And explore, through performance practice, how such a toolkit can confront the idealized bodies of artificial intelligence, its static representational structures and learning processes, by bringing about the re-organization, sectioning and bringing-into-relation of such codes.</p>
+</div>
+
+
+<script>slides.push("research-questions")</script>
+<div class="slide" id="research-questions">
+<h1>Research Questions / Hypotheses</h1>
+<ul>
+<li>Do our metaphors and epistemological assumptions make sense / are they naive/novel?
+<li>(series of) Anatomical Gestures
+<li>Performative/Live sketches - do they work, or not?
+</ul>
+</div>
+
+<script>slides.push("v2-performance1")</script>
+<div class="slide" id="v2-performance1">
+<img src="img/v2_test/AI_theatre_V2_01_Lavina_Xausa_sm.jpg" />
+</div>
+<script>slides.push("v2-performance2")</script>
+<div class="slide" id="v2-performance2">
+<img src="img/v2_test/AI_theatre_V2_02_Lavina_Xausa_sm.jpg" />
+</div>
+<script>slides.push("v2-performance3")</script>
+<div class="slide" id="v2-performance3">
+<img src="img/v2_test/AI_theatre_V2_03_Lavina_Xausa_sm.jpg" />
+</div>
+<script>slides.push("v2-performance4")</script>
+<div class="slide" id="v2-performance4">
+<img src="img/v2_test/V2_performance-Inari_Wishiki_sm.jpeg" />
+</div>
+
+
+<script>slides.push("ml-modifies-reason")</script>
+<div class="slide" id="ml-modifies-reason">
+<blockquote>“Machine learning doesn't just make decisions without giving reasons, it modifies our very idea of reason
+that is, it changes what is knowable and what is understood as real
+It operationalises the two-world metaphysics of neoplatonism
+that behind the world of the sensible is the world of the form or the idea.
+A belief in a hidden layer of reality which is ontologically superior,
+expressed mathematically and apprehended by going against direct experience.”
+~ <a href="https://www.opendemocracy.net/dan-mcquillan/manifesto-on-algorithmic-humanitarianism">Manifesto on Algorithmic Humanitarianism</a></blockquote>
+</div>
+
+<script>slides.push("pt2-catalog-alive")</script>
+<div class="slide" id="pt2-catalog-alive">
+Part 02: Jo [5-7min] —
+Demo screen sharing: “catalogue alive” ;
+performative reading;
+explain: libraries we created to interact with the dataset in the browser; embedding code and calling functions on the console; console as interface for content;
+</div>
+
+<script>slides.push("pt3-analytical-artistic-framework")</script>
+<div class="slide" id="pt3-analytical-artistic-framework">
+    Part03: Jon [5] — Core questions: analytical/artistic framework:
+
+    We will build the presentation around our growing research catalogue (which I briefly introduce on the AI meet-up) that gathers entries on both anatomic and ML references. This is also the dataset we will use to experiment in real-time with a ML algorithm to build a clustering model of the entries in the catalogue. The latter will serve as basis for hypothesizing and discussing possible categories around the collected material. terminologies[]?
+
+    What have we learned from testLab?: thinking about epistemologies; how they are created and the aesthetics dimensions of that; and the connections with now: the epistemological regime emerging in times of AI.
+
+    > performance explore further: gestures; dramaturgy; set-up.
+    > other future goals: publishing: both the code ( + toolmaking / tool modifying / critical making ); theory bind (book form); / workshop format;
+    > what does this mean for us now?
+</div>
+
+<script>slides.push("pt4-questions")</script>
+<div class="slide" id="pt4-questions">
+    Part04: Both — Q&A
+
+    How is machine learning influencing the production, experience, and storage of art, design and music?
+
+    * incentivized artistic processes involving acts of collection / categorization -  co-creative categorization; For example, by questioning the objecthood of the ‘model’ of a ML algorithm, and instead propose that a model be ever-evolving. Inspired by Christopher Small’s claim that music is not a thing, but an action, we rephrase the ‘model’ as always ‘modelling’, activating entanglements between people, algorithms, and contexts.
+
+    * modelling as a process towards understanding / sense-making
+
+    And what alternative insights do we learn from these artistic applications and experiments that we don’t get from market-driven innovations?
+
+    * focus on process; embodiment, presence;
+    * crucial to the anatomical approach: in/out of the black-box/white-cube-spectacle - binarims;
+    * developing new metaphors (recognizing that these systems heavily depend on metaphors - e.g. “neurons”
+</div>
+
+
+<!-- CATALOG ENTRIES -->
+<script>
+// Initialize the catalog
+var catalog = new Catalog()
+var tag_weight, newexample;
+</script>
+
+{% for post in site.posts %}
+{% assign post_id = post.title | slugify:"latin" %}
+<div class="refs" id="{{ post_id }}" style="visibility: hidden">
+  <a href="{{ post.url }}"><span style="display:none">{{ post.date | date: "%B %d, %Y" }}:</span>{{ post.title }}</a>
+{% if post.layout == "image" %}<img height="100" width="auto" src="/img/{{ post.image }}"/>{% endif %}
+<script>
+newexample = new Example("{{ post_id }}");
+{% for tag in post.tags %}
+{% assign idx = forloop.index | minus: 1 %}
+tag_weight = ["{{ tag }}", {{ post.weights[idx] }}];
+newexample.addTag(tag_weight)
+{% endfor %}
+catalog.addExample(newexample);
+</script>
+</div>
+{% endfor %}
+
+<div id="api" style="visibility:hidden">
+<code>
+catalog.randomize()
+catalog.examples
+e1 = catalog.examples.choose()
+e2 = catalog.examples.choose()
+</code>
+</div>
+
+<script>
+
+// USAGE TESTS: (if these work then our code is more-or-less done)
+
+for(var i = 0; i < slides.length; i++) {
+    console.log(i, slides[i], i*100, i*400);
+
+    place(slides[i], i*150, i*400);
+};
+
+
+</script>
