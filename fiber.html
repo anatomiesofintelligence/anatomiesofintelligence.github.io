@@ -7,16 +7,80 @@ permalink: fiber
 <script>
 var slides = [];
 function place(id,xpos,ypos) {
-    document.querySelector("#"+id).style.left = xpos + 'px';
-    document.querySelector("#"+id).style.top = ypos + 'px';
+    document.getElementById(id).style.left = xpos + 'px';
+    document.getElementById(id).style.top = ypos + 'px';
 }
 function nudge(id,xnudge,ynudge) {
     var newleft,newtop;
     newleft = parseInt(document.querySelector("#"+id).style.left.slice(0,-2)) + xnudge;
     newtop = parseInt(document.querySelector("#"+id).style.top.slice(0,-2)) + ynudge;
-    document.querySelector("#"+id).style.left = newleft + 'px';
-    document.querySelector("#"+id).style.top = newtop + 'px';
+    document.getElementById(id).style.left = newleft + 'px';
+    document.getElementById(id).style.top = newtop + 'px';
 }
+function stretch(id,xstretch,ystretch) {
+    var oldw, oldh, neww, newh;
+    oldw = parseInt(document.getElementById(id).offsetWidth);
+    oldh = parseInt(document.getElementById(id).offsetHeight);
+    neww = Math.floor(oldw * xstretch) + 'px';
+    newh = Math.floor(oldh * ystretch) + 'px';
+    document.getElementById(id).style.width = neww;
+    document.getElementById(id).style.height = newh;
+}
+
+// DRAGS
+
+// Make an element draggable:
+//dragElement(document.getElementById("mydiv"));
+
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  elmnt.onmousedown = dragMouseDown;
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    // stop moving when mouse button is released:
+    document.onmouseup = null;
+    document.onmousemove = null;
+    console.log("place(",elmnt.id,",",elmnt.style.left,",",elmnt.style.top,")");
+  }
+}
+
+function makeDraggable(list) {
+    for(i=0; i < list.length; i++) {
+        dragElement(document.getElementById(list[i]));
+    }
+}
+
+api = `
+place(id,xpx,ypx)
+nudge(id,xpx,ypx)
+stretch(id,x%,y%)
+makeDraggable(slides)
+`;
+console.log(api);
 </script>
 
 
@@ -31,32 +95,46 @@ function nudge(id,xnudge,ynudge) {
 </div>
 
 
-<script>slides.push("research-questions")</script>
-<div class="slide" id="research-questions">
-<h1>Research Questions / Hypotheses</h1>
-<ul>
-<li>Do our metaphors and epistemological assumptions make sense / are they naive/novel?
-<li>(series of) Anatomical Gestures
-<li>Performative/Live sketches - do they work, or not?
-</ul>
+<script>slides.push("anatomical-theatre")</script>
+<img class="slide" id="anatomical-theatre" src="img/poster/anatomical-theatre-leiden1.gif" alt="Theatrum anatomicum in Leiden. Anatomical lecture at the time of Peter Pauw. Copperplate engraving, probably 1615"/>
+
+<script>slides.push("theatre-eve")</script>
+<img class="slide" id="theatre-eve" src="img/leidenmuseum/leidenreplica-eve.jpg" alt="The skeleton of Eve holding the apple. Museum Boerhaave, replica of 17th century anatomical theatre"/>
+
+<script>slides.push("preparations")</script>
+<img class="slide" id="preparations" src="img/leidenmuseum/preparations.jpg" alt="Preparations by Frederick Ruysch, Museum Boerhaave"/>
+
+<script>slides.push("ruysch-painting")</script>
+<img class="slide" id="ruysch-painting" src="img/17thcentury/janvanneck_anatomische_les_van_Frederick_Ruysch.jpg" alt="The Anatomy Lesson of Dr. Frederick Ruysch by Jan van Neck (1683). Amsterdam Museum."/>
+
+<script>slides.push("aesthesis")</script>
+<div class="slide" id="aesthesis">
+<blockquote>“”
+    — Franziska Schroeder, The Pontydian Performance, The Performative Layer.</blockquote>
 </div>
 
+
+
 <script>slides.push("v2-performance1")</script>
-<div class="slide" id="v2-performance1">
-<img src="img/v2_test/AI_theatre_V2_01_Lavina_Xausa_sm.jpg" />
-</div>
+<img class="slide" id="v2-performance1" src="img/v2_test/AI_theatre_V2_01_Lavina_Xausa_sm.jpg" />
+
 <script>slides.push("v2-performance2")</script>
-<div class="slide" id="v2-performance2">
-<img src="img/v2_test/AI_theatre_V2_02_Lavina_Xausa_sm.jpg" />
-</div>
+<img class="slide" id="v2-performance2" src="img/v2_test/AI_theatre_V2_02_Lavina_Xausa_sm.jpg" />
+
 <script>slides.push("v2-performance3")</script>
-<div class="slide" id="v2-performance3">
-<img src="img/v2_test/AI_theatre_V2_03_Lavina_Xausa_sm.jpg" />
-</div>
+<img class="slide" id="v2-performance3" src="img/v2_test/AI_theatre_V2_03_Lavina_Xausa_sm.jpg" />
+
 <script>slides.push("v2-performance4")</script>
-<div class="slide" id="v2-performance4">
-<img src="img/v2_test/V2_performance-Inari_Wishiki_sm.jpeg" />
+<img class="slide" id="v2-performance4" src="img/v2_test/V2_performance-Inari_Wishiki_sm.jpeg" />
+
+<script>slides.push("schroeder-lc")</script>
+<div class="slide" id="schroeder-lc">
+<blockquote>“Live coding practitioners ask the audience to share the risk and the fascination of live making.
+    By emphasising the risk of such making, these practices deliberately expose the body in flux,
+    the body in constant negotiation with the environment and the instrument, itself in flux.”
+    — Franziska Schroeder, The Pontydian Performance, The Performative Layer.</blockquote>
 </div>
+
 
 
 <script>slides.push("ml-modifies-reason")</script>
@@ -78,6 +156,7 @@ performative reading;
 explain: libraries we created to interact with the dataset in the browser; embedding code and calling functions on the console; console as interface for content;
 </div>
 
+
 <script>slides.push("pt3-analytical-artistic-framework")</script>
 <div class="slide" id="pt3-analytical-artistic-framework">
     Part03: Jon [5] — Core questions: analytical/artistic framework:
@@ -89,6 +168,21 @@ explain: libraries we created to interact with the dataset in the browser; embed
     > performance explore further: gestures; dramaturgy; set-up.
     > other future goals: publishing: both the code ( + toolmaking / tool modifying / critical making ); theory bind (book form); / workshop format;
     > what does this mean for us now?
+</div>
+
+<script>slides.push("research-questions")</script>
+<div class="slide" id="research-questions">
+<h1>Research Questions / Hypotheses</h1>
+<ul>
+<li>Do our metaphors and epistemological assumptions make sense / are they naive/novel?
+<li>(series of) Anatomical Gestures
+<li>Performative/Live sketches - do they work, or not?
+    Do our metaphors and epistemological assumptions make sense / are they naive/novel?
+    do the notions of “ideal” bodies make sense?
+    (series of) Anatomical Gestures - embodiment/ presence / privilege of tacit knowledge
+    How to make sense of shifting epistemological frameworks
+    Performative/Live sketches - do they work, or not?
+</ul>
 </div>
 
 <script>slides.push("pt4-questions")</script>
@@ -109,39 +203,6 @@ explain: libraries we created to interact with the dataset in the browser; embed
 </div>
 
 
-<!-- CATALOG ENTRIES -->
-<script>
-// Initialize the catalog
-var catalog = new Catalog()
-var tag_weight, newexample;
-</script>
-
-{% for post in site.posts %}
-{% assign post_id = post.title | slugify:"latin" %}
-<div class="refs" id="{{ post_id }}" style="visibility: hidden">
-  <a href="{{ post.url }}"><span style="display:none">{{ post.date | date: "%B %d, %Y" }}:</span>{{ post.title }}</a>
-{% if post.layout == "image" %}<img height="100" width="auto" src="/img/{{ post.image }}"/>{% endif %}
-<script>
-newexample = new Example("{{ post_id }}");
-{% for tag in post.tags %}
-{% assign idx = forloop.index | minus: 1 %}
-tag_weight = ["{{ tag }}", {{ post.weights[idx] }}];
-newexample.addTag(tag_weight)
-{% endfor %}
-catalog.addExample(newexample);
-</script>
-</div>
-{% endfor %}
-
-<div id="api" style="visibility:hidden">
-<code>
-catalog.randomize()
-catalog.examples
-e1 = catalog.examples.choose()
-e2 = catalog.examples.choose()
-</code>
-</div>
-
 <script>
 
 // USAGE TESTS: (if these work then our code is more-or-less done)
@@ -149,7 +210,7 @@ e2 = catalog.examples.choose()
 for(var i = 0; i < slides.length; i++) {
     console.log(i, slides[i], i*100, i*400);
 
-    place(slides[i], i*150, i*400);
+    place(slides[i], i*150, i*200);
 };
 
 
