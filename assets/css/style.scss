@@ -46,11 +46,12 @@ code {
 }
 
 body.performance {
-        background-color: white;
-        width: 100%;
-        height: 100%;
-        margin: 0px;
-        padding: 0;
+    font-family: Junction, monospace;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0;
 }
 
 .performance #api {
@@ -63,25 +64,45 @@ body.performance {
 }
 
 .performance .refs {
-        font-family: Junction, monospace;
-        width: 100px;
-        height: 100px;
-        font-size: 8px;
-        position: absolute;
+    width: 100px;
+    height: 100px;
+    font-size: 8px;
+    position: absolute;
 }
 
 .performance .slide {
     position: absolute;
     font-family: Junction, monospace;
     font-size: 12px;
+}
+
+
+.performance img.slide {
+    display: block;
+    opacity: 0.5;
+    border-style: groove;
     width: 400px;
     height: auto;
+}
+
+.performance div.slide {
+    display: block;
     padding: 10px;
-    font-size: 8px;
+    width: 600px;
+    height: auto;
     border-style: solid;
     border-width: 1px;
     border-color: black;
     background-color: #DDDDDD;
+}
+
+.performance div.slide h1 {
+    font-size: 22px;
+}
+
+.performance div.slide h2 {
+    font-size: 16px;
+    color: #444444;
 }
 
 .performance div.slide blockquote {
