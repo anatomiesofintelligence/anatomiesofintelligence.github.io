@@ -17,14 +17,33 @@ function nudge(id,xnudge,ynudge) {
     document.getElementById(id).style.left = newleft + 'px';
     document.getElementById(id).style.top = newtop + 'px';
 }
-function stretch(id,xstretch,ystretch) {
-    var oldw, oldh, neww, newh;
-    oldw = parseInt(document.getElementById(id).offsetWidth);
-    oldh = parseInt(document.getElementById(id).offsetHeight);
-    neww = Math.floor(oldw * xstretch) + 'px';
-    newh = Math.floor(oldh * ystretch) + 'px';
-    document.getElementById(id).style.width = neww;
-    document.getElementById(id).style.height = newh;
+function stretch(id,xstretch,ystretch,opacity) {
+    var oldw, oldh, neww, newh, e;
+    e = document.getElementById(id);
+    oldw = parseInt(e.offsetWidth);
+    oldh = parseInt(e.offsetHeight);
+    neww = Math.floor(oldw * xstretch);
+    newh = Math.floor(oldh * ystretch);
+    dim(id, neww, newh, opacity);
+}
+
+function dim(id,width,height,opacity) {
+    e = document.getElementById(id);
+    e.style.width = width + 'px';
+    e.style.height = height + 'px';
+    e.style.opacity = opacity;
+    console.log("dim(\"" + e.id + "\", " + width + "," + height + ", " + opacity + ")");
+}
+
+function vision(id, opacity, hidden=false) {
+    e = document.getElementById(id);
+    e.style.opacity = opacity;
+    if(hidden) {
+        e.style.visibility = "hidden";
+    } else {
+        e.style.visibility = "visible";
+    }
+    console.log("vision(\"" + e.id + "\", " + opacity + ")");
 }
 
 // DRAGS
@@ -64,7 +83,7 @@ function dragElement(elmnt) {
     // stop moving when mouse button is released:
     document.onmouseup = null;
     document.onmousemove = null;
-    console.log("place(",elmnt.id,",",elmnt.style.left,",",elmnt.style.top,")");
+    console.log("place(\"" + elmnt.id + "\", " + elmnt.style.left.slice(0,-2) + "," + elmnt.style.top.slice(0,-2) + ")");
   }
 }
 
@@ -84,14 +103,42 @@ console.log(api);
 </script>
 
 
-<script>slides.push("pt1-anatomies-of-intelligence")</script>
-<div class="slide" id="pt1-anatomies-of-intelligence">
+<script>slides.push("intro1")</script>
+<div class="slide" id="intro1">
     <h1>Anatomies of Intelligence</h1> <h2>a corporeal investigation of codes</h2>
 
-    <p>Following from a shared interest in livecoding and real-time algorithmic performance, we propose a research investigation into techniques for in-situ processual dissection of machine learning algorithms. In this research project, we seek to better understand the habitual and fixed objects of machine learning as well as their terminologies, and provide counter-techniques for conditions of emergence, movement-centered engagement and becoming.
-    The anatomical theatre, which paralleled the emergence of the university as the premier learning institute in Europe, has been a time-space where bodies and their organ[isation] became spectacles of scientific knowledge. It informed and disseminated new classification systems and taxonomies, as well as a specific understanding of the body as a complex system reducible to its constituent parts.</p>
+    <p>Joana Chicau</p>
+    <p>Jonathan Reus</p>
+</div>
 
-    <p>In our processual approach, we aim to develop an online repository of terminology and techniques for a critical examination of the “anatomy” of learning and prediction processes, data corpus and models of machine learning algorithms. And explore, through performance practice, how such a toolkit can confront the idealized bodies of artificial intelligence, its static representational structures and learning processes, by bringing about the re-organization, sectioning and bringing-into-relation of such codes.</p>
+<script>slides.push("joana")</script>
+<img class="slide" id="joana" src="img/joanachicau.png" />
+
+<script>slides.push("jonathan")</script>
+<img class="slide" id="jonathan" src="img/jonathanreus.jpeg" />
+
+
+<script>slides.push("intro2")</script>
+<div class="slide" id="intro2">
+    <p>Following from a shared interest in livecoding and real-time algorithmic performance,
+        we propose a research investigation into techniques for in-situ processual dissection
+        of machine learning algorithms.
+        In this research project, we seek to better understand the habitual and fixed objects
+        of machine learning as well as their terminologies, and provide counter-techniques
+        for conditions of emergence, movement-centered engagement and becoming.</p>
+
+    <p>The anatomical theatre, which paralleled the emergence of the university as the premier
+        learning institute in Europe, has been a time-space where bodies and their organ[isation]
+        became spectacles of scientific knowledge. It informed and disseminated new classification
+        systems and taxonomies, as well as a specific understanding of the body as a complex system
+        reducible to its constituent parts.</p>
+
+    <p>In our processual approach, we aim to develop an online repository of terminology and
+        techniques for a critical examination of the “anatomy” of learning and prediction processes,
+        data corpus and models of machine learning algorithms. And explore, through performance practice,
+        how such a toolkit can confront the idealized bodies of artificial intelligence, its static
+        representational structures and learning processes, by bringing about the re-organization,
+        sectioning and bringing-into-relation of such codes.</p>
 </div>
 
 
@@ -107,12 +154,31 @@ console.log(api);
 <script>slides.push("ruysch-painting")</script>
 <img class="slide" id="ruysch-painting" src="img/17thcentury/janvanneck_anatomische_les_van_Frederick_Ruysch.jpg" alt="The Anatomy Lesson of Dr. Frederick Ruysch by Jan van Neck (1683). Amsterdam Museum."/>
 
-<script>slides.push("aesthesis")</script>
-<div class="slide" id="aesthesis">
-<blockquote>“”
-    — Franziska Schroeder, The Pontydian Performance, The Performative Layer.</blockquote>
+<script>slides.push("ruysch")</script>
+<div class="slides" id="ruysch">
+<blockquote>
+Ruysch's aims in creating his preparations were twofold: primarily to create useful, permanent aids for
+teaching and lecturing; and secondly to create a personal art form. In this respect he attempted to
+endow death with both elegance and moral value by using the light of science to penetrate the smallest
+fissures and membranes of the human body. Thus by inducing a sense of wonder he sought to transform death
+by imbuing it with the capacity to provide knowledge.
+</blockquote>
 </div>
 
+<script>slides.push("scoring")</script>
+<div class="slide" id="scoring">
+<blockquote>
+«The Indo-European root of the word score is sker, which means ‘to cut’.
+The term is thus linked to the notions of creating a notch and keeping a tally,
+which is exactly what the Old Norse root of the word means.
+There is, from the beginning, a double purpose inscribed in making a ‘score’,
+that of performing a certain action and that of producing a physical record of an abstract quality or quantity.
+The cut of the score, while splitting open the surface on which it is inscribed, fuses action with abstraction,
+making them indistinguishable. It inscribes a temporal dimension on that surface;
+the very act of inscription alchemically turns space into the physical expression of a certain duration.»
+<a href="http://intermsofperformance.site/keywords/score/carlos-basualdo">Carlos Basualdo</a>
+</blockquote>
+</div>
 
 
 <script>slides.push("v2-performance1")</script>
@@ -120,6 +186,15 @@ console.log(api);
 
 <script>slides.push("v2-performance2")</script>
 <img class="slide" id="v2-performance2" src="img/v2_test/AI_theatre_V2_02_Lavina_Xausa_sm.jpg" />
+
+<script>slides.push("husserl-reality")</script>
+<div class="slide" id="husserl-reality">
+<blockquote>
+"Animation designates the way in which mind acquires a locality in the spatial world,
+its spatialization, as it were, and together with its corporal support, acquires reality.
+<br/>Edmund Husserl (1977:101)
+</blockquote>
+</div>
 
 <script>slides.push("v2-performance3")</script>
 <img class="slide" id="v2-performance3" src="img/v2_test/AI_theatre_V2_03_Lavina_Xausa_sm.jpg" />
@@ -145,61 +220,127 @@ It operationalises the two-world metaphysics of neoplatonism
 that behind the world of the sensible is the world of the form or the idea.
 A belief in a hidden layer of reality which is ontologically superior,
 expressed mathematically and apprehended by going against direct experience.”
-~ <a href="https://www.opendemocracy.net/dan-mcquillan/manifesto-on-algorithmic-humanitarianism">Manifesto on Algorithmic Humanitarianism</a></blockquote>
+<br/>~ <a href="https://www.opendemocracy.net/dan-mcquillan/manifesto-on-algorithmic-humanitarianism">Manifesto on Algorithmic Humanitarianism</a></blockquote>
+</div>
+
+<script>slides.push("small-musicking")</script>
+<div class="slide" id="small-musicking">
+Musicking and Modelling ...
+
+<blockquote>
+“... our Western culture regularly conflates the idea of the musical work with music and views the work as
+fundamental to most musical activities ... "
+
+"And yet, many live coders realize that live coding – given its “live” nature" –
+does not concern itself with works, let alone “great works,” “masterworks,” or Gesamtkunstwerke."
+<br/>~ Matthew Tift
+
+"... the purpose of this way of knowing is not to dominate the world, as is that of scientific knowledge,
+but to live well in it...”
+<br/>~ Christopher Small ~ Musicking: The Meanings of Performing and Listening, 1998
+
+</blockquote>
+</div>
+
+<script>slides.push("aesthesis-power")</script>
+<div class="slide" id="aesthesis-power">
+<blockquote>
+    “...the answer to many of the why-questions evoked by the materiality of the eighteenth-century Leiden anatomical preparations—most importantly, why do they look so distinctly different than modern anatomical preparations?—lies in aesthesis. Aesthesis is a term that occurs in eighteenth-century texts and dictionaries, albeit rather sparingly. It is not usually found in general and art dictionaries before the nineteenth century, but two examples appear in medical and philosophical dictionaries. In Barrow’s 1749 Dictionarium Medicum Universale: Or, a New Medicinal Dictionary, ‘aesthesis’ is explained as “to be sensible of, sensation, or the faculty or power of sensation.””
+    <br/>~~ Elegant Anatomy, The 18th Century Leiden Anatomical Collections. Marieke M.A. Hendriksen (2014)
+</blockquote>
+</div>
+
+<script>slides.push("boerhaave")</script>
+<div class="slide" id="boerhaave">
+<blockquote>
+    Simplex sigillum veri: 'The simple is the sign of the true'
+    ~ Herman Boerhaave
+
+    Carl Linnaeus published his famous Systema Naturae in 1735, during his 3-year stay in the Dutch Republic,
+    in which he also earned a degree in medicine, and closely worked together with Boerhaave.
+</blockquote>
 </div>
 
 <script>slides.push("pt2-catalog-alive")</script>
 <div class="slide" id="pt2-catalog-alive">
-Part 02: Jo [5-7min] —
-Demo screen sharing: “catalogue alive” ;
+Joana; Demo screen sharing: “catalogue alive” ;
 performative reading;
-explain: libraries we created to interact with the dataset in the browser; embedding code and calling functions on the console; console as interface for content;
 </div>
 
 
 <script>slides.push("pt3-analytical-artistic-framework")</script>
-<div class="slide" id="pt3-analytical-artistic-framework">
+<div class="slide" id="pt3-analytical-artistic-framework" style="visibility:hidden">
     Part03: Jon [5] — Core questions: analytical/artistic framework:
 
-    We will build the presentation around our growing research catalogue (which I briefly introduce on the AI meet-up) that gathers entries on both anatomic and ML references. This is also the dataset we will use to experiment in real-time with a ML algorithm to build a clustering model of the entries in the catalogue. The latter will serve as basis for hypothesizing and discussing possible categories around the collected material. terminologies[]?
+    We will build the presentation around our growing research catalogue
+    (which I briefly introduce on the AI meet-up) that gathers entries on both anatomic and ML references.
+    This is also the dataset we will use to experiment in real-time with a ML algorithm to build a
+    clustering model of the entries in the catalogue. The latter will serve as basis for hypothesizing and
+    discussing possible categories around the collected material. terminologies[]?
 
-    What have we learned from testLab?: thinking about epistemologies; how they are created and the aesthetics dimensions of that; and the connections with now: the epistemological regime emerging in times of AI.
+    What have we learned from testLab?: thinking about epistemologies; how they are created and the aesthetics
+    dimensions of that; and the connections with now: the epistemological regime emerging in times of AI.
 
     > performance explore further: gestures; dramaturgy; set-up.
     > other future goals: publishing: both the code ( + toolmaking / tool modifying / critical making ); theory bind (book form); / workshop format;
     > what does this mean for us now?
 </div>
 
-<script>slides.push("research-questions")</script>
-<div class="slide" id="research-questions">
-<h1>Research Questions / Hypotheses</h1>
-<ul>
-<li>Do our metaphors and epistemological assumptions make sense / are they naive/novel?
-<li>(series of) Anatomical Gestures
-<li>Performative/Live sketches - do they work, or not?
-    Do our metaphors and epistemological assumptions make sense / are they naive/novel?
-    do the notions of “ideal” bodies make sense?
-    (series of) Anatomical Gestures - embodiment/ presence / privilege of tacit knowledge
-    How to make sense of shifting epistemological frameworks
-    Performative/Live sketches - do they work, or not?
-</ul>
+<script>slides.push("kmeans-digits")</script>
+<img class="slide" id="kmeans-digits" src="img/algorithms/plot_kmeans_digits_scikitlearn.png" />
+
+<script>slides.push("clustering-linkages")</script>
+<img class="slide" id="clustering-linkages" src="img/algorithms/clustering_linkage_comparison_scikitlearn.png" />
+
+<script>slides.push("archive-centers")</script>
+<div class="slide" id="archive-centers">
+Growing the CATALOG
+<blockquote>
+"(...) Through poststructural and postmodern thought, then, the archival body is no longer
+‘an ideal configuration.’ It is not stable nor can it perform stability when it holds
+fractured and fracturing histories. Although fractured, the center does not necessarily cease
+to be a dominating force."
+<br/>(Braidotti, metamorphoses)
+</blockquote>
 </div>
 
+<script>slides.push("agamben-bodies")</script>
+<div class="slide" id="agamben-bodies">
+<blockquote>
+"The reversal of the relation between organ and function amounts to liberating use from every established
+teleology. The meaning of the verb <b>chresthai</b> here shows its pertinence:
+the living being does not make use of its body parts (Lucretius does not speak of organs)
+for some one predetermined function, but by entering into  relation with them,
+it so to speak gropingly finds and invents their use. The body parts precede their use,
+and use precedes and creates their function. It is what is produced in the very act of
+exercise as a delight internal to the act, as if by gesticulating again and again the hand
+found in the end its pleasure and  its “use,” the eyes by looking again and again fell in love with vision,
+the legs and thighs by bending rhythmically invented walking."
+<br/>— Giorgio Agamben, The Use of Bodies pp. 51
+</blockquote>
+</div>
+
+
 <script>slides.push("pt4-questions")</script>
-<div class="slide" id="pt4-questions">
+<div class="slide" id="pt4-questions" style="visibility: hidden">
     Part04: Both — Q&A
 
     How is machine learning influencing the production, experience, and storage of art, design and music?
 
-    * incentivized artistic processes involving acts of collection / categorization -  co-creative categorization; For example, by questioning the objecthood of the ‘model’ of a ML algorithm, and instead propose that a model be ever-evolving. Inspired by Christopher Small’s claim that music is not a thing, but an action, we rephrase the ‘model’ as always ‘modelling’, activating entanglements between people, algorithms, and contexts.
+    * incentivized artistic processes involving acts of collection / categorization -
+    co-creative categorization; For example, by questioning the objecthood of the ‘model’ of a
+    ML algorithm, and instead propose that a model be ever-evolving.
+    Inspired by Christopher Small’s claim that music is not a thing, but an action, we rephrase the
+    ‘model’ as always ‘modelling’, activating entanglements between people, algorithms, and contexts.
 
     * modelling as a process towards understanding / sense-making
 
-    And what alternative insights do we learn from these artistic applications and experiments that we don’t get from market-driven innovations?
+    And what alternative insights do we learn from these artistic applications and experiments that we
+    don’t get from market-driven innovations?
 
     * focus on process; embodiment, presence;
     * crucial to the anatomical approach: in/out of the black-box/white-cube-spectacle - binarims;
-    * developing new metaphors (recognizing that these systems heavily depend on metaphors - e.g. “neurons”
+    * developing new metaphors (recognizing that these systems heavily depend on metaphors - e.g. “neurons”)
 </div>
 
 
@@ -208,10 +349,90 @@ explain: libraries we created to interact with the dataset in the browser; embed
 // USAGE TESTS: (if these work then our code is more-or-less done)
 
 for(var i = 0; i < slides.length; i++) {
-    console.log(i, slides[i], i*100, i*400);
-
-    place(slides[i], i*150, i*200);
+    var x,y;
+    var xvar = Math.floor(Math.random() * 200);
+    var yvar = Math.floor(Math.random() * 600);
+    var m=(0.2),b=20;
+    x = i*550;
+    y = x * m + b;
+    x=x+xvar; y=y+yvar;
+    console.log(i, slides[i], x, y);
+    place(slides[i], x, y);
 };
+
+// Additional Slide Arrangement
+
+place("joana", 152,397)
+place("anatomical-theatre", 954,437)
+place("jonathan", 509,264)
+place("intro1", 80, 49 )
+dim("anatomical-theatre", 699,592, 1)
+stretch("joana",1.1,1.1,1)
+stretch("jonathan",1.1,1.1,1)
+place("intro2", 314,743)
+
+
+place("theatre-eve", 1664,158)
+vision("theatre-eve", 0.8)
+place("ruysch-painting", 1826,747)
+place("preparations", 2110,208)
+place("aesthesis-power", 2661,968)
+
+dim("ruysch-painting", 595,412, 1)
+dim("preparations", 642,483, 1)
+
+place("boerhaave", 4938,1556)
+
+
+dim("v2-performance1", 546,370, 0.9)
+dim("v2-performance4", 636,834, 1)
+vision("v2-performance2", 1)
+vision("v2-performance3", 1)
+place("v2-performance1", 4645,1957)
+place("v2-performance2", 1172,1241)
+place("v2-performance3", 2085,2172)
+place("v2-performance4", 1561,2416)
+place("husserl-reality", 2567,1392)
+
+place("scoring", 2203,2092)
+place("schroeder-lc", 1960,1653)
+
+
+place("small-musicking", 3932,951)
+place("ml-modifies-reason", 3567,1539)
+place("pt2-catalog-alive", 4640,2269)
+place("clustering-linkages", 5672,1953)
+place("pt3-analytical-artistic-framework", 5707,2576)
+
+place("archive-centers", 5736,1527)
+place("agamben-bodies", 6504,2173)
+
+place("kmeans-digits", 3638,2248)
+dim("kmeans-digits", 551,421, 1)
+place("ml-modifies-reason", 3208,1802)
+place("pt2-catalog-alive", 5032,2854)
+place("clustering-linkages", 4264,2181)
+dim("clustering-linkages", 551,582, 1)
+place("archive-centers", 3467,2712)
+place("husserl-reality", 1856,1419)
+place("schroeder-lc", 2196,1802)
+place("scoring", 2706,2308)
+place("preparations", 2643,1096)
+place("boerhaave", 3515,1516)
+place("small-musicking", 4608,1562)
+
+place("husserl-reality", 1828,1371)
+
+place("aesthesis-power", 2436,363)
+
+place("agamben-bodies", 5575,1664)
+
+place("v2-performance4", 1339,1806)
+place("scoring", 2525,2188)
+place("small-musicking", 4723,1848)
+place("v2-performance1", 4912,2439)
+place("pt2-catalog-alive", 4968,3097)
+place("pt3-analytical-artistic-framework", 5921,2592)
 
 
 </script>
