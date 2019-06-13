@@ -1,1 +1,1 @@
-### Body Atlas — Awareness — Anatomies — Narratives (in progress)
+### Body Atlas — Awareness / Anatomic Journey (in progress)
