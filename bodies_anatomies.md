@@ -1,1 +1,1 @@
-### Body Atlas — Awareness / Anatomic Journey (in progress)
+### Body Atlas — Awareness / or an Anatomic Journey (in progress)
