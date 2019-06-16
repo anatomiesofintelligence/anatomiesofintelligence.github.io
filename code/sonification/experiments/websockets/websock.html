@@ -1,0 +1,53 @@
+<html>
+<meta charset="UTF-8">
+<head>
+<title>Websockets Experiments</title>
+</head>
+<body>
+
+<script>
+// simple websockets connection
+var ws;
+var init = function () {
+  ws = new WebSocket('ws://127.0.0.1:8080/interface');
+
+  ws.onopen = function() {
+    console.log('Connected')
+    console.log('Protocol:' + ws.protocol);
+    //conn.binaryType = 'arraybuffer';
+    var oscmsg = {address: "/browser/status",
+    args: [
+      {type: "s", value: "Hello from the browser"},
+      {type: "i", value: 57120},
+      {type: "f", value: 42.24},
+    ]};
+    console.log("Sending: " + oscmsg);
+    ws.send(JSON.stringify(oscmsg));
+  };
+  ws.onmessage = function(evt) {
+    var str = evt.data; // messages must be valid json
+    var msg = JSON.parse(str);
+    var it=1;
+    // No OSC parsing here, for now we just send data to the server
+    for (const key of Object.keys(msg)) {
+      if(it==1) {
+        console.log("received/\t" + key + ": " + msg[key]);
+        it=0;
+      } else {
+        console.log("\t\t" + key + ": " + msg[key]);
+      }
+    }
+    if(it==1) { console.log("received/\t" + "EMPTY") }
+  };
+  ws.onclose = function() { console.log('Connection closed...') };
+};
+
+if(!("WebSocket" in window)) {
+    alert("Your browser does not support web sockets");
+} else {
+    init();
+}
+</script>
+
+</body>
+</html>
