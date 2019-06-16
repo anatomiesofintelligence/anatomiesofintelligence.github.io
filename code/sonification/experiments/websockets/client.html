@@ -3,17 +3,33 @@
 <head>
 <title>Websockets Experiments</title>
 </head>
+<style>
+  #post {
+    text-align: left;
+    font-family: monospace;
+    font-size: 20px;
+    max-width: 800px;
+  }
+
+</style>
 <body>
+
+<div id="post"></div>
 
 <script>
 // simple websockets connection
 var ws;
+var postwindow = document.getElementById("post");
+var post = function (str) {
+  console.log(str);
+  postwindow.innerHTML = postwindow.innerHTML + "<br/>\n" + str;
+};
 var init = function () {
   ws = new WebSocket('ws://127.0.0.1:8080/interface');
 
   ws.onopen = function() {
-    console.log('Connected')
-    console.log('Protocol:' + ws.protocol);
+    post('Connected')
+    post('Protocol:' + ws.protocol);
     //conn.binaryType = 'arraybuffer';
     var oscmsg = {address: "/browser/status",
     args: [
@@ -21,7 +37,7 @@ var init = function () {
       {type: "i", value: 57120},
       {type: "f", value: 42.24},
     ]};
-    console.log("Sending: " + oscmsg);
+    post("Sending: " + oscmsg);
     ws.send(JSON.stringify(oscmsg));
   };
   ws.onmessage = function(evt) {
@@ -31,15 +47,15 @@ var init = function () {
     // No OSC parsing here, for now we just send data to the server
     for (const key of Object.keys(msg)) {
       if(it==1) {
-        console.log("received/\t" + key + ": " + msg[key]);
+        post("received/\t" + key + ": " + msg[key]);
         it=0;
       } else {
-        console.log("\t\t" + key + ": " + msg[key]);
+        post("\t\t" + key + ": " + msg[key]);
       }
     }
-    if(it==1) { console.log("received/\t" + "EMPTY") }
+    if(it==1) { post("received/\t" + "EMPTY") }
   };
-  ws.onclose = function() { console.log('Connection closed...') };
+  ws.onclose = function() { post('Connection closed...') };
 };
 
 if(!("WebSocket" in window)) {
