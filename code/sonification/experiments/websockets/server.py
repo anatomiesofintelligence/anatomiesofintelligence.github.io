@@ -17,7 +17,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
     server_out = ["127.0.0.1", 57120]
 
     def check_origin(self, origin):
-        allowed = ["http://localhost/", "http://127.0.0.1", "null", "file://"];
+        allowed = ["http://localhost", "http://127.0.0.1", "https://anatomiesofintelligence.github.io", "null", "file://"];
         if origin in allowed:
             print("MSG ALLOWED, from origin", origin)
             return 1
