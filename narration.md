@@ -11,21 +11,21 @@ Here we are driven by curiosity and the desire to see beyond the surface level, 
 We start with a simple gesture: cutting. To cut open, to examine, in order to describe each organ and identify their functions, while discovering its relations to the whole — from organ to organisation, organicity. Some call it an empirical system to perform systematic dissection of the human body. 
 
 
-[ _here read a cut that is being made to the catalog eg.: "catalog.cluster(2,Measures.euclidean,cut,10,resultfunc)"; should I  read more for eg. the results coming in the console??_]
+_[here read a cut that is being made to the catalog eg.: "catalog.cluster(2,Measures.euclidean,cut,10,resultfunc)"; should I  read more for eg. the results coming in the console??]_
 
 
 
 Learning from each cut, the best techniques to dissect the body to effectively observe each muscle and how the body is laid out. We start by understanding the musculoskeletal structure, as the beginning of understanding of the function of certain specific organs. 
 
 
-[ _here read a cut that is being made to the catalog_ ]
+_[here read a cut that is being made to the catalog]_
 
 We witness the movement of the different entries — data clustering; constantly finding new positions: as the proximal (meaning 'nearest') and distal (meaning 'to stand away from’).
 
 This is also a mapping exercise. The location of anatomical structures can be described with relation to different anatomical landmarks. Here we use the relationship is based on euclidean distancing: measuring the distance between each entry; while having no sense of direction nor orientation. 
 
 
-[ _here read a cut that is being made to the catalog_ ]
+_[here read a cut that is being made to the catalog]_
 
 
 The anatomist and the anatomized body. Iteration over iteration, calculating distances cutting across various lengths.
@@ -42,13 +42,13 @@ Consider subcutaneous as meaning beneath the skin, subterminal meaning near to t
 Similar to "sub"; a direct opposite is the super- and supra-, as in infratemporal space or infraorbital. 
 
 
-[ _here read a cut that is being made to the catalog_ ]
+_[here read a cut that is being made to the catalog]_
 
 
 Preparations, models and its users, anatomists and teachers, curators and audiences mapping presences and the absences. Learning how to make a well-injected preparation is an art that can only be learned through endless practice, through trial and error, with hands-on work. It is truly about gaining knowledge from all your sensory perceptions — we used our touch, smell, sight and hearing, and it takes little imagination to envision the inclusion of taste.
 
 
-[ _here read a cut that is being made to the catalog_ ]
+_[here read a cut that is being made to the catalog]_
 
 
 Performing a series of dissections, cutting through corpses, data, our anatomic dataset collection. Classiffied objects of knowledge, a new collection is born.
@@ -56,13 +56,13 @@ Performing a series of dissections, cutting through corpses, data, our anatomic 
 If we look closer at anatomical collections they appear to be predominantly examples of normal - or even perfect - human anatomy, prepared in such a way that they convey the aesthesis of anatomy. The result of particular yet tacit ideas of beauty, perfection and elegance, most of the body parts were chosen for these preparations because they were already in themselves perfect specimens: there are no obvious pathologies, and most of them were (part of) young, lean, healthy bodies. (…) Yet ultimately, severed body parts on the brink of decay - the ultimate emblem of disgust — are the constituents of this collection, and as research into pathology and abnormalities became increasingly important, an aesthesis ex-negativo emerged: an aesthesis of the ugly and the imperfect.
 
 
-[ _here read a cut that is being made to the catalog_ ]
+_[here read a cut that is being made to the catalog]_
 
 
 Acts of selection, accentuation, and seeking beauty, even in the deformed and the ugly. By preserving monstrosities like these in preparations, and averting the immediate danger implied by the visceral disgust such specimens would provoke unpreserved, their makers shaped them into didactic instruments and purveyors of meaning.
 
 
-[ _here read a cut that is being made to the catalog_ ]
+_[here read a cut that is being made to the catalog]_
 
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
