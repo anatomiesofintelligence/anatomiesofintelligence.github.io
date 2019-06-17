@@ -1,0 +1,51 @@
+<html>
+<meta charset="UTF-8">
+<head>
+<title>Example SimpleOSC Usage</title>
+
+<style>
+  #post {
+    text-align: left;
+    font-family: monospace;
+    max-width: 800px;
+    white-space: pre;
+  }
+
+  #send {
+    font-family: monospace;
+    margin: 0px 0px 10px 10px;
+    width: 100%;
+  }
+
+
+</style>
+
+
+<script src="SimpleOSC.js"></script>
+</head>
+<body>
+
+<div id="send">
+  <input type="button" onclick="osc.sendmsg('/browser', [440, 540, 1.0])" value="ping">
+  <input type="button" onclick="osc.sendmsg('/browser', [340, 440.4, 2.0])" value="pong">
+  <input type="button" onclick="osc.sendmsg('/browser', [1440, 5340, 0.5])" value="pluck">
+</div>
+
+<div id="post"></div>
+
+<script>
+var postwindow = document.getElementById("post");
+
+var post = function (str) {
+  console.log(str);
+  postwindow.innerHTML = postwindow.innerHTML + "\n" + str;
+};
+
+// OSC connection
+var osc = new SimpleOSC("127.0.0.1", 8080, post);
+osc.init();
+
+</script>
+
+</body>
+</html>
