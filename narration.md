@@ -5,6 +5,8 @@ We are here, in this Theatrum Anatomicum Temporarium to be dismantled after the 
 
 It is also a common practice for the professor of anatomy to sit in a large, ornate chair elevated above the dissection proceedings, reading from an anatomical text and providing commentary, while a demonstrator, or surgeon, physically performed the dissection. 
 
+Basel, June 19th 2019
+
 Here we are spectators of the same spectacle. Sharing the stage, a teatrise on the anatomies of a K-means clustering. 
 Here we are driven by curiosity and the desire to see beyond the surface level, the skin, pourous, our primary interface to the world. Inter-facing scores and scripts, inter-, in between gestures and codes. 
 
@@ -22,7 +24,7 @@ _[here read a cut that is being made to the catalog]_
 
 We witness the movement of the different entries — data clustering; constantly finding new positions: as the proximal (meaning 'nearest') and distal (meaning 'to stand away from’).
 
-This is also a mapping exercise. The location of anatomical structures can be described with relation to different anatomical landmarks. Here we use the relationship is based on euclidean distancing: measuring the distance between each entry; while having no sense of direction nor orientation. 
+Like a mapping exercise. The location of anatomical structures can be described with relation to different anatomical landmarks. Here we use the relationship is based on euclidean distancing: measuring the distance between each entry; while having no sense of direction nor orientation. 
 
 
 _[here read a cut that is being made to the catalog]_
