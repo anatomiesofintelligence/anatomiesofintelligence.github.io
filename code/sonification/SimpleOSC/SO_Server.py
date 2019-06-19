@@ -16,7 +16,8 @@ import argparse
 class WSHandler(tornado.websocket.WebSocketHandler):
     osc_client = None
     server_out = ["127.0.0.1", 57120]
-    allowed_origins = ["http://localhost", "http://127.0.0.1", "null", "file://"];
+    allowed_origins = ["http://localhost", "http://localhost:4000", "http://127.0.0.1", "null", "file://"];
+    echo = False
 
     def check_origin(self, origin):
         if origin in WSHandler.allowed_origins:
@@ -53,11 +54,18 @@ class WSHandler(tornado.websocket.WebSocketHandler):
         oscargs = []
         for item in args:
             echoargsmsg.append(item)
-            oscargs.append(item['value'])
+            val = item['value']
+            if type(val) == list:
+                val = ','.join(str(x) for x in val)
+            oscargs.append(val)
 
-        echo = {"address": "/server/echo", "args": echoargsmsg}
-        self.write_message(json.dumps(echo))
+
+        if WSHandler.echo:
+            echo = {"address": "/server/echo", "args": echoargsmsg}
+            self.write_message(json.dumps(echo))
+
         print('received:', parsed)
+        print('args are: ', type(parsed['args']))
         WSHandler.osc_client.send_message(address, oscargs)
 
 
@@ -76,9 +84,11 @@ if __name__ == "__main__":
     parser.add_argument("-ip", default="127.0.0.1", help="The server to send OSC to")
     parser.add_argument("-port", type=int, default=57120, help="The port to send OSC to")
     parser.add_argument("-origin", default="https://anatomiesofintelligence.github.io", help="Allowed client URL")
+    parser.add_argument("-echo", type=bool, default=False, help="Enable server echo")
     clargs = parser.parse_args()
     WSHandler.server_out = [clargs.ip, clargs.port]
     WSHandler.allowed_origins.append(clargs.origin)
+    WSHandler.echo = clargs.echo;
 
     app = make_app();
     app.listen(8080)

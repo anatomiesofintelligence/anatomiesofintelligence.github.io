@@ -7,55 +7,118 @@
   #post {
     text-align: left;
     font-family: monospace;
-    font-size: 20px;
     max-width: 800px;
+    white-space: pre;
+  }
+
+  #send {
+    font-family: monospace;
+    margin: 0px 0px 10px 10px;
+
+  }
+
+  #command_input {
+    font-family: monospace;
+    width: 100%;
+    overflow: hidden;
+    font-size: 16px;
   }
 
 </style>
 <body>
 
+<div id="send">
+<p>syntax: sendmsg("ADDRESS", [arg1, arg2, arg3...])</p>
+<input type="text" id="command_input" name="command_input" onkeydown="checkInput()">
+</div>
+
 <div id="post"></div>
 
 <script>
+var checkInput = function() {
+  var evt = window.event || event.which;
+  var cmdinput = document.getElementById('command_input');
+  if(evt.keyCode == 13) {
+    eval(cmdinput.value);
+    post(cmdinput.value);
+    cmdinput.value = "";
+  }
+};
+
 // simple websockets connection
 var ws;
 var postwindow = document.getElementById("post");
 var post = function (str) {
   console.log(str);
-  postwindow.innerHTML = postwindow.innerHTML + "<br/>\n" + str;
+  postwindow.innerHTML = postwindow.innerHTML + "\n" + str;
 };
 var init = function () {
   ws = new WebSocket('ws://127.0.0.1:8080/interface');
+  post("Creating WebSocket connection to ws://127.0.0.1:8080/interface")
 
   ws.onopen = function() {
     post('Connected')
     post('Protocol:' + ws.protocol);
     //conn.binaryType = 'arraybuffer';
-    var oscmsg = {address: "/browser/status",
-    args: [
-      {type: "s", value: "Hello from the browser"},
-      {type: "i", value: 57120},
-      {type: "f", value: 42.24},
-    ]};
-    post("Sending: " + oscmsg);
-    ws.send(JSON.stringify(oscmsg));
+    sendmsg("/browser/status", ["Hello from the browser", 57120, 42.24]);
   };
   ws.onmessage = function(evt) {
     var str = evt.data; // messages must be valid json
     var msg = JSON.parse(str);
     var it=1;
-    // No OSC parsing here, for now we just send data to the server
+
+    // just iterate through the json message
     for (const key of Object.keys(msg)) {
       if(it==1) {
         post("received/\t" + key + ": " + msg[key]);
-        it=0;
+        it=2;
       } else {
-        post("\t\t" + key + ": " + msg[key]);
+        if((it == 2) && (key == "args")) {// iterate through args
+          it=3;
+          var argstr = "\t\t" + key + ": ";
+          msg[key].forEach(function(arg,idx) {
+            argstr = argstr + (idx+1) + ":" + arg.type + "'" + arg.value + "' ";
+          });
+          post(argstr);
+        } else {
+          post("\t\t" + key + ": " + msg[key]);
+        }
       }
     }
     if(it==1) { post("received/\t" + "EMPTY") }
   };
   ws.onclose = function() { post('Connection closed...') };
+};
+
+// sending an osc message
+var sendinputs = function() {
+  var addr, arg1, arg2, arg3;
+  addr = document.getElementById("oscaddress").value;
+  arg1 = document.getElementById("arg1").value;
+  arg2 = document.getElementById("arg2").value;
+  arg3 = document.getElementById("arg3").value;
+  sendmsg(addr, [arg1, arg2, arg3]);
+}
+
+var sendmsg = function(addr, args) {
+  var jsonmsg, argsmsg = [];
+  args.forEach(function (item, index) {
+    var osctype;
+    switch(typeof item) {
+      case "string":
+        osctype = "s";
+        break;
+      case "number":
+        if(Number.isInteger(item)) { osctype = "i" } { osctype = "f" };
+        break;
+      default:
+        osctype = "b";
+    }
+    argsmsg.push({type: osctype, value: item})
+  });
+  jsonmsg = {address: addr, args: argsmsg};
+  post("Sending: " + jsonmsg);
+  ws.send(JSON.stringify(jsonmsg));
 };
 
 if(!("WebSocket" in window)) {

@@ -35,19 +35,30 @@ class WSHandler(tornado.websocket.WebSocketHandler):
         # OSC-like format
         # JSON: {address: oscaddr, args: [{type:type, value:val},...]}
         self.write_message(
-            {"address": "/fromPython",
+            {"address": "/server/status",
             "args": [
                 {
                     "type": "s",
                     "value": "Hello from server. Handshakes!"
                 }
             ]})
-        osc_client.send_message("/fromBrowser/status", "Connection to Browser Successful")
+        osc_client.send_message("/browser/status", "Connection to Browser Successful")
 
     def on_message(self, message):
         parsed = json.loads(message)
-        self.write_message(json.dumps(parsed))
+        address = parsed['address'];
+        args = parsed['args'];
+        echoargsmsg = [{"type": "s", "value": address}]
+        oscargs = []
+        for item in args:
+            echoargsmsg.append(item)
+            oscargs.append(item['value'])
+
+        echo = {"address": "/server/echo", "args": echoargsmsg}
+        self.write_message(json.dumps(echo))
         print('received:', parsed)
+        WSHandler.osc_client.send_message(address, oscargs)
+
 
     def on_close(self):
         print( 'connection closed...')
