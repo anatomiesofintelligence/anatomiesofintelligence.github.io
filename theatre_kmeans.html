@@ -46,7 +46,7 @@ catalog.addEntry(newexample);
 <code>
 clean_surface()
 randomize()
-SCALING = 50
+DENSITY = 50
 catalog.allEntries
 options = {taglist: ["models", "preparations", "aesthesis"]}
 e1 = catalog.allEntries.choose()
@@ -139,8 +139,8 @@ function resultfunc(err, clusters, centroids) {
             theta = j * (2 * Math.PI / clusters[i].length);
 
             // Convert polar to cartesian
-            x = Math.floor(distance * Math.cos(theta) * SCALING);
-            y = Math.floor(distance * Math.sin(theta) * SCALING);
+            x = Math.floor(distance * Math.cos(theta) * DENSITY);
+            y = Math.floor(distance * Math.sin(theta) * DENSITY);
 
             examplediv = document.querySelector("#"+item.entry.id);
             examplediv.style.position = "absolute";
@@ -161,20 +161,21 @@ randomize(); // randomize example divs
 
 // 4-dimensional cut into an N-dimensional body
 var tagscut = ["models", "preparations", "aesthesis", "unknown"];
-var SCALING = 300; // distance scaling
+var DENSITY = 500; // distance scaling
 
 // Test clustering with 3 clusters and 10 iterations
 //catalog.cluster(3, Measures.euclidean, tagscut, 10, resultfunc);
 
 // Clustering with finer-grained feedback
-var ITERS = 5;
-var NUM_CLUSTERS = 3;
-var TS = 1.0; // timescale/tempo speed
+var ITERATIONS = 5;
+var CLUSTERS = 3;
+var TEMPO = 1.0; // timescale/tempo speed
+var MEASUREMENT = Measures.euclidean
 
 // Initialize the OSC connection to the SO_Server
 var osc = new SimpleOSC("localhost", 8080);
 osc.init(function() {
-  catalog.cluster(NUM_CLUSTERS, Measures.euclidean, tagscut, ITERS, resultfunc, osc, console.log);
+  //catalog.cluster(CLUSTERS, MEASUREMENT, tagscut, ITERATIONS, resultfunc, osc, console.log);
 });
 
 </script>

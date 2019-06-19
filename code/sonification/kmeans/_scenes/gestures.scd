@@ -11,7 +11,7 @@ e = Smpl.at("bajko-horror-surgery").event.play;
 e.free;
 
 Smpl.at("bajko-horror-surgery").buffer;
-b = Smpl.buf("bajko-horror-surgery");
+b = Smpl.buf("man_slush1");
 
 // Granular Synthesis Gestures
 
