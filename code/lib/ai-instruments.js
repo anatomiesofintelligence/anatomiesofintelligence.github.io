@@ -54,19 +54,33 @@ Measures.euclidean = function(a, b, options) {
 ****************************/
 
 
+/***************************
+// UTILITY FUNCTIONS
+****************************/
+var Util = new Object();
+// Must be called in an async function with "await Util.sleep(100)"
+Util.sleep = function(time) {
+	return new Promise(resolve => setTimeout(resolve,time));
+}
+/***************************
+// END UTILITY FUNCTIONS
+****************************/
+
+
+
 
 
 /***************************
-// EXAMPLE AND CATALOG CLASSES
+// ENTRY AND CATALOG CLASSES
 ****************************/
-var Example = function(id) {
+var Entry = function(id) {
         this.id = id;
         this.text;
         this.image;
         this.tags = {};
 }
 
-Example.prototype.addTag = function(tag_weight) {
+Entry.prototype.addTag = function(tag_weight) {
         var weight, tag;
         tag = this.cleanTag(tag_weight[0]);
         if(tag_weight.length == 1) { // no weight given for tag
@@ -78,31 +92,27 @@ Example.prototype.addTag = function(tag_weight) {
 }
 
 // Remove spaces and other funky characters so the tag can be used as a dictionary id
-Example.prototype.cleanTag = function(tag_string) {
+Entry.prototype.cleanTag = function(tag_string) {
         return tag_string.trim().replace(/[\W]/g,'_');
 }
 
-Example.prototype.tagWeight = function(tag) {
+Entry.prototype.tagWeight = function(tag) {
         var result = this.tags[tag];
-        if(result == undefined) {
-                result = 0.0;
-        }
+        // if this tag isn't present, give it a weight of 0.0
+        if(result == undefined) { result = 0.0 };
         return result;
 }
 
-// Gets a feature vector for this example using the given options
-// Generates a FeatureVec from a given example based on what's in options.
+// Generates a FeatureVec from a given entry based on what's in options.
 // for now options only contains one item: 'taglist' which is an array of tag names
 // to retrieve as features, but could in the future describe more complex features
-Example.prototype.getFeatures = function(options) {
+Entry.prototype.getFeatures = function(options) {
     var taglist, tagweight, features;
     taglist = options["taglist"];
     features = new Array(taglist.length);
     for(var i = 0; i < taglist.length; i++) { // create a feature vector from tag weights
         tagweight = this.tags[taglist[i]];
-        if(tagweight == undefined) {
-            tagweight = 0.0;
-        }
+        if(tagweight == undefined) { tagweight = 0.0 };
         features[i] = tagweight;
         //console.log("Set features",i,"to",tagweight);
     }
@@ -111,16 +121,16 @@ Example.prototype.getFeatures = function(options) {
 
 /*************
 // FeatureVec
-// An easier to work with feature vector with its example attached to it.
+// An easier to work with feature vector with its related entry attached to it.
 **************/
-var FeatureVec = function(example, features) {
-    this.example = example;
+var FeatureVec = function(entry, features) {
+    this.entry = entry;
     this.features = features;
 }
 
 // Make a copy of this FeatureVec
 FeatureVec.prototype.copy = function() {
-    return new FeatureVec(this.example, this.features.slice());
+    return new FeatureVec(this.entry, this.features.slice());
 }
 
 
@@ -128,12 +138,12 @@ FeatureVec.prototype.copy = function() {
 // CATALOG
 **************/
 var Catalog = function() {
-        this.examples = {}; // dictionary of example id->Example
+        this.allEntries = {}; // dictionary of entry id->Entry
         this.allTags = [];
 }
 
-Catalog.prototype.addExample = function(newexample) {
-        for(let [tag, weight] of Object.entries(newexample.tags)) {
+Catalog.prototype.addEntry = function(newentry) {
+        for(let [tag, weight] of Object.entries(newentry.tags)) {
             var found = false;
             for(var i=0; i < this.allTags.length; i++) {
                 if(this.allTags[i] == tag) {
@@ -145,40 +155,32 @@ Catalog.prototype.addExample = function(newexample) {
             }
         }
         //this.allTags.sort();
-        this.examples[newexample.id] = newexample;
+        this.allEntries[newentry.id] = newentry;
 }
 
-// Get examples as an array of FeatureVecs
+// Get entrys as an array of FeatureVecs
 // the number and types of features are determined by options
 // usually this is just a list of tag weights
-Catalog.prototype.examplesAsFeatures = function(options) {
-    var asfeatures, examples_as_features = [];
-    for(let example of Object.values(this.examples)) {
-        asfeatures = example.getFeatures(options);
-        examples_as_features.push(asfeatures);
+Catalog.prototype.entriesAsFeatures = function(options) {
+    var asfeatures, entrys_as_features = [];
+    for(let entry of Object.values(this.allEntries)) {
+        asfeatures = entry.getFeatures(options);
+        entrys_as_features.push(asfeatures);
     }
-    return examples_as_features;
-}
-
-// Randomize example DIVs in the DOM
-Catalog.prototype.randomize = function() {
-        for (let [key, value] of Object.entries(this.examples)) {
-                document.querySelector("#"+key).style.top = Math.floor(Math.random() * 900) + 'px';
-                document.querySelector("#"+key).style.left = Math.floor(Math.random() * 1200) + 'px';
-        }
+    return entrys_as_features;
 }
 
 // Clusters using a number of clusters and a comparison function
 // uses KMEANS clustering/unsupervised learning
-Catalog.prototype.cluster = function(num_clusters, measure, thetaglist, iters, process_result_func) {
-    var options, iterations, measurement, examples_as_features;
+Catalog.prototype.cluster = function(num_clusters, measure, thetaglist, iters, process_result_func, oscout, postfunc) {
+    var options, iterations, measurement, entrys_as_features;
     iterations = iters || 100;
     measurement = measure || Measures.euclidean;
     options = {taglist: thetaglist, similarityFunc: measurement, iterations: iterations};
     this.kmeans = new KMeans(num_clusters, options);
-    examplesAsFeatures = this.examplesAsFeatures(options);
+    entrysAsFeatures = this.entriesAsFeatures(options);
     process_result_func = process_result_func || this.processClusters;
-    this.kmeans.cluster(examplesAsFeatures, process_result_func);
+    this.kmeans.cluster(entrysAsFeatures, process_result_func, oscout, postfunc);
 }
 
 // Callback function for KMEANS algorithm
@@ -201,7 +203,7 @@ Catalog.prototype.processClusters = function(err, clusters, centroids) {
 
 
 /***************************
-// KMEANS CLASS
+// KMEANS CLASS ~ modified for analysis
 ****************************/
 var KMeans = function(K, options) {
   options = options || {};
@@ -214,28 +216,39 @@ var KMeans = function(K, options) {
   this.options = options || {};
 }
 
-KMeans.prototype.cluster = function(examples, callback) {
-  var self = this;
 
-  if (!examples) {
-    return callback(new Error('an array of examples is required.'));
-} else if (!Array.isArray(examples)) {
-    return callback(new Error('examples must be an array.'));
-} else if (examples.length < self.K) {
-    return callback(new Error('examples must have at least K data points.'));
+KMeans.prototype.cluster = async function(entrys, donecallback, oscout=null, postfunc=null) {
+  var self = this;
+  var osc, post;
+  if(typeof TS === "undefined") { TS = 1.0 };
+  post = postfunc;
+  if(post == null) { post = function() {} };
+
+  if(oscout == null) {
+    osc = function(address, args) { };
+  } else {
+    osc = function(address, args) { oscout.sendmsg(address, args) };
   }
 
+  if (!entrys) {
+    return callback(new Error('an array of entrys is required.'));
+} else if (!Array.isArray(entrys)) {
+    return callback(new Error('entrys must be an array.'));
+} else if (entrys.length < self.K) {
+    return callback(new Error('entrys must have at least K data points.'));
+  }
 
-  console.log("INCOMING_EXAMPLES:", examples);
-
-  var normalizedExamples = self.normalize(examples);
-
-  console.log("NORMALIZED_EXAMPLES:",normalizedExamples);
+  //console.log("INCOMING_EXAMPLES:", entrys);
+  var normalizedEntrys = self.normalize(entrys);
+  //console.log("NORMALIZED_EXAMPLES:",normalizedEntrys);
 
   // initialize random centroids
   for (var k = 0; k < self.K; k++) {
-    var newcentroid, randomIndex = Math.floor(Math.random() * normalizedExamples.length);
-    newcentroid = new FeatureVec("centroid"+k, normalizedExamples[randomIndex].features.slice());
+    var newcentroid, randomIndex = Math.floor(Math.random() * normalizedEntrys.length);
+    newcentroid = new FeatureVec("centroid"+k, normalizedEntrys[randomIndex].features.slice());
+    osc("/kmeans/initcentroid", [k, newcentroid.features]); // centroid centroid-features
+    post("NEW CENTROID " + k + " with " + newcentroid.features.map(x=>x.toFixed(2)));
+    await Util.sleep(1000 * TS);
     self.centroids.push(newcentroid);
   }
 
@@ -243,47 +256,90 @@ KMeans.prototype.cluster = function(examples, callback) {
 
   // Clustering Refinement Iterations...
   for (var j = 0; j < self.iterations; j++) {
-    // cluster assignment step
-    var clusterIndexes = [];
-    for (var i = 0; i < normalizedExamples.length; i++) {
-      // How close is each point to centroid 0
+    osc("/kmeans/iteration", [j, "start"]);
+    post("----------- ITERATION "+j+" ---------");
+    await Util.sleep(1000 * TS);
+
+    // cluster assignment step, assign entry to closest centroid
+    osc("/kmeans/iteration", [j, "cluster-assignment"]);
+    post("--- I"+j+" Cluster Assignment ---");
+    await Util.sleep(1000 * TS);
+
+    var clusterIndexes = []; // each entry index gets a cluster index [0,0,0,2,2,0,1... etc]
+    for (var i = 0; i < normalizedEntrys.length; i++) {
+      // How close is each entry to centroid 0
       var min;
-      min = this.similarityFunc(normalizedExamples[i], self.centroids[0]);
+      min = this.similarityFunc(normalizedEntrys[i], self.centroids[0]);
+      // entry-idx entry-id centroid-idx distance
+
+      osc("/kmeans/distance", [i, normalizedEntrys[i].entry.id, 0, min]);
+      post(min.toFixed(3) + ": " + normalizedEntrys[i].entry.id+" to c"+0);
+      await Util.sleep(250 * TS);
+
       var closestCentroid = 0;
-      for (k = 0; k < self.K; k++) { // compare to other centroids
+      for (k = 1; k < self.K; k++) { // compare to other centroids
         var tmpDistance;
-        tmpDistance = this.similarityFunc(normalizedExamples[i], self.centroids[k]);
+        tmpDistance = this.similarityFunc(normalizedEntrys[i], self.centroids[k]);
+
+        // entry-idx entry-id centroid-idx distance
+        osc("/kmeans/distance", [i, normalizedEntrys[i].entry.id, k, tmpDistance]);
+        post(tmpDistance.toFixed(3) + ": " + normalizedEntrys[i].entry.id + " to c"+k);
+        await Util.sleep(250 * TS);
         if (tmpDistance < min) {
           min = tmpDistance;
           closestCentroid = k;
+
+          // entry-idx entry-id centroid-idx distance
+          osc("/kmeans/updateClosestCentroid", [i, normalizedEntrys[i].entry.id, k, tmpDistance]);
+          post("update closest c"+k+" => " + normalizedEntrys[i].entry.id);
+          await Util.sleep(200 * TS);
         }
       }
-      clusterIndexes.push(closestCentroid); // for each example, push index of closest centroid
+      clusterIndexes.push(closestCentroid); // for each entry, push index of closest centroid
+
+      // entry-idx entry-id centroid/cluster-idx distance
+      osc("/kmeans/assignCluster", [i, normalizedEntrys[i].entry.id, closestCentroid, tmpDistance]);
+      post("ASSIGN c"+closestCentroid+" => "+normalizedEntrys[i].entry.id);
+      await Util.sleep(500 * TS);
     }
 
-    console.log("ITERATION:",j,"CLOSEST CENTROIDS", clusterIndexes);
-
-    // Make new centroids that better fit clusters
-    // Create clusters of examples as an array of arrays
-    var newCentroids = [];
+    osc("/kmeans/iteration", [j, "recalculate-centroids"]);
+    post("--- I"+j+" Re-calculate Cluster Centroids ---");
+    await Util.sleep(1000 * TS);
+    // Gather up entries by cluster & make better centroids
     self.clusters = [];
-    for (var k = 0; k < self.centroids.length; k++) { // for each centroid k
+    var newCentroids = [];
+    for (var k = 0; k < self.centroids.length; k++) { // for each centroid/cluster
+
+      // Collect up all entries in that cluster
       var cluster = [];
       clusterIndexes.forEach(function(clusterIndex, index) {
         if (clusterIndex == k) {
-          cluster.push(normalizedExamples[index]);
+          cluster.push(normalizedEntrys[index]);
         }
       });
       self.clusters.push(cluster);
 
+      // If there are entries in the cluster, recalculate the centroid to be more central
+      var updatedCentroid;
       if (cluster.length > 0) {
-        // Add a new centroid for each new cluster, with its center at the mean of all examples in the cluster
-        newCentroids.push(new FeatureVec("centroid"+k, self.mean(cluster)));
+        // Add a new centroid for each new cluster, with its center at the mean of all entrys in the cluster
+        updatedCentroid = new FeatureVec("centroid"+k, self.mean(cluster));
+        osc("/kmeans/recalculateCentroid", ["new", k, updatedCentroid.features]);
+        post("NEW CENTROID "+k+": "+updatedCentroid.features.map(x=>x.toFixed(2)));
+        await Util.sleep(300 * TS);
       } else { // clusters with no entries keep their old centroid
-        newCentroids.push(self.centroids[k]);
+        updatedCentroid = self.centroids[k];
+        osc("/kmeans/recalculateCentroid", ["keep", k, updatedCentroid.features]);
+        post("CENTROID "+k+" UNCHANGED");
+        await Util.sleep(300 * TS);
       }
+      newCentroids.push(updatedCentroid);
     }
     self.centroids = newCentroids;
+    osc("/kmeans/iteration", [j, "end"]);
+    post("--- END Iteration "+j);
+    await Util.sleep(5000 * TS);
 	}
 
   // denormalize clusters and centroids
@@ -292,66 +348,66 @@ KMeans.prototype.cluster = function(examples, callback) {
     self.clusters[index] = self.denormalize(cluster);
   });
 
-  return callback(null, self.clusters, self.centroids);
+  return donecallback(null, self.clusters, self.centroids);
 };
 
-// Returns an array of mean values for each feature of the example set
-// E.G. if each example has four features, mean will return the average across
+// Returns an array of mean values for each feature of the entry set
+// E.G. if each entry has four features, mean will return the average across
 //  all samples of each feature [0.2, 0.34, 0.54, 0.4]
-// examples is an array of FeatureVecs
-KMeans.prototype.mean = function(examples) {
-  if (!Array.isArray(examples)) {
-    throw new Error('mean requires an array of examples as an argument.');
+// entrys is an array of FeatureVecs
+KMeans.prototype.mean = function(entrys) {
+  if (!Array.isArray(entrys)) {
+    throw new Error('mean requires an array of entrys as an argument.');
   }
-  if (examples.length == 0) {
+  if (entrys.length == 0) {
     return [];
   }
   var sum;
-  sum = new Array(examples[0].features.length);
-  for (var i = 0; i < examples.length; i++) {
+  sum = new Array(entrys[0].features.length);
+  for (var i = 0; i < entrys.length; i++) {
     for (var k = 0; k < sum.length; k++) {
-      sum[k] = (sum[k] || 0) + parseFloat(examples[i].features[k], 10);
-      if (i == (examples.length - 1)) {
-          sum[k] = sum[k] / examples.length;
+      sum[k] = (sum[k] || 0) + parseFloat(entrys[i].features[k], 10);
+      if (i == (entrys.length - 1)) {
+          sum[k] = sum[k] / entrys.length;
       }
     }
   }
   return sum;
 };
 
-// examples is an array of FeatureVecs
+// entrys is an array of FeatureVecs
 // normalizes a feature vector using the formula: (feature - mean) / mean
-KMeans.prototype.normalize = function(examples) {
-  var mean = this.mean(examples);
+KMeans.prototype.normalize = function(entrys) {
+  var mean = this.mean(entrys);
   this.originalMean = mean;
-  var normalizedExamples = [];
-  examples.forEach(function(example, j) {
-    var normalizedExample, normalizedFeatures, features;
-    features = example.features;
+  var normalizedEntrys = [];
+  entrys.forEach(function(entry, j) {
+    var normalizedEntry, normalizedFeatures, features;
+    features = entry.features;
     normalizedFeatures = new Array(features.length);
     for (var i = 0; i < features.length; i++) {
         normalizedFeatures[i] = (features[i] - mean[i]) / mean[i];
     }
-    normalizedExample = new FeatureVec(example.example, normalizedFeatures);
-    normalizedExamples.push(normalizedExample);
+    normalizedEntry = new FeatureVec(entry.entry, normalizedFeatures);
+    normalizedEntrys.push(normalizedEntry);
   });
-  return normalizedExamples;
+  return normalizedEntrys;
 };
 
-KMeans.prototype.denormalize = function(normalizedExamples) {
+KMeans.prototype.denormalize = function(normalizedEntrys) {
   var originalMean = this.originalMean;
-  var denormalizedExamples = [];
-  normalizedExamples.forEach(function(example, j) {
-    var normalizedFeatures, denormalizedFeatures, denormalizedExample;
-    normalizedFeatures = example.features;
+  var denormalizedEntrys = [];
+  normalizedEntrys.forEach(function(entry, j) {
+    var normalizedFeatures, denormalizedFeatures, denormalizedEntry;
+    normalizedFeatures = entry.features;
     denormalizedFeatures = new Array(normalizedFeatures.length);
     for (var i = 0; i < denormalizedFeatures.length; i++) {
       denormalizedFeatures[i] = (normalizedFeatures[i] * originalMean[i]) + originalMean[i];
     }
-    denormalizedExample = new FeatureVec(example.example, denormalizedFeatures);
-    denormalizedExamples.push(denormalizedExample);
+    denormalizedEntry = new FeatureVec(entry.entry, denormalizedFeatures);
+    denormalizedEntrys.push(denormalizedEntry);
   });
-  return denormalizedExamples;
+  return denormalizedEntrys;
 };
 
 var ai = new Object;
