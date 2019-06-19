@@ -56,5 +56,3 @@ Ndef(\gran1).clear(10);
 Ndef.clear(10);
 
 // Additive Synthesis
-
-
