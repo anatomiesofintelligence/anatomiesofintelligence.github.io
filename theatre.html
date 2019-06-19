@@ -21,7 +21,7 @@ All Tags:
 <script>
 // Initialize the catalog
 var catalog = new Catalog()
-var tag_weight, newexample;
+var tag_weight, newEntry;
 </script>
 
 
@@ -31,13 +31,13 @@ var tag_weight, newexample;
   <a href="{{ post.url }}"><span style="display:none">{{ post.date | date: "%B %d, %Y" }}:</span>{{ post.title }}</a>
 {% if post.layout == "image" %}<img height="100" width="auto" src="/img/{{ post.image }}"/>{% endif %}
 <script>
-newexample = new Example("{{ post_id }}");
+newEntry = new Entry("{{ post_id }}");
 {% for tag in post.tags %}
 {% assign idx = forloop.index | minus: 1 %}
 tag_weight = ["{{ tag }}", {{ post.weights[idx] }}];
-newexample.addTag(tag_weight)
+newEntry.addTag(tag_weight)
 {% endfor %}
-catalog.addExample(newexample);
+catalog.addEntry(newEntry);
 </script>
 </div>
 {% endfor %}
@@ -46,14 +46,14 @@ catalog.addExample(newexample);
 <code>
 clean_surface()
 catalog.randomize()
-SCALING = 50
-catalog.examples
+DENSITY = 50
+catalog.Entrys
 options = {taglist: ["models", "preparations", "aesthesis"]}
-e1 = catalog.examples.choose()
-e2 = catalog.examples.choose()
+e1 = catalog.Entrys.choose()
+e2 = catalog.Entrys.choose()
 fv1 = e1.getFeatures(options)
 fv2 = e2.getFeatures(options)
-catalog.examplesAsFeatures(options)
+catalog.EntrysAsFeatures(options)
 catalog.cluster(3, Measures.euclidean, options["taglist"], 10, resultfunc);
 </code>
 </div>
@@ -66,24 +66,32 @@ function clean_surface() {
     location.reload();
 }
 
-catalog.randomize(); // randomize example divs
+// Randomize DIVs in the DOM
+function randomize() {
+  for(let [key, value] of Object.entries(catalog.allEntries)) {
+    document.querySelector("#"+key).style.top = Math.floor(Math.random() * 900) + 'px';
+    document.querySelector("#"+key).style.left = Math.floor(Math.random() * 1200) + 'px';
+  }
+};
 
-// Grab a couple examples to work with
-e1 = Object.values(catalog.examples)[0];
-e2 = Object.values(catalog.examples)[1];
-e3 = Object.values(catalog.examples)[2];
-e4 = Object.values(catalog.examples)[3];
+randomize(); // randomize Entry divs
+
+// Grab a couple Entrys to work with
+e1 = Object.values(catalog.allEntries)[0];
+e2 = Object.values(catalog.allEntries)[1];
+e3 = Object.values(catalog.allEntries)[2];
+e4 = Object.values(catalog.allEntries)[3];
 
 taglist = ["models", "preparations", "aesthesis", "unknown"];
 options = {taglist: taglist};
 
-// Test getting a FeatureVec from an Example
+// Test getting a FeatureVec from an Entry
 fv1 = e1.getFeatures(options);
 fv2 = e2.getFeatures(options);
 console.log("Features of",e1,"are",fv1);
 console.log("Features of",e2,"are",fv2);
-easf = catalog.examplesAsFeatures(options);
-console.log("All examples as features:", easf);
+easf = catalog.entriesAsFeatures(options);
+console.log("All Entrys as features:", easf);
 
 // Test distance measurement
 distance = Measures.euclidean(fv1, fv2, options);
@@ -99,7 +107,7 @@ console.log("NORMALIZED features:",normalized);
 denormalized = km.denormalize(normalized);
 console.log("DENORMALIZED features:",denormalized);
 
-var SCALING = 70;
+var DENSITY = 70;
 
 // Test clustering with ten iterations
 resultfunc = function(err, clusters, centroids) {
@@ -116,7 +124,7 @@ resultfunc = function(err, clusters, centroids) {
         newdiv = document.createElement("div");
         newtext = document.createTextNode("*");
         newdiv.appendChild(newtext);
-        newdiv.id = centroid.example;
+        newdiv.id = centroid.Entry;
         newdiv.className = "centroid";
         newdiv.style.position = "absolute";
         newdiv.style.top = ((900 / 3) + 100) + 'px';
@@ -130,20 +138,20 @@ resultfunc = function(err, clusters, centroids) {
         var x,y,theta,c, e, distance, cdiv = centroid_divs[i];
         c = centroids[i];
         for(var j = 0; j < clusters[i].length; j++) {
-            var examplediv, item = clusters[i][j];
+            var Entrydiv, item = clusters[i][j];
             distance = Measures.euclidean(c, item);
 
             theta = j * (2 * Math.PI / clusters[i].length);
 
             // Convert polar to cartesian
-            x = Math.floor(distance * Math.cos(theta) * SCALING);
-            y = Math.floor(distance * Math.sin(theta) * SCALING);
+            x = Math.floor(distance * Math.cos(theta) * DENSITY);
+            y = Math.floor(distance * Math.sin(theta) * DENSITY);
 
-            examplediv = document.querySelector("#"+item.example.id);
-            examplediv.style.position = "absolute";
-            examplediv.style.top = y + 'px';
-            examplediv.style.left = x + 'px';
-            cdiv.appendChild(examplediv);
+            Entrydiv = document.querySelector("#"+item.Entry.id);
+            Entrydiv.style.position = "absolute";
+            Entrydiv.style.top = y + 'px';
+            Entrydiv.style.left = x + 'px';
+            cdiv.appendChild(Entrydiv);
 
         }
     }

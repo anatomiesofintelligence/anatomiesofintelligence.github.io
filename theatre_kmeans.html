@@ -46,7 +46,7 @@ catalog.addEntry(newexample);
 <code>
 clean_surface()
 randomize()
-SCALING = 50
+DENSITY = 50
 catalog.allEntries
 options = {taglist: ["models", "preparations", "aesthesis"]}
 e1 = catalog.allEntries.choose()
@@ -75,8 +75,8 @@ function randomize() {
 // test the catalog & clustering libraries
 function run_tests() {
   // Grab a couple entries to work with
-  e1 = Object.values(catalog.examples)[0];
-  e2 = Object.values(catalog.examples)[1];
+  e1 = Object.values(catalog.allEntries)[0];
+  e2 = Object.values(catalog.allEntries)[1];
   tagscut = ["models", "preparations", "aesthesis", "unknown"];
   options = {taglist: tagscut};
 
@@ -139,8 +139,8 @@ function resultfunc(err, clusters, centroids) {
             theta = j * (2 * Math.PI / clusters[i].length);
 
             // Convert polar to cartesian
-            x = Math.floor(distance * Math.cos(theta) * SCALING);
-            y = Math.floor(distance * Math.sin(theta) * SCALING);
+            x = Math.floor(distance * Math.cos(theta) * DENSITY);
+            y = Math.floor(distance * Math.sin(theta) * DENSITY);
 
             examplediv = document.querySelector("#"+item.entry.id);
             examplediv.style.position = "absolute";
@@ -160,21 +160,22 @@ function resultfunc(err, clusters, centroids) {
 randomize(); // randomize example divs
 
 // 4-dimensional cut into an N-dimensional body
-var tagscut = ["models", "preparations", "aesthesis", "unknown"];
-var SCALING = 300; // distance scaling
+var cut = ["models", "preparations", "aesthesis", "unknown"];
+var DENSITY = 300; // distance DENSITY
 
 // Test clustering with 3 clusters and 10 iterations
 //catalog.cluster(3, Measures.euclidean, tagscut, 10, resultfunc);
 
 // Clustering with finer-grained feedback
-var ITERS = 5;
-var NUM_CLUSTERS = 3;
-var TS = 1.0; // timescale/tempo speed
+var ITERATIONS = 5;
+var MEASUREMENT = Measures.euclidean;
+var CLUSTERS = 3;
+var TEMPO = 1.0; // timescale/tempo speed
 
 // Initialize the OSC connection to the SO_Server
 var osc = new SimpleOSC("localhost", 8080);
 osc.init(function() {
-  catalog.cluster(NUM_CLUSTERS, Measures.euclidean, tagscut, ITERS, resultfunc, osc, console.log);
+  catalog.cluster(CLUSTERS, MEASUREMENT, cut, ITERATIONS, resultfunc, osc, console.log);
 });
 
 </script>
