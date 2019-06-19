@@ -75,8 +75,8 @@ function randomize() {
 // test the catalog & clustering libraries
 function run_tests() {
   // Grab a couple entries to work with
-  e1 = Object.values(catalog.examples)[0];
-  e2 = Object.values(catalog.examples)[1];
+  e1 = Object.values(catalog.allEntries)[0];
+  e2 = Object.values(catalog.allEntries)[1];
   tagscut = ["models", "preparations", "aesthesis", "unknown"];
   options = {taglist: tagscut};
 
@@ -160,22 +160,37 @@ function resultfunc(err, clusters, centroids) {
 randomize(); // randomize example divs
 
 // 4-dimensional cut into an N-dimensional body
+<<<<<<< HEAD
 var tagscut = ["models", "preparations", "aesthesis", "unknown"];
 var DENSITY = 500; // distance scaling
+=======
+var cut = ["models", "preparations", "aesthesis", "unknown"];
+var DENSITY = 300; // distance DENSITY
+>>>>>>> my-temp-work
 
 // Test clustering with 3 clusters and 10 iterations
 //catalog.cluster(3, Measures.euclidean, tagscut, 10, resultfunc);
 
 // Clustering with finer-grained feedback
 var ITERATIONS = 5;
+<<<<<<< HEAD
 var CLUSTERS = 3;
 var TEMPO = 1.0; // timescale/tempo speed
 var MEASUREMENT = Measures.euclidean
+=======
+var MEASUREMENT = Measures.euclidean;
+var CLUSTERS = 3;
+var TEMPO = 1.0; // timescale/tempo speed
+>>>>>>> my-temp-work
 
 // Initialize the OSC connection to the SO_Server
 var osc = new SimpleOSC("localhost", 8080);
 osc.init(function() {
+<<<<<<< HEAD
   //catalog.cluster(CLUSTERS, MEASUREMENT, tagscut, ITERATIONS, resultfunc, osc, console.log);
+=======
+  catalog.cluster(CLUSTERS, MEASUREMENT, cut, ITERATIONS, resultfunc, osc, console.log);
+>>>>>>> my-temp-work
 });
 
 </script>

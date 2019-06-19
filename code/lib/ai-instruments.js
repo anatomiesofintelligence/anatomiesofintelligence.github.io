@@ -228,7 +228,7 @@ KMeans.prototype.cluster = async function(entrys, donecallback, oscout=null, pos
   var osc, post;
   if(typeof TEMPO === "undefined") { TEMPO = 1.0 };
   post = postfunc;
-  if(post == null) { post = function() {} };
+  if(post == null) { post = console.log };
 
   if(oscout == null) {
     osc = function(address, args) { };
