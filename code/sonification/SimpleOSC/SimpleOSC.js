@@ -26,19 +26,17 @@ collection.cluster(num_clusters, measurement);
 
 // *** OSC class ***
 // Constructor
-var SimpleOSC = function(host="127.0.0.1", port=8080, postfunc) {
+var SimpleOSC = function(host="127.0.0.1", port=8080, postFunc) {
   this.host = host;
   this.port = port;
   this.ws = null;
   this.socketURL = 'ws://'+this.host+":"+this.port+"/interface";
-  if(postfunc == null) {
+  if(postFunc == null) {
     this.post = console.log;
   } else {
     this.post = postfunc;
-  };
-
+  }
   this.post("Testing postfunc...");
-
   if(!("WebSocket" in window)) {
       alert("Your browser does not support web sockets");
   }
@@ -46,8 +44,16 @@ var SimpleOSC = function(host="127.0.0.1", port=8080, postfunc) {
 
 // *** INSTANCE METHODS ***
 // Connect via websockets to python server
-SimpleOSC.prototype.init = function () {
+SimpleOSC.prototype.init = function (onConnectFunc) {
   var self = this;
+
+  if(onConnectFunc == null) {
+    self.onConnect = function() { self.sendmsg("/browser/status", ["Hello from the browser", 57120, 42.24]) };
+  } else {
+    self.onConnect = onConnectFunc;
+  }
+
+  self.post("Note: if you receive a SecurityError in Firefox you must set 'allowInsecureFromHttps' to true in Firefox settings");
   self.ws = new WebSocket(self.socketURL);
   self.post("Creating WebSocket connection to " + self.socketURL);
 
@@ -55,7 +61,7 @@ SimpleOSC.prototype.init = function () {
     self.post('Connection successful!')
     self.post('Protocol:' + self.ws.protocol);
     //conn.binaryType = 'arraybuffer';
-    self.sendmsg("/browser/status", ["Hello from the browser", 57120, 42.24]);
+    self.onConnect();
   };
 
   self.ws.onmessage = function(evt) {
@@ -90,7 +96,7 @@ SimpleOSC.prototype.init = function () {
 };
 
 
-SimpleOSC.prototype.sendmsg = function(addr, args) {
+SimpleOSC.prototype.sendmsg = function(addr, args, verbose=false) {
   var jsonmsg, argsmsg = [];
   args.forEach(function (item, index) {
     var osctype;
@@ -99,14 +105,29 @@ SimpleOSC.prototype.sendmsg = function(addr, args) {
         osctype = "s";
         break;
       case "number":
-        if(Number.isInteger(item)) { osctype = "i" } { osctype = "f" };
+        if(Number.isInteger(item)) { osctype = "i" } else { osctype = "f" };
         break;
+      case "object":
+        if(item.constructor === "Array") { osctype = "a" } else { osctype="o" };
       default:
         osctype = "b";
     }
     argsmsg.push({type: osctype, value: item})
   });
   jsonmsg = {address: addr, args: argsmsg};
-  this.post("Sending: " + jsonmsg);
+  if(verbose) {
+    var str = "Sent OSC Msg to: " + jsonmsg.address;
+    var helperfunc = function(args) {
+      var first, res = "";
+      if(args.length == 0) { return res };
+      if((typeof args[0] === "object") && (args[0].constructor === Object)) {
+          res = res + "\n\t" + args[0].type + "/" + args[0].value;
+          res = res + helperfunc(args.slice(1));
+      }
+      return res;
+    }
+    str = str + helperfunc(jsonmsg.args);
+    this.post(str);
+  }
   this.ws.send(JSON.stringify(jsonmsg));
 };
