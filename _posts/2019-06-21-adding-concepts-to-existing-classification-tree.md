@@ -1,5 +1,5 @@
 ---
-title: Adding Mammal and Bird to an existing Classification Tree (COGWEB)
+title: Adding Mammal and Bird to an existing Classification Tree
 layout: image
 entry-type: image
 image: p/COGWEB-adding-concepts.png
@@ -11,5 +11,6 @@ copyright: Kluwer Academic Publishers-Plenum Publishers
 tags: [ontology, statistic-ontology, conceptual-clustering, cluster]
 weights: [0.71, 0.81, 0.99, 0.587]
 
-summary: Adding 'mammal' and 'bird' to an existing classification tree in the COGWEB algorithm. Each node represents an object class, Ci, that is summarized by a set of probabilities, P(value|Ci)
+summary: "Adding 'mammal' and 'bird' to an existing classification tree in the COGWEB algorithm. Each node represents an object class, Ci, that is summarized by a set of probabilities, P(value|Ci)"
+
 ---
