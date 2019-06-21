@@ -1,6 +1,6 @@
 ---
 title: Babylonian Inscription on Sheep Liver
-subtitle: This is the Subtitle
+subtitle: 
 layout: image
 entry-type: image
 entry-by: Jonathan Reus
