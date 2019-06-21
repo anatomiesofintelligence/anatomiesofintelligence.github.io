@@ -1,5 +1,6 @@
 ---
 title: Conceptual Clustering
+subtitle:
 layout: text
 entry-by: Jonathan Reus
 entry-date: 2019-06-21

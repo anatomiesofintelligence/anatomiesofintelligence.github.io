@@ -1,5 +1,6 @@
 ---
-title: Incremental Concept Induction (1987)
+title: Incremental Concept Induction
+subtitle: Excerpt from 1987
 layout: text
 entry-by: Jonathan Reus
 entry-date: 2019-06-21

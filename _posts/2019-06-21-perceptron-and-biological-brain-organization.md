@@ -1,5 +1,6 @@
 ---
-title: Perceptron and Biological Brain Organization (1957)
+title: Perceptron and Biological Brain Organization
+subtitle: Excerpt from 1957 paper
 layout: image
 entry-type: image
 image: p/perceptron-vs-biological-brain-organization.png
