@@ -1,5 +1,5 @@
 ---
-title: Trivial and Non-trivial Machines
+title: Neural Computation in the Retina of Vertibrates
 layout: image
 entry-type: image
 image: t/neural-computation-von-foerster.png
