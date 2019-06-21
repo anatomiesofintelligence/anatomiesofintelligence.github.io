@@ -10,7 +10,7 @@ copyright:
 tags: [ontology, statistical, knowledge]
 weights: [0.99, 0.37, 0.43]
 
-summary: Excerpt on the meaning of "ontology" in computer science from a publication on Data Mining and Ontology Building.
+summary: Excerpt on the meaning of "ontology" in computer science from "Applying data mining for ontology building" by Abd-Elraham Elsayad et al.
 ---
 ## What Is the Ontology
 The word “ontology” has been recognized in philosophy as the subject of existence. In the Artificial Intelligence community, ontology means a formal, explicit specification of a shared conceptualization.

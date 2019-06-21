@@ -1,5 +1,5 @@
 ---
-title: COGWEB: Adding Mammal and Bird to an existing Classification Tree
+title: Adding Mammal and Bird to an existing Classification Tree (COGWEB)
 layout: image
 entry-type: image
 image: p/COGWEB-adding-concepts.png
