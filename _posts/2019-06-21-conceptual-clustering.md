@@ -5,7 +5,7 @@ layout: text
 entry-by: Jonathan Reus
 entry-date: 2019-06-21
 source-url: https://dl.acm.org/citation.cfm?id=1625057
-source: Stepp, Robert E., and Ryszard S. Michalski. "Conceptual clustering: Inventing goal-oriented classifications of structured objects." 1986.
+source: Stepp, Robert E., and Ryszard S. Michalski. "Conceptual clustering- Inventing goal-oriented classifications of structured objects." 1986.
 copyright:
 tags: [clustering, conceptual-clustering, concept, ontology-building, unsupervised, statistical-ontology]
 weights: [0.90, 1.0, 0.88, 0.67, 0.44, 0.23]
