@@ -1,5 +1,5 @@
 ---
-title: Gesture and Speech
+title: Gesture and Speech (Tools and Gesture)
 subtitle: The intermeshing of Tools and the Motive Gesture
 layout: text
 entry-by: Joana Chicau
