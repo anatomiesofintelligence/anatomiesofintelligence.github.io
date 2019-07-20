@@ -1,14 +1,14 @@
 ---
 title: Gesture and Speech
-subtitle:
+subtitle: The birth of Graphism
 layout: text
 entry-by: Joana Chicau
 entry-date: 2019-07-20
 
 
-source: Notes on "Up Pen Down – Huppe Plume Tonne" a workshop linking typography and performance (collaboration between OSP and choreographer Adva Zakai), 2015
+source: Leroi-Gourhan, A. (1993). Gesture and speech. Cambridge, Mass.: MIT Press.
 # if a url is available, put it here, otherwise leave empty
-source-url: http://www.publishinglab.nl/unstudio/2015/10/30/pen-up-pen-dow-workshop-linking-typography-and-performance/
+source-url: https://mitpress.mit.edu/books/gesture-and-speech
 
 # What is the copyright?
 copyright: open source
