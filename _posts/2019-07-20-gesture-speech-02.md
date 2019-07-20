@@ -16,7 +16,7 @@ copyright: "The emergence of graphic systems at the end of the Palaeoanthropians
 summary: 
 
 # all tags separated by commas
-tags: [tools, writing, anatomical, aesthesis, hand writing, typography, machines, gestures]
+tags: [hand, writing, anatomical, symbols, hand writing, typography, aesthesis, gestures]
 weights: [0.956, 0.99, 0.7, 0.76, 0.8, 0.9, 0.61, 0.987]
 categories: [gesture]
 
