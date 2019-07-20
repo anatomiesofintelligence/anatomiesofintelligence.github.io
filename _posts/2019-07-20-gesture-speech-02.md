@@ -6,7 +6,7 @@ entry-by: Joana Chicau
 entry-date: 2019-07-20
 
 
-source: Leroi-Gourhan, A. (1993). Gesture and speech. Cambridge, Mass. MIT Press
+source: Leroi-Gourhan, A. (1993). Gesture and speech. Cambridge, Mass. MIT Press.
 # if a url is available, put it here, otherwise leave empty
 source-url: https://mitpress.mit.edu/books/gesture-and-speech
 
