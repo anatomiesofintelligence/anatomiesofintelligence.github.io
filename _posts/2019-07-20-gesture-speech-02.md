@@ -11,9 +11,9 @@ source: Leroi-Gourhan, A. (1993). Gesture and speech. Cambridge, Mass. MIT Press
 source-url: https://mitpress.mit.edu/books/gesture-and-speech
 
 # What is the copyright?
-copyright: open source
+copyright: yes
 
-summary: "The emergence of graphic systems at the end of the Palaeoanthropians reign presupposes the establishment of a new relationship between the two operating poles-a relationship exclusively characteristic of humanity in the narrow sense, that is say, one that meets the requriements of mental symbolization the same extent as today. In this new relationship the sense of vision holds the dominant place in the pairs "fac reading" and "hand-graphic sign." — pp.188"
+summary: "The emergence of graphic systems at the end of the Palaeoanthropians reign presupposes the establishment of a new relationship between the two operating poles-a relationship exclusively characteristic of humanity in the narrow sense, that is say, one that meets the requriements of mental symbolization the same extent as today. In this new relationship the sense of vision holds the dominant place in the pairs "fac reading" and "hand-graphic sign." — pp.188
 
 # all tags separated by commas
 tags: [hand, writing, anatomical, aesthesis, hand writing, typography, symbols]
