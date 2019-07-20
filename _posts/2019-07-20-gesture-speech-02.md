@@ -1,5 +1,5 @@
 ---
-title: Gesture and Speech
+title: Gesture and Speech (Graphism)
 subtitle: The birth of Graphism
 layout: text
 entry-by: Joana Chicau
