@@ -13,7 +13,7 @@ source-url: https://mitpress.mit.edu/books/gesture-and-speech
 # What is the copyright?
 copyright: 
 
-summary: "The emergence of graphic systems at the end of the Palaeoanthropians reign presupposes the establishment of a new relationship between the two operating poles: a relationship exclusively characteristic of humanity in the narrow sense, that is say, one that meets the requriements of mental symbolization the same extent as today. In this new relationship the sense of vision holds the dominant place in the pairs "fac reading" and "hand/graphic sign." pp.188
+summary: 
 
 # all tags separated by commas
 tags: [tools, writing, anatomical, aesthesis, hand writing, typography, machines, gestures]
