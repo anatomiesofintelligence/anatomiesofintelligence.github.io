@@ -1,6 +1,6 @@
 ---
 title: Gesture and Speech
-subtitle: The intermeshing of Tools and the Motive Gesture
+subtitle: The birth of Graphism
 layout: text
 entry-by: Joana Chicau
 entry-date: 2019-07-20
@@ -13,7 +13,7 @@ source-url: https://mitpress.mit.edu/books/gesture-and-speech
 # What is the copyright?
 copyright: 
 
-summary: "The hand's modes of action became gradually enriched during the operational process in the course of human evolution. The manipulative action of the primates, in which gesture and tool form a single whole, was fo owed in the rst an ropoids by directively motive action of the hand with the hand tool separable from the motive gesture. the next stage, reached possibly before the Neolithic, gesture became annexed by the hand-operated machine, the hand merely supplying its motor impulse by indirect mobili . historic times motive force itself was transferred om the human arm, and the hand intervened only to start the motor process in animal-operated machines or mechanic machines such as mills. Finally, in the last stage, the hand is used to set off a programmed process in automatic machines that not only exteriorize tools, gestures, and mobility but whose e ect also spills over into memory and mechanical behavior."
+summary: "The emergence of graphic systems at the end of the Palaeoanthropians reign presupposes the establishment of a new relationship between the two operating poles-a relationship exclusively characteristic of humanity in the narrow sense, that is say, one that meets the requriements of mental symbolization the same extent as today. In this new relationship the sense of vision holds the dominant place in the pairs "fac reading" and "hand/graphic sign." pp.188
 
 # all tags separated by commas
 tags: [tools, writing, anatomical, aesthesis, hand writing, typography, machines, gestures]
