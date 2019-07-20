@@ -11,9 +11,9 @@ source: Leroi-Gourhan, A. (1993). Gesture and speech. Cambridge, Mass. MIT Press
 source-url: https://mitpress.mit.edu/books/gesture-and-speech
 
 # What is the copyright?
-copyright: open source
+copyright: 
 
-summary: "The PostScript format, for example, describes letterforms by their contour instead of their skeleton. Yet other, lesser known file formats might take an inverse approach. It is the case of Metafont, originated from linear-drawing, writing and calligraphy where different kinds of pens (pointed, broad-nib, …) get applied to a skeleton resulting in different kind of characters depending on the pen."
+summary: "The hand's modes of action became gradually enriched during the operational process in the course of human evolution. The manipulative action of the primates, in which gesture and tool form a single whole, was fo owed in the rst an ropoids by directively motive action of the hand with the hand tool separable from the motive gesture. the next stage, reached possibly before the Neolithic, gesture became annexed by the hand-operated machine, the hand merely supplying its motor impulse by indirect mobili . historic times motive force itself was transferred om the human arm, and the hand intervened only to start the motor process in animal-operated machines or mechanic machines such as mills. Finally, in the last stage, the hand is used to set off a programmed process in automatic machines that not only exteriorize tools, gestures, and mobility but whose e ect also spills over into memory and mechanical behavior."
 
 # all tags separated by commas
 tags: [skeleton, writing, anatomical, aesthesis, hand writing, typography, type]
