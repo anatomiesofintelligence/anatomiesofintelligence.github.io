@@ -42,21 +42,6 @@ catalog.addEntry(newexample);
 </div>
 {% endfor %}
 
-<div id="api" style="visibility:hidden">
-<code>
-clean_surface()
-randomize()
-DENSITY = 50
-catalog.allEntries
-options = {taglist: ["models", "preparations", "aesthesis"]}
-e1 = catalog.allEntries.choose()
-e2 = catalog.allEntries.choose()
-fv1 = e1.getFeatures(options)
-fv2 = e2.getFeatures(options)
-catalog.entriesAsFeatures(options)
-catalog.cluster(3, Measures.euclidean, options["taglist"], 10, resultfunc);
-</code>
-</div>
 
 <script>
 // ***ADDITIONAL FUNCTIONS****
@@ -151,6 +136,29 @@ function resultfunc(err, clusters, centroids) {
         }
     }
 };
+
+function help() {
+    var str = `
+    clean_surface()
+    randomize()
+    DENSITY = 50
+    ITERATIONS = 5
+    MEASUREMENT = Measures.euclidean
+    CLUSTERS = 3
+    TEMPO = 1.0
+    catalog.allEntries
+    options = {taglist: ["models", "preparations", "aesthesis"]}
+    e1 = catalog.allEntries.choose()
+    e2 = catalog.allEntries.choose()
+    fv1 = e1.getFeatures(options)
+    fv2 = e2.getFeatures(options)
+    catalog.entriesAsFeatures(options)
+    catalog.cluster(3, Measures.euclidean, options["taglist"], 10, resultfunc);
+  `;
+  console.log(str);
+
+};
+
 </script>
 
 

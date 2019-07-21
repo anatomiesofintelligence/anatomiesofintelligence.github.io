@@ -6,28 +6,13 @@ KMEANS CLUSTERING
 
 *******************************/
 
-// start the browser interface
-"osc_websock_interface.py".runInTerminal;
+// run SO_Server (SimpleOSC Server)
+("python" + "../SimpleOSC/SO_Server.py".resolveRelative).runInTerminal;
+"open http://anatomiesofintelligence.github.io/theatre/kmeans".runInTerminal;
 
 s.scope(2,2)
 
-(
-// TODO:: Implement all of these options in the startup gui
-Project.startup(s, true, true,
-  1000, 1000,
-  scOnly:true, onBoot: {
-  "K-MEANS CLUSTERING".postln;
-});
-);
-
-// Run SO_Server
-"python %".format("SO_Server.py".resolveRelative).runInTerminal;
-Project.initAudioRouting;
-Project.meter(s);
-
-NetAddr.localAddr;
-
-OSCdef.trace(false);
+Xex.start;
 
 (
 OSCdef(\status, {|msg| msg.postln}, "/browser/status");
