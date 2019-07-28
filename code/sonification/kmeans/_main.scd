@@ -76,7 +76,7 @@ OSCdef(\assigncluster, {|msg|
   var eidx = msg[1], eid = msg[2];
   var cidx = msg[3], dist = msg[4];
   "*CATEGORIZE % as C% (%)".format(eidx, cidx, eid).postln;
-  (instrument: \rezpad, freq: [\fs2.f, \fs3.f, \a3.f].wrapAt(cidx), amp: 0.9, dur: 2.1, phase: 10.5, modhz: 2.1, out: Project.outverb).play;
+  (instrument: \rezpad, freq: [\fs2.f, \fs3.f, \a3.f].wrapAt(cidx), amp: 0.9, dur: 0.1, phase: 10.5, modhz: 2.1, out: Project.outverb).play;
 }, "/kmeans/assignCluster");
 
 // recalculated centroids for new cluster assignments
