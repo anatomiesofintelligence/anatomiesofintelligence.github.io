@@ -13,10 +13,10 @@ source-url: http://www.publishinglab.nl/unstudio/2015/10/30/pen-up-pen-dow-works
 # What is the copyright?
 copyright: open source
 
-summary: "The PostScript format, for example, describes letterforms by their contour instead of their skeleton. Yet other, lesser known file formats might take an inverse approach. It is the case of Metafont, originated from linear-drawing, writing and calligraphy where different kinds of pens (pointed, broad-nib, …) get applied to a skeleton resulting in different kind of characters depending on the pen."
+summary: "The PostScript format, for example, describes letterforms by their contour instead of their skeleton. While yet other lesser known file formats might take an inverse approach. This is the case with Metafont, which originated from linear-drawing, writing and calligraphy where different kinds of pens (pointed, broad-nib, etc …) get applied to a skeleton resulting in different kind of characters depending on the pen."
 
 # all tags separated by commas
-tags: [skeleton, writing, anatomical, aesthesis, hand writing, typography, type]
+tags: [skeleton, writing, anatomical, aesthesis, handwriting, typography, type]
 weights: [0.956, 0.99, 0.7, 0.76, 0.8, 0.9, 0.61]
 categories: [gesture]
 
