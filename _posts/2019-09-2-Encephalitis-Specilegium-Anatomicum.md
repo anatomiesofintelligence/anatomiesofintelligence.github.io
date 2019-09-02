@@ -11,5 +11,5 @@ copyright: Creative Commons Attribution (CC BY 4.0)
 tags: [body, anatomy, categorization, human body, brain]
 weights: [0.978, 0.951, 0.873, 0.999, 0.873, 0.873]
 
-summary: "Encephalitis, in Specilegium anatomicum. Rare Books Keywords: Anatomy; Nervous System; Thomas Kerckring"
+summary: "Encephalitis, in Specilegium anatomicum. Rare Books Keywords: Anatomy; Nervous System; Thomas Kerckring 1640-1693"
 ---
