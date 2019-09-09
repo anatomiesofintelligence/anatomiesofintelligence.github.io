@@ -1,4 +1,5 @@
-### Body Atlas — Awareness / or an Anatomic Journey {in progress}
+### Body Atlas — an Anatomic Journey 
+_or "visceral cues, which order (...) movement of one's body through space". - quote by Rifkind_
 
 __On the floor: breathing__
 
@@ -101,4 +102,4 @@ The body as poly centric. Polyrhythmic.
 You can walk slowly through the space; and feel the distances in-between.
 
 
-[ - - - - maybe we finish here - - - - ]
+[ - - - - - - - - ]
