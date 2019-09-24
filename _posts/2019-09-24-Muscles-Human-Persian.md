@@ -1,5 +1,5 @@
 ---
-title: Nerves of the human body. Watercolour drawing by a Persian artist. 
+title: Muscles of the human body. Watercolour drawing by a Persian artist.
 layout: image
 entry-type: image
 image: wc/Muscles-Human-Persian.jpg
