@@ -1,5 +1,5 @@
 ---
-title: Human proportions established through mythological figures. 
+title: Human proportions established through mythological figures 
 layout: image
 entry-type: image
 image: wc/Human-Myth.jpg
