@@ -2,7 +2,7 @@
 title: Skulls, 1824
 layout: image
 entry-type: image
-image: wiki/Skulls-Races.jpg
+image: wc/Skulls-Races.jpg
 entry-date: 2019-09-24
 entry-by: Joana Chicau
 source-url: https://wellcomecollection.org/works/pbp4j9ka
