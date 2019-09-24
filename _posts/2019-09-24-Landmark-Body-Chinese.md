@@ -1,8 +1,8 @@
 ---
-title: Acu-moxa aid: landmark measurements, Chinese MS, late Qing
+title: Acu-moxa aid, landmark measurements, Chinese MS, late Qing
 layout: image
 entry-type: image
-image: wiki/Landmark-Body-Chinese.jpg
+image: wc/Landmark-Body-Chinese.jpg
 entry-date: 2019-09-24
 entry-by: Joana Chicau
 source-url: https://wellcomecollection.org/works/jptyzjyp
