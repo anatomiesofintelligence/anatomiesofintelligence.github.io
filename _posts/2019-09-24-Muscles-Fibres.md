@@ -2,7 +2,7 @@
 title: Observations on the muscles, Blane, Gilbert, Sir, 1749-1834.
 layout: image
 entry-type: image
-image: wiki/Muscles-Fibres.jpg
+image: wc/Muscles-Fibres.jpg
 entry-date: 2019-09-24
 entry-by: Joana Chicau
 source-url: https://wellcomecollection.org/works/hnnx6f5r
