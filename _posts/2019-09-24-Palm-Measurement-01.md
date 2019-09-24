@@ -1,5 +1,5 @@
 ---
-title: Body measurements: palm measurement method, Japanese woodcut, 1807
+title: Palm measurement method, Japanese woodcut, 1807
 layout: image
 entry-type: image
 image: wc/Palm-Measurement.jpg
