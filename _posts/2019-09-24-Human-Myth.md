@@ -2,7 +2,7 @@
 title: Human proportions established through mythological figures. 
 layout: image
 entry-type: image
-image: wiki/Human-Myth.jpg
+image: wc/Human-Myth.jpg
 entry-date: 2019-09-24
 entry-by: Joana Chicau
 source-url: https://wellcomecollection.org/works/b27p8pgf
