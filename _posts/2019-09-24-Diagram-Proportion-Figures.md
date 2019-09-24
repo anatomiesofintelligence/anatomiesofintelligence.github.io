@@ -2,7 +2,7 @@
 title: Tableau des proportions du corps humain à l'usage des artists, 1830
 layout: image
 entry-type: image
-image: wiki/Diagram-Proportion-Figures.jpg
+image: wc/Diagram-Proportion-Figures.jpg
 entry-date: 2019-09-24
 entry-by: Joana Chicau
 source-url: https://wellcomecollection.org/works/twc3c6gw
