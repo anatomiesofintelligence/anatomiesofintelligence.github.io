@@ -1,0 +1,19 @@
+{
+  "name": "anatomiesofintelligence.github.io",
+  "version": "1.0.0",
+  "description": "Anatomies of Intelligent Jekyll Build",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io.git"
+  },
+  "author": "Jonathan Reus & Joana Chicau",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io/issues"
+  },
+  "homepage": "https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io#readme"
+}
