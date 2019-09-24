@@ -1,5 +1,5 @@
 ---
-title: Proportional body measurement: middle finger cun
+title: Proportional body measurement, middle finger cun
 layout: image
 entry-type: image
 image: wc/Canon-Pulse.jpg
