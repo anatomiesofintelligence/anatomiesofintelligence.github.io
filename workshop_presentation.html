@@ -1,0 +1,266 @@
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="content-type">
+
+<title>Anatomies of Intelligence</title>
+<style type="text/css">
+
+body{
+	margin: 5%;
+}
+
+
+@font-face {
+  font-family: Autopia-Italic;
+  src: url(Autopia-Italic.ttf);
+}
+
+
+@font-face {
+  font-family: Autopia;
+  src: url(Autopia-Regular.ttf);
+}
+
+
+h1{
+	font-family: "Autopia-Italic", serif;
+	margin: 5%;
+	font-size: 82pt;
+}
+
+h2{
+	font-family: "Autopia-Italic", serif;
+	margin: 2%;
+	margin-top: 5%;
+	font-size: 30pt;
+}
+
+
+h3{
+	font-family: sans-serif;
+	margin-top: 5%;	
+	font-size: 14pt;
+	color: blue;
+}
+p{
+	font-family: sans-serif;
+	font-size: 12pt;
+	line-height: 16pt;
+	max-width: 60%;
+	font-weight: bold;	
+}
+
+.bio {
+	font-size: 11pt;
+	line-height: 14pt;
+	max-width: 70%;
+}
+
+#contact{
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+li {
+    list-style-type: upper-roman;
+	font-family: serif;
+	font-size: 22pt;
+	line-height: 36pt;
+	margin-left: 5%;
+	font-weight: bold;	
+}
+
+li a{
+	font-family: sans-serif;
+	font-weight: normal;		
+}
+
+
+.menu{
+	margin-top: 10%;
+	margin-bottom: 10%;
+	font-family: "Autopia", serif;
+	font-size: 16pt;
+}
+
+.menu a{
+	text-decoration: none;
+	padding-right: 28pt;
+}
+
+a{
+	text-decoration: none;
+	color: blue;
+}
+
+.credits{
+	margin-top: 10%;
+	font-family: sans-serif;
+	font-weight: bold;
+	font-size:10pt;
+}
+
+.credits a{
+	color: black;
+}
+
+.backbutton {
+	font-family: "Autopia-Italic", serif;
+	text-decoration: none;
+	color: black;
+}
+
+.backbutton a:visited{
+	color: black;
+}
+
+img{
+	width:70%;
+	max-width: 800px;
+}
+
+.light {
+        -webkit-animation: color-change 5s infinite;
+        -moz-animation: color-change 5s infinite;
+        -o-animation: color-change 5s infinite;
+        -ms-animation: color-change 5s infinite;
+        animation: color-change 5s infinite;
+}
+
+    @-webkit-keyframes color-change {
+        0% { color: blue; }
+        20% { color: blue; }        
+        50% { color: white; }
+        100% { color: blue; }
+    }
+    @-moz-keyframes color-change {
+        0% { color: blue; }
+        20% { color: blue; }           
+        50% { color: white; }
+        100% { color: blue; }
+    }
+    @-o-keyframes color-change {
+        0% { color: blue; }
+        20% { color: blue; }           
+        50% { color: white; }
+        100% { color: blue; }
+    }
+    @keyframes color-change {
+        0% { color: blue; }
+        20% { color: blue; }           
+        50% { color: white; }
+        100% { color: blue; }
+	}
+
+
+</style>
+
+<body>
+
+<h1 class="light">Anatomies of Intelligence</h1>
+
+<p>December 2019, Workshop at NN Cluster initiative hosted by artist-researcher Winnie Soon, curator-researcher Magda Tyzlik-Carver and researcher Pablo Velasco at Aarhus University.</p>
+
+<h3>Researchers</h3>
+<div class="bio">
+<p>
+Joana Chicau [PT/NL]is a graphic designer, coder, researcher — with a background in dance. Her trans-disciplinary project interweaves web programming languages and environments with choreography. In her practice she researches the intersection of the body with the constructed, designed, programmed environment, aiming at in widening the ways in which digital sciences is presented and made accessible to the public. She has been actively participating and organizing events with performances involving multi-location collaborative coding, algorithmic improvisation, open discussions on gender equality and activism. 
+</p>
+
+	<a href="http://joanachicau.com"> joanachicau.com </a>
+
+<p>
+Jonathan Reus [US/NL] is a musician and artist who explores expanded forms of music-making and improvisational performance through technological artefacts. His practice is cross-disciplinary and research-based, involving open and iterative processes of collaboration with practitioners from across the arts, sciences and humanities. His work tries to confront and challenge the representational capacities of mathematical-logistical systems, algorithms, and infrastructure through a practice of invasive intuition and trust in the diversity of lived experiences.
+</p>
+<a href="https://jonathanreus.com/ "> jonathanreus.com </a>
+</div>
+
+<br><br><br><br><br>
+
+<p style="margin-left: 5%;"> * Agenda * </p>
+<br><br>
+<li>Welcome to the <a href="https://anatomiesofintelligence.github.io/about.html">Anatomies of Intelligence</a>  project research: concepts; tools and methodology;</li>
+<li>Warm-up exercise: <a href="https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io/blob/master/anatomies_exercise.md;">Body Atlas, an anatomic journey</a>;</li>
+<li>Introduction to: <a href="#Intro_Classification_Clustering">data classification and clustering</a>;</li>
+<li>In focus: <a href="#Intro_K-means">K-means clustering and notions of (Euclidean) space and distance</a>;</li>
+<li>Group exercise <a href="#Exercise">The anatomies of a K-means clustering algorithm</a>;</li>
+<li>Wrapping up: <a href="#Presentations_Feedback">Presentations and Feedback </a>;</li>
+
+<br><br><br><br><br>
+
+<h2 id="Intro_Classification_Clustering">Data classification and Clustering</h2>
+
+<h3>Zooming into concepts</h3>
+<p>&#8693;</p>
+<!-- https://www.w3schools.com/charsets/ref_utf_arrows.asp-->
+<div>
+<p>Machine learning (ML) is the scientific study of algorithms and statistical models that computer systems use to perform a specific task without using explicit instructions, relying on patterns and inference instead. It is seen as a subset of artificial intelligence. <a href="#Refs">[1]</a></p>
+
+
+<p>Supervised learning – is the machine learning task of learning a function that maps an input to an output based on example input-output pairs. It infers a function from labeled training data consisting of a set of training examples. In supervised learning, each example is a pair consisting of an input object (typically a vector) and a desired output value (also called the supervisory signal). A supervised learning algorithm analyzes the training data and produces an inferred function, which can be used for mapping new examples. An optimal scenario will allow for the algorithm to correctly determine the class labels for unseen instances. This requires the learning algorithm to generalize from the training data to unseen situations in a "reasonable" way. <a href="#Refs">[1]</a></p>
+
+<p>Semi-supervised (bootstrapping)</p>
+
+<p>Unsupervised learning – is a type of self-organized Hebbian learning that helps find previously unknown patterns in data set without pre-existing labels. It is also known as self-organization and allows modeling probability densities of given inputs.[316] It is one of the main three categories of machine learning, along with supervised and reinforcement learning. Semi-supervised learning has also been described and is a hybridization of supervised and unsupervised techniques. <a href="#Refs">[1]</a></p>
+
+
+<p>Deep learning: Unsupervised neural networks</p>
+
+
+<p>Classification — in machine learning and statistics, classification is the problem of identifying to which of a set of categories (sub-populations) a new observation belongs, on the basis of a training set of data containing observations (or instances) whose category membership is known. Examples are assigning a given email to the "spam" or "non-spam" class, and assigning a diagnosis to a given patient based on observed characteristics of the patient (sex, blood pressure, presence or absence of certain symptoms, etc.). Classification is an example of pattern recognition. <a href="#Refs">[3]</a></p>
+
+
+<h2 id="Intro_K-means">K-means and notions of (Euclidean) space and distance</h2>
+
+
+<p>Cluster analysis – or clustering is the task of grouping a set of objects in such a way that objects in the same group (called a cluster) are more similar (in some sense) to each other than to those in other groups (clusters). <a href="#Refs">[1]</a></p>
+
+<p>K-means clustering is a method of vector quantization, originally from signal processing, that is popular for cluster analysis in data mining. k-means clustering aims to partition n observations into k clusters in which each observation belongs to the cluster with the nearest mean, serving as a prototype of the cluster. This results in a partitioning of the data space into Voronoi cells. k-Means minimizes within-cluster variances (squared Euclidean distances), but not regular Euclidean distances, which would be the more difficult Weber problem: the mean optimizes squared errors, whereas only the geometric median minimizes Euclidean distances. Better Euclidean solutions can for example be found using k-medians and k-medoids. <a href="#Refs"> [3]</a></p>
+
+<p>Dimensionality reduction – or dimension reduction, is the process of reducing the number of random variables under consideration by obtaining a set of principal variables. It can be divided into feature selection and feature extraction.<a href="#Refs">[1]</a></p>
+
+<p>Distances — in mathematics, a metric or distance function is a function that defines a distance between each pair of elements of a set. A set with a metric is called a metric space.[1] A metric induces a topology on a set, but not all topologies can be generated by a metric. A topological space whose topology can be described by a metric is called metrizable.  <a href="#Refs">[4]</a></p>
+
+<br><br><br>
+
+<img style="width: 30%"
+src="https://upload.wikimedia.org/wikipedia/commons/e/ea/K-means_convergence.gif" alt="image k-means clustering">
+
+</div>
+
+
+<br><br>
+
+<p id="Refs">References:</p> <br>
+[1] <a href="https://en.wikipedia.org/wiki/Glossary_of_artificial_intelligence">Glossary of artificial intelligence</a> <br>
+[2] <a href="https://en.wikipedia.org/wiki/Statistical_classification">Classification</a> <br>
+[3] <a href="https://en.wikipedia.org/wiki/K-means_clustering">K-means clustering</a> <br>
+[4] <a href="https://en.wikipedia.org/wiki/Metric_(mathematics)">Distance metrics  (mathematics)</a> <br><br>
+
+<p>Further references</p>
+
+<a href="https://en.wikipedia.org/wiki/History_of_artificial_intelligence">History of artificial intelligence</a> <br>
+<a href="https://en.wikipedia.org/wiki/Timeline_of_machine_learning">Timeline of machine learning</a>
+
+<h2 id="Exercise">The anatomies of a K-means clustering algorithm</h2>
+
+<h3>Step by step:</h3>
+
+<h3>Links and resources:</h3>
+
+<h3>Questions:</h3>
+
+<p><i>What different knowledge ontologies emerge through other geometries and directionalities based in bodily experiences and physicalities? What is a unit of anatomical space and how can that inform embodied approaches to machine learning? </i></p>
+
+
+<br><br><br><br>
+<h3><span class="light"><i>Thank you all for taking part, and looking forward to hearing your feedback! </i></span></h3>
+
+
+
+	
+	
+
+</body>
+
+</html>
