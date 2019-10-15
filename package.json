@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io/issues"
   },
-  "homepage": "https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io#readme"
+  "homepage": "https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io#readme",
+  "dependencies": {
+    "@tensorflow/tfjs": "^1.2.9",
+    "k-means-cluster": "0.0.0",
+    "ml5": "^0.3.1",
+    "p5": "^0.9.0"
+  }
 }
