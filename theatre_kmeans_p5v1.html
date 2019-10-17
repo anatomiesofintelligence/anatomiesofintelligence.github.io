@@ -154,6 +154,7 @@ function help() {
     fv2 = e2.getFeatures(options)
     catalog.entriesAsFeatures(options)
     catalog.cluster(3, Measures.euclidean, options["taglist"], 10, resultfunc);
+    catalog.cluster(CLUSTERS, MEASUREMENT, cut, ITERATIONS, resultfunc, osc, console.log);
   `;
   console.log(str);
 
@@ -180,6 +181,8 @@ var MEASUREMENT = Measures.euclidean;
 var RESULTFUNC = resultfunc;
 var CLUSTERS = 3;
 var TEMPO = 1.0; // timescale/tempo speed
+
+options = {taglist: ["models", "preparations", "aesthesis"]};
 
 // Initialize the OSC connection to the SO_Server
 var osc = new SimpleOSC("localhost", 8080);

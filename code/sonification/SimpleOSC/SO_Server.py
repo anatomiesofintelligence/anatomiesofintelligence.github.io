@@ -16,7 +16,7 @@ import argparse
 class WSHandler(tornado.websocket.WebSocketHandler):
     osc_client = None
     server_out = ["127.0.0.1", 57120]
-    allowed_origins = ["http://localhost", "http://localhost:4000", "http://127.0.0.1", "null", "file://"];
+    allowed_origins = ["http://localhost", "http://localhost:4000", "http://127.0.0.1", "http://127.0.0.1:4000", "null", "file://"];
     echo = False
 
     def check_origin(self, origin):
@@ -31,8 +31,11 @@ class WSHandler(tornado.websocket.WebSocketHandler):
         print('Connection opened...')
         if WSHandler.osc_client is None:
             WSHandler.osc_client = udp_client.SimpleUDPClient(WSHandler.server_out[0], WSHandler.server_out[1])
-            print('created UDP connection to', WSHandler.server_out)
+            print('created UDP/OSC connection to', WSHandler.server_out)
+
         osc_client = WSHandler.osc_client
+        print('sending test message...')
+        osc_client.send_message("/browser/status", "testing")
 
         # OSC-like format
         # JSON: {address: oscaddr, args: [{type:type, value:val},...]}
@@ -45,6 +48,7 @@ class WSHandler(tornado.websocket.WebSocketHandler):
                 }
             ]})
         osc_client.send_message("/browser/status", "Connection to Browser Successful")
+        print("Sent message /browser/status")
 
     def on_message(self, message):
         parsed = json.loads(message)
