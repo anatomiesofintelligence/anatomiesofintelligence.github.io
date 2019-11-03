@@ -49,7 +49,13 @@ p{
 	max-width: 60%;
 	font-weight: bold;	
 }
-
+.title{
+	font-family: serif;
+	font-size: 13.4pt;
+	line-height: 16pt;
+	max-width: 60%;
+	font-weight: bold;	
+}
 .bio {
 	font-size: 11pt;
 	line-height: 14pt;
@@ -75,6 +81,17 @@ li a{
 	font-weight: normal;		
 }
 
+.small li {
+    list-style-type: circle;	
+	font-size: 12pt;
+	line-height: 16pt;
+}
+
+p.small {
+	font-family: serif;	
+	font-size: 10pt;
+	line-height: 12pt;
+}
 
 .menu{
 	margin-top: 10%;
@@ -180,53 +197,96 @@ Jonathan Reus [US/NL] is a musician and artist who explores expanded forms of mu
 <p style="margin-left: 5%;"> * Agenda * </p>
 <br><br>
 <li>Welcome to the <a href="https://anatomiesofintelligence.github.io/about.html">Anatomies of Intelligence</a>  project research: concepts; tools and methodology;</li>
-<li>Warm-up exercise: <a href="https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io/blob/master/anatomies_exercise.md;">Body Atlas, an anatomic journey</a>;</li>
+<li>Warm-up exercise: <a href="https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io/blob/master/anatomies_exercise.md" target="_blank">Body Atlas, an anatomic journey</a>;</li>
 <li>Introduction to: <a href="#Intro_Classification_Clustering">data classification and clustering</a>;</li>
 <li>In focus: <a href="#Intro_K-means">K-means clustering and notions of (Euclidean) space and distance</a>;</li>
 <li>Group exercise <a href="#Exercise">The anatomies of a K-means clustering algorithm</a>;</li>
 <li>Wrapping up: <a href="#Presentations_Feedback">Presentations and Feedback </a>;</li>
 
 <br><br><br><br><br>
+<h2 id="Intro_Anatomies_Intelligence">Anatomies of Intelligence</h2>
+<p>Anatomies of Intelligence is an artistic research initiative seeking to make connections between the formats and collections of anatomical knowledge and investigations into the “anatomy” of computational learning and prediction processes, datasets and machine learning models.</p> 
+<a href="https://anatomiesofintelligence.github.io/about.html">Continue reading about project research: concepts; tools and methodology.</a><br>
+
+<!--     “Aesthesis in eighteenth-century anatomy was characterized by several factors: gaining knowledge through sensory perception; searching for perfection and elegance; dealing with disgust by either using visual or literary strategies; seeking systems and meanings in the negatives of deformation and pathologies; and a stabilization and categorization of the human body through commodification and decoration.”
+
+    https://anatomiesofintelligence.github.io/posts/2018-10-14-aesthesis-elegant-anatomy
+
+
+    Pp.12 + “The eighteenth-century Leiden anatomical preparations are the result of a profound eighteenth-century aesthesis which includes both the continuous use of sensory perception as a source of knowledge and a permanent tacit quest for finding and understanding beauty, as well as dealing with the disgusting aspects of anatomy, along with the desire to commodify and objectify the human body.”
+
+
+        * the process of preparation (artisanal/  tacit knowledge / hands on):
+          https://anatomiesofintelligence.github.io/posts/2018-10-29-tacit-elegant-anatomy
+          On the Agency of Anatomical Preparations/ collecting (anatomies) / as curatorial pracice 
+        * https://anatomiesofintelligence.github.io/posts/2018-10-16-the-fate-of-anatomical-collections-part3-7
+          Commodification:
+        * https://anatomiesofintelligence.github.io/posts/2018-10-29-commodification-elegant-anatomy
+          An Aesthesis ex-Negativo Emerged
+        * https://anatomiesofintelligence.github.io/posts/2018-11-6-aesthesis-negativo
+          Freakish Incidents or Devil's Work or Unknown Categories / Pattern disruption
+        * https://anatomiesofintelligence.github.io/posts/2018-11-6-monsters-preserved
+        * https://anatomiesofintelligence.github.io/posts/2018-11-6-monsters-unknown
+ 
+ -->
+<h2 id="Intro_Classification_Clustering">Machine Learning</h2>
+<!-- https://www.w3schools.com/charsets/ref_utf_arrows.asp-->
+<div>
+<p><span class="title">Machine learning (ML)</span> is the scientific study of algorithms and statistical models that computer systems use to perform a specific task without using explicit instructions, relying on patterns and inference instead. It is seen as a subset of artificial intelligence. <a href="#Refs">[1]</a></p>
+
+
+<p><span class="title">Supervised learning</span> is the machine learning task of learning a function that maps an input to an output based on example input-output pairs. It infers a function from labeled training data consisting of a set of training examples. In supervised learning, each example is a pair consisting of an input object (typically a vector) and a desired output value (also called the supervisory signal). A supervised learning algorithm analyzes the training data and produces an inferred function, which can be used for mapping new examples. An optimal scenario will allow for the algorithm to correctly determine the class labels for unseen instances. This requires the learning algorithm to generalize from the training data to unseen situations in a "reasonable" way. <a href="#Refs">[1]</a></p>
+
+<p><span class="title">Semi-supervised</span> (bootstrapping)</p>
+
+<p><span class="title">Unsupervised learning</span> is a type of self-organized Hebbian learning that helps find previously unknown patterns in data set without pre-existing labels. It is also known as self-organization and allows modeling probability densities of given inputs.[316] It is one of the main three categories of machine learning, along with supervised and reinforcement learning. Semi-supervised learning has also been described and is a hybridization of supervised and unsupervised techniques. <a href="#Refs">[1]</a></p>
+
+
+<p><span class="title">Deep learning</span> (unsupervised neural networks)</p>
 
 <h2 id="Intro_Classification_Clustering">Data classification and Clustering</h2>
 
-<h3>Zooming into concepts</h3>
-<p>&#8693;</p>
-<!-- https://www.w3schools.com/charsets/ref_utf_arrows.asp-->
-<div>
-<p>Machine learning (ML) is the scientific study of algorithms and statistical models that computer systems use to perform a specific task without using explicit instructions, relying on patterns and inference instead. It is seen as a subset of artificial intelligence. <a href="#Refs">[1]</a></p>
+<p><span class="title">Classification</span> in machine learning and statistics, classification is the problem of identifying to which of a set of categories (sub-populations) a new observation belongs, on the basis of a training set of data containing observations (or instances) whose category membership is known. Examples are assigning a given email to the "spam" or "non-spam" class, and assigning a diagnosis to a given patient based on observed characteristics of the patient (sex, blood pressure, presence or absence of certain symptoms, etc.). Classification is an example of pattern recognition. <a href="#Refs">[2]</a></p>
 
 
-<p>Supervised learning – is the machine learning task of learning a function that maps an input to an output based on example input-output pairs. It infers a function from labeled training data consisting of a set of training examples. In supervised learning, each example is a pair consisting of an input object (typically a vector) and a desired output value (also called the supervisory signal). A supervised learning algorithm analyzes the training data and produces an inferred function, which can be used for mapping new examples. An optimal scenario will allow for the algorithm to correctly determine the class labels for unseen instances. This requires the learning algorithm to generalize from the training data to unseen situations in a "reasonable" way. <a href="#Refs">[1]</a></p>
+<h3 id="Intro_K-means">K-means and notions of (Euclidean) space &amp distance</h2>
 
-<p>Semi-supervised (bootstrapping)</p>
+<br>
 
-<p>Unsupervised learning – is a type of self-organized Hebbian learning that helps find previously unknown patterns in data set without pre-existing labels. It is also known as self-organization and allows modeling probability densities of given inputs.[316] It is one of the main three categories of machine learning, along with supervised and reinforcement learning. Semi-supervised learning has also been described and is a hybridization of supervised and unsupervised techniques. <a href="#Refs">[1]</a></p>
+<p><span class="title">Cluster analysis</span> or clustering is the task of grouping a set of objects in such a way that objects in the same group (called a cluster) are more similar (in some sense) to each other than to those in other groups (clusters). <a href="#Refs">[1]</a></p>
 
-
-<p>Deep learning: Unsupervised neural networks</p>
-
-
-<p>Classification — in machine learning and statistics, classification is the problem of identifying to which of a set of categories (sub-populations) a new observation belongs, on the basis of a training set of data containing observations (or instances) whose category membership is known. Examples are assigning a given email to the "spam" or "non-spam" class, and assigning a diagnosis to a given patient based on observed characteristics of the patient (sex, blood pressure, presence or absence of certain symptoms, etc.). Classification is an example of pattern recognition. <a href="#Refs">[3]</a></p>
-
-
-<h2 id="Intro_K-means">K-means and notions of (Euclidean) space and distance</h2>
-
-
-<p>Cluster analysis – or clustering is the task of grouping a set of objects in such a way that objects in the same group (called a cluster) are more similar (in some sense) to each other than to those in other groups (clusters). <a href="#Refs">[1]</a></p>
-
-<p>K-means clustering is a method of vector quantization, originally from signal processing, that is popular for cluster analysis in data mining. k-means clustering aims to partition n observations into k clusters in which each observation belongs to the cluster with the nearest mean, serving as a prototype of the cluster. This results in a partitioning of the data space into Voronoi cells. k-Means minimizes within-cluster variances (squared Euclidean distances), but not regular Euclidean distances, which would be the more difficult Weber problem: the mean optimizes squared errors, whereas only the geometric median minimizes Euclidean distances. Better Euclidean solutions can for example be found using k-medians and k-medoids. <a href="#Refs"> [3]</a></p>
-
-<p>Dimensionality reduction – or dimension reduction, is the process of reducing the number of random variables under consideration by obtaining a set of principal variables. It can be divided into feature selection and feature extraction.<a href="#Refs">[1]</a></p>
-
-<p>Distances — in mathematics, a metric or distance function is a function that defines a distance between each pair of elements of a set. A set with a metric is called a metric space.[1] A metric induces a topology on a set, but not all topologies can be generated by a metric. A topological space whose topology can be described by a metric is called metrizable.  <a href="#Refs">[4]</a></p>
-
-<br><br><br>
+<p><span class="title">K-means clustering</span> is a method of vector quantization, originally from signal processing, that is popular for cluster analysis in data mining. k-means clustering aims to partition n observations into k clusters in which each observation belongs to the cluster with the nearest mean, serving as a prototype of the cluster. This results in a partitioning of the data space into Voronoi cells. k-Means minimizes within-cluster variances (squared Euclidean distances), but not regular Euclidean distances, which would be the more difficult Weber problem: the mean optimizes squared errors, whereas only the geometric median minimizes Euclidean distances. Better Euclidean solutions can for example be found using k-medians and k-medoids. <a href="#Refs"> [3]</a></p>
+<br><br>
 
 <img style="width: 30%"
 src="https://upload.wikimedia.org/wikipedia/commons/e/ea/K-means_convergence.gif" alt="image k-means clustering">
 
+<br><br><br>
+
+<p><span class="title">Dimensionality reduction</span> or dimension reduction, is the process of reducing the number of random variables under consideration by obtaining a set of principal variables. It can be divided into feature selection and feature extraction. <a href="#Refs">[1]</a></p>
+
+<p><span class="title">Distances</span> in mathematics, a metric or distance function is a function that defines a distance between each pair of elements of a set. A set with a metric is called a metric space. <a href="#Refs">[1]</a> A metric induces a topology on a set, but not all topologies can be generated by a metric. A topological space whose topology can be described by a metric is called metrizable. <a href="#Refs">[4]</a></p>
+
+<img style="width: 30%"
+src="https://upload.wikimedia.org/wikipedia/commons/0/08/Manhattan_distance.svg" alt="Manhattan distance on a grid">
+
+<p class="small">Figure illustrating Manhattan versus Euclidean distance. The red, blue, and yellow lines all have the same length (12), whereas the green line has length.</p>
+
+<p>"In machine learning, many supervised and unsupervised algorithms use Distance Metrics to understand patterns in the input data. Also, it is used to recognize similarities among the data." <a href="#Refs">[5]</a> Commonly used distance metrics in machine learning are: </p>
+
+<div class="small">
+<li>Euclidean Distance</li>
+<li>Manhattan distance</li>
+<li>Minkowski Distance</li>
+<li>Mahalanobis Distance</li>
+<li>Cosine Distance</li>
+<li>Jaccard distance</li>
 </div>
+
+<p>In mathematics, the Euclidean distance or Euclidean metric is the "ordinary" straight-line distance between two points in Euclidean space. <a href="#Refs">[6]</a></p>
+<br>
+<img style="width: 30%"
+src="https://upload.wikimedia.org/wikipedia/commons/5/55/Euclidean_distance_2d.svg" alt="Euclidean distance in R2">
 
 
 <br><br>
@@ -235,32 +295,54 @@ src="https://upload.wikimedia.org/wikipedia/commons/e/ea/K-means_convergence.gif
 [1] <a href="https://en.wikipedia.org/wiki/Glossary_of_artificial_intelligence">Glossary of artificial intelligence</a> <br>
 [2] <a href="https://en.wikipedia.org/wiki/Statistical_classification">Classification</a> <br>
 [3] <a href="https://en.wikipedia.org/wiki/K-means_clustering">K-means clustering</a> <br>
-[4] <a href="https://en.wikipedia.org/wiki/Metric_(mathematics)">Distance metrics  (mathematics)</a> <br><br>
+[4] <a href="https://en.wikipedia.org/wiki/Metric_(mathematics)">Distance metrics  (mathematics)</a> 
+<br>
+[5] <a href="https://towardsdatascience.com/how-to-measure-distances-in-machine-learning-13a396aa34ce">How to measure distances in machine learning</a>
+<br>
+[6] <a href="https://en.wikipedia.org/wiki/Euclidean_distance">Euclidean distance</a>
+<br> <br>
 
-<p>Further references</p>
+<p>Further references:</p>
 
 <a href="https://en.wikipedia.org/wiki/History_of_artificial_intelligence">History of artificial intelligence</a> <br>
-<a href="https://en.wikipedia.org/wiki/Timeline_of_machine_learning">Timeline of machine learning</a>
+<a href="https://en.wikipedia.org/wiki/Timeline_of_machine_learning">Timeline of machine learning</a><br>
+<a href="https://macwright.org/2012/09/16/k-means.html">Article on k-means clustering</a><br>
+<a href="https://en.wikipedia.org/wiki/Distance">Wikipedia article on distances</a><br>
+<a href="https://towardsdatascience.com/importance-of-distance-metrics-in-machine-learning-modelling-e51395ffe60d">Machine Learning Modelling and distance metrics</a><br>
 
 <h2 id="Exercise">The anatomies of a K-means clustering algorithm</h2>
 
-<h3>Step by step:</h3>
+<h3>Rethinking distances &amp proximities</h3>
+<br>
 
-<h3>Links and resources:</h3>
+<img style="width: 20%"
+src="https://anatomiesofintelligence.github.io/img/wiki/Human_Anatomy_Planes.jpg" alt="Human anatomy planes, 2014"><img style="width: 18%"
+src="https://upload.wikimedia.org/wikipedia/commons/2/2e/View_of_Viscera_Page_82.jpg"> <img style="width: 17.5%"
+src="https://anatomiesofintelligence.github.io/img/wc/Body-Measurements-Chinese-Woodcut.jpg" alt="Body measurements, back view, Chinese woodcut, 1443">
+<p class="small">[left] Anatomical planes, 2014: including median (red), parasagittal (yellow), frontal or coronal plane (blue) and transverse or axial plane (green). Made with the default MakeHuman model (intermediate gender proportions) with breast size reduced to be more androgynous, posed in standard anatomical position. Blender source available on GitHub. </p>
+<p class="small">[middle] From the book, "The Human Body and Health Revised" by Alvin Davison, published in 1908 by Alvin Davison. This book has a copyright of 1908 by Alvin Davison and one in 1924 by American Book Company. The first copyright was pre-1923 and the copyright was never renewed; therefore, the book should be in the public domain Flickr data on 2011-08-17: Tags: vintage, book, medical, image, illustration, drawing, public domain, copyright free License: CC BY 2.0 User: perpetualplum Sue Clark</p>
+<p class="small">[right] Body measurements, back view, Chinese woodcut, 1443: Woodcut from Tong ren shu xue zhen jiu tu jing (Illustrated Manual of Acupoints on the Bronze Man) by Wang Weiyi, published in 1443 CE (8th year of the Zhengtong reign period of the Ming Dynasty), illustrating the system of proportionate body measurements. This illustration consists of a simple outline drawing of a human body, viewed from the back. Captions on the image indicate the distances between various landmarks on the surface of the body, as an aid in establishing the location of acupoints and the paths of the channels at the back of the body. The units of measurement are the chi and cun, the length of the cun being based on the proportions of the individual's body, i.e. 1 cun = the distance from the base of the middle finger to the end of the crease of the middle joint. 10 cun = 1 chi. See 'Lettering' for further details.</p>
 
 <h3>Questions:</h3>
 
-<p><i>What different knowledge ontologies emerge through other geometries and directionalities based in bodily experiences and physicalities? What is a unit of anatomical space and how can that inform embodied approaches to machine learning? </i></p>
+<p><i>
+_ What different knowledge ontologies emerge through other geometries and directionalities based in bodily experiences and physicalities? <br>
+_ What is a unit of anatomical space and how can that inform embodied approaches to machine learning? </i></p>
 
+<br><br><br>
 
+<p>Links and resources:</p>
+
+<a href="https://anatomiesofintelligence.github.io/catalogue.html">The Catalogue</a> <br>
+<a href="https://anatomiesofintelligence.github.io//theatre">The Theatre</a> 
+<br><br>
+<a href="https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io/tree/master/code">Code Repository</a><br>
+Project's classification system: <a href="https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io/blob/master/glossary.md">a growing glossary (/expansion of “all tags”)</a><br><br>
+
+<a href="https://en.wikipedia.org/wiki/Anatomical_terms_of_location#/media/File:Human_anatomy_planes,_labeled.jpg">Key concepts of anatomical relationship</a> <br>
+<a href="https://en.wikipedia.org/wiki/History_of_measurement">History of measurement</a><br>
 <br><br><br><br>
 <h3><span class="light"><i>Thank you all for taking part, and looking forward to hearing your feedback! </i></span></h3>
 
-
-
-	
-	
-
 </body>
-
 </html>
