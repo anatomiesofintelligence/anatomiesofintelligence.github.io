@@ -1,7 +1,7 @@
 /*
 AI Instrumentation and Preparation Tools
 
-Jonathan Reus (c) 2018 CC-SA
+Jonathan Reus (c) 2019 CC-SA
 
 Linear Regression and K-means routines repurposed from shaman library: https://github.com/luccastera/shaman
 
@@ -40,9 +40,9 @@ Measures.euclidean = function(a, b, options) {
   var n, feature_list;
   a = a.features;
   b = b.features;
-  if(typeof a == "number") {
+  if(typeof a == "number") { // special case where feature vec is a single value
           sum = Math.pow(a-b, 2);
-  } else {
+  } else { // calculate euclidean distance in n dimensions
         for (n=0; n < a.length; n++) {
           sum += Math.pow(a[n]-b[n], 2);
         }
@@ -65,6 +65,22 @@ Util.sleep = function(time) {
 /***************************
 // END UTILITY FUNCTIONS
 ****************************/
+
+
+/***************************
+// PROJECTIONS / DIMENSIONALITY REDUCTION FOR VISUALIZATION PURPOSES
+****************************/
+var Projections = new Object();
+
+// default projection, 1D distance between centroid and entry
+Projections.RADIUS = 0;
+Projections.SIMPLE2D = 1;
+
+/***************************
+// END MEASUREMENT FUNCTIONS
+****************************/
+
+
 
 
 
@@ -115,8 +131,8 @@ Entry.prototype.getFeatures = function(options) {
     features = new Array(taglist.length);
     for(var i = 0; i < taglist.length; i++) { // create a feature vector from tag weights
         tagweight = this.tags[taglist[i]];
-        if(tagweight == undefined) {
-          this.tags[taglist[i]] = Math.random() * 0.1;
+        if(tagweight == undefined) { // if entry does not have a value for this tag, use a weight of 0.0
+          this.tags[taglist[i]] = Math.random() * 0.00;
           tagweight = this.tags[taglist[i]];
         };
         features[i] = tagweight;
@@ -178,7 +194,7 @@ Catalog.prototype.entriesAsFeatures = function(options) {
 
 // Clusters using a number of clusters and a comparison function
 // uses KMEANS clustering/unsupervised learning
-Catalog.prototype.cluster = function(num_clusters, measure, thetaglist, iters, process_result_func, oscout, postfunc) {
+Catalog.prototype.cluster = function(num_clusters, measure, thetaglist, iters, process_result_func, output=true, oscout, postfunc) {
     var options, iterations, measurement, entrys_as_features;
     iterations = iters || 100;
     measurement = measure || Measures.euclidean;
@@ -186,7 +202,7 @@ Catalog.prototype.cluster = function(num_clusters, measure, thetaglist, iters, p
     this.kmeans = new KMeans(num_clusters, options);
     entrysAsFeatures = this.entriesAsFeatures(options);
     process_result_func = process_result_func || this.processClusters;
-    this.kmeans.cluster(entrysAsFeatures, process_result_func, oscout, postfunc);
+    this.kmeans.cluster(entrysAsFeatures, process_result_func, output, oscout, postfunc);
 }
 
 // Callback function for KMEANS algorithm
@@ -223,13 +239,12 @@ var KMeans = function(K, options) {
 }
 
 
-KMeans.prototype.cluster = async function(entrys, donecallback, oscout=null, postfunc=null) {
+KMeans.prototype.cluster = async function(entrys, donecallback, output=true, oscout=null, postfunc=null) {
   var self = this;
   var osc, post;
   if(typeof TEMPO === "undefined") { TEMPO = 1.0 };
   post = postfunc;
   if(post == null) { post = console.log };
-
   if(oscout == null) {
     osc = function(address, args) { };
   } else {
@@ -252,9 +267,13 @@ KMeans.prototype.cluster = async function(entrys, donecallback, oscout=null, pos
   for (var k = 0; k < self.K; k++) {
     var newcentroid, randomIndex = Math.floor(Math.random() * normalizedEntrys.length);
     newcentroid = new FeatureVec("centroid"+k, normalizedEntrys[randomIndex].features.slice());
-    osc("/kmeans/initcentroid", [k, newcentroid.features]); // centroid centroid-features
-    post("NEW CENTROID " + k + " with " + newcentroid.features.map(x=>x.toFixed(2)));
-    await Util.sleep(1000 * TEMPO);
+
+    if(output) {
+      osc("/kmeans/initcentroid", [k, newcentroid.features]); // centroid centroid-features
+      post("NEW CENTROID " + k + " with " + newcentroid.features.map(x=>x.toFixed(2)));
+      await Util.sleep(1000 * TEMPO);
+    }
+
     self.centroids.push(newcentroid);
   }
 
@@ -262,14 +281,17 @@ KMeans.prototype.cluster = async function(entrys, donecallback, oscout=null, pos
 
   // Clustering Refinement Iterations...
   for (var j = 0; j < self.iterations; j++) {
-    osc("/kmeans/iteration", [j, "start"]);
-    post("----------- ITERATION "+j+" ---------");
-    await Util.sleep(1000 * TEMPO);
 
-    // cluster assignment step, assign entry to closest centroid
-    osc("/kmeans/iteration", [j, "cluster-assignment"]);
-    post("--- I"+j+" Cluster Assignment ---");
-    await Util.sleep(1000 * TEMPO);
+    if(output) {
+      osc("/kmeans/iteration", [j, "start"]);
+      post("----------- ITERATION "+j+" ---------");
+      await Util.sleep(1000 * TEMPO);
+
+      // cluster assignment step, assign entry to closest centroid
+      osc("/kmeans/iteration", [j, "cluster-assignment"]);
+      post("--- I"+j+" Cluster Assignment ---");
+      await Util.sleep(1000 * TEMPO);
+    }
 
     var clusterIndexes = []; // each entry index gets a cluster index [0,0,0,2,2,0,1... etc]
     for (var i = 0; i < normalizedEntrys.length; i++) {
@@ -278,40 +300,50 @@ KMeans.prototype.cluster = async function(entrys, donecallback, oscout=null, pos
       min = this.similarityFunc(normalizedEntrys[i], self.centroids[0]);
       // entry-idx entry-id centroid-idx distance
 
-      osc("/kmeans/distance", [i, normalizedEntrys[i].entry.id, 0, min]);
-      post(min.toFixed(3) + ": " + normalizedEntrys[i].entry.id+" to c"+0);
-      await Util.sleep(250 * TEMPO);
-
+      if(output) {
+        osc("/kmeans/distance", [i, normalizedEntrys[i].entry.id, 0, min]);
+        post(min.toFixed(3) + ": " + normalizedEntrys[i].entry.id+" to c"+0);
+        await Util.sleep(250 * TEMPO);
+      }
       var closestCentroid = 0;
       for (k = 1; k < self.K; k++) { // compare to other centroids
         var tmpDistance;
         tmpDistance = this.similarityFunc(normalizedEntrys[i], self.centroids[k]);
 
         // entry-idx entry-id centroid-idx distance
-        osc("/kmeans/distance", [i, normalizedEntrys[i].entry.id, k, tmpDistance]);
-        post(tmpDistance.toFixed(3) + ": " + normalizedEntrys[i].entry.id + " to c"+k);
-        await Util.sleep(250 * TEMPO);
+        if(output) {
+          osc("/kmeans/distance", [i, normalizedEntrys[i].entry.id, k, tmpDistance]);
+          post(tmpDistance.toFixed(3) + ": " + normalizedEntrys[i].entry.id + " to c"+k);
+          await Util.sleep(250 * TEMPO);
+        }
         if (tmpDistance < min) {
           min = tmpDistance;
           closestCentroid = k;
 
           // entry-idx entry-id centroid-idx distance
-          osc("/kmeans/updateClosestCentroid", [i, normalizedEntrys[i].entry.id, k, tmpDistance]);
-          post("update closest c"+k+" => " + normalizedEntrys[i].entry.id);
-          await Util.sleep(200 * TEMPO);
+          if(output) {
+            osc("/kmeans/updateClosestCentroid", [i, normalizedEntrys[i].entry.id, k, tmpDistance]);
+            post("update closest c"+k+" => " + normalizedEntrys[i].entry.id);
+            await Util.sleep(200 * TEMPO);
+          }
         }
       }
       clusterIndexes.push(closestCentroid); // for each entry, push index of closest centroid
 
       // entry-idx entry-id centroid/cluster-idx distance
-      osc("/kmeans/assignCluster", [i, normalizedEntrys[i].entry.id, closestCentroid, tmpDistance]);
-      post("ASSIGN c"+closestCentroid+" => "+normalizedEntrys[i].entry.id);
-      await Util.sleep(500 * TEMPO);
+      if(output) {
+        osc("/kmeans/assignCluster", [i, normalizedEntrys[i].entry.id, closestCentroid, tmpDistance]);
+        post("ASSIGN c"+closestCentroid+" => "+normalizedEntrys[i].entry.id);
+        await Util.sleep(500 * TEMPO);
+      }
     }
 
-    osc("/kmeans/iteration", [j, "recalculate-centroids"]);
-    post("--- I"+j+" Re-calculate Cluster Centroids ---");
-    await Util.sleep(1000 * TEMPO);
+    if(output) {
+      osc("/kmeans/iteration", [j, "recalculate-centroids"]);
+      post("--- I"+j+" Re-calculate Cluster Centroids ---");
+      await Util.sleep(1000 * TEMPO);
+    }
+
     // Gather up entries by cluster & make better centroids
     self.clusters = [];
     var newCentroids = [];
@@ -331,22 +363,31 @@ KMeans.prototype.cluster = async function(entrys, donecallback, oscout=null, pos
       if (cluster.length > 0) {
         // Add a new centroid for each new cluster, with its center at the mean of all entrys in the cluster
         updatedCentroid = new FeatureVec("centroid"+k, self.mean(cluster));
-        osc("/kmeans/recalculateCentroid", ["new", k, updatedCentroid.features]);
-        post("NEW CENTROID "+k+": "+updatedCentroid.features.map(x=>x.toFixed(2)));
-        await Util.sleep(300 * TEMPO);
+
+        if(output) {
+          osc("/kmeans/recalculateCentroid", ["new", k, updatedCentroid.features]);
+          post("NEW CENTROID "+k+": "+updatedCentroid.features.map(x=>x.toFixed(2)));
+          await Util.sleep(300 * TEMPO);
+        }
       } else { // clusters with no entries keep their old centroid
         updatedCentroid = self.centroids[k];
-        osc("/kmeans/recalculateCentroid", ["keep", k, updatedCentroid.features]);
-        post("CENTROID "+k+" UNCHANGED");
-        await Util.sleep(300 * TEMPO);
+
+        if(output) {
+          osc("/kmeans/recalculateCentroid", ["keep", k, updatedCentroid.features]);
+          post("CENTROID "+k+" UNCHANGED");
+          await Util.sleep(300 * TEMPO);
+        }
       }
       newCentroids.push(updatedCentroid);
     }
     self.centroids = newCentroids;
-    osc("/kmeans/iteration", [j, "end"]);
-    post("--- END Iteration "+j);
-    await Util.sleep(5000 * TEMPO);
-	}
+    if(output) {
+      osc("/kmeans/iteration", [j, "end"]);
+      post("--- END Iteration "+j);
+      await Util.sleep(5000 * TEMPO);
+    }
+
+  }
 
   // denormalize clusters and centroids
   self.centroids = self.denormalize(self.centroids);
@@ -354,7 +395,7 @@ KMeans.prototype.cluster = async function(entrys, donecallback, oscout=null, pos
     self.clusters[index] = self.denormalize(cluster);
   });
 
-  return donecallback(null, self.clusters, self.centroids);
+  return donecallback(null, self.clusters, self.centroids, self.tagList);
 };
 
 // Returns an array of mean values for each feature of the entry set

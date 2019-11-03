@@ -148,11 +148,13 @@ function help() {
     TEMPO = 1.0
     catalog.allEntries
     options = {taglist: ["models", "preparations", "aesthesis"]}
+    cut = ["models", "preparations", "aesthesis", "unknown"]
     e1 = catalog.allEntries.choose()
     e2 = catalog.allEntries.choose()
     fv1 = e1.getFeatures(options)
     fv2 = e2.getFeatures(options)
     catalog.entriesAsFeatures(options)
+    catalog.allTags;
     catalog.cluster(3, Measures.euclidean, options["taglist"], 10, resultfunc);
     catalog.cluster(CLUSTERS, MEASUREMENT, cut, ITERATIONS, resultfunc, osc, console.log);
   `;
