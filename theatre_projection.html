@@ -75,7 +75,7 @@ function randomize() {
   entries = getEntryDivs();
   for(let entry of entries) {
     entry.className = "refs"; // remove any cluster association
-    entry.border = "none";
+    entry.style.border = "none";
     entry.style.top = Math.floor(Math.random() * window.innerHeight) + 'px';
     entry.style.left = Math.floor(Math.random() * window.innerWidth) + 'px';
   }
@@ -278,7 +278,7 @@ function resultfunc(err, clusters, centroids, featuresDef) {
     let opts = {
       showBorders: SHOW_BORDERS,
       borderAlpha: BORDER_ALPHA,
-      centroidSymbol: "+",
+      centroidSymbol: CENTROID_SYMBOL,
       prioritizeFeatures: PROJECTION_DIMENSIONS,
       scaleDistance: RADIAL_DENSITY,
       featuresDefinition: featuresDef,
@@ -352,6 +352,7 @@ var CLUSTER_COLORS = [
   "4, 221, 245",
   "243, 169, 10",
 ];
+CENTROID_SYMBOL = "+";
 var SHOW_BORDERS = true;
 var RADIAL_DENSITY = 500; // used in the RADIAL projection
 
