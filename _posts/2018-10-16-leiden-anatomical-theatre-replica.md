@@ -20,8 +20,8 @@ summary: Replica of Anatomical Theatre originally built for Leiden University in
 image: leidenmuseum/leidenreplica.jpg
 
 # all tags separated by commas
-tags: [anatomical theatre, spectacle]
-weights: [0.99, 0.7]
+tags: [theatre, spectacle, skeleton, leiden]
+weights: [0.99, 0.7, 0.55, 0.67]
 categories: [systems-of-knowing]
 
 # permalink: /entry1/

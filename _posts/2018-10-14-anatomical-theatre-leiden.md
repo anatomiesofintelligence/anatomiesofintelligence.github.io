@@ -15,7 +15,7 @@ image: poster/anatomical-theatre-leiden1.gif
 summary: Theatrum anatomicum in Leiden. Anatomical lecture at the time of Peter Pauw. Copperplate engraving, probably 1615
 # permalink: /entry1/
 
-tags: [anatomical theatre]
-weights: [1.0]
+tags: [theatre, spectacle, demonstration, knowledge, leiden]
+weights: [0.95, 0.9, 0.8, 0.3, 0.8]
 categories: [systems-of-knowing]
 ---

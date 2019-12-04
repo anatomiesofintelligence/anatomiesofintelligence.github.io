@@ -17,8 +17,8 @@ copyright: Rina Knoe  and Robert Zwijnenberg have asserted their right under the
 summary: Excerpt from The Fate of Anatomical Collections, Chapter 5 Resilient Collections &#58; The long life of Leiden’s earliest Anatomical Collections by Tim Huisman
 
 # all tags separated by commas
-tags: [anatomical demonstrations, anatomical theatre]
-weights: [0.77, 0.83]
+tags: [demonstration, theatre, knowledge, architecture, spectacle, preparations, leiden]
+weights: [0.57, 0.93, 0.33, 0.2, 0.91, 0.73, 0.8]
 categories: [systems-of-knowing]
 
 # permalink: /entry1/
