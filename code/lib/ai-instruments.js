@@ -89,8 +89,9 @@ Projections.SIMPLE2D = 1;
 /***************************
 // ENTRY AND CATALOG CLASSES
 ****************************/
-var Entry = function(id) {
+var Entry = function(id, url) {
         this.id = id;
+        this.url = url;
         this.text;
         this.image;
         this.tags = {};

@@ -28,10 +28,10 @@ var tag_weight, newexample;
 {% for post in site.posts %}
 {% assign post_id = post.title | slugify:"latin" %}
 <div class="refs" id="{{ post_id }}">
-  <a href="{{ post.url }}"><span style="display:none">{{ post.date | date: "%B %d, %Y" }}:</span>{{ post.title }}</a>
+  <a href="{{ post.url }}" onclick="openEntry('{{ post_id }}'); return false"><span style="display:none">{{ post.date | date: "%B %d, %Y" }}:</span>{{ post.title }}</a>
 {% if post.layout == "image" %}<img height="100" width="auto" src="/img/{{ post.image }}"/>{% endif %}
 <script>
-newexample = new Entry("{{ post_id }}");
+newexample = new Entry("{{ post_id }}", "{{ post.url }}");
 {% for tag in post.tags %}
 {% assign idx = forloop.index | minus: 1 %}
 tag_weight = ["{{ tag }}", {{ post.weights[idx] }}];
@@ -79,7 +79,19 @@ function randomize() {
     entry.style.top = Math.floor(Math.random() * window.innerHeight) + 'px';
     entry.style.left = Math.floor(Math.random() * window.innerWidth) + 'px';
   }
-};
+}
+
+function showPopup(url, name) {
+  let win = window.open(url, name,'height=490,width=420,top=200,left=300,resizable=yes,scrollbars=yes,toolbar=no,location=no,status=no,menubar=no');
+  if(window.focus) { win.focus() }
+}
+
+
+function openEntry(entryID) {
+  let entry_url = catalog.allEntries[entryID].url;
+  console.log("OPENING: " + entry_url + entryID);
+  showPopup(entry_url, entryID);
+}
 
 
 // USAGE TESTS: (if these work then our code is more-or-less done)
