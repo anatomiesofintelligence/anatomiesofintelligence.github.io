@@ -1,6 +1,5 @@
 ---
 title: Metafont – Calligraphic or Skeleton Approach
-subtitle:
 layout: text
 entry-by: Joana Chicau
 entry-date: 2019-07-20
@@ -20,7 +19,6 @@ tags: [skeleton, writing, anatomical, aesthesis, handwriting, typography, type]
 weights: [0.956, 0.99, 0.7, 0.76, 0.8, 0.9, 0.61]
 categories: [gesture]
 
-# permalink: /entry1/
 
 ---
 

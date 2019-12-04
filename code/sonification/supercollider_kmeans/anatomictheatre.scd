@@ -1,34 +1,8 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*
-
 anatomies of intelligence
 catalog reading 01
-
 Jonathan Reus & Joana Chicau (c) 2018, CC-SA
-
 */
-
-
 
 (
 //s.options.outDevice = "Soundflower (64ch)";
@@ -36,12 +10,6 @@ s.options.numInputBusChannels = 10; s.options.numOutputBusChannels = 10;
 s.options.memSize = 8192 * 2 * 2 * 2; s.options.blockSize = 64 * 2 * 2 * 2;
 s.waitForBoot { };
 );
-
-
-
-
-
-
 
 (
 Ndef('catalog', {arg master=0.8;
@@ -68,17 +36,6 @@ Ndef('catalog', {arg master=0.8;
 
 Ndef.clear;
 s.meter
-
-
-
-
-
-
-
-
-
-
-
 
 Scale.major.ratios.select({|item,i| i.even })
 Scale.major.class
