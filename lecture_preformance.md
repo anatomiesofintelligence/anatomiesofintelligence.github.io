@@ -17,11 +17,11 @@ function openReferences () {
 or thematic clustering
 -->
 
-###Introducing Anatomic Theatre 
+### Introducing Anatomic Theatre 
 
 
 
-####Aesthesis
+#### Aesthesis
 
 * [The Concept of Aesthesis](https://anatomiesofintelligence.github.io/posts/2018-10-14-aesthesis-elegant-anatomy)
 
@@ -34,7 +34,7 @@ _[Aesthesis in anatomy. Materiality and elegance in the Eighteenth-Century Leide
 concept of aesthesis shapes method of artistic reseaerch 
 -->
 
-#####Gestures of Collection and Preparation
+##### Gestures of Collection and Preparation
 
 * [Elegant Anatomy book as training set input](https://anatomiesofintelligence.github.io/posts/2018-10-31-ML-Algolit-ElegantAnatomy)
 
@@ -48,7 +48,7 @@ concept of aesthesis shapes method of artistic reseaerch
 catalog.cluster(2, Measures.euclidean, ["theatre", "aesthesis", "spectacle"], 10, resultfunc, false)
 -->
 
-####The Gesture of cutting;
+#### The Gesture of cutting;
 
 We start with a simple gesture: cutting. To cut open, to examine, in order to describe each organ and identify their functions, while discovering its relations to the whole — from organ to organisation, organicity. Some call it an empirical system to perform systematic dissection of the human body. 
 
@@ -70,7 +70,7 @@ Like a mapping exercise. The location of anatomical structures can be described 
 The anatomist and the anatomized body. Iteration over iteration, calculating distances cutting across various lengths.
 
 
-####The Theatre and the Spectacle
+#### The Theatre and the Spectacle
 
 * [Anatomical Theatre Leiden](https://anatomiesofintelligence.github.io/posts/2018-10-14-anatomical-theatre-leiden)
 * [Anatomical Theatre Replica](https://anatomiesofintelligence.github.io/posts/2018-10-16-leiden-anatomical-theatre-replica)
