@@ -17,7 +17,7 @@ copyright: Rina Knoe  and Robert Zwijnenberg have asserted their right under the
 summary: Excerpt from The Fate of Anatomical Collections, Chapter 8 User-Developers, Model Students and Ambassador Users &#58; The Role of the Public in the Global Distribution of Nineteenth- Century Anatomical Models by Anna Maerker
 
 # all tags separated by commas
-tags: [models, labelling]
+tags: [models, labeling]
 weights: [0.961, 0.34]
 categories: [modelling]
 

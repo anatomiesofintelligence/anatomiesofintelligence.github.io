@@ -17,8 +17,8 @@ copyright: Rina Knoe  and Robert Zwijnenberg have asserted their right under the
 summary: Excerpt from The Fate of Anatomical Collections, Chapter 2 Organ Music by Ruth Richardson
 
 # all tags separated by commas
-tags: [preparation, anatomical theatre, aesthesis]
-weights: [0.78, 0.2, 0.65]
+tags: [preparations, aesthesis]
+weights: [0.78, 0.65]
 categories: [systems-of-knowing]
 
 # permalink: /entry1/
