@@ -14,6 +14,9 @@ s.scope(2,2)
 
 Xex.start;
 
+OSCFunc.trace(true);
+OSCFunc.trace(false);
+
 (
 OSCdef(\status, {|msg| msg.postln}, "/browser/status");
 OSCdef(\browser, {|msg|

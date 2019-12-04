@@ -97,4 +97,5 @@ if __name__ == "__main__":
     app = make_app();
     app.listen(8080)
     print("Listening for websockets messages on port 8080.... ");
+    print("Sending OSC to ", WSHandler.server_out);
     tornado.ioloop.IOLoop.instance().start()
