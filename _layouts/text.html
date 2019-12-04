@@ -10,5 +10,6 @@ entry-type: text
 <p>{{ content }}</p>
 <p>Source: {{ page.source }}</p>
 <p>Source URL: {{ page.source-url }}</p>
+<p>ID: {{ page.title | slugify:"latin" }}</p>
 <p>Categories: {% for cat in page.categories %}{{ cat }} | {% endfor %}</p>
 <p>Tags: {% for tag in page.tags %}{{ tag }} | {% endfor %}</p>
