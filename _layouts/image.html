@@ -3,24 +3,15 @@ layout: base
 entry-type: image
 ---
 
-			<img src="/img/{{ page.image }}" />
+<img src="/img/{{ page.image }}" />
+<h1>{{ page.title }}</h1>
+<h2>{{ page.subtitle }}</h2>
+<p>{{ page.date | date: "%B %d, %Y" }}</p>
+<p class="emphasis">{{ page.summary }}</p>
+<p>Source: {{ page.source }}</p>
+<p>Source URL: {{ page.source-url }}</p>
+<p>ID: {{ page.title | slugify:"latin" }}</p>
+<p>Categories: {% for cat in page.categories %}{{ cat }} | {% endfor %}</p>
+<p>Tags: {% for tag in page.tags %}{{ tag }} | {% endfor %}</p>
 
-			<h1>{{ page.title }}</h1>
-
-			<h2>{{ page.subtitle }}</h2>
-
-            <p>{{ page.date | date: "%B %d, %Y" }}</p>
-
-			<p>{{ page.summary }}</p>
-
-			<p>Source: {{ page.source }}</p>
-
-			<p>Source URL: {{ page.source-url }}</p>
-
-			<p>ID: {{ page.title | slugify:"latin" }}</p>
-
-			<p>Categories: {% for cat in page.categories %}{{ cat }} | {% endfor %}</p>
-
-			<p>Tags: {% for tag in page.tags %}{{ tag }} | {% endfor %}</p>
-
-      {{ content }}
+{{ content }}

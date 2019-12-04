@@ -7,7 +7,9 @@ entry-type: text
 <h2>{{ page.subtitle }}</h2>
 <p>{{ page.date | date: "%B %d, %Y" }}</p>
 <p>{{ page.summary }}</p>
-<p>{{ content }}</p>
+<hr>
+<span class="emphasis">{{ content }}</span>
+<hr>
 <p>Source: {{ page.source }}</p>
 <p>Source URL: {{ page.source-url }}</p>
 <p>ID: {{ page.title | slugify:"latin" }}</p>

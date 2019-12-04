@@ -9,6 +9,8 @@
 body {
 font-family: 'Junction', sans-serif;
 background-color: #D3D3D3;
+color: black;
+font-size: 1em;
 }
 
 a {
@@ -25,6 +27,12 @@ color: gray !important;
 
 li {
     list-style-type: none;
+}
+
+.emphasis {
+  color: black;
+  font-size: 1.2em;
+
 }
 
 @font-face {

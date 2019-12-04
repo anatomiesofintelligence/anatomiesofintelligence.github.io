@@ -24,5 +24,4 @@ categories: [systems-of-knowing]
 # permalink: /entry1/
 
 ---
-
 "Moreover, anatomical collections are crucial to new scholarly interdisciplinary studies that investigate the interaction between arts and sciences, especially but not exclusively medicine. Such collections allow the study of interaction between anatomists, scholars and anatomical artists, and other occupational groups involved in anatomical and pathological displays. They embody the rich histories related to the display of natural history and medical cabinets; they reveal how new artistic and documentary techniques and materials were adopted by physicians and scientists in other historical periods; they demonstrate how new knowledge about the body and the natural world was presented by and for medical, scientific and sometimes lay audiences. Ultimately, anatomical collections are important for our understanding of ourselves and of the bodies we inhabit. In this sense they are no less important than world-famous artworks like the ‘Mona Lisa’, the ‘Venus de Milo’ or Michelangelo’s ‘David’."
