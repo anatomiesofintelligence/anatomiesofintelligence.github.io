@@ -318,7 +318,6 @@ src="https://upload.wikimedia.org/wikipedia/commons/5/55/Euclidean_distance_2d.s
 
 <h2 id="Exercise">The anatomies of a K-means clustering algorithm</h2>
 
-<h3>Rethinking distances &amp proximities</h3>
 <br>
 
 <img style="width: 20%"
@@ -329,11 +328,86 @@ src="https://anatomiesofintelligence.github.io/img/wc/Body-Measurements-Chinese-
 <p class="small"><span class="smalltitle">[middle]</span> From the book, "The Human Body and Health Revised" by Alvin Davison, published in 1908 by Alvin Davison. This book has a copyright of 1908 by Alvin Davison and one in 1924 by American Book Company. The first copyright was pre-1923 and the copyright was never renewed; therefore, the book should be in the public domain Flickr data on 2011-08-17: Tags: vintage, book, medical, image, illustration, drawing, public domain, copyright free License: CC BY 2.0 User: perpetualplum Sue Clark</p>
 <p class="small"><span class="smalltitle">[right]</span> Body measurements, back view, Chinese woodcut, 1443: Woodcut from Tong ren shu xue zhen jiu tu jing (Illustrated Manual of Acupoints on the Bronze Man) by Wang Weiyi, published in 1443 CE (8th year of the Zhengtong reign period of the Ming Dynasty), illustrating the system of proportionate body measurements. This illustration consists of a simple outline drawing of a human body, viewed from the back. Captions on the image indicate the distances between various landmarks on the surface of the body, as an aid in establishing the location of acupoints and the paths of the channels at the back of the body. The units of measurement are the chi and cun, the length of the cun being based on the proportions of the individual's body, i.e. 1 cun = the distance from the base of the middle finger to the end of the crease of the middle joint. 10 cun = 1 chi. See 'Lettering' for further details.</p>
 
-<h3>Questions:</h3>
+<h3>Exercise: rethinking distances &amp proximities</h3>
+	
+<img style="width: 40%" src="AoI_screenshot_ruller.png" alt="AoI screenshot of theatre interface and clustering">
+
+<br>
+In groups, briefly analize your dataset; then follow the four main tasks bellow:
+<br>	
+	
+— > (1) _Define distance_ 
+<br>	
+Collect and discuss diferent notions around defining 'distance' (or the concept of difference);
+Consider existing methods, but also scales and orientations for observation, affective response & affinity.  
+Finally choose a choose a measurement system.	
+<br>	
+<div class="small">
+<li>What measurements and distances could be used?</li>
+<li>Is your notion of ditance multi-dimensional? What are its dimensions?</li>
+<li>How do embodied experience inform new thinking around measuring and sensing distances?</li>
+</div>
+	
+— > (2) _Tagging and Weighting_
+<br>	
+Create a collection of tags to be assigned to the data samples/ each entry of the data set.
+Assign the tags and give values to each of them.
+<br>	
+<div class="small">
+<li>What vocabularies emerge from the categorization and analysis of the dataset?</li>
+<li>What can be 'put into words' and what is left unspoken?</li>
+<li>How does the process influence the knowledge of the current dataset?</li>
+</div>
+	
+— > (3) _System representation_
+<br>	
+Discuss how to represent the knowledge system you are building. And how to best communicate the process from tags (processual happening on the data collection) to the clustering iterations.
+Consider dimensionality reduction and its implications (what is preserved and what is left out).
+<br>	
+<div class="small">
+<li>How to visualize the clustering?</li>
+<li>What different viewpoints and perpectives and can used?</li>
+<li>What other ways of making the process sensible can be explored? Which other senses can take part beyond visual? For eg. sonification.</li>
+</div>
+
+— > (4) _Clustering_
+<br>
+<img style="width: 40%" src="AoI_screenshot_cluster" alt="AoI screenshot of theatre interface and clustering">
+<br>
+Execute the k-means clustering algorithm and document each iteration of results;
+<br>
+Define each of the variables:
+<br>
+<div class="small">
+<li>CLUSTER = 2</li>
+<li>MEASUREMENT = Measures.euclidean</li>	
+<li>CUT = ["anatomy", "theatre", "actors"]</li>	    
+<li>ITERATIONS = 3</li>	 
+<br>
+	
+_catalog.cluster(CLUSTERS, MEASUREMENT, cut, ITERATIONS, resultfunc, BREAKPOINTS, console.log);_
+	
+__optional:__
+<br>
+[use the console/javascript api as an observational tool:](https://anatomiesofintelligence.github.io/theatre/kmeans)
+<br>
+open the web console and type the script, as in the example: catalog.cluster(3, Measures.euclidean, ["model", "aesthesis", "categorization", "body"], 10, resultfunc, false) 
+<br>
+
+
+<h3>Further questions:</h3>
 
 <p><i>
-_ What different knowledge ontologies emerge through other geometries and directionalities based in bodily experiences and physicalities? <br>
-_ What is a unit of anatomical space and how can that inform embodied approaches to machine learning? </i></p>
+_ What do you observe after the experiments? What would you change in the decision making process?
+<br>
+_ What different knowledge ontologies emerge through other geometries and directionalities based in bodily experiences and physicalities? 
+<br>
+_ What is a unit of anatomical space and how can that inform embodied approaches to machine learning? 
+</i></p>
+	
+Experiment the process with another dataset; with different measurement systems; parameters; and analyse how it impacts the clustering. 
+<br>
+Further discuss / make a list of potential entry points for performativity, critical and aesthetic interventions in the algorithmic process. 
 
 <br><br><br>
 
