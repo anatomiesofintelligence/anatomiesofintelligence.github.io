@@ -63,9 +63,8 @@ p{
 }
 	
 .exercise {
-	font-size: 11pt;
+	font-size: 10pt;
 	line-height: 14pt;
-	max-width: 70%;
 }
 
 #contact{
@@ -343,7 +342,7 @@ src="https://anatomiesofintelligence.github.io/img/wc/Body-Measurements-Chinese-
 <p>In groups, briefly analize your dataset; then follow the four main tasks bellow:</p>
 <br>	
 	
-<b>— > (1) Define distance</b>
+<b style="color:blue">— > (1) Define distance</b>
 <br>	
 <p>Collect and discuss diferent notions around defining 'distance' (or the concept of difference);</p>
 <p>Consider existing methods, but also scales and orientations for observation, affective response & affinity. </p>
@@ -355,7 +354,7 @@ src="https://anatomiesofintelligence.github.io/img/wc/Body-Measurements-Chinese-
 <li>How do embodied experience inform new thinking around measuring and sensing distances?</li>
 </div>
 <br><br>	
-<b>— > (2) Tagging and Weighting</b>
+<b style="color:blue">— > (2) Tagging and Weighting</b>
 <br>	
 <p>Create a collection of tags to be assigned to the data samples/ each entry of the data set.</p>
 <p>Assign the tags and give values to each of them.</p>
@@ -366,7 +365,7 @@ src="https://anatomiesofintelligence.github.io/img/wc/Body-Measurements-Chinese-
 <li>How does the process influence the knowledge of the current dataset?</li>
 </div>
 <br><br>	
-<b>— > (3) System representation</b>
+<b style="color:blue">— > (3) System representation</b>
 <br>	
 <p>Discuss how to represent the knowledge system you are building. And how to best communicate the process from tags (processual happening on the data collection) to the clustering iterations.</p>
 <p>Consider dimensionality reduction and its implications (what is preserved and what is left out).</p>
@@ -377,8 +376,8 @@ src="https://anatomiesofintelligence.github.io/img/wc/Body-Measurements-Chinese-
 <li>What other ways of making the process sensible can be explored? Which other senses can take part beyond visual? For eg. sonification.</li>
 </div>
 <br><br>
-<b>— > (4) Clustering</b>
-<br>
+<b style="color:blue">— > (4) Clustering</b>
+<br><br>
 <img style="width: 60%" src="AoI_screenshot_cluster.png" alt="AoI screenshot of theatre interface and clustering">
 <br>
 <p>Execute the k-means clustering algorithm and document each iteration of results;</p>
@@ -394,17 +393,14 @@ src="https://anatomiesofintelligence.github.io/img/wc/Body-Measurements-Chinese-
 <br><br>
 <i>Optional:</i>
 <br>
-Test using the <a href="https://anatomiesofintelligence.github.io/theatre/kmeans">AoI Theatre</a> JavaScript web api as an observational tool:
+<p>Test using the <a href="https://anatomiesofintelligence.github.io/theatre/kmeans">AoI Theatre</a> JavaScript web api as an observational tool.</p>
+<p>Open the web console and type the script, as in the example:</p>
 <br>
-<p>open the web console and type the script, as in the example:</p>
-<br>catalog.cluster(3, Measures.euclidean, ["model", "aesthesis", "categorization", "body"], 10, resultfunc, false) 
+	catalog.cluster(3, Measures.euclidean, ["model", "aesthesis", "categorization", "body"], 10, resultfunc, false) 
 <br><br>
-
 <p>Experiment the process with another dataset; with different measurement systems; parameters; and analyse how it impacts the clustering. </p>
-<br>
 <p>Further discuss and list potential entry points for performativity, critical and aesthetic interventions in the algorithmic process. </p>
-
-<br><br>
+<br>
 </div>	
 	
 <h3>Further questions:</h3>
