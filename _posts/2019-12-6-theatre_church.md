@@ -1,5 +1,5 @@
 ---
-title: Leiden, the Netherlands: the anatomy theatre, interior of a church, town weighing establishment and portraits. 
+title: Leiden, the Netherlands, the anatomy theatre, interior of a church, town weighing establishment and portraits. 
 layout: image
 entry-type: image
 image: wc/theatre_church_Leiden.jpg
