@@ -1,5 +1,5 @@
 ---
-title: Woodcut: instruments for dissection. 
+title: Woodcut, instruments for dissection. 
 layout: image
 entry-type: image
 image: wc/Instruments_for_dissection.jpg

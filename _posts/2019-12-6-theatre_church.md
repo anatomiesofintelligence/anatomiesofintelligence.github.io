@@ -11,5 +11,5 @@ copyright: Creative Commons Attribution (CC BY 4.0)
 tags: [body, anatomy, dissection, Leiden, theatre]
 weights: [0.89, 0.91, 0.90, 0.99, 0.89]
 
-summary: "Top center, portraits of the Anabaptist leader Jan Beukelszoon ("Iohan Bocold rex Anabapt") and one of his wives ("Elisa Johan[nis] uxor regina"). Line engraving."
+summary: "Top center, portraits of the Anabaptist leader Jan Beukelszoon ('Iohan Bocold rex Anabapt') and one of his wives ('Elisa Johan[nis] uxor regina'). Line engraving."
 ---

@@ -1,5 +1,5 @@
 ---
-title: "Thesaurus..."; botanical preparations.
+title: Thesaurus botanical preparations.
 layout: image
 entry-type: image
 image: wc/botanical_preparations.jpg

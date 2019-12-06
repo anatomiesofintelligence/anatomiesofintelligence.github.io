@@ -11,5 +11,5 @@ copyright: Creative Commons Attribution (CC BY 4.0)
 tags: [body, anatomy, networks, nerves]
 weights: [0.89, 0.91, 0.96, 0.99]
 
-summary: "Nerve networks, Vesling "Syntagma", 1647."
+summary: "Nerve networks, Vesling 'Syntagma', 1647."
 ---
