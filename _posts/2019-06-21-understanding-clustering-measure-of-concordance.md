@@ -1,12 +1,12 @@
 ---
-title: Understanding Clusters: Range and Shape Keys in Measure of Concordance
+title: Understanding Clusters - Range and Shape Keys in Measure of Concordance
 layout: image
 entry-by: Jonathan Reus
 entry-date: 2019-06-21
 image: m/moc-plot-and-shapes.png
 source-url: https://link.springer.com/article/10.1007/s10115-008-0150-6
-source: Pfitzner, D., Leibbrandt, R. & Powers, D. Knowl Inf Syst (2009) 19: 361. https://doi.org/10.1007/s10115-008-0150-6
-copyright: Copyright © 2008, Springer-Verlag London Limited
+source: Pfitzner, D., Leibbrandt, R. & Powers, D. Knowl Inf Syst (2009) 19 361. https://doi.org/10.1007/s10115-008-0150-6
+copyright: Copyright 2008, Springer-Verlag London Limited
 tags: [statistical-ontology, clustering, similarity, distance]
 weights: [0.13, 0.71, 0.51, 0.21]
 summary: "We introduce a paradigm apparatus for the evaluation of clustering comparison
