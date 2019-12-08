@@ -15,7 +15,6 @@ or thematic clustering:
 catalog.cluster(2, Measures.euclidean, ["theatre", "aesthesis", "spectacle"], 10, resultfunc, false)
 -->
 
-
 #### Aesthesis
 
 * [The Concept of Aesthesis](https://anatomiesofintelligence.github.io/posts/2018-10-14-aesthesis-elegant-anatomy)
@@ -26,6 +25,13 @@ catalog.cluster(2, Measures.euclidean, ["theatre", "aesthesis", "spectacle"], 10
 #### Gestures of — Collection and Preparation
 
 > “Through these reinterpretations, curators and audiences changed the fate of the collections. They prolonged their use in research and teaching, while at the same time – as we will see below – impeding the use of preparations as historical objects. But curators and audiences could never have completed the reinterpretations if the collections had not allowed them to. Their reinterpretations depended on the collections (and the objects in them) being sufficiently flexible. This flexibility depended directly on the material properties of the collections. In particular, with anatomical collections, the fact of whether the objects in the collections are preparations or models is vital, because of a fundamental material difference between the two, pointed out by philosopher of biology Hans-Jörg Rheinberger: preparations are made of what they represent; models (and other anatomical representations, like drawings) are not.” Source: The Fate of Anatomical Collections Rina Knoeff, Robert Zwijnenberg. Ashgate Publishing Company (2015)
+
+> "The term "k-means" was first used by James MacQueen in 1967 as part of his paper on "Some methods for classification and analysis of multivariate observations". The standard algorithm was also used in Bell Labs as part of a technique in pulse code modulation in 1957. It was also published by In 1965 by E. W. Forgy and typically is also known as the Lloyd-Forgy method."
+
+[Jon 8.12.19] Theory: Can we rethink clusering as collecting? A clustering, an ontology created, as a cabinet of curiosities.
+
+[Jon 8.12.19] Botany and the naturalist as closely related sciences - a mention here of 18th century anatomy, doingGod's work and the exotic
+* [God's Work](http://anatomiesofintelligence.github.io/posts/2018-10-16-the-fate-of-anatomical-collections-part3-7-3)
 
 * [Elegant Anatomy book as training set input](https://anatomiesofintelligence.github.io/posts/2018-10-31-ML-Algolit-ElegantAnatomy)
 
@@ -43,6 +49,8 @@ Learning from each cut, the best techniques to dissect the body to effectively o
 We are driven by curiosity and the desire to see beyond the surface level, the skin, pourous, our primary interface to the world. Inter-facing scores and scripts, inter-, in between gestures and codes. 
 
 _Notes on dimensionality reduction (CUT: what preserves and what is left out/ unseen not observed)_
+
+[Jon 8.12.19] A slice into multidimensional space
 
 Like a mapping exercise. The location of anatomical structures can be described with relation to different anatomical landmarks. Here the relationship is based on euclidean distancing: measuring the distance between each entry; while having no sense of direction nor orientation. 
 
