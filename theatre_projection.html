@@ -171,9 +171,10 @@ function projectCatalog(projectionType, clusters, centroids, options) {
   switch(projectionType) {
     case Projections.SIMPLE2D: // 2D projection just looks at the first two features..
       console.log("SIMPLE 2D PROJECTION");
+      //console.log(clusters);
       let dimX = priorityDims[0], dimY = priorityDims[1];
 
-      for(let centroid of centroids) {
+      for(let centroid of centroids) { // MAKE CENTROID DIVS
         newdiv = document.createElement("div");
         newdiv.id = centroid.example;
         newdiv.className = "centroid";
@@ -194,13 +195,13 @@ function projectCatalog(projectionType, clusters, centroids, options) {
           j++;
         }
 
-
         newdiv.appendChild(document.createTextNode(centroidSymbol));
         document.body.appendChild(newdiv);
         centroid_divs.push(newdiv);
         centroidnumber++;
       }
 
+      // CREATE ENTRY DIVS FOR EACH CLUSTER
       for(var i = 0; i < centroid_divs.length; i++) {
         var x,y;
         var cdiv = centroid_divs[i];
@@ -211,14 +212,22 @@ function projectCatalog(projectionType, clusters, centroids, options) {
           entrydiv.style.position = "absolute";
           entrydiv.className = "refs " + "cluster" + i;
 
+
           if(showBorders) {
             borderColor = CLUSTER_COLORS[i];
             entrydiv.style.border = "2px solid rgba(" + borderColor + ", " + borderAlpha + ")";
           }
 
+          //console.log(item.entry.id);
+          if(item.entry.id == "metafont-calligraphic-or-skeleton-approach") {
+            console.log("FOUND METAFONT!");
+            entrydiv.style.border = "10px solid";
+          }
+
+
+
           entrydiv.style.top = (item.features[priorityDims[0]] * window.innerHeight) + 'px';
           entrydiv.style.left = (item.features[priorityDims[1]] * window.innerWidth) + 'px';
-
         }
       }
     // END 2D PROJECTION
