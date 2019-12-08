@@ -157,6 +157,7 @@ FeatureVec.prototype.copy = function() {
 var Catalog = function() {
         this.allEntries = {}; // dictionary of entry id->Entry
         this.allTags = [];
+        this.kmeans = new KMeans();
 }
 
 Catalog.prototype.addEntry = function(newentry) {
@@ -200,6 +201,11 @@ Catalog.prototype.cluster = function(num_clusters, measure, thetaglist, iters, p
     this.kmeans.cluster(entrysAsFeatures, process_result_func, output, oscout, postfunc);
 }
 
+// Hard stop clustering algorithm
+Catalog.prototype.stop = function() {
+  if(this.kmeans.running == true) { this.kmeans.interrupt = true }
+}
+
 // Callback function for KMEANS algorithm
 Catalog.prototype.processClusters = function(err, clusters, centroids) {
         // show any errors
@@ -231,6 +237,9 @@ var KMeans = function(K, options) {
   this.tagList = options["taglist"] || [];
   this.iterations = options.iterations || 1000;
   this.options = options || {};
+  this.interrupt = false;   // FLAG to interrupt clustering algorithm
+  this.running = false;     // FLAG true if algorithm is running
+
 }
 
 
@@ -257,6 +266,8 @@ KMeans.prototype.cluster = async function(entrys, donecallback, output=true, osc
   //console.log("INCOMING_EXAMPLES:", entrys);
   var normalizedEntrys = self.normalize(entrys);
   //console.log("NORMALIZED_EXAMPLES:",normalizedEntrys);
+
+  this.running = true;
 
   // initialize random centroids
   for (var k = 0; k < self.K; k++) {
@@ -290,6 +301,12 @@ KMeans.prototype.cluster = async function(entrys, donecallback, output=true, osc
 
     var clusterIndexes = []; // each entry index gets a cluster index [0,0,0,2,2,0,1... etc]
     for (var i = 0; i < normalizedEntrys.length; i++) {
+
+      if(this.interrupt == true) { // CHECK INTERRUPT FLAG
+        this.interrupt = false;
+        return null;
+      }
+
       // How close is each entry to centroid 0
       var min;
       min = this.similarityFunc(normalizedEntrys[i], self.centroids[0]);
@@ -390,6 +407,7 @@ KMeans.prototype.cluster = async function(entrys, donecallback, output=true, osc
     self.clusters[index] = self.denormalize(cluster);
   });
 
+  this.running = false;
   return donecallback(null, self.clusters, self.centroids, self.tagList);
 };
 

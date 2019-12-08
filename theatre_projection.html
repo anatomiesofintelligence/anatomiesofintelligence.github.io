@@ -212,19 +212,10 @@ function projectCatalog(projectionType, clusters, centroids, options) {
           entrydiv.style.position = "absolute";
           entrydiv.className = "refs " + "cluster" + i;
 
-
           if(showBorders) {
             borderColor = CLUSTER_COLORS[i];
             entrydiv.style.border = "2px solid rgba(" + borderColor + ", " + borderAlpha + ")";
           }
-
-          //console.log(item.entry.id);
-          if(item.entry.id == "metafont-calligraphic-or-skeleton-approach") {
-            console.log("FOUND METAFONT!");
-            entrydiv.style.border = "10px solid";
-          }
-
-
 
           entrydiv.style.top = (item.features[priorityDims[0]] * window.innerHeight) + 'px';
           entrydiv.style.left = (item.features[priorityDims[1]] * window.innerWidth) + 'px';
@@ -364,7 +355,7 @@ var CLUSTER_OPTIONS = {taglist: CLUSTER_DIMENSIONS};
 
 // Algorithmic time parameters
 var BREAKPOINTS = false;   // break the algorithm up into temporal chunks
-var TEMPO = 5.0;          // timescale/tempo speed of algorithm steps
+var TEMPO = 0.5;          // timescale/tempo speed of algorithm steps
 
 // Visualization parameters
 var PROJECTION_TYPE = Projections.SIMPLE2D;
