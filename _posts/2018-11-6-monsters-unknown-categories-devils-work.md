@@ -12,7 +12,7 @@ copyright: 2015 by Koninklijke Brill nv, Leiden, The Netherlands.
 summary: Excerpt from "Beautiful Monsters", chapter 5 at Elegant Anatomy, Marieke M. A. Hendriksen
 
 # all tags separated by commas
-tags: [aesthesis, preparations, tacit, monsters, sensory perceptions, freakish, categories]
+tags: [aesthesis, preparations, tacit, monsters, sensory perception, freakish, categories]
 weights: [1.0, 0.6, 0.22, 0.7988, 0.21, 0.81232, 0.901]
 
 ---
