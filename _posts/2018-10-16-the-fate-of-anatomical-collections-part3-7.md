@@ -17,7 +17,7 @@ copyright: Rina Knoe  and Robert Zwijnenberg have asserted their right under the
 summary: Excerpt from The Fate of Anatomical Collections, Chapter 7 Adieu Albinus &#58; How the Preparations in the Nineteenth-Century Leiden Anatomical Collections Lost their Past by Hieke Huistra
 
 # all tags separated by commas
-tags: [agency, preparation, theatre, aesthesis]
+tags: [agency, preparations, theatre, aesthesis]
 weights: [0.956, 0.6, 0.34, 0.76621]
 categories: [systems-of-knowing]
 

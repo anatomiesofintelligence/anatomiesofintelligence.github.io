@@ -15,8 +15,8 @@ copyright: 2015 by Koninklijke Brill nv, Leiden, The Netherlands.
 summary: Excerpt from "Beautiful Monsters", chapter 5 at Elegant Anatomy, Marieke M. A. Hendriksen
 
 # all tags separated by commas
-tags: [preparations, selection, monsters, disgusting, unknown, meaning]
-weights: [0.88, 0.972, 0.6999, 0.66, 0.44, 0.2]
+tags: [preparations, selection, monsters, meaning]
+weights: [0.88, 0.972, 0.6999, 0.2]
 categories: [systems-of-knowing]
 
 # permalink: /entry1/

@@ -14,8 +14,8 @@ copyright: 2015 by Koninklijke Brill nv, Leiden, The Netherlands.
 summary: Excerpt from "Beautiful Monsters, How Deformity Can Be Elegant" chapter 5 at Elegant Anatomy, Marieke M. A. Hendriksen
 
 # all tags separated by commas
-tags: [preparations, aesthesis, elegance, collections, tacit, perfection, imperfect, disgust]
-weights: [0.911, 0.43, 0.49, 0.31, 0.12, 0.22, 0.89, 0.96]
+tags: [preparations, aesthesis, elegance, collections, tacit, perfection, imperfect]
+weights: [0.911, 0.43, 0.49, 0.31, 0.12, 0.22, 0.89]
 categories: [systems-of-knowing]
 
 # permalink: /entry1/

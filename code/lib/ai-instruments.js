@@ -6,24 +6,18 @@ Jonathan Reus (c) 2019 CC-SA
 Linear Regression and K-means routines repurposed from shaman library: https://github.com/luccastera/shaman
 
 */
-
-// embed this into the catalog object
-// var taxonomy = KMeans(); // creates the KMeans clustering engine
-
 /* USAGE:
 
-var collection = new Catalog()
-
-collection.entries = {}; // the Catalog contains a dictionary called entries
-entry = collection.entries["poetic-rhetoric"]; // entries contains an object for each catalog entry
+var c = new Catalog()
+c.allEntries; // the Catalog contains a dictionary called entries
+entry = c.allEntries["poetic-rhetoric"]; // entries contains an object for each catalog entry
 entry.text;
 entry.image;
 entry.tags; // is an array of arrays, each is one tag and its weight [tagname, tagweight]
-
 var num_clusters = 5;
 var measurement = measures.euclidean; // or another premade function, or one that is created on the fly
 
-collection.cluster(num_clusters, measurement);
+c.cluster(num_clusters, measurement);
 
 */
 

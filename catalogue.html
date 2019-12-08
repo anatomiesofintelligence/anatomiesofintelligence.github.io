@@ -15,7 +15,7 @@ var examples = [];
 /-->
 
 <br /><br />
-<div id="tagslist" style="font-size: 0.2em">
+<div id="tagslist" style="font-size: 0.7em">
 {% capture site_tags %}{% for tag in site.tags %}{{ tag[0] }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
 {% assign tag_words = site_tags | split:',' | sort %}
 <br />{% for tag in tag_words %}{{ tag }} | {% endfor %}

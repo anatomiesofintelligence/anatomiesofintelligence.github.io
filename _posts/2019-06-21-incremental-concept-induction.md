@@ -8,8 +8,8 @@ entry-date: 2019-06-21
 source-url: https://link.springer.com/article/10.1023%2FA%3A1022852608280
 source: Fisher, Douglas H. "Knowledge acquisition via incremental conceptual clustering." Machine learning 2.2 (1987) 139-172.
 copyright:
-tags: [ontology, statistical-ontology, COGWEB, cluster, clustering, knowledge, algorithm, categorization]
-weights: [0.20, 0.87, 0.89, 0.1, 0.862, 0.12, 0.34, 0.58]
+tags: [ontology, statistical-ontology, COGWEB, clustering, knowledge, algorithm, categorization]
+weights: [0.20, 0.87, 0.89, 0.1, 0.862, 0.12, 0.34]
 
 summary: Proposal for incremental concept induction algorithms towards creating statistical ontologies. Excerpt from 1987 COGWEB publication by Douglas Fisher.
 ---

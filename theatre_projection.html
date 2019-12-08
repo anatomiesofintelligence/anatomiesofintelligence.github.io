@@ -44,6 +44,14 @@ catalog.addEntry(newexample);
 
 
 <script>
+// OSC connection to the local SimpleOSC Server
+var OSC_OUT = new SimpleOSC("localhost", 8080);
+OSC_OUT.init(function() {
+    // Put code here that should run once an OSC connection is established.
+    //catalog.cluster(CLUSTERS, MEASUREMENT, CLUSTER_DIMENSIONS, ITERATIONS, resultfunc, BREAKPOINTS, OSC_OUT, console.log);
+});
+
+
 // ***ADDITIONAL FUNCTIONS****
 
 function clean_surface() { location.reload() }
@@ -273,7 +281,6 @@ function projectCatalog(projectionType, clusters, centroids, options) {
     };
 }
 
-
 // Callback responds to clustering results and redraws the HTML
 function resultfunc(err, clusters, centroids, featuresDef) {
 
@@ -291,13 +298,25 @@ function resultfunc(err, clusters, centroids, featuresDef) {
       showBorders: SHOW_BORDERS,
       borderAlpha: BORDER_ALPHA,
       centroidSymbol: CENTROID_SYMBOL,
-      prioritizeFeatures: PROJECTION_DIMENSIONS,
+      prioritizeFeatures: CLUSTER_DIMENSIONS,
       scaleDistance: RADIAL_DENSITY,
       featuresDefinition: featuresDef,
     };
     projectCatalog(PROJECTION_TYPE, clusters, centroids, opts);
 
 };
+
+// SIMPLIFIED clustering functions
+function cluster(taglist, clusters, breakpoints) {
+  if(breakpoints != null) { BREAKPOINTS = breakpoints }
+  if(clusters != null) { CLUSTERS = clusters }
+  if(taglist != null) { CLUSTER_DIMENSIONS = taglist }
+  if(BREAKPOINTS) {
+    catalog.cluster(CLUSTERS, MEASUREMENT, CLUSTER_DIMENSIONS, ITERATIONS, resultfunc, BREAKPOINTS, OSC_OUT, console.log);
+  } else {
+    catalog.cluster(CLUSTERS, MEASUREMENT, CLUSTER_DIMENSIONS, ITERATIONS, resultfunc, BREAKPOINTS);
+  }
+}
 
 function help() {
     let str = `
@@ -324,35 +343,27 @@ function help() {
   console.log(str);
 }
 
-</script>
+//************** GLOBAL CONSTANTS *****************//
 
-
-<script>
-// ****COMMANDS***
-
-randomize(); // randomize example divs
-
-// 4-dimensional cut into an N-dimensional body
-var cut = ["models", "preparations", "aesthesis", "unknown"];
-
-// Test clustering with 3 clusters and 10 iterations
-//catalog.cluster(3, Measures.euclidean, tagscut, 10, resultfunc);
-
-// Clustering parameters
-var ITERATIONS = 5;
-var MEASUREMENT = Measures.euclidean;
-var RESULTFUNC = resultfunc;
+// CLUSTERING PARAMETERS
 var CLUSTERS = 3;
+var MEASUREMENT = Measures.euclidean;
+var ITERATIONS = 5;
+var RESULTFUNC = resultfunc;  // callback function to run when clustering is done
+var CLUSTER_DIMENSIONS = ["model", "aesthesis"];
+var CLUSTER_OPTIONS = {taglist: CLUSTER_DIMENSIONS};
 
 // Algorithmic time parameters
-var BREAKPOINTS = true;  // break the algorithm up into temporal chunks
-var TEMPO = 1.0; // timescale/tempo speed of algorithm steps
+var BREAKPOINTS = false;   // break the algorithm up into temporal chunks
+var TEMPO = 5.0;          // timescale/tempo speed of algorithm steps
 
 // Visualization parameters
 var PROJECTION_TYPE = Projections.SIMPLE2D;
-var PROJECTION_DIMENSIONS = ["model", "aesthesis", "categorization"];
-var BORDER_ALPHA = 0.5;
-var CLUSTER_COLORS = [
+var RADIAL_DENSITY = 500;   // used in the RADIAL projection
+var CENTROID_SYMBOL = "+";  // symbol printed at centroid position
+var SHOW_BORDERS = true;    // show cluster coloring / borders
+var BORDER_ALPHA = 0.5;     // cluster border alpha
+var CLUSTER_COLORS = [      // cluster border color palette
     "0,0,255", //blue
     "238,130,238", //violet
     "0,250,154", //medium screen green
@@ -362,28 +373,13 @@ var CLUSTER_COLORS = [
     "220,20,60", //crimson
     "255,255,0", //yellow
     "0,255,255", // dark cyan
-  // "255, 0, 0",
-  // "0, 255, 0",
-  // "0, 0, 255",
-  // "0, 157, 157",
-  // "243, 200, 1",
-  // "183, 1, 255",
-  // "58, 236, 3",
-  // "4, 221, 245",
-  // "243, 169, 10",
 ];
-CENTROID_SYMBOL = "+";
-var SHOW_BORDERS = true;
-var RADIAL_DENSITY = 500; // used in the RADIAL projection
 
+// Test clustering with 3 clusters and 10 iterations
+//catalog.cluster(3, Measures.euclidean, tagscut, 10, resultfunc);
 
-options = {taglist: ["models", "preparations", "aesthesis"]};
+// ****COMMANDS***
 
-// Initialize the OSC connection to the SO_Server
-var osc = new SimpleOSC("localhost", 8080);
-osc.init(function() {
-  // Put code here that needs to run once an OSC connection is established
-  //catalog.cluster(CLUSTERS, MEASUREMENT, cut, ITERATIONS, resultfunc, BREAKPOINTS, osc, console.log);
-});
+randomize(); // randomize example divs
 
 </script>

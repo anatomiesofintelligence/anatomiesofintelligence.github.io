@@ -7,9 +7,9 @@ entry-date: 2019-12-6
 entry-by: Joana Chicau
 source-url: https://wellcomecollection.org/works/pjfw5hkc
 source:
-copyright: Creative Commons Attribution (CC BY 4.0) 
-tags: [body, anatomy, dissection, disgust]
-weights: [0.89, 0.91, 0.90, 0.88]
+copyright: Creative Commons Attribution (CC BY 4.0)
+tags: [body, anatomy, dissection]
+weights: [0.89, 0.91, 0.90]
 
 summary: "Dissection of a male cadaver, 14th century."
 ---
