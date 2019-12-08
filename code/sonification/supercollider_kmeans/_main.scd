@@ -17,6 +17,10 @@ Xex.start;
 OSCFunc.trace(true);
 OSCFunc.trace(false);
 
+NetAddr.localAddr
+
+OSCdef(\status, {|msg| msg.postln}, "/browser/status");
+
 (
 OSCdef(\status, {|msg| msg.postln}, "/browser/status");
 OSCdef(\browser, {|msg|

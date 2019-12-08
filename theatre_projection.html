@@ -46,7 +46,7 @@ catalog.addEntry(newexample);
 <script>
 // ***ADDITIONAL FUNCTIONS****
 
-function clean_surface() { location.reload() };
+function clean_surface() { location.reload() }
 
 // Get all entry divs, optionally by a specific cluster
 function getEntryDivs(cluster=-1) {
@@ -124,7 +124,7 @@ function run_tests() {
   console.log("NORMALIZED features:",normalized);
   denormalized = km.denormalize(normalized);
   console.log("DENORMALIZED features:",denormalized);
-};
+}
 
 
 function randomColorString() {
@@ -322,8 +322,7 @@ function help() {
     catalog.cluster(CLUSTERS, MEASUREMENT, cut, ITERATIONS, resultfunc, BREAKPOINTS, osc, console.log);
   `;
   console.log(str);
-
-};
+}
 
 </script>
 
