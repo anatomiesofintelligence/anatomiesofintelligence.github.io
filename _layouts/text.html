@@ -11,7 +11,7 @@ entry-type: text
 <span class="emphasis">{{ content }}</span>
 <hr>
 <p>Source: {{ page.source }}</p>
-<p>Source URL: {{ page.source-url }}</p>
+<p>Source URL: <a href="{{ page.source-url }}" target="_blank">{{ page.source-url }}</a></p>
 <p>ID: {{ page.title | slugify:"latin" }}</p>
 <p>Categories: {% for cat in page.categories %}{{ cat }} | {% endfor %}</p>
 <p>Tags: {% for tag in page.tags %}{{ tag }} | {% endfor %}</p>
