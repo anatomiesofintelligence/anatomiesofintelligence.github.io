@@ -116,7 +116,7 @@ function run_tests() {
   fv2 = e2.getFeatures(options);
   console.log("Features of",e1,"are",fv1);
   console.log("Features of",e2,"are",fv2);
-  ex_as_feat = catalog.examplesAsFeatures(options);
+  ex_as_feat = catalog.entriesAsFeatures(options);
   console.log("All entries as feature vectors based on the given cut:", ex_as_feat);
 
   // Test distance measurements.. right now we only have the Euclidean standard
@@ -126,9 +126,9 @@ function run_tests() {
 
   // Test some of the statistical functions used in the KMeans algorithm
   km = new KMeans(3, options);
-  feature_avg = km.mean(easf);
+  feature_avg = km.mean(ex_as_feat);
   console.log("MEAN of features:", feature_avg);
-  normalized = km.normalize(easf);
+  normalized = km.normalize(ex_as_feat);
   console.log("NORMALIZED features:",normalized);
   denormalized = km.denormalize(normalized);
   console.log("DENORMALIZED features:",denormalized);
@@ -139,18 +139,26 @@ function randomColorString() {
   return ""+Math.round(Math.random() * 255)+", "+Math.round(Math.random() * 255)+", "+Math.round(Math.random() * 255);
 }
 
+// PRIMARY PROJECTION CODE
 function projectCatalog(projectionType, clusters, centroids, options) {
   let centroid_divs = [];
   let centroidnumber = 0;
   let borderColor, j=0;
 
+  // update cluster and centroid globals
+  CLUSTERS = clusters;
+  CENTROIDS = centroids;
+  project(projectionType, options);
+}
+
+function project(projection, options={}) {
   // TODO: add error checking for null values in the options dictionary
-  let showBorders = options.showBorders;
-  let borderAlpha = options.borderAlpha;
-  let centroidSymbol = options.centroidSymbol;
-  let priorityFeatures = options.prioritizeFeatures; // used in simple 2D to determine dimensions to plot
-  let scaleDistance = options.scaleDistance; // used for radial density
-  let featuresDefinition = options.featuresDefinition;
+  let showBorders = options.showBorders || SHOW_BORDERS;
+  let borderAlpha = options.borderAlpha || BORDER_ALPHA;
+  let centroidSymbol = options.centroidSymbol || CENTROID_SYMBOL;
+  let priorityFeatures = options.prioritizeFeatures || PROJECTION_DIMENSIONS; // used in simple 2D to determine dimensions to plot
+  let scaleDistance = options.scaleDistance || RADIAL_DENSITY; // used for radial density
+  let featuresDefinition = options.featuresDefinition || PROJECTION_DIMENSIONS;
 
   // calculate priority dimensions from feature names
   let priorityDims = [], dim;
@@ -159,29 +167,36 @@ function projectCatalog(projectionType, clusters, centroids, options) {
     if(dim != -1) {
       priorityDims.push(dim);
     } else {
-      console.log("ERROR: Could not find priority feature named '"+feature+"'");
+      console.log("ERROR: Could not find feature named '"+feature+"' in available features to project");
     }
   }
   if(priorityDims.length < 2) {
     priorityDims = [0,1]; // use first and second dimension by default
-    console.log("WARNING: No priority features specified, using first and second features");
+    console.log("WARNING: No priority features specified, projecting using first and second features");
   }
 
-
   switch(projectionType) {
+    // PROJECTION TYPE 2D PRINCIPAL COMPONENT ANALYSIS
+    case Projections.PCA2D:
+      console.log("PCA 2D PROJECTION");
+    break;
+    case Projections.RANDOM:
+      console.log("Random Scatter Projection");
+    break;
+    // PROJECTION TYPE SIMPLE2D
     case Projections.SIMPLE2D: // 2D projection just looks at the first two features..
-      console.log("SIMPLE 2D PROJECTION");
-      //console.log(clusters);
       let dimX = priorityDims[0], dimY = priorityDims[1];
+      console.log("SIMPLE 2D PROJECTION USING FEATURES " + dimX + " and " + dimY);
 
       for(let centroid of centroids) { // MAKE CENTROID DIVS
         newdiv = document.createElement("div");
         newdiv.id = centroid.example;
         newdiv.className = "centroid";
         newdiv.style.position = "absolute";
+
         // DEPENDS ON CENTROID X/Y VALUES
-        newdiv.style.top = (centroid.features[priorityDims[0]] * window.innerHeight) + 'px';
-        newdiv.style.left = (centroid.features[priorityDims[1]] * window.innerWidth) + 'px';
+        newdiv.style.top = (centroid.features[dimX] * window.innerHeight) + 'px';
+        newdiv.style.left = (centroid.features[dimY] * window.innerWidth) + 'px';
 
         // Centroid Color Calculation
         if(showBorders) {
@@ -223,9 +238,10 @@ function projectCatalog(projectionType, clusters, centroids, options) {
       }
     // END 2D PROJECTION
     break;
+    // PROJECTION TYPE: RADIUS
     case Projections.RADIUS: // no projection, use old circle layout
     default:
-      console.log("NO PROJECTION");
+      console.log("RADIUS PROJECTION");
       for(let centroid of centroids) {
           newdiv = document.createElement("div");
           newtext = document.createTextNode(centroidSymbol);
@@ -302,6 +318,10 @@ function resultfunc(err, clusters, centroids, featuresDef) {
       scaleDistance: RADIAL_DENSITY,
       featuresDefinition: featuresDef,
     };
+
+    console.log("CLUSTERS", clusters);
+    console.log("CENTROIDS", centroids);
+
     projectCatalog(PROJECTION_TYPE, clusters, centroids, opts);
 
 };
@@ -350,8 +370,10 @@ var CLUSTERS = 3;
 var MEASUREMENT = Measures.euclidean;
 var ITERATIONS = 5;
 var RESULTFUNC = resultfunc;  // callback function to run when clustering is done
-var CLUSTER_DIMENSIONS = ["model", "aesthesis"];
+var CLUSTER_DIMENSIONS = catalog.allTags;
 var CLUSTER_OPTIONS = {taglist: CLUSTER_DIMENSIONS};
+var CLUSTERS = [];    // populated after running catalog.cluster()
+var CENTROIDS = [];   // populated after running catalog.cluster()
 
 // Algorithmic time parameters
 var BREAKPOINTS = false;   // break the algorithm up into temporal chunks
@@ -359,6 +381,7 @@ var TEMPO = 0.5;          // timescale/tempo speed of algorithm steps
 
 // Visualization parameters
 var PROJECTION_TYPE = Projections.SIMPLE2D;
+var PROJECTION_DIMENSIONS = ["aesthesis", "preparations"]
 var RADIAL_DENSITY = 500;   // used in the RADIAL projection
 var CENTROID_SYMBOL = "+";  // symbol printed at centroid position
 var SHOW_BORDERS = true;    // show cluster coloring / borders

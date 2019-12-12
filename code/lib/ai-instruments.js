@@ -32,6 +32,7 @@ var Measures = new Object();
 Measures.euclidean = function(a, b, options) {
   var sum = 0;
   var n, feature_list;
+  console.log("EUCLIDEAN: ",a,b,options);
   a = a.features;
   b = b.features;
   if(typeof a == "number") { // special case where feature vec is a single value
