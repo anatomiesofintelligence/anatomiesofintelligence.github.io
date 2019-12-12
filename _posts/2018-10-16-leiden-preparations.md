@@ -21,10 +21,7 @@ summary: Collection of anatomical preparations at Boerhaave Museum. See detail&#
 image: leidenmuseum/preparations.jpg
 
 # all tags separated by commas
-tags: [elegance , preparations, aesthesis]
-weights: [0.5, 0.89, 0.54]
-categories: [gesture]
-
-# permalink: /entry1/
+tags: [elegance , preparations, aesthesis, preparation, collection, collections]
+weights: [0.5, 0.89, 0.54, 0.778, 0.665, 0.345]
 
 ---

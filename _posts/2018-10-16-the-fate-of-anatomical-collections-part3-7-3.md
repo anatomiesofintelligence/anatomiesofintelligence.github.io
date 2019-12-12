@@ -17,11 +17,8 @@ copyright: Rina Knoe  and Robert Zwijnenberg have asserted their right under the
 summary: Excerpt from The Fate of Anatomical Collections, Chapter 5 Resilient Collections &#58; The long life of Leiden’s earliest Anatomical Collections by Tim Huisman
 
 # all tags separated by commas
-tags: [demonstrations, theatre, collections, history]
-weights: [0.9, 0.16, 0.799, 0.761]
-categories: [systems-of-knowing]
-
-# permalink: /entry1/
+tags: [demonstration, theatre, collections, history, epistemology, collection, preparation]
+weights: [0.9, 0.16, 0.799, 0.761, 0.87, 0.344, 0.666]
 
 ---
 

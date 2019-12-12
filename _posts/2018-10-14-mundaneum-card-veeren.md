@@ -22,11 +22,7 @@ copyright: CC-BY Joana Chicau
 summary: Entry from Universal Card Classification System, Mundaneum Archive, Mons BE. Founded 1895 by Paul Otlet and Henri La Fontaine.
 
 # all tags separated by commas
-tags: [archive, taxonomy, classification]
-weights: [0.8, 0.9, 0.4]
-
-categories: [corpus]
-
-# permalink: /entry1/
+tags: [archive, taxonomy, classification, collection]
+weights: [0.8, 0.9, 0.57, 0.23]
 
 ---

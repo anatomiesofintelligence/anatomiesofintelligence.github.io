@@ -16,8 +16,8 @@ summary: Process flow of computation during training of a neural-network model. 
 image: algorithms/forward-back-propagation-neuralnetworks.gif
 
 # all tags separated by commas
-tags: [training, neural networks]
-weights: [0.95, 0.99]
+tags: [training, neural networks, learning, models]
+weights: [0.95, 0.99, 0.11, 0.23]
 categories: modelling
 
 # permalink: /entry1/

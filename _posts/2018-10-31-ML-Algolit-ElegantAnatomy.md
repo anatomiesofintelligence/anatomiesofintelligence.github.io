@@ -21,8 +21,8 @@ summary: Word2vec python algorithm using Elegant Anatomy book as training set in
 image: poster/ML-Algolit-ElegantAnatomy.png
 
 # all tags separated by commas
-tags: [models, dissection, python, word2vec]
-weights: [0.76, 0.3, 0.8 , 1.0]
+tags: [models, dissection, python, word2vec, elegance, aesthesis]
+weights: [0.76, 0.3, 0.8 , 1.0, 0.7, 0.477]
 categories: [systems-of-knowing, modelling]
 
 # permalink: /entry1/

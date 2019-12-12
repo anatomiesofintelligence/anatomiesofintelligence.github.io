@@ -16,10 +16,8 @@ copyright:
 summary: Excerpt on Aesthesis and the epistemology of 18th century anatomical research. From Elegant Anatomy, Marieke M. A. Hendriksen
 
 # all tags separated by commas
-tags: [aesthesis, preparations]
-weights: [1.0, 0.6]
-
-categories: [systems-of-knowing]
+tags: [aesthesis, preparations, elegance]
+weights: [1.0, 0.6, 0.67]
 
 # permalink: /entry1/
 

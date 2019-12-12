@@ -15,8 +15,8 @@ copyright: 2015 by Koninklijke Brill nv, Leiden, The Netherlands.
 summary: Excerpt on Aesthesis and the epistemology of 18th century anatomical research. From Elegant Anatomy, Marieke M. A. Hendriksen
 
 # all tags separated by commas
-tags: [domestication, commodification, colonialism, history, aesthesis]
-weights: [0.6, 0.97, 0.4, 0.1, 0.1]
+tags: [domestication, commodification, colonialism, history, aesthesis, elegance]
+weights: [0.6, 0.97, 0.4, 0.1, 0.1, 0.36]
 categories: [systems-of-knowing]
 
 # permalink: /entry1/

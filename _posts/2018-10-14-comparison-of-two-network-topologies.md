@@ -21,10 +21,6 @@ summary: Comparison of a fully-connected network topology (A) and an Erdos-Renyi
 image: poster/Comparison-of-a-fully-connected-network-topology-A-and-an-Erdos-Renyi-graph.jpg
 
 # all tags separated by commas
-tags: [models, representations]
-weights: [0.67, 0.43]
-categories: [systems-of-knowing, modelling]
-
-# permalink: /entry1/
-
+tags: [models, representations, learning, network, graph]
+weights: [0.67, 0.43, 0.642, 0.777, 0.9678]
 ---

@@ -18,10 +18,7 @@ summary: Comparison of k-means and EM on artificial data. Using the variances, t
 image: algorithms/ClusterAnalysis_Mouse-Dataset.png
 
 # all tags separated by commas
-tags: [training, grouping, algorithm]
-weights: [0.4, 0.9, 0.67]
-categories: [gesture, modelling]
-
-# permalink: /entry1/
+tags: [training, grouping, algorithm, clustering, visualization, collection, preparation]
+weights: [0.4, 0.9, 0.67, 0.77, 0.42, 0.74, 0.16]
 
 ---

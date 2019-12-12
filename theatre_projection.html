@@ -340,11 +340,11 @@ function resultfunc(err, clusters, centroids, featuresDef) {
       showBorders: SHOW_BORDERS,
       borderAlpha: BORDER_ALPHA,
       centroidSymbol: CENTROID_SYMBOL,
-      prioritizeFeatures: CLUSTER_DIMENSIONS,
+      prioritizeFeatures: featuresDef,
       scaleDistance: RADIAL_DENSITY,
       featuresDefinition: featuresDef,
     };
-
+    CLUSTER_DIMENSIONS = featuresDef;
     CENTROIDS = centroids;
     CLUSTERS = clusters;
     project(PROJECTION_TYPE, opts, centroids, clusters);
