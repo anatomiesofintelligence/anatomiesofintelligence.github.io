@@ -103,6 +103,10 @@ We start with a simple gesture: cutting. To cut open, to examine, in order to de
 
 * [Image: Euclidean Distance](https://anatomiesofintelligence.github.io/posts/2019-09-24-Euclidean_Distance)
 
+* [Image: PCA Projection of Spherical Cloud](https://anatomiesofintelligence.github.io/posts/2019-12-8-principal-component-analysis-cloud-projections
+)
+
+
 * [Image:  Acu-moxa aid, landmark measurements, Chinese MS, late Qing](https://anatomiesofintelligence.github.io/posts/2019-09-24-Landmark-Body-Chinese)
 
 * [Image: Skull Profiles](https://anatomiesofintelligence.github.io/posts/2019-09-24-Skulls-Profiles)
