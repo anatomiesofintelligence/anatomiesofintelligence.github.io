@@ -58,11 +58,11 @@ We start with a simple gesture: cutting. To cut open, to examine, in order to de
 
 > Learning from each cut, driven by curiosity and the desire to see beyond the surface level, the skin, pourous, our primary interface to the world. Inter-facing scores and scripts, inter-, in between gestures and codes. 
 
-* [](https://anatomiesofintelligence.github.io/posts/2019-09-2-Horizontal-section-brain)
+* [Image: Horizontal section through brain](https://anatomiesofintelligence.github.io/posts/2019-09-2-Horizontal-section-brain)
 
 [Jon 8.12.19] A slice into multidimensional space
 
-* [Image: Horizontal section through brain](https://anatomiesofintelligence.github.io/posts/2019-12-8-curse-of-dimensionality)
+* [Curse of Dimensionality](https://anatomiesofintelligence.github.io/posts/2019-12-8-curse-of-dimensionality)
 
 > Like a mapping exercise. The location of anatomical structures can be described with relation to different anatomical landmarks. Here the relationship is based on euclidean distancing: measuring the distance between each entry; while having no sense of direction nor orientation. 
 
