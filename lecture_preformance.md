@@ -17,9 +17,9 @@ catalog.cluster(2, Measures.euclidean, ["theatre", "aesthesis", "spectacle"], 10
 
 ## Aesthesis
 
-**PROJECTION_TYPE = Projections.SIMPLE2D**
+**catalog.cluster(3, Measures.euclidean, ["elegance", "aesthesis"], 20, resultfunc, true, osc, console.log);**
 
-**catalog.cluster(3, Measures.euclidean, [“elegance”, "aesthesis"], 20, resultfunc, true, osc, console.log);**
+**PROJECTION_TYPE = Projections.SIMPLE2D**
 
 * [The Concept of Aesthesis](https://anatomiesofintelligence.github.io/posts/2018-10-14-aesthesis-elegant-anatomy)
 
@@ -33,6 +33,12 @@ catalog.cluster(2, Measures.euclidean, ["theatre", "aesthesis", "spectacle"], 10
 
 
 ## Gestures of — Collection and Preparation
+
+**clean_surface()**
+
+**catalog.cluster(3, Measures.euclidean, ["preparation", "collection"], 20, resultfunc, true, osc, console.log);**
+
+**PROJECTION_TYPE = Projections.SIMPLE2D**
 
 * [Ontology Building](https://anatomiesofintelligence.github.io/posts/2019-06-21-ontology-building)
 
@@ -67,6 +73,12 @@ catalog.cluster(2, Measures.euclidean, ["theatre", "aesthesis", "spectacle"], 10
 
 ## The Gesture of — cutting;
 
+**clean_surface()**
+
+**catalog.cluster(3, Measures.euclidean, ["cutting", "measurement"], 20, resultfunc, true, osc, console.log);**
+
+**PROJECTION_TYPE = Projections.SIMPLE2D**
+
 We start with a simple gesture: cutting. To cut open, to examine, in order to describe each organ and identify their functions, while discovering its relations to the whole — from organ to organisation, organicity. Some call it an empirical system to perform systematic dissection of the human body. 
 
 * [Image: Dissection - 14th century](https://anatomiesofintelligence.github.io/posts/2019-12-6-dissection)
@@ -98,6 +110,12 @@ We start with a simple gesture: cutting. To cut open, to examine, in order to de
 * [K-means evaluation strategies](https://anatomiesofintelligence.github.io/posts/2019-06-21-kmeans-initialization-strategies)
 
 ## The Theatre & the Spectacle: _Staging Bodies of AI_ 
+
+**clean_surface()**
+
+**catalog.cluster(3, Measures.euclidean, ["theatre", "spectacle"], 20, resultfunc, true, osc, console.log);**
+
+**PROJECTION_TYPE = Projections.SIMPLE2D**
 
 * [Anatomical Theatre Leiden](https://anatomiesofintelligence.github.io/posts/2018-10-14-anatomical-theatre-leiden)
 * [Anatomical Theatre — replica](https://anatomiesofintelligence.github.io/posts/2018-10-16-leiden-anatomical-theatre-replica)
