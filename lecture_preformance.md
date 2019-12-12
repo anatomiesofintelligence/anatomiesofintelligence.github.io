@@ -1,4 +1,4 @@
-## Anatomic Narrative {in progress}
+# Anatomic Narrative {in progress}
 
 <!---
 function openReferences () {
@@ -15,9 +15,10 @@ or thematic clustering:
 catalog.cluster(2, Measures.euclidean, ["theatre", "aesthesis", "spectacle"], 10, resultfunc, false)
 -->
 
-#### Aesthesis
+## Aesthesis
 
 **PROJECTION_TYPE = Projections.SIMPLE2D**
+
 **catalog.cluster(3, Measures.euclidean, [“elegance”, "aesthesis"], 20, resultfunc, true, osc, console.log);**
 
 * [The Concept of Aesthesis](https://anatomiesofintelligence.github.io/posts/2018-10-14-aesthesis-elegant-anatomy)
@@ -31,7 +32,7 @@ catalog.cluster(2, Measures.euclidean, ["theatre", "aesthesis", "spectacle"], 10
 > The concept of “aesthesis” has been especially useful in shaping our work; aesthesis is a somewhat obscure term occurring in eighteenth-century European medical and philosophical dictionaries describing “the faculty or power of sensation” in scientific practice. Our concept of aesthesis shapes a methodology for this project that looks at the “sensory power” displayed by machine learning algorithms, their representations and sets of training data. Our aim is to engage with different modes of performativity by which these aesthetics emerge, experimenting with different orientations for observation and knowing, and creating a specific vocabulary for our methods based in an anatomical arrangement of parts and systems.
 
 
-#### Gestures of — Collection and Preparation
+## Gestures of — Collection and Preparation
 
 * [Ontology Building](https://anatomiesofintelligence.github.io/posts/2019-06-21-ontology-building)
 
@@ -61,7 +62,7 @@ catalog.cluster(2, Measures.euclidean, ["theatre", "aesthesis", "spectacle"], 10
 [Jon 8.12.19] Theory: Can we rethink clusering as collecting? A clustering, an ontology created, as a cabinet of curiosities.
 
 
-#### The Gesture of — cutting;
+## The Gesture of — cutting;
 
 We start with a simple gesture: cutting. To cut open, to examine, in order to describe each organ and identify their functions, while discovering its relations to the whole — from organ to organisation, organicity. Some call it an empirical system to perform systematic dissection of the human body. 
 
@@ -93,7 +94,7 @@ We start with a simple gesture: cutting. To cut open, to examine, in order to de
 
 * [K-means evaluation strategies](https://anatomiesofintelligence.github.io/posts/2019-06-21-kmeans-initialization-strategies)
 
-#### The Theatre & the Spectacle: _Staging Bodies of AI_ 
+## The Theatre & the Spectacle: _Staging Bodies of AI_ 
 
 * [Anatomical Theatre Leiden](https://anatomiesofintelligence.github.io/posts/2018-10-14-anatomical-theatre-leiden)
 * [Anatomical Theatre — replica](https://anatomiesofintelligence.github.io/posts/2018-10-16-leiden-anatomical-theatre-replica)
