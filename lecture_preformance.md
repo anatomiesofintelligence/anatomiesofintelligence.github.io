@@ -17,6 +17,9 @@ catalog.cluster(2, Measures.euclidean, ["theatre", "aesthesis", "spectacle"], 10
 
 #### Aesthesis
 
+**PROJECTION_TYPE = Projections.SIMPLE2D**
+**catalog.cluster(3, Measures.euclidean, [“elegance”, "aesthesis"], 20, resultfunc, true, osc, console.log);**
+
 * [The Concept of Aesthesis](https://anatomiesofintelligence.github.io/posts/2018-10-14-aesthesis-elegant-anatomy)
 
 > “Aesthesis in eighteenth-century anatomy was characterized by several factors: gaining knowledge through sensory perception; searching for perfection and elegance; dealing with disgust by either using visual or literary strategies; seeking systems and meanings in the negatives of deformation and pathologies; and a stabilization and categorization of the human body through commodification and decoration.” Source: Elegant Anatomy, The Eighteenth-Century Leiden Anatomical Collections. Marieke M. A. Hendriksen (2015)
@@ -25,23 +28,31 @@ catalog.cluster(2, Measures.euclidean, ["theatre", "aesthesis", "spectacle"], 10
 
 [Jo 12.12.19]  notes on artistic research method: concept of aesthesis/ aesthesia  / reliance on the senses / performance and performativy: a live and embodied  but also rule-based practice of ontology-making; rethinking and experimenting with scales and orientations for observation, affective response & affinity - and how such observations can be performed / presented as intimate / tacit understanding; endless practice, through trial and error, with hands-on work..
 
+> The concept of “aesthesis” has been especially useful in shaping our work; aesthesis is a somewhat obscure term occurring in eighteenth-century European medical and philosophical dictionaries describing “the faculty or power of sensation” in scientific practice. Our concept of aesthesis shapes a methodology for this project that looks at the “sensory power” displayed by machine learning algorithms, their representations and sets of training data. Our aim is to engage with different modes of performativity by which these aesthetics emerge, experimenting with different orientations for observation and knowing, and creating a specific vocabulary for our methods based in an anatomical arrangement of parts and systems.
+
+
 #### Gestures of — Collection and Preparation
 
-> How could this kaleidoscopic ensemble, in which skeletons and anatomical preparations accounted for only a relatively small share compared to the vast bulk of naturalia and artificialia, have functioned in combination with the anatomical demonstrations and instruction that also took place at this location? Anatomy in the early seventeenth century can be considered an investigation by means of the fabric of the dead human body into the essence of the human being, namely the evidence it shows of God’s in nite wisdom and providence. Man – the pinnacle of Creation – is the most perfect example of God’s work in the world.
+* [Ontology Building](https://anatomiesofintelligence.github.io/posts/2019-06-21-ontology-building)
+
+> This catalog is a living research document into the history and present of anatomical science, as well as “anatomies” of artificial intelligence algorithms and data stewardship practices.
+
+> The catalogue is also itself a reflection on the process by which collections of anatomical specimens were constructed in the formative decades of European/Western anatomical science. By collecting our research exemplars as a demonstrable archive, we attempt to explore the process of preparation and collection that reifies a collection of information into a body of knowledge, a collection that can be consumed and an ontology created. 
 
 * [God's Work](http://anatomiesofintelligence.github.io/posts/2018-10-16-the-fate-of-anatomical-collections-part3-7-3)
 
 * [Image: Human-Myth](https://anatomiesofintelligence.github.io/posts/2019-09-24-Human-Myth)
 
-[Jon 8.12.19] Botany and the naturalist as closely related sciences - a mention here of 18th century anatomy, doingGod's work and the exotic;
+> How could this kaleidoscopic ensemble, in which skeletons and anatomical preparations accounted for only a relatively small share compared to the vast bulk of naturalia and artificialia, have functioned in combination with the anatomical demonstrations and instruction that also took place at this location? Anatomy in the early seventeenth century can be considered an investigation by means of the fabric of the dead human body into the essence of the human being, namely the evidence it shows of God’s in nite wisdom and providence. Man – the pinnacle of Creation – is the most perfect example of God’s work in the world.
+
 
 * [Image: Leiden Preparations](https://anatomiesofintelligence.github.io/posts/2018-10-16-leiden-preparations)
 
 * [Image: Botanical and zoological Preparations](https://anatomiesofintelligence.github.io/posts/2019-12-6-botanical_preparations)
 
-[Jo 12.12.19] Agents and agencies: anatomic preparations — models and its users: anatomists and teachers, curators and audiences mapping presences and the absences;
+[Jon 8.12.19] Botany and the naturalist as closely related sciences - a mention here of 18th century anatomy, doingGod's work and the exotic;
 
-* [Representation of Preparations and Models](https://anatomiesofintelligence.github.io/posts/2018-10-16-the-fate-of-anatomical-collections-part3-7-2)
+[Jo 12.12.19] Agents and agencies: anatomic preparations — models and its users: anatomists and teachers, curators and audiences mapping presences and the absences;
 
 > "The term "k-means" was first used by James MacQueen in 1967 as part of his paper on "Some methods for classification and analysis of multivariate observations". The standard algorithm was also used in Bell Labs as part of a technique in pulse code modulation in 1957. It was also published by In 1965 by E. W. Forgy and typically is also known as the Lloyd-Forgy method."
 
