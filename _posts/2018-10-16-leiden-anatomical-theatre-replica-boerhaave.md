@@ -20,10 +20,7 @@ summary: Replica of Anatomical Theatre originally built for Leiden University in
 image: leidenmuseum/leidenreplica.jpg
 
 # all tags separated by commas
-tags: [theatre, spectacle, skeleton, Leiden]
-weights: [0.99, 0.65, 0.65, 0.67]
-categories: [systems-of-knowing]
-
-# permalink: /entry1/
+tags: [theatre, spectacle, skeleton, Leiden, monsters, perfection, collections, Boerhaave]
+weights: [0.99, 0.65, 0.65, 0.67, 0.23, 0.12, 0.24, 0.78]
 
 ---

@@ -14,8 +14,8 @@ copyright: Marieke Hendriksen MA MRes, Leiden University
 summary: Research project description of Collections of Perfection.
 
 # all tags separated by commas
-tags: [preparations, aesthesis, body, collections, monsters, perfection, proportions, collection, preparation]
-weights: [0.911, 0.43, 0.49, 0.31, 0.12, 0.78, 0.89, 0.96, 0.59, 0.83]
+tags: [preparations, aesthesis, body, collections, monsters, perfection, proportions, collection, preparation, spectacle, Leiden]
+weights: [0.911, 0.43, 0.49, 0.31, 0.12, 0.78, 0.89, 0.96, 0.59, 0.83, 0.22, 0.49]
 categories: [systems-of-knowing]
 
 # permalink: /entry1/

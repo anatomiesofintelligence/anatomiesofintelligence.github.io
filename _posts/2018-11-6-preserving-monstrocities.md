@@ -15,11 +15,8 @@ copyright: 2015 by Koninklijke Brill nv, Leiden, The Netherlands.
 summary: Excerpt from "Beautiful Monsters", chapter 5 at Elegant Anatomy, Marieke M. A. Hendriksen
 
 # all tags separated by commas
-tags: [preparations, selection, monsters, meaning]
-weights: [0.88, 0.972, 0.6999, 0.2]
-categories: [systems-of-knowing]
-
-# permalink: /entry1/
+tags: [preparations, selection, monsters, meaning, Leiden, collection, aesthesis, disgust, spectacle]
+weights: [0.88, 0.972, 0.6999, 0.2, 0.544, 0.333, 0.622, 0.7777, 0.21]
 
 ---
 By the late eighteenth century, the making of anatomical preparations was still an act of selection, accentuation, and seeking beauty, even in the deformed and the ugly. By preserving monstrosities like these in preparations, and averting the immediate danger implied by the visceral disgust such specimens would provoke unpreserved, their makers shaped them into didactic instruments and purveyors of meaning.

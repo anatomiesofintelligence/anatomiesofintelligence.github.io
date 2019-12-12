@@ -12,8 +12,8 @@ copyright: 2015 by Koninklijke Brill nv, Leiden, The Netherlands.
 summary: Excerpt from "Beautiful Monsters", chapter 5 at Elegant Anatomy, Marieke M. A. Hendriksen
 
 # all tags separated by commas
-tags: [aesthesis, preparations, tacit, monsters, sensory perception, freakish, categories, collection, preparation]
-weights: [1.0, 0.6, 0.22, 0.7988, 0.21, 0.81232, 0.901, 0.698, 0.91]
+tags: [aesthesis, preparation, tacit, monsters, sensory perception, freakish, categories, collection, preparation, spectacle, Leiden]
+weights: [1.0, 0.6, 0.22, 0.7988, 0.21, 0.81232, 0.901, 0.698, 0.91, 0.12, 0.333]
 
 ---
 More importantly, from the way Van Doeveren dealt with monsters it appears he tacitly aimed to change the disgusting monsters and severed, decaying body parts into tasteless, odorless preparations through aesthesis. He used his own observations and sensory perceptions in as many cases as possible, both human and animal, to seek beauty, purpose, harmony, and regularity in what had long been viewed as freakish incidents or even the devils work. In presenting the monsters as plain, natural, purposeful, inoffensive objects, Van Doeveren implicitly showed that they were not so much ugly, horrible, or disgusting but rather representatives of thus-far unknown categories.

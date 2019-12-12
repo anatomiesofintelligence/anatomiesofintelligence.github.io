@@ -8,8 +8,8 @@ entry-by: Joana Chicau
 source-url: https://wellcomecollection.org/works/sgggvfas
 source:
 copyright: Creative Commons Attribution (CC BY 4.0)
-tags: [body, anatomy, monster, instruments, collections, wellcome, collection, preparation]
-weights: [0.89, 0.91, 0.96, 0.99, 0.24, 0.55, 0.81, 0.02]
+tags: [body, anatomy, monsters, instruments, collections, wellcome, collection, preparation, spectacle]
+weights: [0.89, 0.91, 0.96, 0.99, 0.24, 0.55, 0.81, 0.02, 0.05]
 
 summary: "Parts of a monster and instruments. Credit: Wellcome Collection. CC BY"
 ---
