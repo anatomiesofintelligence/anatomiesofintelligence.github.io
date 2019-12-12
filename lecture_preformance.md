@@ -51,7 +51,9 @@ catalog.cluster(2, Measures.euclidean, ["theatre", "aesthesis", "spectacle"], 10
 
 * [Image: Botanical and zoological Preparations](https://anatomiesofintelligence.github.io/posts/2019-12-6-botanical_preparations)
 
-[Jon 8.12.19] Botany and the naturalist as closely related sciences - a mention here of 18th century anatomy, doingGod's work and the exotic;
+* [Commondification](https://anatomiesofintelligence.github.io/posts/2018-10-29-domestication-elegant-anatomy)
+
+[Jon 8.12.19] Mention the colonial frame around the trading of anatomic pieces; Also botany and the naturalist as closely related sciences - a mention here of 18th century anatomy, doingGod's work and the exotic;
 
 [Jo 12.12.19] Agents and agencies: anatomic preparations — models and its users: anatomists and teachers, curators and audiences mapping presences and the absences;
 
