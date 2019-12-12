@@ -51,7 +51,7 @@ catalog.cluster(2, Measures.euclidean, ["theatre", "aesthesis", "spectacle"], 10
 
 * [Image: Botanical and zoological Preparations](https://anatomiesofintelligence.github.io/posts/2019-12-6-botanical_preparations)
 
-* [Commondification](https://anatomiesofintelligence.github.io/posts/2018-10-29-domestication-elegant-anatomy)
+* [Commodification](https://anatomiesofintelligence.github.io/posts/2018-10-29-domestication-elegant-anatomy)
 
 [Jon 8.12.19] Mention the colonial frame around the trading of anatomic pieces; Also botany and the naturalist as closely related sciences - a mention here of 18th century anatomy, doingGod's work and the exotic;
 
@@ -60,6 +60,7 @@ catalog.cluster(2, Measures.euclidean, ["theatre", "aesthesis", "spectacle"], 10
 > "The term "k-means" was first used by James MacQueen in 1967 as part of his paper on "Some methods for classification and analysis of multivariate observations". The standard algorithm was also used in Bell Labs as part of a technique in pulse code modulation in 1957. It was also published by In 1965 by E. W. Forgy and typically is also known as the Lloyd-Forgy method."
 
 * [Image: cluster analysis results](https://anatomiesofintelligence.github.io/posts/2018-10-16-expectation-maximization-algorithm)
+* [Image: adding to a classification tree](https://anatomiesofintelligence.github.io/posts/2019-06-21-adding-concepts-to-existing-classification-tree)
 
 [Jon 8.12.19] Theory: Can we rethink clusering as collecting? A clustering, an ontology created, as a cabinet of curiosities.
 
