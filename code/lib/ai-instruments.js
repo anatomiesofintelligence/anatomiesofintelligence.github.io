@@ -32,7 +32,7 @@ var Measures = new Object();
 Measures.euclidean = function(a, b, options) {
   var sum = 0;
   var n, feature_list;
-  console.log("EUCLIDEAN: ",a,b,options);
+  //console.log("EUCLIDEAN: ",a,b,options);
   a = a.features;
   b = b.features;
   if(typeof a == "number") { // special case where feature vec is a single value
@@ -68,8 +68,12 @@ Util.sleep = function(time) {
 var Projections = new Object();
 
 // default projection, 1D distance between centroid and entry
-Projections.RADIUS = 0;
-Projections.SIMPLE2D = 1;
+Projections.RADIUS = 0; // simple distance-based radial projection around centroid
+Projections.SIMPLE2D = 1; // 2D plot using two features as X/Y axes
+Projections.RANDOM = 2; // randomize entry positions while keeping clustering indicators
+Projections.PCA2D = 3; // 2D principal component analysis
+Projections.NONE = 4; // entries stay where they are, only clusters change
+Projections.GRID = 5; // entries are laid out in a grid
 
 /***************************
 // END MEASUREMENT FUNCTIONS

@@ -1,6 +1,6 @@
 ---
 layout: performance
-permalink: theatre/kmeans2
+permalink: theatre/kmeans
 ---
 
 <div id="categories" style="display:none">
@@ -73,8 +73,38 @@ function getCentroidDivs() {
     return document.getElementsByClassName("centroid");
 }
 
-// Remove all centroids and randomize DIVs in the DOM
+// Remove all centroid divs and randomize entry positions, keeps clusters
 function randomize() {
+  let centroids, entries;
+  centroids = getCentroidDivs();
+  for(let i = centroids.length-1; i >= 0; i--) {
+    centroids[i].remove();
+  }
+  entries = getEntryDivs();
+  for(let entry of entries) {
+    entry.style.top = Math.floor(Math.random() * window.innerHeight) + 'px';
+    entry.style.left = Math.floor(Math.random() * window.innerWidth) + 'px';
+  }
+}
+
+// Remove all centroid divs and arrange entries in a grid, keeps clusters
+function grid() {
+  let centroids, entries;
+  let numRows, numCols, rowSpacing, colSpacing;
+  // TODO: implement grid spacing...!
+  centroids = getCentroidDivs();
+  for(let i = centroids.length-1; i >= 0; i--) {
+    centroids[i].remove();
+  }
+  entries = getEntryDivs();
+  for(let i = 0; i < entries.length; i++) {
+
+  }
+
+}
+
+// Remove all centroids, clusters, and randomize entries without reload
+function clean_surface2() {
   let centroids, entries;
   centroids = getCentroidDivs();
   for(let i = centroids.length-1; i >= 0; i--) {
@@ -87,7 +117,10 @@ function randomize() {
     entry.style.top = Math.floor(Math.random() * window.innerHeight) + 'px';
     entry.style.left = Math.floor(Math.random() * window.innerWidth) + 'px';
   }
+  CLUSTERS = null;
+  CENTROIDS = null;
 }
+
 
 function showPopup(url, name) {
   let win = window.open(url, name,'height=490,width=420,top=200,left=300,resizable=yes,scrollbars=yes,toolbar=no,location=no,status=no,menubar=no');
@@ -140,18 +173,8 @@ function randomColorString() {
 }
 
 // PRIMARY PROJECTION CODE
-function projectCatalog(projectionType, clusters, centroids, options) {
-  let centroid_divs = [];
-  let centroidnumber = 0;
-  let borderColor, j=0;
-
-  // update cluster and centroid globals
-  CLUSTERS = clusters;
-  CENTROIDS = centroids;
-  project(projectionType, options);
-}
-
-function project(projection, options={}) {
+function project(projectionType, options={}, centroids, clusters) {
+  let centroid_divs = [], borderColor, centroidnumber=0;
   // TODO: add error checking for null values in the options dictionary
   let showBorders = options.showBorders || SHOW_BORDERS;
   let borderAlpha = options.borderAlpha || BORDER_ALPHA;
@@ -160,14 +183,18 @@ function project(projection, options={}) {
   let scaleDistance = options.scaleDistance || RADIAL_DENSITY; // used for radial density
   let featuresDefinition = options.featuresDefinition || PROJECTION_DIMENSIONS;
 
+  if(!centroids) { centroids = CENTROIDS; }
+  if(!clusters) { clusters = CLUSTERS; }
+
   // calculate priority dimensions from feature names
   let priorityDims = [], dim;
   for(let feature of priorityFeatures) {
     dim = featuresDefinition.indexOf(feature);
     if(dim != -1) {
       priorityDims.push(dim);
+      console.log("Push priority dimension: ", dim);
     } else {
-      console.log("ERROR: Could not find feature named '"+feature+"' in available features to project");
+      //console.log("ERROR: Could not find feature named '"+feature+"' in available features to project");
     }
   }
   if(priorityDims.length < 2) {
@@ -175,20 +202,47 @@ function project(projection, options={}) {
     console.log("WARNING: No priority features specified, projecting using first and second features");
   }
 
+  // STYLE ENTRY DIVS FOR EACH CLUSTER ASSOCIATION
+  for(var i = 0; i < centroids.length; i++) {
+    for(let j = 0; j < clusters[i].length; j++) {
+      var entrydiv, item = clusters[i][j];
+      entrydiv = document.querySelector("#"+item.entry.id);
+      entrydiv.style.position = "absolute";
+      entrydiv.className = "refs " + "cluster" + i;
+
+      if(showBorders) {
+        if(CLUSTER_COLORS.length > i) {
+          borderColor = CLUSTER_COLORS[i];
+        } else {
+          borderColor = randomColorString();
+          CLUSTER_COLORS.push(borderColor);
+        }
+        entrydiv.style.border = "2px solid rgba(" + borderColor + ", " + borderAlpha + ")";
+      }
+    }
+  }
+
+
   switch(projectionType) {
     // PROJECTION TYPE 2D PRINCIPAL COMPONENT ANALYSIS
     case Projections.PCA2D:
       console.log("PCA 2D PROJECTION");
+      // TODO: implement PCA 2D projection
     break;
     case Projections.RANDOM:
-      console.log("Random Scatter Projection");
+      console.log("Random scattering of entries");
+      randomize();
+    break;
+    case Projections.NONE:
+      console.log("Clustering entries in place");
     break;
     // PROJECTION TYPE SIMPLE2D
     case Projections.SIMPLE2D: // 2D projection just looks at the first two features..
       let dimX = priorityDims[0], dimY = priorityDims[1];
-      console.log("SIMPLE 2D PROJECTION USING FEATURES " + dimX + " and " + dimY);
+      console.log("SIMPLE 2D PROJECTION USING FEATURES X:" + featuresDefinition[dimX] + " and Y:" + featuresDefinition[dimY]);
 
-      for(let centroid of centroids) { // MAKE CENTROID DIVS
+      // CREATE, STYLE & POSITION CENTROID DIVS
+      for(let centroid of centroids) {
         newdiv = document.createElement("div");
         newdiv.id = centroid.example;
         newdiv.className = "centroid";
@@ -200,38 +254,21 @@ function project(projection, options={}) {
 
         // Centroid Color Calculation
         if(showBorders) {
-          if(CLUSTER_COLORS.length > j) {
-            borderColor = CLUSTER_COLORS[j];
-          } else {
-            borderColor = randomColorString();
-            CLUSTER_COLORS.push(borderColor);
-          }
+          borderColor = CLUSTER_COLORS[centroidnumber];
           newdiv.style.color = "rgb("+borderColor+")";
-          j++;
         }
 
         newdiv.appendChild(document.createTextNode(centroidSymbol));
         document.body.appendChild(newdiv);
         centroid_divs.push(newdiv);
-        centroidnumber++;
       }
 
-      // CREATE ENTRY DIVS FOR EACH CLUSTER
-      for(var i = 0; i < centroid_divs.length; i++) {
+      // POSITION ENTRY DIVS FOR THIS PROJECTION
+      for(var i = 0; i < centroids.length; i++) {
         var x,y;
-        var cdiv = centroid_divs[i];
-        c = centroids[i];
         for(let j = 0; j < clusters[i].length; j++) {
           var entrydiv, item = clusters[i][j];
           entrydiv = document.querySelector("#"+item.entry.id);
-          entrydiv.style.position = "absolute";
-          entrydiv.className = "refs " + "cluster" + i;
-
-          if(showBorders) {
-            borderColor = CLUSTER_COLORS[i];
-            entrydiv.style.border = "2px solid rgba(" + borderColor + ", " + borderAlpha + ")";
-          }
-
           entrydiv.style.top = (item.features[priorityDims[0]] * window.innerHeight) + 'px';
           entrydiv.style.left = (item.features[priorityDims[1]] * window.innerWidth) + 'px';
         }
@@ -239,9 +276,10 @@ function project(projection, options={}) {
     // END 2D PROJECTION
     break;
     // PROJECTION TYPE: RADIUS
-    case Projections.RADIUS: // no projection, use old circle layout
+    case Projections.RADIUS:
     default:
       console.log("RADIUS PROJECTION");
+      // create, style and position centroid divs
       for(let centroid of centroids) {
           newdiv = document.createElement("div");
           newtext = document.createTextNode(centroidSymbol);
@@ -251,28 +289,23 @@ function project(projection, options={}) {
           newdiv.style.position = "absolute";
           // Centroid Color Calculation
           if(showBorders) {
-            if(CLUSTER_COLORS.length > j) {
-              borderColor = CLUSTER_COLORS[j];
-            } else {
-              borderColor = randomColorString();
-              CLUSTER_COLORS.push(borderColor);
-            }
+            borderColor = CLUSTER_COLORS[centroidnumber];
             newdiv.style.color = "rgb("+borderColor+")";
-            j++;
           }
           newdiv.style.top = ((900 / 3) + 100) + 'px';
           newdiv.style.left = (centroidnumber * (3000 / centroids.length) + 300) + 'px';
           document.body.appendChild(newdiv);
           centroid_divs.push(newdiv);
-          centroidnumber += 1;
+          centroidnumber++;
       }
 
+      // POSITION ENTRY DIVS FOR THIS PROJECTION
       for(let i = 0; i < centroid_divs.length; i++) {
-          let x,y,theta,c, e, distance, cdiv = centroid_divs[i];
+          let x,y,theta,c, e, distance, cdiv;
+          cdiv = centroid_divs[i];
           c = centroids[i];
           for(let j = 0; j < clusters[i].length; j++) {
               var entrydiv, item = clusters[i][j];
-
               // Here is the projection math, converts a distance to a radius
               distance = Measures.euclidean(c, item);
               theta = j * (2 * Math.PI / clusters[i].length);
@@ -281,16 +314,9 @@ function project(projection, options={}) {
               y = Math.floor(distance * Math.sin(theta) * scaleDistance);
 
               entrydiv = document.querySelector("#"+item.entry.id);
-              entrydiv.style.position = "absolute";
-              entrydiv.className = "refs " + "cluster" + i;
-              if(showBorders) {
-                borderColor = CLUSTER_COLORS[i];
-                entrydiv.style.border = "2px solid rgba(" + borderColor + ", " + borderAlpha + ")";
-              }
               entrydiv.style.top = y + 'px';
               entrydiv.style.left = x + 'px';
               cdiv.appendChild(entrydiv);
-
           }
       }
       // END CIRCLE PROJECTION
@@ -319,10 +345,9 @@ function resultfunc(err, clusters, centroids, featuresDef) {
       featuresDefinition: featuresDef,
     };
 
-    console.log("CLUSTERS", clusters);
-    console.log("CENTROIDS", centroids);
-
-    projectCatalog(PROJECTION_TYPE, clusters, centroids, opts);
+    CENTROIDS = centroids;
+    CLUSTERS = clusters;
+    project(PROJECTION_TYPE, opts, centroids, clusters);
 
 };
 
@@ -370,7 +395,8 @@ var CLUSTERS = 3;
 var MEASUREMENT = Measures.euclidean;
 var ITERATIONS = 5;
 var RESULTFUNC = resultfunc;  // callback function to run when clustering is done
-var CLUSTER_DIMENSIONS = catalog.allTags;
+//var CLUSTER_DIMENSIONS = catalog.allTags;
+var CLUSTER_DIMENSIONS = ["aesthesis", "models", "preparations"];
 var CLUSTER_OPTIONS = {taglist: CLUSTER_DIMENSIONS};
 var CLUSTERS = [];    // populated after running catalog.cluster()
 var CENTROIDS = [];   // populated after running catalog.cluster()
@@ -380,8 +406,8 @@ var BREAKPOINTS = false;   // break the algorithm up into temporal chunks
 var TEMPO = 0.5;          // timescale/tempo speed of algorithm steps
 
 // Visualization parameters
-var PROJECTION_TYPE = Projections.SIMPLE2D;
-var PROJECTION_DIMENSIONS = ["aesthesis", "preparations"]
+var PROJECTION_TYPE = Projections.NONE; // default projection
+var PROJECTION_DIMENSIONS = ["aesthesis", "models", "preparations"];
 var RADIAL_DENSITY = 500;   // used in the RADIAL projection
 var CENTROID_SYMBOL = "+";  // symbol printed at centroid position
 var SHOW_BORDERS = true;    // show cluster coloring / borders
