@@ -9,7 +9,7 @@ source-url: https://stats.stackexchange.com/questions/2691/making-sense-of-princ
 source: stackexchange.com
 copyright:
 tags: [dimensionality, similarity, pca, projection, measurement, cut, cutting, orientation, visualization]
-weights: [0.854, 0.34, 0.99, 0.566, 0.733, 0.41, 0.81, 0.21, 0.63, 0.501]
+weights: [0.854, 0.34, 0.99, 0.766, 0.63, 0.71, 0.61, 0.51, 0.45, 0.501]
 
 summary: "Illustration of PCA projections of point clouds"
 ---
