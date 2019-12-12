@@ -8,8 +8,8 @@ entry-by: Jonathan Reus
 source-url: https://stats.stackexchange.com/questions/2691/making-sense-of-principal-component-analysis-eigenvectors-eigenvalues
 source: stackexchange.com
 copyright:
-tags: [dimensionality, similarity, pca, projection]
-weights: [0.854, 0.34, 0.99, 0.566]
+tags: [dimensionality, similarity, pca, projection, measurement, cut, cutting, orientation, visualization]
+weights: [0.854, 0.34, 0.99, 0.566, 0.733, 0.41, 0.81, 0.21, 0.63, 0.501]
 
 summary: "Illustration of PCA projections of point clouds"
 ---
