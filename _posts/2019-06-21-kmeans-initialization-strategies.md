@@ -6,8 +6,8 @@ entry-date: 2019-06-21
 source-url: https://www.scirp.org/journal/paperinformation.aspx?paperid=82761
 source: Li, B.Y. (2018) An Experiment of K-Means Initialization Strategies on Handwritten Digits Dataset. Intelligent Information Management , 10, 43-48.
 copyright: © 2018 by author and Scientific Research Publishing Inc. This work is licensed under the Creative Commons Attribution International License (CC BY 4.0).
-tags: [statistical-ontology, kmeans, clustering]
-weights: [0.23, 0.76, 0.81]
+tags: [statistical-ontology, kmeans, clustering, collection, measurement, orientation, cut, cutting]
+weights: [0.23, 0.76, 0.81, 0.35, 0.69, 0.18, 0.02, 0.06]
 summary: A summary of K-means evaluation strategies
 ---
 ## 3.2. Clustering Performance Evaluation

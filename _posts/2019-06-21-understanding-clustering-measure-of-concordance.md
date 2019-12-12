@@ -7,8 +7,8 @@ image: m/moc-plot-and-shapes.png
 source-url: https://link.springer.com/article/10.1007/s10115-008-0150-6
 source: Pfitzner, D., Leibbrandt, R. & Powers, D. Knowl Inf Syst (2009) 19 361. https://doi.org/10.1007/s10115-008-0150-6
 copyright: Copyright 2008, Springer-Verlag London Limited
-tags: [statistical-ontology, clustering, similarity, distance]
-weights: [0.13, 0.71, 0.51, 0.21]
+tags: [statistical-ontology, clustering, similarity, distance, measurement, collection, cost, evaluation]
+weights: [0.13, 0.71, 0.51, 0.21, 0.5998, 0.311, 0.1, 0.75]
 summary: "A paradigm apparatus for the evaluation of clustering comparison
 techniques and distinguish between the goodness of clusterings and the similarity of clusterings
 by clarifying the degree to which different measures confuse the two. Accompanying

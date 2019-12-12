@@ -17,7 +17,7 @@ summary: A Confusion Matrix is a performance measurement for machine learning cl
 image: algorithms/confusion-matrix-classifier-evaluation.png
 
 # all tags separated by commas
-tags: [classification, optimization, evaluation, taxonomy, performance, truth]
-weights: [0.65, 0.9, 0.78, 0.3, 0.486, 0.25]
+tags: [classification, optimization, evaluation, taxonomy, performance, truth, measurement, cuts]
+weights: [0.65, 0.9, 0.78, 0.3, 0.486, 0.25, 0.7111, 0.13]
 
 ---
