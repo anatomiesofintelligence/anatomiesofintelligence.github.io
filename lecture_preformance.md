@@ -122,6 +122,8 @@ Performing a series of dissections, cutting through corpses, data, our anatomic 
 
 * [Pattern disruption](https://anatomiesofintelligence.github.io/posts/2018-11-6-monsters-unknown)
 
+> The catalogue interface is our platform to explore, through performance, how such a collection and an artisanal algorithmic toolkit can confront the idealized bodies of artificial intelligence — its fixed representational structures and opaque learning processes. 
+
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
