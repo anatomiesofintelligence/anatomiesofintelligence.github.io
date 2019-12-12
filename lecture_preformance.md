@@ -23,6 +23,8 @@ catalog.cluster(2, Measures.euclidean, ["theatre", "aesthesis", "spectacle"], 10
 
 * [Elegant Anatomy book as training set input](https://anatomiesofintelligence.github.io/posts/2018-10-31-ML-Algolit-ElegantAnatomy)
 
+[Jo 12.12.19]  notes on artistic research method: concept of aesthesis/ aesthesia  / reliance on the senses / performance and performativy: a live and embodied  but also rule-based practice of ontology-making; rethinking and experimenting with scales and orientations for observation, affective response & affinity - and how such observations can be performed / presented as intimate / tacit understanding; endless practice, through trial and error, with hands-on work..
+
 #### Gestures of — Collection and Preparation
 
 > How could this kaleidoscopic ensemble, in which skeletons and anatomical preparations accounted for only a relatively small share compared to the vast bulk of naturalia and artificialia, have functioned in combination with the anatomical demonstrations and instruction that also took place at this location? Anatomy in the early seventeenth century can be considered an investigation by means of the fabric of the dead human body into the essence of the human being, namely the evidence it shows of God’s in nite wisdom and providence. Man – the pinnacle of Creation – is the most perfect example of God’s work in the world.
@@ -91,8 +93,6 @@ We start with a simple gesture: cutting. To cut open, to examine, in order to de
 * knife swallower = spectacle; GANS / neural networks; anthropomorphizing / animism for the rich;
 * he head of an elephant = knowledge ontology; the opressive force;
 * three mummies = three zombies of AI: anacronistic; no longer valid; living myths;
-
-_Notes on artistic research method: concept of aesthesis/ aesthesia / embodiment / reliance on the senses / performance and performativy: a live/ embodied  but rule-based practice of ontology-making; rethinking and experimenting with scales and orientations for observation, affective response & affinity - and how such observations can be performed / presented as intimate / tacit understanding; endless practice, through trial and error, with hands-on work;.._
 
 Performing a series of dissections, cutting through corpses, data, our anatomic dataset collection. Classiffied objects of knowledge, a new collection is born.
 
