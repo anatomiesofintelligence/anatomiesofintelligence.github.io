@@ -135,6 +135,8 @@ catalog.cluster(2, Measures.euclidean, ["theatre", "aesthesis", "spectacle"], 10
 
 Performing a series of dissections, cutting through corpses, data, our anatomic dataset collection. Classiffied objects of knowledge, a new collection is born.
 
+[12.12.2019 Jon ~ Can we explicitly also address the role of the emerging phenomenon of the European University to the positions of the Leiden anatomists?]
+
 > "For the Leiden anatomists Rau, Albinus, Van Doeveren, Bonn and Brugmans perfection was at the core of their decisions. Aesthetically, the objects had to be presented according to fixed proportions, perspectives and other aesthetic conventions. Technologically and scientifically, the anatomical collections were aimed at showing ever more perfect methods of revealing and preserving nature. Ethically, the collections functioned like mirrors and helped in the educational and therefore ethical perfectibility of man. There was even a theological meaning of perfection as some collectors sought to represent the perfect order of creation. Also the exhibition of so called ‘monsters’, tumours and other malformations were meant to enhance (ex-negativo) the image of the perfect body." 
 
 * [Read: on Perfection](https://anatomiesofintelligence.github.io/posts/2019-12-4-collections-of-perfection)
