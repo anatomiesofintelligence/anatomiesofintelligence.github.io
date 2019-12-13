@@ -15,6 +15,8 @@ or thematic clustering:
 catalog.cluster(2, Measures.euclidean, ["theatre", "aesthesis", "spectacle"], 10, resultfunc, false)
 -->
 
+- - - - Joana - - -  -
+
 ## Aesthesis
 
 **catalog.cluster(3, Measures.euclidean, ["elegance", "aesthesis"], 20, resultfunc, true, OSC_OUT, console.log);**
@@ -55,6 +57,10 @@ _openEntry("the-concept-of-aesthesis")_
 
 > "How could this kaleidoscopic ensemble, in which skeletons and anatomical preparations accounted for only a relatively small share compared to the vast bulk of naturalia and artificialia, have functioned in combination with the anatomical demonstrations and instruction that also took place at this location? Anatomy in the early seventeenth century can be considered an investigation by means of the fabric of the dead human body into the essence of the human being, namely the evidence it shows of God’s in nite wisdom and providence. Man – the pinnacle of Creation – is the most perfect example of God’s work in the world."
 
+
+- - - - Jonathan - - -  -
+
+
 * [Image: Leiden Preparations](https://anatomiesofintelligence.github.io/posts/2018-10-16-leiden-preparations) _openEntry("collection-of-anatomical-preparations")_
 
 * [Image: Botanical and zoological Preparations](https://anatomiesofintelligence.github.io/posts/2019-12-6-botanical_preparations) _openEntry("thesaurus-botanical-preparations")_
@@ -63,9 +69,9 @@ _openEntry("the-concept-of-aesthesis")_
 
 > "…aesthesis in anatomy is inevitably characterized by the very tactile processes of commodification, domestication and objectification: it involves the creation of lasting, transferable anatomical preparations that both represent and are made of parts of the human body, as well as the domestication of the (exotic) other." Footnote: Latour, Science in Action, 223.
 
-[Jon] Mention the colonial frame around the trading of anatomic pieces; Also botany and the naturalist as closely related sciences - a mention here of 18th century anatomy, doingGod's work and the exotic;
+Mention the colonial frame around the trading of anatomic pieces; Also botany and the naturalist as closely related sciences - a mention here of 18th century anatomy, doingGod's work and the exotic;
 
-[Joana] Agents and agencies: anatomic preparations — models and its users: anatomists and teachers, curators and audiences mapping presences and the absences;
+Agents and agencies: anatomic preparations — models and its users: anatomists and teachers, curators and audiences mapping presences and the absences;
 
 > "The term "k-means" was first used by James MacQueen in 1967 as part of his paper on "Some methods for classification and analysis of multivariate observations". The standard algorithm was also used in Bell Labs as part of a technique in pulse code modulation in 1957. It was also published by In 1965 by E. W. Forgy and typically is also known as the Lloyd-Forgy method."
 
@@ -73,7 +79,11 @@ _openEntry("the-concept-of-aesthesis")_
 
 * [Image: adding to a classification tree](https://anatomiesofintelligence.github.io/posts/2019-06-21-adding-concepts-to-existing-classification-tree) _openEntry("adding-mammal-and-bird-to-an-existing-classification-tree”)_
 
-[Jon 8.12.19] Theory: Can we rethink clusering as collecting? A clustering, an ontology created, as a cabinet of curiosities.
+Theory: Can we rethink clusering as collecting? A clustering, an ontology created, as a cabinet of curiosities.
+
+
+- - - - Joana - - -  -
+
 
 
 ## The Gesture of — cutting;
@@ -94,7 +104,11 @@ _openEntry("the-concept-of-aesthesis")_
 
 * [Image: Horizontal section through brain](https://anatomiesofintelligence.github.io/posts/2019-09-2-Horizontal-section-brain) _openEntry("horizontal-section-through-brain”)_
 
-[Jon 8.12.19] A slice into multidimensional space
+
+- - - - Jonathan - - -  -
+
+
+A slice into multidimensional space
 
 * [Curse of Dimensionality](https://anatomiesofintelligence.github.io/posts/2019-12-8-curse-of-dimensionality) _openEntry("curse-of-dimensionality”)_
 
@@ -124,22 +138,26 @@ _openEntry("the-concept-of-aesthesis")_
 
 **project(Projections.SIMPLE2D)**
 
-* [Anatomical Theatre Leiden](https://anatomiesofintelligence.github.io/posts/2018-10-14-anatomical-theatre-leiden-engraving
+* [Image: Anatomical Theatre Leiden](https://anatomiesofintelligence.github.io/posts/2018-10-14-anatomical-theatre-leiden-engraving
 ) _openEntry("copperplate-engraving-of-anatomical-theatre-leiden-1615”)_
-* [Anatomical Theatre — replica](https://anatomiesofintelligence.github.io/posts/2018-10-16-leiden-anatomical-theatre-replica-boerhaave) _openEntry("replica-anatomical-theatre-leiden-1594”)_
-* [Anatomical Theatre — collections](https://anatomiesofintelligence.github.io/posts/2018-10-16-the-fate-of-anatomical-collections-intro) _openEntry("an-empirical-description-of-the-leiden-anatomical-theatre”)_
+* [Image: Anatomical Theatre — replica](https://anatomiesofintelligence.github.io/posts/2018-10-16-leiden-anatomical-theatre-replica-boerhaave) _openEntry("replica-anatomical-theatre-leiden-1594”)_
+* [Read: Anatomical Theatre — collections](https://anatomiesofintelligence.github.io/posts/2018-10-16-the-fate-of-anatomical-collections-intro) _openEntry("an-empirical-description-of-the-leiden-anatomical-theatre”)_
 
 > “Leiden’s anatomy hall is a brick building, the exterior of which looks quite unprepossessing. Inside one finds two theatres – or ‘snykammer’ as the Dutch call them – for anatomical demonstrations: a public one and a private theatre. … In the latter various glass cases contain the excellent anatomical preparations of Dr Rau … next to that one sees the portrait of Solingen, and the famous knife swallower, the head of an elephant, and three mummies.” _Source: The Fate of Anatomical Collections Rina Knoeff, Robert Zwijnenberg. Ashgate Publishing Company (2015)_
 
+<!---
 * knife swallower = spectacle; GANS / neural networks; anthropomorphizing / animism for the rich;
 * the head of an elephant = knowledge ontology; the opressive force;
 * three mummies = three zombies of AI: anacronistic; no longer valid; living myths;
+-->
 
 Performing a series of dissections, cutting through corpses, data, our anatomic dataset collection. Classiffied objects of knowledge, a new collection is born.
 
-[12.12.2019 Jon ~ Can we explicitly also address the role of the emerging phenomenon of the European University to the positions of the Leiden anatomists?]
+Can we explicitly also address the role of the emerging phenomenon of the European University to the positions of the Leiden anatomists?
 
-> "For the Leiden anatomists Rau, Albinus, Van Doeveren, Bonn and Brugmans perfection was at the core of their decisions. Aesthetically, the objects had to be presented according to fixed proportions, perspectives and other aesthetic conventions. Technologically and scientifically, the anatomical collections were aimed at showing ever more perfect methods of revealing and preserving nature. Ethically, the collections functioned like mirrors and helped in the educational and therefore ethical perfectibility of man. There was even a theological meaning of perfection as some collectors sought to represent the perfect order of creation. Also the exhibition of so called ‘monsters’, tumours and other malformations were meant to enhance (ex-negativo) the image of the perfect body." 
+
+- - - - Joana - - -  -
+
 
 * [Read: on Perfection](https://anatomiesofintelligence.github.io/posts/2019-12-4-collections-of-perfection) _openEntry(“collections-of-perfection”)_
 
