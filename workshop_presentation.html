@@ -92,6 +92,14 @@ li a{
 	line-height: 16pt;
 }
 
+.small ol li {
+    list-style-type: lower-roman;
+	font-size: 12pt;
+	line-height: 16pt;
+	font-weight: normal;
+  list-style-position: inside;	
+}
+
 p.small {
 	font-family: serif;
 	font-size: 10pt;
@@ -278,22 +286,24 @@ Jonathan Reus [US/NL] is a musician and artist who explores expanded forms of mu
 <br><br><br>
 
 <h3>The K-means Algorithm</h3>
-
+<br>
+<div class="small">
 <ol>
-	<li>Choose the number of desired clusters <b>K</b> and obtain the data points</li>
-	<li>Choose centroids c_1-c_k: either randomly or by choosing randomly from existing data points</li>
-	<li>Repeat steps 4 & 5 until the algorithm converges or until the end of a fixed number of iterations</li>
-	<li>For each data point x_i:
+	<li> Choose the number of desired clusters <b>K</b> and obtain the data points.</li>
+	<li> Choose centroids c_1-c_k: either randomly or by choosing randomly from existing data points.</li>
+	<li> Repeat steps 4 & 5 until the algorithm converges or until the end of a fixed number of iterations.</li>
+	<li> For each data point x_i:
 		<ol>
-       <li>find the nearest centroid(c_1, c_2 .. c_k)</li>
-       <li>assign the point to that cluster</li>
+       <li> Find the nearest centroid(c_1, c_2 .. c_k);</li>
+       <li> Assign the point to that cluster.</li>
 		 </ol>
 	</li>
-<li>for each cluster j = 1..k</li>
-       <ol><li>new centroid = mean of all points assigned to that cluster</li></ol>
-<li>6. End</li>
+<li> For each cluster j = 1..k</li>
+       <ol><li> New centroid = mean of all points assigned to that cluster.</li></ol>
+<li> End.</li>
 </ol>
-
+</div>
+<br>
 <p>K-Means is relatively an efficient method. However, we need to specify the number of clusters, in advance and the final results are sensitive to initialization and often terminates at a local optimum. Unfortunately there is no global theoretical method to find the optimal number of clusters. A practical approach is to compare the outcomes of multiple runs with different k and choose the best one based on a predefined criterion. In general, a large k probably decreases the error but increases the risk of overfitting.</p>
 
 
