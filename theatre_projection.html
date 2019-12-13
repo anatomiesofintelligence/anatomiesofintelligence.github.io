@@ -48,13 +48,13 @@ catalog.addEntry(newexample);
 var OSC_OUT = new SimpleOSC("localhost", 8080);
 OSC_OUT.init(function() {
     // Put code here that should run once an OSC connection is established.
-    //catalog.cluster(CLUSTERS, MEASUREMENT, CLUSTER_DIMENSIONS, ITERATIONS, resultfunc, BREAKPOINTS, OSC_OUT, console.log);
+    //catalog.cluster(K, MEASUREMENT, CLUSTER_DIMENSIONS, ITERATIONS, resultfunc, BREAKPOINTS, OSC_OUT, console.log);
 });
 
 
 // ***ADDITIONAL FUNCTIONS****
 
-function clean_surface() { location.reload() }
+function reset() { location.reload() }
 
 // Get all entry divs, optionally by a specific cluster
 function getEntryDivs(cluster=-1) {
@@ -87,6 +87,7 @@ function randomize() {
   }
 }
 
+// THIS METHOD DOESN"T WORK YET: look at grid display type
 // Remove all centroid divs and arrange entries in a grid, keeps clusters
 function grid() {
   let centroids, entries;
@@ -104,7 +105,7 @@ function grid() {
 }
 
 // Remove all centroids, clusters, and randomize entries without reload
-function clean_surface2() {
+function clean_surface() {
   let centroids, entries;
   centroids = getCentroidDivs();
   for(let i = centroids.length-1; i >= 0; i--) {
@@ -114,8 +115,8 @@ function clean_surface2() {
   for(let entry of entries) {
     entry.className = "refs"; // remove any cluster association
     entry.style.border = "none";
-    entry.style.top = Math.floor(Math.random() * window.innerHeight) + 'px';
-    entry.style.left = Math.floor(Math.random() * window.innerWidth) + 'px';
+    entry.style.top = 0 + 'px';
+    entry.style.left = 0 + 'px';
   }
   CLUSTERS = null;
   CENTROIDS = null;
@@ -180,6 +181,7 @@ function project(projectionType, options={}, centroids, clusters) {
   let borderAlpha = options.borderAlpha || BORDER_ALPHA;
   let centroidSymbol = options.centroidSymbol || CENTROID_SYMBOL;
   let priorityFeatures = options.prioritizeFeatures || PROJECTION_DIMENSIONS; // used in simple 2D to determine dimensions to plot
+  PROJECTION_DIMENSIONS = priorityFeatures;
   let scaleDistance = options.scaleDistance || RADIAL_DENSITY; // used for radial density
   let featuresDefinition = options.featuresDefinition || PROJECTION_DIMENSIONS;
 
@@ -194,7 +196,7 @@ function project(projectionType, options={}, centroids, clusters) {
       priorityDims.push(dim);
       console.log("Push priority dimension: ", dim);
     } else {
-      //console.log("ERROR: Could not find feature named '"+feature+"' in available features to project");
+      console.log("ERROR: Could not find feature named '"+feature+"' in available features to project");
     }
   }
   if(priorityDims.length < 2) {
@@ -220,6 +222,12 @@ function project(projectionType, options={}, centroids, clusters) {
         entrydiv.style.border = "2px solid rgba(" + borderColor + ", " + borderAlpha + ")";
       }
     }
+  }
+
+  // Remove any previous centroid divs
+  let old_centroid_divs = getCentroidDivs();
+  for(var i = old_centroid_divs.length-1; i >= 0; i--) {
+    old_centroid_divs[i].remove();
   }
 
 
@@ -261,9 +269,11 @@ function project(projectionType, options={}, centroids, clusters) {
         newdiv.appendChild(document.createTextNode(centroidSymbol));
         document.body.appendChild(newdiv);
         centroid_divs.push(newdiv);
+        centroidnumber++;
       }
 
       // POSITION ENTRY DIVS FOR THIS PROJECTION
+      console.log("Positioning divs for 2D projection...", clusters);
       for(var i = 0; i < centroids.length; i++) {
         var x,y;
         for(let j = 0; j < clusters[i].length; j++) {
@@ -314,9 +324,9 @@ function project(projectionType, options={}, centroids, clusters) {
               y = Math.floor(distance * Math.sin(theta) * scaleDistance);
 
               entrydiv = document.querySelector("#"+item.entry.id);
-              entrydiv.style.top = y + 'px';
-              entrydiv.style.left = x + 'px';
-              cdiv.appendChild(entrydiv);
+              entrydiv.style.top = (y + cdiv.offsetTop) + 'px';
+              entrydiv.style.left = (x + cdiv.offsetLeft) + 'px';
+              //cdiv.appendChild(entrydiv);
           }
       }
       // END CIRCLE PROJECTION
@@ -336,6 +346,7 @@ function resultfunc(err, clusters, centroids, featuresDef) {
       olddiv.remove();
     }
 
+    // TODO: look into the use of featuresDef here...
     let opts = {
       showBorders: SHOW_BORDERS,
       borderAlpha: BORDER_ALPHA,
@@ -352,38 +363,61 @@ function resultfunc(err, clusters, centroids, featuresDef) {
 };
 
 // SIMPLIFIED clustering functions
-function cluster(taglist, clusters, breakpoints) {
+// TODO: finish this?
+function cluster(taglist, num_clusters, projection_type, breakpoints) {
   if(breakpoints != null) { BREAKPOINTS = breakpoints }
-  if(clusters != null) { CLUSTERS = clusters }
+  if(num_clusters != null) { K = num_clusters }
   if(taglist != null) { CLUSTER_DIMENSIONS = taglist }
+
   if(BREAKPOINTS) {
-    catalog.cluster(CLUSTERS, MEASUREMENT, CLUSTER_DIMENSIONS, ITERATIONS, resultfunc, BREAKPOINTS, OSC_OUT, console.log);
+    catalog.cluster(K, MEASUREMENT, CLUSTER_DIMENSIONS, ITERATIONS, resultfunc, true, OSC_OUT, console.log);
   } else {
-    catalog.cluster(CLUSTERS, MEASUREMENT, CLUSTER_DIMENSIONS, ITERATIONS, resultfunc, BREAKPOINTS);
+    catalog.cluster(K, MEASUREMENT, CLUSTER_DIMENSIONS, ITERATIONS, resultfunc, false);
   }
 }
 
 function help() {
     let str = `
-    clean_surface()
+    clean_surface()     //reload
+    randomize()         //randomize entry locations, clusters are not effected
+    getEntryDivs()
+    getCentroidDivs()
+    catalog.allTags     //full list of tags
+    catalog.allEntries  //full list of entries
+    catalog.cluster()   //run a clustering on the catalog
+    catalog.stop()      //halt clustering algorithm
+
+    -- global clustering parameters --
+    K = 3 //K-number of clusters
+    MEASUREMENT = Measures.euclidean //measurement metric
+    ITERATIONS = 5 //number of K-means iterations
+    CLUSTER_DIMENSIONS = ["aesthesis", "models", "preparations"];
+
+    -- temporal parameters --
+    BREAKPOINTS = false   //break the algorithm up into temporal chunks
+    TEMPO = 0.5           //timescale/tempo speed of algorithm steps
+    RESOLUTION = 1        //resolution of algorithm reporting
+
+    -- projection types --
+    Projections.NONE        //entries stay in place
+    Projections.RANDOM      //entries are scattered randomly
+    Projections.SIMPLE2D    //entries are projected in 2D using one feature per axis
+    Projections.RADIUS      //entries arranged radially around centroids
+
+    -- visualization parameters --
+    PROJECTION_TYPE = Projections.NONE              //default projection
+    PROJECTION_DIMENSIONS = ["aesthesis, models"]   //projection axes for SIMPLE2D
+    RADIAL_DENSITY = 500                            //visual density for RADIAL
+
+    -- example clusterings --
+    catalog.cluster(K, MEASUREMENT, CLUSTER_DIMENSIONS, ITERATIONS, resultfunc, BREAKPOINTS)
+    project(Projections.RADIUS)
     randomize()
-    DENSITY = 50
-    ITERATIONS = 5
-    MEASUREMENT = Measures.euclidean
-    BREAKPOINTS = true
-    CLUSTERS = 3
-    TEMPO = 1.0
-    catalog.allEntries
-    options = {taglist: ["models", "preparations", "aesthesis"]}
-    cut = ["models", "preparations", "aesthesis", "unknown"]
-    e1 = catalog.allEntries.choose()
-    e2 = catalog.allEntries.choose()
-    fv1 = e1.getFeatures(options)
-    fv2 = e2.getFeatures(options)
-    catalog.entriesAsFeatures(options)
-    catalog.allTags;
-    catalog.cluster(3, Measures.euclidean, options["taglist"], 10, resultfunc, false);
-    catalog.cluster(CLUSTERS, MEASUREMENT, cut, ITERATIONS, resultfunc, BREAKPOINTS, osc, console.log);
+    catalog.cluster(3, Measures.euclidean, ["measurement", "cutting"], 20, resultfunc, true, OSC_OUT, console.log)
+    TEMPO = 0.25
+    catalog.stop()
+    catalog.cluster(3, Measures.euclidean, ["spectacle", "theatre"], 20, resultfunc, false)
+    project(Projections.SIMPLE2D)
   `;
   console.log(str);
 }
@@ -391,7 +425,7 @@ function help() {
 //************** GLOBAL CONSTANTS *****************//
 
 // CLUSTERING PARAMETERS
-var CLUSTERS = 3;
+var K = 3;
 var MEASUREMENT = Measures.euclidean;
 var ITERATIONS = 5;
 var RESULTFUNC = resultfunc;  // callback function to run when clustering is done
@@ -407,7 +441,7 @@ var TEMPO = 0.5;          // timescale/tempo speed of algorithm steps
 
 // Visualization parameters
 var PROJECTION_TYPE = Projections.NONE; // default projection
-var PROJECTION_DIMENSIONS = ["aesthesis", "models", "preparations"];
+var PROJECTION_DIMENSIONS = CLUSTER_DIMENSIONS;
 var RADIAL_DENSITY = 500;   // used in the RADIAL projection
 var CENTROID_SYMBOL = "+";  // symbol printed at centroid position
 var SHOW_BORDERS = true;    // show cluster coloring / borders
