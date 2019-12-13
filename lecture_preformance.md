@@ -17,7 +17,7 @@ catalog.cluster(2, Measures.euclidean, ["theatre", "aesthesis", "spectacle"], 10
 
 ## Aesthesis
 
-**catalog.cluster(3, Measures.euclidean, ["elegance", "aesthesis"], 20, resultfunc, true, osc, console.log);**
+**catalog.cluster(3, Measures.euclidean, ["elegance", "aesthesis"], 20, resultfunc, true, OSC_OUT, console.log);**
 
 **TEMPO = 0.5**
 
@@ -41,7 +41,7 @@ _openEntry("the-concept-of-aesthesis")_
 
 **clean_surface()**
 
-**catalog.cluster(3, Measures.euclidean, ["preparation", "collection"], 20, resultfunc, true, osc, console.log);**
+**catalog.cluster(3, Measures.euclidean, ["preparation", "collection"], 20, resultfunc, true, OSC_OUT, console.log);**
 
 **project(Projections.SIMPLE2D)**
 
@@ -80,7 +80,7 @@ _openEntry("the-concept-of-aesthesis")_
 
 **clean_surface()**
 
-**catalog.cluster(3, Measures.euclidean, ["cutting", "measurement"], 20, resultfunc, true, osc, console.log);**
+**catalog.cluster(3, Measures.euclidean, ["cutting", "measurement"], 20, resultfunc, true, OSC_OUT, console.log);**
 
 **project(Projections.SIMPLE2D)**
 
@@ -120,7 +120,7 @@ _openEntry("the-concept-of-aesthesis")_
 
 **clean_surface()**
 
-**catalog.cluster(3, Measures.euclidean, ["theatre", "spectacle"], 20, resultfunc, true, osc, console.log);**
+**catalog.cluster(3, Measures.euclidean, ["theatre", "spectacle"], 20, resultfunc, true, OSC_OUT, console.log);**
 
 **project(Projections.SIMPLE2D)**
 
