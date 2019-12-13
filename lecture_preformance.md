@@ -15,7 +15,7 @@ or thematic clustering:
 catalog.cluster(2, Measures.euclidean, ["theatre", "aesthesis", "spectacle"], 10, resultfunc, false)
 -->
 
-- - - - Joana - - -  -
+**- - - - Joana**
 
 ## Aesthesis
 
@@ -58,7 +58,7 @@ _openEntry("the-concept-of-aesthesis")_
 > "How could this kaleidoscopic ensemble, in which skeletons and anatomical preparations accounted for only a relatively small share compared to the vast bulk of naturalia and artificialia, have functioned in combination with the anatomical demonstrations and instruction that also took place at this location? Anatomy in the early seventeenth century can be considered an investigation by means of the fabric of the dead human body into the essence of the human being, namely the evidence it shows of God’s in nite wisdom and providence. Man – the pinnacle of Creation – is the most perfect example of God’s work in the world."
 
 
-- - - - Jonathan - - -  -
+**- - - - Jonathan**
 
 
 * [Image: Leiden Preparations](https://anatomiesofintelligence.github.io/posts/2018-10-16-leiden-preparations) _openEntry("collection-of-anatomical-preparations")_
@@ -82,7 +82,7 @@ Agents and agencies: anatomic preparations — models and its users: anatomists 
 Theory: Can we rethink clusering as collecting? A clustering, an ontology created, as a cabinet of curiosities.
 
 
-- - - - Joana - - -  -
+**- - - - Joana**
 
 
 
@@ -105,7 +105,7 @@ Theory: Can we rethink clusering as collecting? A clustering, an ontology create
 * [Image: Horizontal section through brain](https://anatomiesofintelligence.github.io/posts/2019-09-2-Horizontal-section-brain) _openEntry("horizontal-section-through-brain”)_
 
 
-- - - - Jonathan - - -  -
+**- - - - Jonathan**
 
 
 A slice into multidimensional space
@@ -156,7 +156,7 @@ Performing a series of dissections, cutting through corpses, data, our anatomic 
 Can we explicitly also address the role of the emerging phenomenon of the European University to the positions of the Leiden anatomists?
 
 
-- - - - Joana - - -  -
+**- - - - Joana**
 
 
 * [Read: on Perfection](https://anatomiesofintelligence.github.io/posts/2019-12-4-collections-of-perfection) _openEntry(“collections-of-perfection”)_
@@ -178,4 +178,4 @@ Can we explicitly also address the role of the emerging phenomenon of the Europe
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-Joana's test reading time w/ pauses = ? min total
+Reading time w/ pauses = ? min total
