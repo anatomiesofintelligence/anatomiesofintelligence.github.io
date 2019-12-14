@@ -1,22 +1,26 @@
 # Draft workshop for Aarhus + presentation;
 
-   **30min** round of introductions; names ++ and interest in AI; explain the AiO project; why anatomy / why ML;
+### 30min
+  
+Round of introductions; names ++ and interest in AI; explain the AiO project; why anatomy / why ML;
 
-   **15min** on the floor exercise: https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io/blob/master/anatomies_exercise.md;
+### 15min** 
 
-   **30min** introduce ML; distances + dimensionality reduction. K-means as focus: first sudo code; and then we read our own algorithm; https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io/blob/master/workshop_presentation.html
+On the floor exercise: https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io/blob/master/anatomies_exercise.md
 
-   **15 min** catalog demo and collective reading of the clustering algorithm; explain the concepts of distance and dimentionality reduction (mainly necessary for vizualization; though essentialy this algorithms are already reducing dimensionalities). 
-   
-      catalog.cluster(CLUSTERS, MEASUREMENT, cut, ITERATIONS, resultfunc, BREAKPOINTS, osc, console.log);
+### 30min 
 
-      demo on the console/javascript api as an observational tool <-- provide commands catalog.cluster(3, Measures.euclidean, ["model", "aesthesis", "categorization", "body"], 10, resultfunc, false) https://anatomiesofintelligence.github.io/theatre/kmeans — > "help()"
+Introduce ML; distances + dimensionality reduction. K-means as focus: first sudo code; and then we read our own algorithm; https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io/blob/master/workshop_presentation.html
 
-  **15min** break
+### 15 min 
+
+Catalog demo and collective reading of the clustering algorithm; explain the concepts of distance and dimentionality reduction.
+
+### 15min break
   
    _1hour exercise IRL clustering_
 
-   **30 min** in groups clustering: 20 or more entries in their dataset — toy dataset (MNIST / image dataset)
+### 30 min in groups clustering: 20 or more entries in their dataset — toy dataset (MNIST / image dataset)
 
    * distance (or the concept of difference);
 
@@ -24,15 +28,21 @@
 
    * cluster: execute k-means and document the results;
 
-   * representation of the knowledge system / communicate the process and results
+   * representation of the knowledge system / communicate the process and results;
    
  
-   **30min** optional: experiment the process with another dataset / with different measurement systems; parameters; define a another cluster;...;
+### 30min 
 
-   Analyze the algorithm; further discuss potential entry points for performativity, presentation, critical intervention, aesthetic intervention within this algorithm.
+Optional: experiment the process with another dataset / with different measurement systems; parameters; define a another cluster;...;
 
-   **15min** break
+Analyze the algorithm; further discuss potential entry points for performativity, presentation, critical intervention, aesthetic intervention within this algorithm.
 
-   **30min** group presentions
+### 15min** break
 
-   **30min** wrapping up and discussions.
+### 30min
+
+Group presentions.
+
+### 30min
+
+Wrapping up and discussions.
