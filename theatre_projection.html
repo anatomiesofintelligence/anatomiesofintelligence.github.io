@@ -273,7 +273,6 @@ function project(projectionType, options={}, centroids, clusters) {
       }
 
       // POSITION ENTRY DIVS FOR THIS PROJECTION
-      console.log("Positioning divs for 2D projection...", clusters);
       for(var i = 0; i < centroids.length; i++) {
         var x,y;
         for(let j = 0; j < clusters[i].length; j++) {
@@ -446,7 +445,9 @@ function help() {
     catalog.stop()
     catalog.cluster(3, Measures.euclidean, ["spectacle", "theatre"], 20, resultfunc, false)
     project(Projections.SIMPLE2D)
-
+    cut = ["aesthesis", "measurement", "cut", "spectacle", "theatre", "dimensionality", "", ]
+    cluster(cut, 5, 20, false)
+    project(Projections.SIMPLE2D, {prioritizeFeatures: ["dimensionality", "measurement"], featuresDefinition: cut})
   `;
   console.log(str);
 }

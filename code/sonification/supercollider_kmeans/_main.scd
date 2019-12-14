@@ -154,7 +154,7 @@ Smpl.buf(~slib[1]);
 ~slib[1];
 Ndef(\g1).clear(1);
 ~slib.size;
-~sbuf = Smpl.buf(~slib[1]);
+~sbuf = Smpl.buf(~slib[2]);
 ~sbuf.duration;
 (
 Ndef(\g2, {|amp=0.5,pre=0.9,co=18000,rq=1|
@@ -186,15 +186,16 @@ Ndef(\g2).set(\pos, 0.2, \amp, 0.4, \gamp, 1.0);
 Ndef(\g1).set(\pos, 4.2, \amp, 1.0, \gamp, 0.7, \co, 12000, \gpan, -1.0);
 Ndef(\g1).set(\pos, 0.5, \amp, 1.0, \gamp, 0.3, \co, 12000, \gpan, 1.0);
 Ndef(\g2).set(\gdur, 0.1, \pos, rrand(0.0, ~sbuf.duration), \amp, 0.1, \gamp, 0.1, \co, 12000, \gpan, 0.0, \poslag, 5);
-Ndef(\g1).set(\pos, Ndef(\pos1, { LFNoise1.kr(0.2).range(0.0, 4.0) }), \amp, 0.4, \gamp, 1.0, \gdur, Ndef(\gdur, { LFNoise1.kr(5).range(0.01, 0.2) }), \dens, 100, \out, Project.outverb);
-Ndef(\g1).set(\co, Ndef(\co, { SinOsc.ar(LFNoise1.ar(10).range(0.05,0.3)).range(80, 10000) }));
-Ndef(\g1).set(\dens, 10, \amp, 1.0, \gdur, 0.1);
-Ndef(\g1).set(\pos, \amp, 0.2, Ndef(\pos, { SinOsc.ar(SinOsc.ar(0.4).range(0.05, 1.0)).range(0.0,4.0) } ), \prate, Ndef(\prate, { LFNoise0.ar(12).range(-0.4, 0.2) }) );
+Ndef(\g2).set(\pos, Ndef(\pos1, { LFNoise1.kr(0.2).range(0.0, 4.0) }), \amp, 0.4, \gamp, 0.5, \gdur, Ndef(\gdur, { LFNoise1.kr(5).range(0.01, 0.2) }), \dens, 100, \out, Project.outverb);
+Ndef(\g2).set(\rq, 0.3, \co, Ndef(\co, { LFNoise2.ar(10).range(80, 10000) }));
+Ndef(\g2).set(\dens, 0.4, \amp, 0.2, \gdur, 2.0, \prate, Ndef(\playpitch, { Saw.ar(0.1).range(-0.5, -0.2) }), \gpan, 0.0);
+Ndef(\g2).set(\dens, 2, \amp, 0.5, \gdur, 0.3, \prate, -0.3, \gpan, 0.0);
+Ndef(\g2).set(\pos, \amp, 0.2, Ndef(\pos, { SinOsc.ar(SinOsc.ar(0.4).range(0.05, 1.0)).range(0.0,4.0) } ), \prate, Ndef(\prate, { LFNoise0.ar(12).range(-0.4, 0.2) }) );
 Ndef(\g2).set(\gdur, 0.08, \amp, 0.6, \dens, 100, \gpan, Ndef(\gpan, { LFNoise1.ar(10).range(-1,1) }), \prate, -0.5);
-Ndef(\g1).set(\pre, 3.0, \co, 12700, \rq, 2, \pos, 0.2, \dens, 20, \dur, 0.2, \gamp, 1.0);
-Ndef(\g1).clear(10);
+Ndef(\g2).set(\pre, 3.0, \co, 12700, \rq, 2, \pos, 0.2, \dens, 20, \dur, 0.2, \gamp, 1.0);
+Ndef(\g2).clear(10);
 
-Ndef(\g1).clear;
+Ndef(\g2).clear;
 ( // General Processing
 Ndef(\fx, {
   var voice, cello, mix;
@@ -210,14 +211,15 @@ Ndef(\fx).clear(1);
 (
 Ndef(\eh, {
   var sig;
-  sig = Pulse.ar(Scale.major.ratios * \e7.f, mul: 1.0) * Line.ar(0,1,0.5) * SinOsc.ar(4) * Saw.ar(8);
+  //sig = Pulse.ar(Scale.major.ratios * \fs6.f, mul: 1.0) * Line.ar(0,1,0.5) * SinOsc.ar(4) * Saw.ar(8);
+  sig = SinOsc.ar(Scale.major.ratios * \fs3.f, mul: 1.0) * Line.ar(0,1,0.5) * SinOsc.ar(4) * Saw.ar(8);
   sig = Splay.ar(sig);
-  sig = sig * Line.ar(0.1, 1.0, 10.0);
+  sig = sig * SinOsc.ar(0.05).range(0.0, 1.0);
   sig = sig + [CombL.ar(sig, 0.5, 0.25, 0.5), CombL.ar(sig, 0.5, 0.3, 0.5)];
-  sig * 0.07;
-}).play(out: Project.outclean, numChannels: 2);
+  sig * 0.3;
+}).play(out: Project.outverb, numChannels: 2);
 );
-Ndef(\eh).clear(20);
+Ndef(\eh).clear(1);
 
 (
 Ndef(\rec, {
