@@ -289,6 +289,11 @@ Jonathan Reus [US/NL] is a musician and artist who explores expanded forms of mu
 <br>
 <div class="small">
 <ol>
+	Begin with a dataset, each item (point) of the dataset should be reduced to a set of <b>N</b> features.
+	To make things easier, we choose to represent each feature by a number from 0.0 and 1.0 (<b>normalization</b>).<br><br>
+	For example, if we choose to describe our data using five features (<b>N=5</b>), one data entry
+	could be described by the set of feature values [0.2, 0.44, 0.87, 0.1, 1.0]
+	<br><br>
 	<li> Choose the number of desired clusters <b>K</b> and obtain the data points.</li>
 	<li> Choose centroids c_1-c_k: either randomly or by choosing randomly from existing data points.</li>
 	<li> Repeat steps 4 & 5 until the algorithm converges or until the end of a fixed number of iterations.</li>
@@ -316,8 +321,8 @@ Jonathan Reus [US/NL] is a musician and artist who explores expanded forms of mu
 
 <p>The Euclidean distance or Euclidean metric is the "ordinary" straight-line distance between two points in N-dimensional Euclidean space. <a href="#Refs">[6]</a></p>
 <br>
-<img style="width: 30%"
-src="https://upload.wikimedia.org/wikipedia/commons/5/55/Euclidean_distance_2d.svg" alt="Euclidean distance in R2">
+<img style="width: 20%"
+src="https://upload.wikimedia.org/wikipedia/commons/5/55/Euclidean_distance_2d.svg" alt="Euclidean distance in R2" />
 
 <br><br>
 <img src="img/e/ed1.gif" style="width:auto" />
@@ -352,8 +357,8 @@ src="https://upload.wikimedia.org/wikipedia/commons/0/08/Manhattan_distance.svg"
 
 <h3>Catalog API</h3>
 <code>
-// calculate distance between two points
-> distance([0.0, 0.0], [6.0, 6.0])
+// calculate distance between two points<br>
+<b>distance([0.0, 0.0], [6.0, 6.0])</b>
 </code>
 <p>Simple Catalog Clustering:</p>
 <br>
