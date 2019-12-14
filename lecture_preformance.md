@@ -41,7 +41,7 @@ _openEntry("the-concept-of-aesthesis")_
 
 ## Gestures of — Collection and Preparation
 
-**clean_surface() or reset() **
+**clean_surface() or reset()**
 
 **catalog.cluster(3, Measures.euclidean, ["preparation", "collection"], 3, resultfunc, true, OSC_OUT, console.log);**
 
@@ -139,7 +139,7 @@ _openEntry("the-concept-of-aesthesis")_
 * [K-means evaluation strategies](https://anatomiesofintelligence.github.io/posts/2019-06-21-kmeans-initialization-strategies) _openEntry("k-means-initialization-strategies”)_
 
 
-The anatomist and the anatomized body. Iteration over iteration, calculating distances cutting across various lengths. Performing a series of dissections, cutting through corpses, data, our anatomic dataset collection. Classif ed objects of knowledge, a new collection is born.
+> The anatomist and the anatomized body. Iteration over iteration, calculating distances cutting across various lengths. Performing a series of dissections, cutting through corpses, data, our anatomic dataset collection. Classif ed objects of knowledge, a new collection is born.
 
 
 
@@ -164,7 +164,7 @@ The anatomist and the anatomized body. Iteration over iteration, calculating dis
 * three mummies = three zombies of AI: anacronistic; no longer valid; living myths;
 -->
 
-The anatomical theatre, which paralleled the emergence of the university as the premier learning institute in Europe, has been a time- space where bodies and their organ[isation] became spectacles of scienti c knowledge. It informed and disseminated an epistemological shift, introducing classi cation systems and taxonomies, as well as a speci c understanding of the body as a system reducible to its constituent parts.
+> The anatomical theatre, which paralleled the emergence of the university as the premier learning institute in Europe, has been a time- space where bodies and their organ[isation] became spectacles of scienti c knowledge. It informed and disseminated an epistemological shift, introducing classi cation systems and taxonomies, as well as a speci c understanding of the body as a system reducible to its constituent parts.
 
 <!-- Can we explicitly also address the role of the emerging phenomenon of the European University to the positions of the Leiden anatomists? 
 Also the ecology of agents and agencies: anatomic preparations — models and its users: anatomists and teachers, curators and audiences mapping presences and the absences; -->
