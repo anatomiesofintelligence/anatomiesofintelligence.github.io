@@ -20,7 +20,9 @@ Catalog demo and collective reading of the clustering algorithm; explain the con
   
    _1hour exercise IRL clustering_
 
-### 30 min in groups clustering: 20 or more entries in their dataset — toy dataset (MNIST / image dataset)
+### 30 min 
+
+In groups clustering: 20 or more entries in their dataset — toy dataset (MNIST / image dataset)
 
    * distance (or the concept of difference);
 
