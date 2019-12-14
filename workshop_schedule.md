@@ -1,22 +1,11 @@
-Draft workshop for Aarhus + presentation;
-
-   * two themes:
-
-   * concepts on distance in machine learning and anatomy. what is a unit of anatomical distance? what different topologies of geometries; directionality could we accomodate? Position and orientation.
-
-   distance is the moment of judjement.
-
-   * dimensionality reduction: we have 72 tags/dimensions and we reduce to 2D (x+y) euclidean distance always reduces to one numer (distance from the entrance to the centroid)
-
+# Draft workshop for Aarhus + presentation;
 
    30min: intro who we are; explain the project; why anatomy; why ML;
    2.15 hour: exercise
 
    15min) on the floor exercise: https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io/blob/master/anatomies_exercise.md;
 
-
    30min) introduce ML; distances + dimensionality reduction. K-means as focus: first sudo code; and then we read our own algorithm; https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io/blob/master/workshop_presentation.html
-
 
    30 min) catalog demo and collective reading of the clustering algorithm; explain the concepts of distance and dimentionality reduction (mainly necessary for vizualization; though essentialy this algorithms are already reducing dimensionalities). — > "help()"
 
