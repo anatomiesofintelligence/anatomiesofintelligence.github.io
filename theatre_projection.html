@@ -364,16 +364,39 @@ function resultfunc(err, clusters, centroids, featuresDef) {
 
 // SIMPLIFIED clustering functions
 // TODO: finish this?
-function cluster(taglist, num_clusters, projection_type, breakpoints) {
-  if(breakpoints != null) { BREAKPOINTS = breakpoints }
+function cluster(taglist, num_clusters, iterations=10, breakpoints=false) {
   if(num_clusters != null) { K = num_clusters }
   if(taglist != null) { CLUSTER_DIMENSIONS = taglist }
 
-  if(BREAKPOINTS) {
-    catalog.cluster(K, MEASUREMENT, CLUSTER_DIMENSIONS, ITERATIONS, resultfunc, true, OSC_OUT, console.log);
+  if(breakpoints) {
+    catalog.cluster(K, MEASUREMENT, CLUSTER_DIMENSIONS, iterations, resultfunc, true, OSC_OUT, console.log);
   } else {
-    catalog.cluster(K, MEASUREMENT, CLUSTER_DIMENSIONS, ITERATIONS, resultfunc, false);
+    catalog.cluster(K, MEASUREMENT, CLUSTER_DIMENSIONS, iterations, resultfunc, false);
   }
+}
+
+function distance(a, b) {
+  var sum = 0;
+  var n, feature_list;
+  //console.log("EUCLIDEAN: ",a,b,options);
+  if(typeof a == "number") { // special one-dimensional case
+    if(typeof b == "number") {
+        sum = Math.pow(a-b, 2);
+    } else {
+        console.log("ERROR: Inputs a and b are of different types!");
+        return null;
+    }
+  } else { // calculate euclidean distance in n dimensions
+    if(a.length == b.length) {
+      for (n=0; n < a.length; n++) {
+        sum += Math.pow(a[n]-b[n], 2);
+      }
+    } else {
+      console.log("ERROR: Inputs a and b have different numbers of features!");
+      return null;
+    }
+  }
+  return Math.sqrt(sum);
 }
 
 function help() {
