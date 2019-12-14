@@ -408,8 +408,16 @@ function help() {
     getCentroidDivs()
     catalog.allTags     //full list of tags
     catalog.allEntries  //full list of entries
-    catalog.cluster()   //run a clustering on the catalog
+
+     //run a clustering on the catalog
+    catalog.cluster(K, MEASUREMENT, CLUSTER_DIMENSIONS, ITERATIONS, resultfunc, USE_BREAKPOINTS, OSC_OUT, console.log)
+    cluster(FEATURES_ARRAY, K, ITERATIONS, USE_BREAKPOINTS)   // simplified cluster function
     catalog.stop()      //halt clustering algorithm
+
+    -- temporal parameters --
+    BREAKPOINTS = false   //break the algorithm up into temporal chunks
+    TEMPO = 0.5           //timescale/tempo speed of algorithm steps
+    RESOLUTION = 1        //resolution of algorithm reporting
 
     -- global clustering parameters --
     K = 3 //K-number of clusters
@@ -417,10 +425,6 @@ function help() {
     ITERATIONS = 5 //number of K-means iterations
     CLUSTER_DIMENSIONS = ["aesthesis", "models", "preparations"];
 
-    -- temporal parameters --
-    BREAKPOINTS = false   //break the algorithm up into temporal chunks
-    TEMPO = 0.5           //timescale/tempo speed of algorithm steps
-    RESOLUTION = 1        //resolution of algorithm reporting
 
     -- projection types --
     Projections.NONE        //entries stay in place
@@ -442,6 +446,7 @@ function help() {
     catalog.stop()
     catalog.cluster(3, Measures.euclidean, ["spectacle", "theatre"], 20, resultfunc, false)
     project(Projections.SIMPLE2D)
+
   `;
   console.log(str);
 }

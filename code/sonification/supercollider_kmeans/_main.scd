@@ -55,6 +55,7 @@ OSCFunc.trace(false);
 ---------------*/
 
 
+s.scope;
 
 (
 Ndef(\sawsweep, {

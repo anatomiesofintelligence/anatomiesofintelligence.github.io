@@ -289,22 +289,22 @@ Jonathan Reus [US/NL] is a musician and artist who explores expanded forms of mu
 <br>
 <div class="small">
 <ol>
-	Begin with a dataset, each item (point) of the dataset should be reduced to a set of <b>N</b> features.
+	Begin with a dataset, each item (datapoint <b>x</b>) of the dataset should be reduced to a set of <b>N</b> features.
 	To make things easier, we choose to represent each feature by a number from 0.0 and 1.0 (<b>normalization</b>).<br><br>
 	For example, if we choose to describe our data using five features (<b>N=5</b>), one data entry
 	could be described by the set of feature values [0.2, 0.44, 0.87, 0.1, 1.0]
 	<br><br>
-	<li> Choose the number of desired clusters <b>K</b> and obtain the data points.</li>
-	<li> Choose centroids c_1-c_k: either randomly or by choosing randomly from existing data points.</li>
-	<li> Repeat steps 4 & 5 until the algorithm converges or until the end of a fixed number of iterations.</li>
-	<li> For each data point x_i:
-		<ol>
-       <li> Find the nearest centroid(c_1, c_2 .. c_k);</li>
-       <li> Assign the point to that cluster.</li>
-		 </ol>
+	<li> Choose the number of desired clusters <b>K</b></li>
+	<li> Choose starting cluster centroids <b>c<sub>1</sub>-c<sub>k</sub></b>: either randomly or by choosing from existing data points.</li>
+	<li> ITERATE the following until the algorithm convergences on a specific set of clusters, or until the end of a fixed number of ITERATIONS
+		<ol>ITERATION: For each data point <b>x<sub>i</sub></b>:
+       <li> Calculate the distance from the datapoint to each of the centroids: <b>c<sub>1</sub>, c<sub>2</sub> .. c<sub>k</sub></b>);</li>
+       <li> ASSIGN the datapoint to the cluster represented by the closest centroid</li>
+		</ol>
+		<ol>ITERATION: For each cluster <b>i</b> with centroid <b>c<sub>i</sub></li>
+		     <li>Calculate a new centroid for cluster i which is the means (average) of all the datapoints assigned to that cluster. </li>
+			 </ol>
 	</li>
-<li> For each cluster j = 1..k</li>
-       <ol><li> New centroid = mean of all points assigned to that cluster.</li></ol>
 <li> End.</li>
 </ol>
 </div>
