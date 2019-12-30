@@ -7,6 +7,7 @@ _notes on dramaturgy_
 _things to think about_
 
 * screen composition (windows display);
+* make the typing of the function on the web console clearly readable;
 * technically how to sync audio and video;
-* how to make different 'entrance points' to the video — in a place like a gallery without fixed beginning and end.
+* how to make different 'entrance points' to the video — in a place like a gallery without fixed beginning and end;
 * show different details: zoom in and out;
