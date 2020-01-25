@@ -7,8 +7,8 @@ _notes on dramaturgy_
 _possible sequence_
 * The Theatre & the Spectacle: Staging Bodies of AI;
 * Staging: the gesture of — cutting;
-* Staging: the gesture of collecting;
-* Staging: perfection, freakish incidents, Devil's work or unknown categories 
+* Staging: the gesture of — collecting;
+* Staging: perfection, freakish incidents, Devil's work or unknown categories. 
 
 
 _things to think about_
