@@ -11,7 +11,6 @@ Aesthesis is a somewhat obscure term occurring in eighteenth-century European me
 "Laying bare and learning about the inner structures of the human body, was best done through the use of one’s own hands and eyes. (...) However, although the hand and the eye were indeed considered to be the anatomists’ most important instruments, all senses, including smell, taste, and hearing were involved in the practice of anatomy."
 
 
-
 * Staging: the gesture of — cutting;
 
 Driven by curiosity and the desire to see beyond the surface level, the skin, pourous, our primary interface to the world. Inter-facing scores and scripts, inter-, in between gestures and codes. 
@@ -26,17 +25,33 @@ pleasant."
 "Dealing with the disgusting insides of the body and with severed body parts was of course inevitable for anatomists
 and other medical men; paradoxically, it was of course also a manner in which to gain access to knowledge about the beauty and perfection of the human body. This, for example, shows in the writings of the Dutch lawyer and poet Willem Bilderdijk (1756–1831), who, though never having officially studied medicine, gave a detailed account of a dissection and used it to show that under all the bloody mess there is indeed something of profound beauty, and tried to persuade his reader of both the necessity and pleasure of anatomical explorations."
 
-
 * Staging: the gesture of — collecting;
 
 "Organizing and searching data often relies on detecting areas where objects form groups with similar properties; in high dimensional data, however, all objects appear to be sparse and dissimilar.”
 
+https://anatomiesofintelligence.github.io/posts/2018-11-6-ear-scar
+
 Preparations as an act of selection, accentuation, 
 
-"For the Leiden anatomists Rau, Albinus, Van Doeveren, Bonn and Brugmans perfection was at the core of their decisions. Aesthetically, the objects had to be presented according to fixed proportions, perspectives and other aesthetic conventions. Technologically and scientifically, the anatomical collections were aimed at showing ever more perfect methods of revealing and preserving nature. Ethically, the collections functioned like mirrors and helped in the educational and therefore ethical perfectibility of man."
+https://anatomiesofintelligence.github.io/posts/2019-09-2-Horizontal-section-brain
+
+https://anatomiesofintelligence.github.io/posts/2019-09-24-Skulls-Profiles
+
+"By the end of the eighteenth century, to simply claim that a skull was from a particular country or area was no longer enough for some anatomists to prove the existence of this region and its inhabitants, and they resorted to taking and filing endless measurements of skulls to distinguish certain categories into which particular ‘species’ of humans could be made to fit." 
+
+Like a mapping exercise. The location of anatomical structures can be described with relation to different anatomical landmarks. Here the relationship is based on euclidean distancing: measuring the distance between each entry; while having no sense of direction nor orientation.
+
+The anatomist and the anatomized body. Iteration over iteration, calculating distances cutting across various lengths. Performing a series of dissections, cutting through corpses, data, our anatomic dataset collection. Classified objects of knowledge, a new collection is born.
 
 * Staging: perfection, freakish incidents, Devil's work or unknown categories. 
 
+https://anatomiesofintelligence.github.io/posts/2019-12-6-botanical_preparations
+
+https://anatomiesofintelligence.github.io/posts/2019-09-2-Mircocosmographicus
+
+"For the Leiden anatomists Rau, Albinus, Van Doeveren, Bonn and Brugmans perfection was at the core of their decisions. Aesthetically, the objects had to be presented according to fixed proportions, perspectives and other aesthetic conventions. Technologically and scientifically, the anatomical collections were aimed at showing ever more perfect methods of revealing and preserving nature. Ethically, the collections functioned like mirrors and helped in the educational and therefore ethical perfectibility of man."
+
+https://anatomiesofintelligence.github.io/posts/2019-09-24-Human-Myth
 
 "So far, the preparations from the eighteenth-century Leiden anatomical collections appear to be predominantly examples of normal - or even perfect - human anatomy, prepared in such a way that they convey the aesthesis of anatomy. The result of particular yet tacit ideas of beauty, perfection and elegance, most of the body parts were chosen for these preparations because they were already in themselves perfect specimens: there are no obvious pathologies, and most of them were (part of) young, lean, healthy bodies. (…) Yet ultimately, severed body parts on the brink of decay - the ultimate emblem of disgust — are the constituents of this collection, and as in the course of the eighteenth-century research into pathology and abnormalities became increasingly important, an aesthesis ex negativo emerged: an aesthesis of the ugly and the imperfect."
 
