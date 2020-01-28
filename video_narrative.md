@@ -1,16 +1,56 @@
-_notes on dramaturgy_
 
 
-* [Basel —  narrative-like](https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io/blob/master/narration.md)
-* [Aarhus — more explanatory](https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io/blob/master/lecture_preformance.md)
+_our sequence_
 
-_possible sequence_
-* The Theatre & the Spectacle: Staging Bodies of AI;
+* The Concept of Aesthesis;
+
+On a rainy cold January afternoon, a group of people gathered, leaning towards a body, a body of knowledge. On the left side lies a book from the eighteenth century anatomic practices, recipes, a series of instructions of enconded notes, systems of notation. 
+
+Aesthesis is a somewhat obscure term occurring in eighteenth-century European medical and philosophical dictionaries describing “the faculty or power of sensation” in scientific practice. 
+
+"Laying bare and learning about the inner structures of the human body, was best done through the use of one’s own hands and eyes. (...) However, although the hand and the eye were indeed considered to be the anatomists’ most important instruments, all senses, including smell, taste, and hearing were involved in the practice of anatomy."
+
+
+
 * Staging: the gesture of — cutting;
+
+Driven by curiosity and the desire to see beyond the surface level, the skin, pourous, our primary interface to the world. Inter-facing scores and scripts, inter-, in between gestures and codes. 
+
+Starting with a simple gesture: cutting. To cut open, to examine, in order to describe each organ and identify their functions, while discovering its relations to the whole — from organ to organisation, organicity. The begginings of exploring a vast circulatory network circumventing anatomical locations which connects functions and enactments. Some call it an empirical system to perform systematic dissection of the human body.
+
+The best techniques to dissect the body to effectively observe each muscle and how the body is laid out. Learning from each cut, hands-on, a humid sensation activates the smells in the room.
+
+"Anatomical demonstrations were often spread over several days, and although being limited to the winter months, using an unheated room facing north, burning incense and starting with the most perishable parts—the intestines—went some way in covering up the worst in terms of smell, by the last day of dissecting the atmosphere in the anatomy theatre cannot have been
+pleasant."
+
+"Dealing with the disgusting insides of the body and with severed body parts was of course inevitable for anatomists
+and other medical men; paradoxically, it was of course also a manner in which to gain access to knowledge about the beauty and perfection of the human body. This, for example, shows in the writings of the Dutch lawyer and poet Willem Bilderdijk (1756–1831), who, though never having officially studied medicine, gave a detailed account of a dissection and used it to show that under all the bloody mess there is indeed something of profound beauty, and tried to persuade his reader of both the necessity and pleasure of anatomical explorations."
+
+
 * Staging: the gesture of — collecting;
+
+"Organizing and searching data often relies on detecting areas where objects form groups with similar properties; in high dimensional data, however, all objects appear to be sparse and dissimilar.”
+
+Preparations as an act of selection, accentuation, 
+
+"For the Leiden anatomists Rau, Albinus, Van Doeveren, Bonn and Brugmans perfection was at the core of their decisions. Aesthetically, the objects had to be presented according to fixed proportions, perspectives and other aesthetic conventions. Technologically and scientifically, the anatomical collections were aimed at showing ever more perfect methods of revealing and preserving nature. Ethically, the collections functioned like mirrors and helped in the educational and therefore ethical perfectibility of man."
+
 * Staging: perfection, freakish incidents, Devil's work or unknown categories. 
 
 
+"So far, the preparations from the eighteenth-century Leiden anatomical collections appear to be predominantly examples of normal - or even perfect - human anatomy, prepared in such a way that they convey the aesthesis of anatomy. The result of particular yet tacit ideas of beauty, perfection and elegance, most of the body parts were chosen for these preparations because they were already in themselves perfect specimens: there are no obvious pathologies, and most of them were (part of) young, lean, healthy bodies. (…) Yet ultimately, severed body parts on the brink of decay - the ultimate emblem of disgust — are the constituents of this collection, and as in the course of the eighteenth-century research into pathology and abnormalities became increasingly important, an aesthesis ex negativo emerged: an aesthesis of the ugly and the imperfect."
+
+https://anatomiesofintelligence.github.io/posts/2019-12-6-monster_instruments
+
+"By preserving monstrosities like these in preparations, and averting the immediate danger implied by the visceral disgust such specimens would provoke unpreserved, their makers shaped them into didactic instruments and purveyors of meaning."
+
+
+
+
+_notes on dramaturgy_
+
+* [Basel —  narrative-like](https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io/blob/master/narration.md)
+* [Aarhus — more explanatory](https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io/blob/master/lecture_preformance.md)
 _things to think about_
 
 * screen composition (windows display);
