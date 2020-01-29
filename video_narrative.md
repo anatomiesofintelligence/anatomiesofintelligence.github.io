@@ -17,7 +17,14 @@ Driven by curiosity and the desire to see beyond the surface level, the skin, po
 
 Starting with a simple gesture: cutting. To cut open, to examine, in order to describe each organ and identify their functions, while discovering its relations to the whole — from organ to organisation, organicity. The begginings of exploring a vast circulatory network circumventing anatomical locations which connects functions and enactments. Some call it an empirical system to perform systematic dissection of the human body.
 
+https://anatomiesofintelligence.github.io/posts/2019-12-6-dissection
+
+
 The best techniques to dissect the body to effectively observe each muscle and how the body is laid out. Learning from each cut, hands-on, a humid sensation activates the smells in the room.
+
+https://anatomiesofintelligence.github.io/posts/2018-10-16-leiden-cutting-tools
+
+https://anatomiesofintelligence.github.io/posts/2018-10-14-anatomical-theatre-leiden-engraving
 
 "Anatomical demonstrations were often spread over several days, and although being limited to the winter months, using an unheated room facing north, burning incense and starting with the most perishable parts—the intestines—went some way in covering up the worst in terms of smell, by the last day of dissecting the atmosphere in the anatomy theatre cannot have been
 pleasant."
