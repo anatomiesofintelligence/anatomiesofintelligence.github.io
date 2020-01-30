@@ -195,7 +195,7 @@ Catalog.prototype.entriesAsFeatures = function(options) {
 
 // Clusters using a number of clusters and a comparison function
 // uses KMEANS clustering/unsupervised learning
-Catalog.prototype.cluster = function(num_clusters, measure, thetaglist, iters, process_result_func, output=true, oscout, postfunc) {
+Catalog.prototype.cluster = function(num_clusters, measure, thetaglist, iters, process_result_func, output=1.0, oscout, postfunc) {
     var options, iterations, measurement, entrys_as_features;
     iterations = iters || 100;
     measurement = measure || Measures.euclidean;
@@ -206,8 +206,11 @@ Catalog.prototype.cluster = function(num_clusters, measure, thetaglist, iters, p
     if(output==true) {
       output = 1.0;
     } else {
-      output = 0.0;
+      if(output == false) {
+        output = 0.0;
+      }
     }
+
     this.kmeans.cluster(entrysAsFeatures, process_result_func, output, oscout, postfunc);
 }
 
@@ -300,7 +303,7 @@ KMeans.prototype.cluster = async function(entrys, donecallback, output=1.0, osco
 
     if(output > 0.0) {
       osc("/kmeans/iteration", [j, "start"]);
-      post("----------- ITERATION "+j+" ---------");
+      post("----------- Begin ITERATION "+j+" ---------");
       await Util.sleep(1000 * TEMPO);
     }
     if(output > 0.3) {
@@ -325,7 +328,7 @@ KMeans.prototype.cluster = async function(entrys, donecallback, output=1.0, osco
       // entry-idx entry-id centroid-idx distance
       if(output > 0.6) {
         osc("/kmeans/distance", [i, normalizedEntrys[i].entry.id, 0, min]);
-        post(min.toFixed(3) + ": " + normalizedEntrys[i].entry.id+" to c"+0);
+        post("Measured " + min.toFixed(3) + " from " + normalizedEntrys[i].entry.id+" to category "+0);
         await Util.sleep(250 * TEMPO);
       }
       var closestCentroid = 0;
@@ -335,8 +338,8 @@ KMeans.prototype.cluster = async function(entrys, donecallback, output=1.0, osco
         // entry-idx entry-id centroid-idx distance
         if(output > 0.6) {
           osc("/kmeans/distance", [i, normalizedEntrys[i].entry.id, k, tmpDistance]);
-          post(tmpDistance.toFixed(3) + ": " + normalizedEntrys[i].entry.id + " to c"+k);
-          await Util.sleep(250 * TEMPO);
+          post("Measured " + tmpDistance.toFixed(3) + " from " + normalizedEntrys[i].entry.id + " to category "+k);
+          await Util.sleep(200 * TEMPO);
         }
         if (tmpDistance < min) {
           min = tmpDistance;
@@ -345,8 +348,8 @@ KMeans.prototype.cluster = async function(entrys, donecallback, output=1.0, osco
           // entry-idx entry-id centroid-idx distance
           if(output > 0.5) {
             osc("/kmeans/updateClosestCentroid", [i, normalizedEntrys[i].entry.id, k, tmpDistance]);
-            post("update closest c"+k+" => " + normalizedEntrys[i].entry.id);
-            await Util.sleep(150 * TEMPO);
+            post("Reconsidering " + normalizedEntrys[i].entry.id + " for category "+ k);
+            await Util.sleep(300 * TEMPO);
           }
         }
       }
@@ -355,14 +358,14 @@ KMeans.prototype.cluster = async function(entrys, donecallback, output=1.0, osco
       // entry-idx entry-id centroid/cluster-idx distance
       if(output > 0.4) {
         osc("/kmeans/assignCluster", [i, normalizedEntrys[i].entry.id, closestCentroid, tmpDistance]);
-        post("ASSIGN c"+closestCentroid+" => "+normalizedEntrys[i].entry.id);
+        post("Deciding that " + normalizedEntrys[i].entry.id + " is category "+closestCentroid);
         await Util.sleep(400 * TEMPO);
       }
     }
 
     if(output > 0.2) {
       osc("/kmeans/iteration", [j, "recalculate-centroids"]);
-      post("--- I"+j+" Re-calculate Cluster Centroids ---");
+      post("Recalculating cluster centers for iteration "+j);
       await Util.sleep(1000 * TEMPO);
     }
 
@@ -388,16 +391,16 @@ KMeans.prototype.cluster = async function(entrys, donecallback, output=1.0, osco
 
         if(output > 0.15) {
           osc("/kmeans/recalculateCentroid", ["new", k, updatedCentroid.features]);
-          post("NEW CENTROID "+k+": "+updatedCentroid.features.map(x=>x.toFixed(2)));
-          await Util.sleep(300 * TEMPO);
+          post("Recalculating the center of category "+k+" to vector "+updatedCentroid.features.map(x=>x.toFixed(2)));
+          await Util.sleep(400 * TEMPO);
         }
       } else { // clusters with no entries keep their old centroid
         updatedCentroid = self.centroids[k];
 
         if(output > 0.15) {
           osc("/kmeans/recalculateCentroid", ["keep", k, updatedCentroid.features]);
-          post("CENTROID "+k+" UNCHANGED");
-          await Util.sleep(350 * TEMPO);
+          post("The vector center of category "+k+" remains unchanged");
+          await Util.sleep(500 * TEMPO);
         }
       }
       newCentroids.push(updatedCentroid);
@@ -405,7 +408,7 @@ KMeans.prototype.cluster = async function(entrys, donecallback, output=1.0, osco
     self.centroids = newCentroids;
     if(output > 0.0) {
       osc("/kmeans/iteration", [j, "end"]);
-      post("--- END Iteration "+j);
+      post("--- END of iteration "+j);
       await Util.sleep(5000 * TEMPO);
     }
 

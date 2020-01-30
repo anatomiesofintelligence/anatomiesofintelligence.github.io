@@ -15,12 +15,16 @@ OF A K MEANS CLUSTERING
 Scenes.init;
 Scenes.gui;
 
+"../_main.scd".resolveRelative
+
 // run SO_Server (SimpleOSC Server)
-("python" + "../SimpleOSC/SO_Server.py".resolveRelative).runInTerminal;
+"python %/SimpleOSC/SO_Server.py".format("/Users/jon/Drive/DEV/anatomiesofintelligence/anatomiesofintelligence.github.io/code/sonification").runInTerminal;
 "open http://anatomiesofintelligence.github.io/theatre/kmeans".runInTerminal;
 
+"open %".format("..".resolveRelative).runInTerminal
+
 (
-Project.startup(s, false, false, false, 200, 20, true , onBoot: {
+Project.startup(s, false, false, false, 200, 20, true, rootpath: "..".resolveRelative, onBoot: {
   "ANATOMIES OF INTELLIGENCE: AARHUS 13.12.2019".postln;
   ~scope = s.scope(2,0);
   ~scope.view.bounds_(Rect(400, 800, 1200, 1200));
@@ -37,6 +41,8 @@ Project.startup(s, false, false, false, 200, 20, true , onBoot: {
    // Livesample, Bufs
   if(~buf.notNil) { ~buf.free };
   ~buf = Buffer.alloc(s, s.sampleRate * 10, 1);
+  Macros.prefixStr = "!!!!!!!"
+
 });
 );
 OSCFunc.trace(true);
@@ -69,8 +75,80 @@ Ndef(\sawsweep, {
 );
 Ndef(\sawsweep).clear(10);
 
-//NetAddr.localAddr
 
+Smpl.buf(~slib[1]);
+~slib[1];
+Ndef(\g1).clear(1);
+~slib.size;
+(
+~sbuf = Smpl.buf(~slib[2]);
+~sbuf = Smpl.buf(~slib[1]);
+~sbuf.duration;
+
+Ndef(\g2, {|amp=0.5,pre=0.9,co=18000,rq=1|
+  var g_dens = \dens.kr(20, 0.5);
+  var g_prate = \prate.kr(1.0, 0.0);
+  var g_dur = \gdur.kr(0.1, 1);
+  var g_pan = \gpan.kr(0.0, 1.0);
+  var g_amp = \gamp.kr(0.2, 1.0);
+  var buf = ~sbuf;
+  var t_gtrig = (Dust.ar(g_dens) > 0);
+  var bufpos, sig;
+  bufpos = \pos.kr(0.0, \poslag.kr(1.0, 1.0)) * BufDur.kr(buf);
+  sig = TGrains.ar(2, t_gtrig, buf, g_prate, bufpos, g_dur, g_pan, g_amp);
+  sig = (sig * pre).tanh;
+  sig = BLowPass4.ar(sig, co, rq);
+  //sig = sig * Line.ar(0.0, 1.0, 10);
+  sig = Limiter.ar(sig * amp);
+  //Out.ar(Project.outverb, sig);
+  sig;
+}).play(out: Project.outverb, numChannels: 2);
+);
+
+Ndef(\g2).clear(1);
+Ndef(\sawsweep).clear(10);
+Project.meter
+
+~scope.style=0;
+~scope.style=1;
+~scope.style=2;
+~scope.xZoom = 1.0;
+~scope.yZoom = 10.0;
+Ndef(\g2).set(\pos, 0.2, \amp, 1.0, \gamp, 1.0);
+Ndef(\g2).set(\pos, 4.2, \amp, 1.0, \gamp, 0.7, \co, 12000, \gpan, -1.0);
+Ndef(\g2).set(\pos, 0.5, \amp, 1.0, \gamp, 0.3, \co, 12000, \gpan, 1.0);
+Ndef(\g2).set(\gdur, 0.1, \pos, rrand(0.0, ~sbuf.duration), \amp, 1.0, \gamp, 0.4, \co, 12000, \gpan, 0.0, \poslag, 5);
+Ndef(\g2).set(\pos, Ndef(\pos1, { LFNoise1.kr(0.2).range(0.0, 4.0) }), \amp, 0.4, \gamp, 0.5, \gdur, Ndef(\gdur, { LFNoise1.kr(5).range(0.01, 0.2) }), \dens, 100, \out, Project.outverb);
+Ndef(\g2).set(\rq, 0.3, \co, Ndef(\co, { LFNoise2.ar(10).range(80, 10000) }));
+Ndef(\g2).set(\dens, 0.4, \amp, 0.2, \gdur, 2.0, \prate, Ndef(\playpitch, { Saw.ar(0.1).range(-0.5, -0.2) }), \gpan, 0.0);
+Ndef(\g2).set(\dens, 2, \amp, 0.5, \gdur, 0.3, \prate, -0.3, \gpan, 0.0);
+Ndef(\g2).set(\pos, \amp, 0.2, Ndef(\pos, { SinOsc.ar(SinOsc.ar(0.4).range(0.05, 1.0)).range(0.0,4.0) } ), \prate, Ndef(\prate, { LFNoise0.ar(12).range(-0.4, 0.2) }) );
+Ndef(\g2).set(\gdur, 0.08, \amp, 0.6, \dens, 100, \gpan, Ndef(\gpan, { LFNoise1.ar(10).range(-1,1) }), \prate, -0.5);
+Ndef(\g2).set(\pre, 3.0, \co, 12700, \rq, 2, \pos, 0.2, \dens, 20, \dur, 0.2, \gamp, 1.0);
+Ndef(\g2).clear(10);
+
+Ndef(\g2).clear;
+
+/***********************************************
+OSC Responders
+
+                .aadddbbbbaa,       ,adddbbbbaaa.
+             .ad"           "\bbmdd/"           "ba.
+          .,d"                 `"'                 "b,.
+       .,ad"                                         "ba,.
+    .,amd"  __..,,,aaaaaadddddddMbbbbbbbaaaaaaa,,,..__  "bma,.
+,am8888ca8"""""''                                ``""""8ac88888ma,
+"""""]8a.                                               .a8["""""
+      "8ba.                                           .ad8"'
+        `"8bma,.                                .,amd88"'
+            `"""88bmm==Normand===Veilleux==mmd88"""'
+                    `""""""""""""""""""""""'
+
+
+************************************************/
+
+
+// OSC RESPONDERS
 //OSCdef(\status, {|msg| msg.postln}, "/browser/status");
 
 (
@@ -89,7 +167,7 @@ OSCdef(\browser, {|msg|
 OSCdef(\initcentroid, {|msg|
   //msg.postln;
   msg[2] = msg[2].asString.split($,);
-  "INITIALIZE CENTROID %: %".format(msg[1], msg[2]).postln;
+  "\n>>> INITIALIZE CENTROID % <<< to VECTOR %".format(msg[1], msg[2]).postln;
   (instrument: \thud, freq: \d5.f, amp: 0.7, dur: 0.5, dt: 0.4, atk: 0.01, rel: 0.5, decay: 0.1, out: Project.outverb).play;
 }, "/kmeans/initcentroid");
 
@@ -99,9 +177,9 @@ OSCdef(\initcentroid, {|msg|
 OSCdef(\iter, {|msg|
   //msg.postln;
   if(msg[2] == 'start') {
-    "-------ITERATION % START-------".format(msg[1]).postln;
+    "BEGIN ITERATION %".format(msg[1]).postln;
   } {
-    "% ITERATION % ---------".format(msg[2].asString.toUpper, msg[1]).postln;
+    "\nstage % (iter %)".format(msg[2].asString.toUpper, msg[1]).postln;
   };
   (instrument: \thud, freq: \d4.f, amp: 0.8, dur: 0.1, atk: 0.01, rel: 0.05, decay: 0.1, out: Project.outverb).play;
 }, "/kmeans/iteration");
@@ -113,7 +191,8 @@ OSCdef(\distance, {|msg|
   //msg.postln;
   var eidx = msg[1], eid = msg[2];
   var cidx = msg[3], dist = msg[4];
-  "measure % <-> C%: % (%)".format(eidx, cidx, dist.round(0.001), eid).postln;
+  "\nThe measure of entry % to centroid C% is %\n Δ • Δ           (%: %)".format(eidx, cidx, dist.round(0.001), eidx, eid).postln;
+  // If distance is very small, or 0, modhz will be 0 and this instrument will be silent.
   (instrument: \fm01, freq: \g3.f * dist.asFloat, modhz: 100 * dist, amp: 1.0, atk: 0.01, rel: 0.1, dur: 0.01, pan: 0.0, out: Project.outverb).play;
 }, "/kmeans/distance");
 
@@ -124,8 +203,8 @@ OSCdef(\updateclosest, {|msg|
   //msg.postln;
   var eidx = msg[1], eid = msg[2];
   var cidx = msg[3], dist = msg[4];
-  "___reconsider % > C% (% %)".format(eidx, cidx, eid, dist).postln;
-  (instrument: \pm, freq: cidx * 10, idx: 2.2, phase: msg[4], spread: 1, amp: 0.9, dur: 0.2 * dist, pan: 0.0, ratio: 3.5, co1: 9000, co2: 50, rq:0.2, out: Project.outclean).play;
+  "\nReconsider ENTRY % >> distance is % to category %\n⋱ ⋱ ⋱         (%: %)".format(eidx, dist, cidx, eidx, eid).postln;
+  (instrument: \pm, freq: eidx * 12, idx: 2.5, phase: msg[4], spread: 0.1, amp: 0.8, dur: 0.7 * dist, pan: 0.0, ratio: 2.5, co1: 2000, co2: 900, rq:0.2, out: Project.outverb).play;
 }, "/kmeans/updateClosestCentroid");
 
 // final cluster assignment for entry
@@ -134,9 +213,10 @@ OSCdef(\assigncluster, {|msg|
   //msg.postln;
   var eidx = msg[1], eid = msg[2];
   var cidx = msg[3], dist = msg[4];
-  "*CATEGORIZE % as C% (%)".format(eidx, cidx, eid).postln;
-  (instrument: \rezpad, freq: [\fs5.f, \fs6.f, \a4.f].wrapAt(cidx), amp: 1.0, dur: 0.1, phase: 2.5, modhz: 2.1, out: Project.outverb).play;
+  "\nENTRY % will be placed in CATEGORY % \n⊙ ⊙ ⊙ ⊙ ⊙              (%: %)".format(eidx, cidx, eidx, eid).postln;
+  (instrument: \rezpad, freq: [\fs5.f, \fs6.f, \a4.f].wrapAt(cidx), amp: 3.0, dur: [0.01, 0.03, 0.06, 0.1].wrapAt(cidx), phase: 2.5, modhz: 2.1, out: Project.outverb).play;
 }, "/kmeans/assignCluster");
+
 
 // recalculated centroids for new cluster assignments
 // addr status(new/keep) cluster-idx centroid-features
@@ -144,61 +224,17 @@ OSCdef(\recalccentroid, {|msg|
   //msg.postln;
   msg[3] = msg[3].asString.split($,);
   if(msg[1] == 'new') {
-    "NEW CENTROID %: %".format(msg[2], msg[3]).postln;
+    "Recalculating ⊙ CENTER ⊙ of cluster ⊙ % ⊙ as vector %".format(msg[2], msg[3]).postln;
   } {
-    "CENTROID % UNCHANGED".format(msg[2]).postln;
+    "The ⊙ CENTER ⊙ of cluster % remains unchanged".format(msg[2]).postln;
   };
   (instrument: \thud, freq: \d3.f, amp: 0.8, dur: 0.3, out: Project.outbass).play;
 }, "/kmeans/recalculateCentroid");
 
 );
 
-Smpl.buf(~slib[1]);
-~slib[1];
-Ndef(\g1).clear(1);
-~slib.size;
-~sbuf = Smpl.buf(~slib[2]);
-~sbuf.duration;
-(
-Ndef(\g2, {|amp=0.5,pre=0.9,co=18000,rq=1|
-  var g_dens = \dens.kr(20, 0.5);
-  var g_prate = \prate.kr(1.0, 0.0);
-  var g_dur = \gdur.kr(0.1, 1);
-  var g_pan = \gpan.kr(0.0, 1.0);
-  var g_amp = \gamp.kr(0.2, 1.0);
-  var buf = ~sbuf;
-  var t_gtrig = (Dust.ar(g_dens) > 0);
-  var bufpos, sig;
-  bufpos = \pos.kr(0.0, \poslag.kr(1.0, 1.0)) * BufDur.kr(buf);
-  sig = TGrains.ar(2, t_gtrig, buf, g_prate, bufpos, g_dur, g_pan, g_amp);
-  sig = (sig * pre).tanh;
-  sig = BLowPass4.ar(sig, co, rq);
-  //sig = sig * Line.ar(0.0, 1.0, 10);
-  sig = Limiter.ar(sig * amp);
-  Out.ar(Project.outverb, sig);
-  sig;
-}).play(out: Project.outverb, numChannels: 2);
-);
 
-~scope.style=0;
-~scope.style=1;
-~scope.style=2;
-~scope.xZoom = 1.0;
-~scope.yZoom = 10.0;
-Ndef(\g2).set(\pos, 0.2, \amp, 0.4, \gamp, 1.0);
-Ndef(\g1).set(\pos, 4.2, \amp, 1.0, \gamp, 0.7, \co, 12000, \gpan, -1.0);
-Ndef(\g1).set(\pos, 0.5, \amp, 1.0, \gamp, 0.3, \co, 12000, \gpan, 1.0);
-Ndef(\g2).set(\gdur, 0.1, \pos, rrand(0.0, ~sbuf.duration), \amp, 0.1, \gamp, 0.1, \co, 12000, \gpan, 0.0, \poslag, 5);
-Ndef(\g2).set(\pos, Ndef(\pos1, { LFNoise1.kr(0.2).range(0.0, 4.0) }), \amp, 0.4, \gamp, 0.5, \gdur, Ndef(\gdur, { LFNoise1.kr(5).range(0.01, 0.2) }), \dens, 100, \out, Project.outverb);
-Ndef(\g2).set(\rq, 0.3, \co, Ndef(\co, { LFNoise2.ar(10).range(80, 10000) }));
-Ndef(\g2).set(\dens, 0.4, \amp, 0.2, \gdur, 2.0, \prate, Ndef(\playpitch, { Saw.ar(0.1).range(-0.5, -0.2) }), \gpan, 0.0);
-Ndef(\g2).set(\dens, 2, \amp, 0.5, \gdur, 0.3, \prate, -0.3, \gpan, 0.0);
-Ndef(\g2).set(\pos, \amp, 0.2, Ndef(\pos, { SinOsc.ar(SinOsc.ar(0.4).range(0.05, 1.0)).range(0.0,4.0) } ), \prate, Ndef(\prate, { LFNoise0.ar(12).range(-0.4, 0.2) }) );
-Ndef(\g2).set(\gdur, 0.08, \amp, 0.6, \dens, 100, \gpan, Ndef(\gpan, { LFNoise1.ar(10).range(-1,1) }), \prate, -0.5);
-Ndef(\g2).set(\pre, 3.0, \co, 12700, \rq, 2, \pos, 0.2, \dens, 20, \dur, 0.2, \gamp, 1.0);
-Ndef(\g2).clear(10);
 
-Ndef(\g2).clear;
 ( // General Processing
 Ndef(\fx, {
   var voice, cello, mix;

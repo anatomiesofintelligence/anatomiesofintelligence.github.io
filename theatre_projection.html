@@ -414,7 +414,8 @@ function help() {
     catalog.stop()      //halt clustering algorithm
 
     -- temporal parameters --
-    BREAKPOINTS = false   //break the algorithm up into temporal chunks
+    BREAKPOINTS = false           //break the algorithm up into temporal chunks
+    BREAKPOINT_VERBOSITY = 0.8   // alternatively, provide a breakpoint "verbosity" 0.0-1.0
     TEMPO = 0.5           //timescale/tempo speed of algorithm steps
     RESOLUTION = 1        //resolution of algorithm reporting
 
@@ -440,9 +441,10 @@ function help() {
     catalog.cluster(K, MEASUREMENT, CLUSTER_DIMENSIONS, ITERATIONS, resultfunc, BREAKPOINTS)
     project(Projections.RADIUS)
     randomize()
-    catalog.cluster(3, Measures.euclidean, ["measurement", "cutting"], 20, resultfunc, true, OSC_OUT, console.log)
+    catalog.cluster(3, Measures.euclidean, ["measurement", "cutting"], 20, resultfunc, BREAKPOINT_VERBOSITY, OSC_OUT, console.log)
     TEMPO = 0.25
     catalog.stop()
+    catalog.cluster(3, Measures.euclidean, ["measurement", "cutting"], 20, resultfunc, 1.0, OSC_OUT, console.log)
     catalog.cluster(3, Measures.euclidean, ["spectacle", "theatre"], 20, resultfunc, false)
     project(Projections.SIMPLE2D)
     cut = ["aesthesis", "measurement", "cut", "spectacle", "theatre", "dimensionality", "", ]
