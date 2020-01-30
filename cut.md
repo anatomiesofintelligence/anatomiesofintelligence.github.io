@@ -11,8 +11,11 @@ Anatomies of Intelligence online repository gathers terminologies and techniques
 ## Staging: the gesture of — cutting;
 
 > K = 3 //K-number of clusters
+
 > MEASUREMENT = Measures.euclidean //measurement metric
+
 > ITERATIONS = 5 //number of K-means iterations
+
 > PROJECTION_DIMENSIONS = ["cutting", "measurement"]
 
 > catalog.cluster(3, Measures.euclidean, ["cutting", "measurement"], 10, resultfunc, true, OSC_OUT, console.log);
