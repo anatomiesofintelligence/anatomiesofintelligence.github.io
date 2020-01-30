@@ -1,19 +1,39 @@
+Anatomies of Intelligence is an artistic research initiative seeking to make connections between the formats and collections of anatomical knowledge and investigations into the “anatomy” of computational learning and prediction processes, datasets and machine learning models.Amongst our focus points are those that relate to tacit knowledge and a reliance on the senses when accumulating knowledge about bodies and body-like structures. 
+
+Until this point we have opted for the live algorithm setting as a way to bring out an embodied presence for existing with and within the other bodies of data science. Dissective, preparatory and demonstrative gestures lie at the center of our approach. And by developing our own demonstration tools and data sets, our process-based methodology brings to surface the artisanal human acts of craft and gesture inherent to such processes.
+
+We began the project by building an online repository which gathers terminologies and techniques for a critical examination of the “anatomy” of learning and prediction processes, data corpora and models of machine learning algorithms. This catalog is a living research document into the history and present of anatomical science, as well as “anatomies” of artificial intelligence algorithms and data stewardship practices.The catalogue interface is also our platform to explore, through performance, how such a collection and an artisanal algorithmic toolkit can confront the idealized bodies of artificial intelligence — its fixed representational structures and opaque learning processes.
+
+
+catalog.allEntries  //full list of entries
+
+K = 3 //K-number of clusters
+MEASUREMENT = Measures.euclidean //measurement metric
+ITERATIONS = 5 //number of K-means iterations
+PROJECTION_DIMENSIONS = ["cutting", "measurement"]
+
+catalog.cluster(3, Measures.euclidean, ["cutting", "measurement"], 10, resultfunc, true, OSC_OUT, console.log);
+
+project(Projections.SIMPLE2D)
+
+
 * Staging: the gesture of — cutting;
 
 Starting with a simple gesture: cutting. To cut open, to examine, in order to describe each organ and identify their functions, while discovering its relations to the whole — from organ to organisation, organicity. The begginings of exploring a vast circulatory network circumventing anatomical locations which connects functions and enactments. Some call it an empirical system to perform systematic dissection of the human body.
 
 Learning the best techniques to dissect the body to effectively observe each muscle and how the body is laid out. Learning from each cut, hands-on, a humid sensation activates the smells in the room.
 
-"Anatomical demonstrations were often spread over several days, and although being limited to the winter months, using an unheated room facing north, burning incense and starting with the most perishable parts—the intestines—went some way in covering up the worst in terms of smell, by the last day of dissecting the atmosphere in the anatomy theatre cannot have been
-pleasant."
+    
 
-"Dealing with the disgusting insides of the body and with severed body parts was of course inevitable for anatomists
-and other medical men; paradoxically, it was of course also a manner in which to gain access to knowledge about the beauty and perfection of the human body. This, for example, shows in the writings of the Dutch lawyer and poet Willem Bilderdijk (1756–1831), who, though never having officially studied medicine, gave a detailed account of a dissection and used it to show that under all the bloody mess there is indeed something of profound beauty, and tried to persuade his reader of both the necessity and pleasure of anatomical explorations."
+Aesthesis or “the faculty or power of sensation” was often used to describe scientific practices in eighteenth-century European medical and philosophical dictionaries. "Laying bare and learning about the inner structures of the human body, was best done through the use of one’s own hands and eyes. (...) However, although the hand and the eye were indeed considered to be the anatomists’ most important instruments, all senses, including smell, taste, and hearing were involved in the practice of anatomy."
 
-Catalog entries:
+Guided through the senses and driven by curiosity, or the desire to see beyond the surface level, the skin, pourous, our primary interface to the world. Inter-facing scores and scripts, inter-, as in between gestures and codes.
 
-https://anatomiesofintelligence.github.io/posts/2019-12-6-dissection
+- - - 
 
-https://anatomiesofintelligence.github.io/posts/2018-10-16-leiden-cutting-tools
+Projections.SIMPLE2D    //entries are projected in 2D using one feature per axis
+Projections.RADIUS      //entries arranged radially around centroids
 
-https://anatomiesofintelligence.github.io/posts/2018-10-14-anatomical-theatre-leiden-engraving
+The anatomist and the anatomized body. Iteration over iteration, calculating distances cutting across various lengths. Performing a series of dissections, cutting through corpses, data, our anatomic dataset collection. Classified objects of knowledge, a new collection is born.
+
+Open Catalog entries:
