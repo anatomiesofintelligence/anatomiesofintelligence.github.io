@@ -1,16 +1,14 @@
-
-
-_our sequence_
+## Sequence 1
 
 * The Concept of Aesthesis;
 
-On a rainy cold January afternoon, a group of people gathered, leaning towards a body, a body of knowledge. On the left side lies a book from the eighteenth century anatomic practices, recipes, a series of instructions of enconded notes, systems of notation. 
+On a rainy cold January afternoon, inside, you are with a small group of people gathered around an object. Everyone is learning inwards towards what appears to be a body laying sprawled upon an inspection surface. The body, on closer inspection, is a body of knowledge. On the left side of the body lies a book that seems impossibly old, although it is impossible to tell from what era it belongs. The book is open to a page presenting a system of notation you don't completely understand, but seems somehow familiar. You can recognize it as a recipe of some kind, and the diagrams give you an impression of directions, orientations, measures.
 
-"Laying bare and learning about the inner structures of the human body, was best done through the use of one’s own hands and eyes. (...) However, although the hand and the eye were indeed considered to be the anatomists’ most important instruments, all senses, including smell, taste, and hearing were involved in the practice of anatomy."
+"We are gathered here", explains the voice of one of the unseen participants, "because we share a desire to see beyond the surface level, beyond the skin, our porous primary interface with the world. Laying bare and learning about the inner structures of the body is best done through the use of one’s own hands and eyes. However, although the hand and the eye are indeed the anatomists’ most important instruments, all senses, including smell, taste, and hearing are involved in the practice of anatomy."
 
-Aesthesis or “the faculty or power of sensation” was often used to describe scientific practices in eighteenth-century European medical and philosophical dictionaries.
+Pages turn in the open book, settling upon a page with a new arrangement of symbols, these resemble the pictograms of early writing cultures, and again give the impression of instructions, or a recipe. They look almost like musical scores, but rather than follow a straight and predictable path, the lines of the staff follow curving and weird paths through an almost alien spacetime, sometimes disappearing, sometimes reappearing. Tracing out movements in all directions, as if in between gestures and codes.
 
-Guided through the senses and driven by curiosity, or the desire to see beyond the surface level, the skin, pourous, our primary interface to the world. Inter-facing scores and scripts, inter-, as in between gestures and codes. 
+"Aesthesis.", continues the voice, "The term, Aesthesis, was used in 18th century scientific practices to refer to the power of sensation. More than simply a matter of pleasure, Aesthesis was an entire epistemological worldview, a way to collect, present and possess knowledge."
 
 * Staging: the gesture of — cutting;
 
@@ -36,19 +34,19 @@ and other medical men; paradoxically, it was of course also a manner in which to
 
 https://anatomiesofintelligence.github.io/posts/2018-11-6-ear-scar
 
-Preparations as an act of selection, accentuation, 
+Preparations as an act of selection, accentuation,
 
 https://anatomiesofintelligence.github.io/posts/2019-09-2-Horizontal-section-brain
 
 https://anatomiesofintelligence.github.io/posts/2019-09-24-Skulls-Profiles
 
-"By the end of the eighteenth century, to simply claim that a skull was from a particular country or area was no longer enough for some anatomists to prove the existence of this region and its inhabitants, and they resorted to taking and filing endless measurements of skulls to distinguish certain categories into which particular ‘species’ of humans could be made to fit." 
+"By the end of the eighteenth century, to simply claim that a skull was from a particular country or area was no longer enough for some anatomists to prove the existence of this region and its inhabitants, and they resorted to taking and filing endless measurements of skulls to distinguish certain categories into which particular ‘species’ of humans could be made to fit."
 
 Like a mapping exercise. The location of anatomical structures can be described with relation to different anatomical landmarks. Here the relationship is based on euclidean distancing: measuring the distance between each entry; while having no sense of direction nor orientation.
 
 The anatomist and the anatomized body. Iteration over iteration, calculating distances cutting across various lengths. Performing a series of dissections, cutting through corpses, data, our anatomic dataset collection. Classified objects of knowledge, a new collection is born.
 
-* Staging: perfection, freakish incidents, Devil's work or unknown categories. 
+* Staging: perfection, freakish incidents, Devil's work or unknown categories.
 
 https://anatomiesofintelligence.github.io/posts/2019-12-6-botanical_preparations
 

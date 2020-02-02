@@ -1,6 +1,6 @@
 ## Introduction: The Theatre & the Spectacle: Staging Bodies of AI
 
-Anatomies of Intelligence is an artistic research initiative seeking to make connections between the formats and collections of anatomical knowledge and investigations into the “anatomy” of computational learning and prediction processes, datasets and machine learning models. 
+Anatomies of Intelligence is an artistic research initiative seeking to make connections between the formats and collections of anatomical knowledge and investigations into the “anatomy” of computational learning and prediction processes, datasets and machine learning models.
 
 > catalog.allEntries  //full list of entries
 
@@ -39,4 +39,3 @@ Guided through the senses and driven by curiosity, or the desire to see beyond t
 The anatomist and the anatomized body. Iteration over iteration, calculating distances cutting across various lengths. Performing a series of dissections, cutting through corpses, data, our anatomic dataset collection. Classified objects of knowledge, a new collection is born.
 
 > clean_surface()
-
