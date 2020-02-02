@@ -1,6 +1,6 @@
 ## Sequence 1
 
-### Intro: The Concept of Aesthesis;
+### Intro: The Concept of Aesthesis.
 
 On a rainy cold January afternoon, inside, __replace you are with__ a small group of people gathered around an object. Everyone is learning inwards towards what appears to be a body laying sprawled upon an inspection surface. The body, on closer inspection, is a body of knowledge. On the left side of the body lies an ancient book __replace that seems impossibly old,__ although it is impossible to tell from what era it belongs. The book is open to a page presenting a system of notation you don't completely understand, but seems somehow familiar. You can recognize it as a recipe of some kind, and the diagrams give you an impression of directions, orientations, measures.
 
@@ -14,7 +14,7 @@ Pages turn in the open book, settling upon a page with a new arrangement of symb
 #### NOTE: continue here
 
 
-### Staging: the gesture of — cutting;
+### Staging: the gesture of — cutting.
 
 > clean_surface()
 
@@ -43,7 +43,7 @@ https://anatomiesofintelligence.github.io/posts/2018-10-14-anatomical-theatre-le
 Dealing with the disgusting insides of the body and with severed body parts is, of course inevitable for anatomists. Paradoxically, is is also a manner in which to gain access to knowledge about the beauty and perfection of a data corpus. Can you imagine? That under all the bloody bias there is indeed something of profound beauty?
 
 
-### Staging: perfection and ethics
+### Staging: perfection and ethics.
 
 > clean_surface() or reset()
 
