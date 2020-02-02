@@ -1,6 +1,6 @@
 ## Sequence 1
 
-* The Concept of Aesthesis;
+### The Concept of Aesthesis;
 
 On a rainy cold January afternoon, inside, __replace you are with__ a small group of people gathered around an object. Everyone is learning inwards towards what appears to be a body laying sprawled upon an inspection surface. The body, on closer inspection, is a body of knowledge. On the left side of the body lies an ancient book __replace that seems impossibly old,__ although it is impossible to tell from what era it belongs. The book is open to a page presenting a system of notation you don't completely understand, but seems somehow familiar. You can recognize it as a recipe of some kind, and the diagrams give you an impression of directions, orientations, measures.
 
@@ -13,7 +13,7 @@ Pages turn in the open book, settling upon a page with a new arrangement of symb
 
 #### NOTE: continue here
 
-* Staging: the gesture of — cutting;
+### Staging: the gesture of — cutting;
 
 > clean_surface()
 
@@ -42,7 +42,7 @@ https://anatomiesofintelligence.github.io/posts/2018-10-14-anatomical-theatre-le
 
 Dealing with the disgusting insides of the body and with severed body parts is, of course inevitable for anatomists. Paradoxically, is is also a manner in which to gain access to knowledge about the beauty and perfection of a data corpus. Can you imagine? That under all the bloody bias there is indeed something of profound beauty?
 
-* Staging: perfection and ethics // : the gesture of — collecting, freakish incidents, Devil's work and unknown categories.
+### Staging: perfection and ethics
 
 > clean_surface() or reset()
 
@@ -60,10 +60,11 @@ Aesthetically, the objects had to be presented according to the ideals of the da
 
 https://anatomiesofintelligence.github.io/posts/2019-09-24-Human-Myth
 
-
 The majority of anatomical preparations in the collections of the 18th-century Leiden anatomists appear to be predominantly examples of normal - or even perfect - human anatomy, prepared in such a way that they convey the aesthesis of anatomy. 
 
 This aesthesis is the result of particular yet tacit ideas of beauty, perfection and elegance. Most of the body parts were chosen for these preparations because they were already in themselves perfect specimens: there are no obvious pathologies, and most of them were (part of) young, lean, healthy bodies. Yet ultimately, they remain severed body parts on the brink of decay - the ultimate emblem of disgust.
+
+### Staging: the gesture of — collecting, freakish incidents, Devil's work and unknown categories.
 
 As this early Enlightenment-era anatomy developed, the study of pathology and abnormalities became increasingly important, and a new aesthesis of monstrosities emerged. An aesthesis of the ugly and the imperfect. An aesthesis ex-negativo.
 
@@ -71,7 +72,7 @@ https://anatomiesofintelligence.github.io/posts/2019-12-6-monster_instruments
 
 By preserving pathological specimens, or monstrosities as they said, in anatomical preparations; and averting the immediate danger implied by the visceral disgust — such specimens would provoke unpreserved, their makers shaped them into didactic instruments and purveyors of meaning."
 
-* Staging: the gesture of — collecting;
+### Staging: the gesture of — organ — izing.
 
 https://anatomiesofintelligence.github.io/posts/2018-11-6-ear-scar
 
