@@ -23,13 +23,15 @@ The body is cut open. It is necessary in order to properly examine its structure
 
 "This is only a local understanding", says a new voice, one of the other participants gathered with you. "What are its relations to the whole?". The perceptual frame shifts from organ to organisation, directing your awareness through a vast circulatory network circumventing anatomical locations. A network which connects functions and enactments.
 
-"We are still learning the best techniques for dissection", speaks the first voice, with no emotion, "we may call it an empirical system to perform systematic dissection of the ideal body" The dissection continues and increasingly, you have the sensation that you are making the gestures with your own hands. You learn from each cut, and a humid sensation fills the room.
+"We may call it an empirical system to perform systematic dissection of the ideal body", speaks the first voice again. The dissection continues and increasingly, you have the sensation that you are making the gestures with your own hands. You learn from each cut, and a humid sensation fills the room. "We are still learning the best techniques for dissection", reminds the voice.
+
+In the past demonstrations were usually spread over several days, and limited to the winter months, in an unheated room facing northward to keep the sun out. These measures are no longer necessary. In the air there no longer lingers a smell of incense. There is no, far stronger, smell of rot. Although we still attempt to start with the most perishable parts of the corpus. There is still something unnerving, and unpleasant.
+
 
 https://anatomiesofintelligence.github.io/posts/2018-10-16-leiden-cutting-tools
 
 https://anatomiesofintelligence.github.io/posts/2018-10-14-anatomical-theatre-leiden-engraving
 
-This is your third day of anatomical demonstrations. This is normal, as they are usually spread over several days, and limited to the winter months. The room is unheated, facing northward to keep the sun out. In the air there lingers a smell of incense, but there is a far stronger, unpleasant smell. The smell of rot. Although we have attempted to start with the most perishable parts. It is not very pleasant.
 
 Dealing with the disgusting insides of the body and with severed body parts is, of course inevitable for anatomists. Paradoxically, is is also a manner in which to gain access to knowledge about the beauty and perfection of a data corpus. Can you imagine? That under all the bloody bias there is indeed something of profound beauty?
 
@@ -39,15 +41,19 @@ https://anatomiesofintelligence.github.io/posts/2019-12-6-botanical_preparations
 
 https://anatomiesofintelligence.github.io/posts/2019-09-2-Mircocosmographicus
 
-"For the Leiden anatomists Rau, Albinus, Van Doeveren, Bonn and Brugmans perfection was at the core of their decisions. Aesthetically, the objects had to be presented according to fixed proportions, perspectives and other aesthetic conventions. Technologically and scientifically, the anatomical collections were aimed at showing ever more perfect methods of revealing and preserving nature. Ethically, the collections functioned like mirrors and helped in the educational and therefore ethical perfectibility of man."
+For the 18th century Leiden anatomists Rau, Albinus, Van Doeveren, Bonn and Brugmans, perfection was at the core of their decisions for how to prepare and present objects of study.
+
+Aesthetically, the objects had to be presented according to the ideals of the day: fixed proportions, perspectives and other conventions. Technologically and scientifically, the collections of anatomical preparations were aimed at demonstrating ever more perfect methods of revealing and preserving nature. A showcase of the most refined techniques, the most advanced crafts of preservation, for illuminating divine truth. Following the ethics of the early Enlightenment, the collections functioned like mirrors and helped in the educational, and therefore ethical, perfectibility of man.
 
 https://anatomiesofintelligence.github.io/posts/2019-09-24-Human-Myth
 
-"So far, the preparations from the eighteenth-century Leiden anatomical collections appear to be predominantly examples of normal - or even perfect - human anatomy, prepared in such a way that they convey the aesthesis of anatomy. The result of particular yet tacit ideas of beauty, perfection and elegance, most of the body parts were chosen for these preparations because they were already in themselves perfect specimens: there are no obvious pathologies, and most of them were (part of) young, lean, healthy bodies. (…) Yet ultimately, severed body parts on the brink of decay - the ultimate emblem of disgust — are the constituents of this collection, and as in the course of the eighteenth-century research into pathology and abnormalities became increasingly important, an aesthesis ex negativo emerged: an aesthesis of the ugly and the imperfect."
+The majority of anatomical preparations in the collections of the 18th-century Leiden anatomists appear to be predominantly examples of normal - or even perfect - human anatomy, prepared in such a way that they convey the aesthesis of anatomy. This aesthesis is the result of particular yet tacit ideas of beauty, perfection and elegance. Most of the body parts were chosen for these preparations because they were already in themselves perfect specimens: there are no obvious pathologies, and most of them were (part of) young, lean, healthy bodies. Yet ultimately, they remain severed body parts on the brink of decay - the ultimate emblem of disgust.
+
+As this early Enlightenment-era anatomy developed, the study of pathology and abnormalities became increasingly important, and a new aesthesis of monstrosities emerged. An aesthesis of the ugly and the imperfect. An aesthesis ex negativo.
 
 https://anatomiesofintelligence.github.io/posts/2019-12-6-monster_instruments
 
-"By preserving monstrosities like these in preparations, and averting the immediate danger implied by the visceral disgust such specimens would provoke unpreserved, their makers shaped them into didactic instruments and purveyors of meaning."
+Pathological specimens, By preserving monstrosities like these in preparations, and averting the immediate danger implied by the visceral disgust such specimens would provoke unpreserved, their makers shaped them into didactic instruments and purveyors of meaning."
 
 * Staging: the gesture of — collecting;
 
