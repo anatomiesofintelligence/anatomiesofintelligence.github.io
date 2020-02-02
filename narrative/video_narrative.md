@@ -1,6 +1,6 @@
 ## Sequence 1
 
-### The Concept of Aesthesis;
+### Intro: The Concept of Aesthesis;
 
 On a rainy cold January afternoon, inside, __replace you are with__ a small group of people gathered around an object. Everyone is learning inwards towards what appears to be a body laying sprawled upon an inspection surface. The body, on closer inspection, is a body of knowledge. On the left side of the body lies an ancient book __replace that seems impossibly old,__ although it is impossible to tell from what era it belongs. The book is open to a page presenting a system of notation you don't completely understand, but seems somehow familiar. You can recognize it as a recipe of some kind, and the diagrams give you an impression of directions, orientations, measures.
 
@@ -12,6 +12,7 @@ Pages turn in the open book, settling upon a page with a new arrangement of symb
 
 
 #### NOTE: continue here
+
 
 ### Staging: the gesture of — cutting;
 
@@ -34,13 +35,13 @@ The body is cut open. It is necessary in order to properly examine its structure
 
 In the past demonstrations were usually spread over several days, and limited to the winter months, in an unheated room facing northward to keep the sun out. These measures are no longer necessary. In the air there no longer lingers a smell of incense. There is no, far stronger, smell of rot. Although we still attempt to start with the most perishable parts of the corpus. There is still something unnerving, and unpleasant.
 
-
 https://anatomiesofintelligence.github.io/posts/2018-10-16-leiden-cutting-tools
 
 https://anatomiesofintelligence.github.io/posts/2018-10-14-anatomical-theatre-leiden-engraving
 
 
 Dealing with the disgusting insides of the body and with severed body parts is, of course inevitable for anatomists. Paradoxically, is is also a manner in which to gain access to knowledge about the beauty and perfection of a data corpus. Can you imagine? That under all the bloody bias there is indeed something of profound beauty?
+
 
 ### Staging: perfection and ethics
 
@@ -64,6 +65,7 @@ The majority of anatomical preparations in the collections of the 18th-century L
 
 This aesthesis is the result of particular yet tacit ideas of beauty, perfection and elegance. Most of the body parts were chosen for these preparations because they were already in themselves perfect specimens: there are no obvious pathologies, and most of them were (part of) young, lean, healthy bodies. Yet ultimately, they remain severed body parts on the brink of decay - the ultimate emblem of disgust.
 
+
 ### Staging: the gesture of — collecting, freakish incidents, Devil's work and unknown categories.
 
 As this early Enlightenment-era anatomy developed, the study of pathology and abnormalities became increasingly important, and a new aesthesis of monstrosities emerged. An aesthesis of the ugly and the imperfect. An aesthesis ex-negativo.
@@ -71,6 +73,7 @@ As this early Enlightenment-era anatomy developed, the study of pathology and ab
 https://anatomiesofintelligence.github.io/posts/2019-12-6-monster_instruments
 
 By preserving pathological specimens, or monstrosities as they said, in anatomical preparations; and averting the immediate danger implied by the visceral disgust — such specimens would provoke unpreserved, their makers shaped them into didactic instruments and purveyors of meaning."
+
 
 ### Staging: the gesture of — organ — izing.
 
@@ -84,6 +87,9 @@ https://anatomiesofintelligence.github.io/posts/2019-09-24-Skulls-Profiles
 
 Differences and proximities, like a mapping exercise which can be described with relation to different anatomical landmarks. Imagine anatomical lines drawn through structures, circumventing anatomical locations. Most terms of anatomical location are relative to linear motion (translation) along the X- Y- and Z-axes, but there are other degrees of freedom as well, in particular, rotation around any of those three axes. Here though the relationship is based on euclidean distancing: measuring the distance between each entry; while having no sense of direction nor orientation.
 
+
+### Grand Finale — staging the bodies of AI
+
 > clean_surface()
 
 > catalog.cluster(3, Measures.euclidean, ["theatre", "spectacle"], 20, resultfunc, true, OSC_OUT, console.log);
@@ -92,6 +98,7 @@ Differences and proximities, like a mapping exercise which can be described with
 
 The anatomist and the anatomized body. Iteration over iteration, calculating distances cutting across various lengths. Performing a series of dissections, cutting through corpses, data, our anatomic dataset collection. Classified objects of knowledge, a new collection is born.
 
+- - -
 
 _notes on dramaturgy_
 
