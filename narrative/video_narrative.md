@@ -85,7 +85,8 @@ https://anatomiesofintelligence.github.io/posts/2019-12-6-monster_instruments
 
 Pathological specimens like these appear often and are of great interest. They are the statistical outliers that in some cases break the model's delicate facia. But in most cases, they force a rethinking of the model's effectivity and are subsumed by it, reinforcing the model's power as a knowledge. By preserving monstrocities in preparations, the immediate danger implied by the visceral disgust such specimines provoke is averted. Instead, we shape them into didactic instruments and purveyors of meaning.
 
-## Staging: the gesture of — measurement;
+
+## Staging: the gesture of — measurement; tracing movement; distance; dimensionality
 
 
 > clean_surface()
@@ -94,30 +95,11 @@ Pathological specimens like these appear often and are of great interest. They a
 
 > project(Projections.RADIUS)
 
-
-By the end of the eighteenth century, to simply claim that a skull was from a particular country or area was no longer enough for some anatomists to prove the existence of this region and its inhabitants, and they resorted to taking and filing endless measurements of skulls to distinguish certain categories into which particular ‘species’ of humans could be made to fit.
-
-Like a mapping exercise. The location of anatomical structures can be described with relation to different anatomical landmarks. Here the relationship is based on euclidean distancing: measuring the distance between each entry; while having no sense of direction nor orientation.
-
-Organising and searching data often relies on detecting areas where objects form groups with similar properties. In high dimensional data, however, all objects appear to be sparse and dissimilar.
-
 https://anatomiesofintelligence.github.io/posts/2018-11-6-ear-scar
-
-Preparations as an act of selection, accentuation,
 
 https://anatomiesofintelligence.github.io/posts/2019-09-2-Horizontal-section-brain
 
 https://anatomiesofintelligence.github.io/posts/2019-09-24-Skulls-Profiles
-
-
-## Staging: tracing movement; distance; dimensionality
-
-
-> clean_surface()
-
-> catalog.cluster(3, Measures.euclidean, ["theatre", "spectacle"], 10, resultfunc, true, OSC_OUT, console.log);
-
-> project(Projections.RADIUS)
 
 
 Now, close your eyes. How is your body feeling today? Feel the weight and lightness of you body; pressing the surrounding surfaces; the limits between surfaces.
