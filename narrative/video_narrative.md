@@ -53,11 +53,15 @@ As this early Enlightenment-era anatomy developed, the study of pathology and ab
 
 https://anatomiesofintelligence.github.io/posts/2019-12-6-monster_instruments
 
-Pathological specimens, By preserving monstrosities like these in preparations, and averting the immediate danger implied by the visceral disgust such specimens would provoke unpreserved, their makers shaped them into didactic instruments and purveyors of meaning."
+Pathological specimens like these appear often and are of great interest. They are the statistical outliers that in some cases to break the model's delicate facia. But in most cases, they force a rethinking of the model's effectivity and are subsumed by it, reinforcing the model's power as a knowledge. By preserving monstrocities in preparations, the immediate danger implied by the visceral disgust such specimines provoke is averted. Instead, we shape them into didactic instruments and purveyors of meaning.
 
-* Staging: the gesture of — collecting;
+* Staging: the gesture of — measurement;
 
-"Organizing and searching data often relies on detecting areas where objects form groups with similar properties; in high dimensional data, however, all objects appear to be sparse and dissimilar.”
+By the end of the eighteenth century, to simply claim that a skull was from a particular country or area was no longer enough for some anatomists to prove the existence of this region and its inhabitants, and they resorted to taking and filing endless measurements of skulls to distinguish certain categories into which particular ‘species’ of humans could be made to fit.
+
+Like a mapping exercise. The location of anatomical structures can be described with relation to different anatomical landmarks. Here the relationship is based on euclidean distancing: measuring the distance between each entry; while having no sense of direction nor orientation.
+
+Organising and searching data often relies on detecting areas where objects form groups with similar properties. In high dimensional data, however, all objects appear to be sparse and dissimilar.
 
 https://anatomiesofintelligence.github.io/posts/2018-11-6-ear-scar
 
@@ -67,13 +71,64 @@ https://anatomiesofintelligence.github.io/posts/2019-09-2-Horizontal-section-bra
 
 https://anatomiesofintelligence.github.io/posts/2019-09-24-Skulls-Profiles
 
-"By the end of the eighteenth century, to simply claim that a skull was from a particular country or area was no longer enough for some anatomists to prove the existence of this region and its inhabitants, and they resorted to taking and filing endless measurements of skulls to distinguish certain categories into which particular ‘species’ of humans could be made to fit."
 
-Like a mapping exercise. The location of anatomical structures can be described with relation to different anatomical landmarks. Here the relationship is based on euclidean distancing: measuring the distance between each entry; while having no sense of direction nor orientation.
+* Staging: tracing movement; distance; dimensionality
 
-The anatomist and the anatomized body. Iteration over iteration, calculating distances cutting across various lengths. Performing a series of dissections, cutting through corpses, data, our anatomic dataset collection. Classified objects of knowledge, a new collection is born.
+Now, close your eyes. How is your body feeling today? Feel the weight and lightness of you body; pressing the surrounding surfaces; the limits between surfaces.
 
-* Staging: the gesture of — collecting, freakish incidents, Devil's work and unknown categories.
+In anatomy, the dorsal surface of an organism refers to the back, or upper side of an organism. If talking about the skull, the dorsal side is the top. How hard is your head pressing the ground? Keep the shoulders loose, relaxed and low, the neck stretched;
+
+The ventral surface (or 'belly') refers to the front, or lower side, of an organism. Release any tension you feel there. Feel any other tensions in the rest of your body, such as the stress on the ligaments of different joints from the top of your head to the bottom of your feet — release them by doing short slow vibratory movements.
+
+Keep breathing.
+
+Breathing is the bridge between the voluntary and involuntary — the sympathetic and the parasympathetic nervous system; the conscious and the unconscious; the inner and the outer.
+
+Activate the circulation. Inhalation (contract the abdomen) > Retention (3-5sec) > Exhalation (expand the abdomen); Breathing deeply helps circulation and oxygenation of the brain. Airstreams, generative circulation;
+
+The brain is irrigated by 2000 liners of blood everyday and this blood passes through many miles of capillaries. You are part of a vast circulatory network; which connects organs, functions, enactments. Organ is the mother word for organ—ization.
+
+Continue breathing. In and outward. Imagine a map inside you consisting of arteries and veins. Move through this pathways within your body; Like a mapping exercise. Feel the empty spaces; the in-betweens. Imagine anatomical lines drawn through structures, circumventing anatomical locations.
+
+The location of anatomical structures can also be described with relation to different anatomical landmarks. References may also take origin from superficial anatomy, made to landmarks that are on the skin or visible underneath.
+
+Most terms of anatomical location are relative to linear motion (translation) along the X- Y- and Z-axes, but there are other degrees of freedom as well, in particular, rotation around any of those three axes. Choose one part of your body, and slowly rotate around the different axes.
+
+Anteversion and retroversion are complementary anatomical terms of location, describing the degree to which an anatomical structure is rotated forwards or backwards respectively, relative to some datum position. Experience rotating towards the front of your body and towards the back of your body.
+Now feel your spinal vertebras quiet and aligned, erect and perpendicular from your coccyx;
+
+Remember to continue breathing.
+
+Feel the distance between.
+
+“Distad" means "in the distal direction", and "distad of the femur" means "beyond the femur in the distal direction".
+
+Feel the distance between your forearm to the ankles; the distance between your shoulder blade to your chin;
+Feel the proximal (or 'nearest') organ to your cornea, in your left eye.
+Feel the distal (meaning 'to stand away from') organ from your your right nostril.
+
+Locate and touch your fourth cervical vertebra.
+Locate the navel which is intermediating the left arm and the contralateral (or right) leg.
+
+While seemingly possible to map all the distances, the sacrum and coccyx are fused, and so they are not often used to provide location.
+
+Continue breathing.
+
+Consider subcutaneous, beneath the skin, the subterminal area near to the end of a structure. Sub- also may mean "nearly" or "more-or-less"; for instance subglobular means almost globular. In many usages sub- is similar in application to "hypo-“. Like as in hypolingual nerve beneath the tongue. Vocalizing anatomies, theorizing the body, flesh.
+
+Caudal (or the 'tail') is used to describe how close something is to the trailing end of an organism. What is the equivalent in your body?
+
+Visualize and light up your spine travelling from the tip of the tailbone, vertebra by vertebra up into the skull.
+
+Use your chin to align help align the spine.
+
+The spine is just one of many possible movement centres. The center, the medial. The body as poly centric. Polyrhythmic.
+
+From the centre to the edges. Feel the extremity of other body parts, your neck; your stomach; your toes.
+
+Where does your body end? Where does it begin?
+
+The anatomist and the anatomized body. Iteration over iteration, calculating distances, orientations. Cutting across various lengths and dimensionalities. Performing a series of demonstrations, cutting through the body, through datasets, statistical models, refinement after refinement. Classified objects of knowledge, a new collection is born.
 
 
 
