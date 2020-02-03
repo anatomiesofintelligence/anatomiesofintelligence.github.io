@@ -30,7 +30,7 @@ _here no voice while clustering; we start slow for letting the audience read and
 
 > clean_surface()
 
-> catalog.cluster(3, Measures.euclidean, ["cutting", "measurement"], 20, resultfunc, true, OSC_OUT, console.log);
+> catalog.cluster(3, Measures.euclidean, ["cutting", "gesture", "body"], 20, resultfunc, true, OSC_OUT, console.log);
 
 > project(Projections.RADIUS)
 
