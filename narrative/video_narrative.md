@@ -104,7 +104,7 @@ https://anatomiesofintelligence.github.io/posts/2019-09-24-Skulls-Profiles
 
 Now, close your eyes. How is your body feeling today? Feel the weight and lightness of you body; pressing the surrounding surfaces; the limits between surfaces.
 
-In anatomy, the dorsal surface of an organism refers to the back, or upper side of an organism. If talking about the skull, the dorsal side is the top. How hard is your head pressing the ground? Keep the shoulders loose, relaxed and low, the neck stretched;
+In anatomy, the dorsal surface of an organism refers to the back, or upper side of an organism. If talking about the skull, the dorsal side is the top. Keep the shoulders loose, relaxed and low, the neck stretched;
 
 The ventral surface (or 'belly') refers to the front, or lower side, of an organism. Release any tension you feel there. Feel any other tensions in the rest of your body, such as the stress on the ligaments of different joints from the top of your head to the bottom of your feet — release them by doing short slow vibratory movements.
 
