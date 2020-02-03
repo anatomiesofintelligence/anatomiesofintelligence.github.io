@@ -87,18 +87,11 @@ Activate the circulation. Inhalation (contract the abdomen) > Retention (3-5sec)
 
 The brain is irrigated by 2000 liners of blood everyday and this blood passes through many miles of capillaries. You are part of a vast circulatory network; which connects organs, functions, enactments. 
 
-Continue breathing. In and outward. Imagine a map inside you consisting of arteries and veins. Move through this pathways within your body; Like a mapping exercise. Feel the empty spaces; the in-betweens. Imagine anatomical lines drawn through structures, circumventing anatomical locations.
+Continue breathing. In and outward. Imagine a map inside you consisting of arteries and veins. Move through this pathways within your body, feel the empty spaces; the in-betweens. Differences and proximities, like a mapping exercise which can be described with relation to different anatomical landmarks. Imagine anatomical lines drawn through structures, circumventing anatomical locations. Most terms of anatomical location are relative to linear motion (translation) along the X- Y- and Z-axes, but there are other degrees of freedom as well, in particular, rotation around any of those three axes. Here though the relationship is based on euclidean distance: measuring a one dimensional distance between each feature vector in multiple dimensions; removing any sense of direction or orientation.
 
-The location of anatomical structures can also be described with relation to different anatomical landmarks. References may also take origin from superficial anatomy, made to landmarks that are on the skin or visible underneath.
-
-Most terms of anatomical location are relative to linear motion (translation) along the X- Y- and Z-axes, but there are other degrees of freedom as well, in particular, rotation around any of those three axes. Choose one part of your body, and slowly rotate around the different axes.
-
-Anteversion and retroversion are complementary anatomical terms of location, describing the degree to which an anatomical structure is rotated forwards or backwards respectively, relative to some datum position. Experience rotating towards the front of your body and towards the back of your body.
-Now feel your spinal vertebras quiet and aligned, erect and perpendicular from your coccyx;
+Now feel your spinal vertebras quiet and aligned, erect and perpendicular from your coccyx; Experience rotating towards the front of your body and towards the back of your body. Anteversion and retroversion are complementary anatomical terms of location, describing the degree to which an anatomical structure is rotated forwards or backwards respectively, relative to some datum position. 
 
 Remember to continue breathing.
-
-Feel the distance between.
 
 “Distad" means "in the distal direction", and "distad of the femur" means "beyond the femur in the distal direction".
 
