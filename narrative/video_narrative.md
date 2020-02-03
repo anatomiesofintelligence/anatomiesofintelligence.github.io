@@ -6,6 +6,8 @@ _open https://anatomiesofintelligence.github.io/_
 
 On a rainy cold January afternoon, inside, you are with a small group of people gathered around an object. Everyone is learning inwards towards what appears to be a body laying sprawled upon an inspection surface. The body, on closer inspection, is a body of knowledge. On the left side of the body lies a book that seems ancient, although it is impossible to tell from what era it belongs. The book is open to a page presenting a system of notation you don't completely understand, but seems somehow familiar. You can recognize it as a recipe of some kind, and the diagrams give you an impression of directions, orientations, measures.
 
+> catalog.allTags
+
 "We are gathered here", explains a voice from behind you, "because we share a desire to see beyond the surface level, beyond the skin, our porous primary interface with the world. Laying bare and learning about the inner structures of the body is best done through the use of one’s own hands and eyes. However, although the hand and the eye are indeed the anatomists’ most important instruments, all senses, including smell, taste, and hearing are involved in the practice of anatomy."
 
 Pages turn in the open book, settling upon a page with a new arrangement of symbols, these resemble the pictograms of early writing cultures, and again give the impression of instructions, or a recipe. They look almost like musical scores, but rather than follow a straight and predictable path, the lines of the staff follow curving and weird paths through an almost alien spacetime, sometimes disappearing, sometimes reappearing. Tracing out movements in all directions, as if in between gestures and codes.
