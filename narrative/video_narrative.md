@@ -171,7 +171,7 @@ Where does your body end? Where does it begin? You can now open your eyes
 
 The anatomist and the anatomized body. Iteration over iteration, calculating distances, orientations. Cutting across various lengths and dimensionalities. Performing a series of demonstrations, cutting through the body, through datasets, statistical models, refinement after refinement. Classified objects of knowledge, a new collection is born.
 
-
+- - -
 
 
 _notes on dramaturgy_
