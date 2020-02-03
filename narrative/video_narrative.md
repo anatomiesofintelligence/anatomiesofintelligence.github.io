@@ -39,6 +39,7 @@ _here no voice while clustering; we start slow for letting the audience read and
 
 > project(Projections.RADIUS)
 
+__BREAK HERE__
 
 "This is only a local understanding", says a new voice, one of the other participants gathered with you. "What are its relations to the whole?".
 
@@ -86,6 +87,9 @@ https://anatomiesofintelligence.github.io/posts/2019-12-6-monster_instruments
 Pathological specimens like these appear often and are of great interest. They are the statistical outliers that in some cases break the model's delicate facia. But in most cases, they force a rethinking of the model's effectivity and are subsumed by it, reinforcing the model's power as a knowledge. By preserving monstrocities in preparations, the immediate danger implied by the visceral disgust such specimines provoke is averted. Instead, we shape them into didactic instruments and purveyors of meaning.
 
 
+__CONTINUE HERE__
+
+
 ## Staging: the gesture of — measurement; tracing movement; distance; dimensionality
 
 
@@ -114,7 +118,7 @@ Breathing is the bridge between the voluntary and involuntary — the sympatheti
 
 Activate the circulation. Inhalation (contract the abdomen) > Retention (3-5sec) > Exhalation (expand the abdomen); Breathing deeply helps circulation and oxygenation of the brain. Airstreams, generative circulation;
 
-The brain is irrigated by 2000 liners of blood everyday and this blood passes through many miles of capillaries. You are part of a vast circulatory network; which connects organs, functions, enactments. 
+The brain is irrigated by 2000 liters of blood everyday and this blood passes through many miles of capillaries. You are part of a vast circulatory network; which connects organs, functions, enactments. 
 
 Continue breathing. In and outward. Imagine a map inside you consisting of arteries and veins. Move through this pathways within your body, feel the empty spaces; the in-betweens. Differences and proximities, like a mapping exercise which can be described with relation to different anatomical landmarks. Imagine anatomical lines drawn through structures, circumventing anatomical locations. Most terms of anatomical location are relative to linear motion (translation) along the X- Y- and Z-axes, but there are other degrees of freedom as well, in particular, rotation around any of those three axes. Here though the relationship is based on euclidean distance: measuring a one dimensional distance between each feature vector in multiple dimensions; removing any sense of direction or orientation.
 
@@ -122,11 +126,10 @@ Now feel your spinal vertebras quiet and aligned, erect and perpendicular from y
 
 Remember to continue breathing.
 
-“Distad" means "in the distal direction", and "distad of the femur" means "beyond the femur in the distal direction".
+“Distad" means "in the direction", and "distad of the femur" means "beyond the femur in the distal direction".
 
 Feel the distance between your forearm to the ankles; the distance between your shoulder blade to your chin;
 Feel the proximal (or 'nearest') organ to your cornea, in your left eye.
-Feel the distal (meaning 'to stand away from') organ from your your right nostril.
 
 Locate and touch your fourth cervical vertebra.
 Locate the navel which is intermediating the left arm and the contralateral (or right) leg.
