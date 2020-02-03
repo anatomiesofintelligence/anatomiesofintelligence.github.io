@@ -2,6 +2,7 @@
 
 ## The Concept of Aesthesis;
 
+_open https://anatomiesofintelligence.github.io/_
 
 On a rainy cold January afternoon, inside, you are with a small group of people gathered around an object. Everyone is learning inwards towards what appears to be a body laying sprawled upon an inspection surface. The body, on closer inspection, is a body of knowledge. On the left side of the body lies a book that seems ancient, although it is impossible to tell from what era it belongs. The book is open to a page presenting a system of notation you don't completely understand, but seems somehow familiar. You can recognize it as a recipe of some kind, and the diagrams give you an impression of directions, orientations, measures.
 
@@ -9,9 +10,9 @@ On a rainy cold January afternoon, inside, you are with a small group of people 
 
 Pages turn in the open book, settling upon a page with a new arrangement of symbols, these resemble the pictograms of early writing cultures, and again give the impression of instructions, or a recipe. They look almost like musical scores, but rather than follow a straight and predictable path, the lines of the staff follow curving and weird paths through an almost alien spacetime, sometimes disappearing, sometimes reappearing. Tracing out movements in all directions, as if in between gestures and codes.
 
-> catalog.cluster(3, Measures.euclidean, ["elegance", "aesthesis"], 20, resultfunc, true, OSC_OUT, console.log);
+> catalog.cluster(3, Measures.euclidean, ["elegance", "aesthesis"], 5, resultfunc, true, OSC_OUT, console.log);
 
-> TEMPO = 0.5
+> TEMPO = 0.5 / 0.1
 
 > project(Projections.RADIUS)
 
@@ -30,7 +31,9 @@ _here no voice while clustering; we start slow for letting the audience read and
 
 > clean_surface()
 
-> catalog.cluster(3, Measures.euclidean, ["cutting", "gesture", "body"], 20, resultfunc, true, OSC_OUT, console.log);
+> catalog.cluster(3, Measures.euclidean, ["cutting", "gesture", "body"], 3, resultfunc, true, OSC_OUT, console.log);
+
+> TEMPO = 0.1
 
 > project(Projections.RADIUS)
 
@@ -54,9 +57,9 @@ Dealing with the disgusting insides of the body and with severed body parts is, 
 ## Staging: perfection and ethics
 
 
-> clean_surface() or reset()
+> clean_surface() 
 
-> catalog.cluster(3, Measures.euclidean, ["preparation", "collection"], 3, resultfunc, true, OSC_OUT, console.log);
+> catalog.cluster(3, Measures.euclidean, ["preparation", "collection"], 20, resultfunc, false, OSC_OUT, console.log);
 
 > project(Projections.RADIUS)
 
@@ -83,9 +86,9 @@ Pathological specimens like these appear often and are of great interest. They a
 ## Staging: the gesture of — measurement;
 
 
-> clean_surface() or reset()
+> clean_surface()
 
-> catalog.cluster(3, Measures.euclidean, ["skulls", "distance", "measurement"], 3, resultfunc, true, OSC_OUT, console.log);
+> catalog.cluster(3, Measures.euclidean, ["skulls", "distance", "measurement"], 3, resultfunc, false, OSC_OUT, console.log);
 
 > project(Projections.RADIUS)
 
@@ -110,7 +113,7 @@ https://anatomiesofintelligence.github.io/posts/2019-09-24-Skulls-Profiles
 
 > clean_surface()
 
-> catalog.cluster(3, Measures.euclidean, ["theatre", "spectacle"], 20, resultfunc, true, OSC_OUT, console.log);
+> catalog.cluster(3, Measures.euclidean, ["theatre", "spectacle"], 10, resultfunc, true, OSC_OUT, console.log);
 
 > project(Projections.RADIUS)
 
