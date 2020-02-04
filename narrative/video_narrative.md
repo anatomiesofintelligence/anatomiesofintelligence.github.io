@@ -35,6 +35,7 @@ The body is cut open. It is necessary in order to properly examine its structure
 
 _here no voice while clustering; we start slow for letting the audience read and speed up in the end_
 
+```
 > clean_surface()
 
 > catalog.cluster(3, Measures.euclidean, ["cutting", "gesture", "body"], 3, resultfunc, true, OSC_OUT, console.log);
@@ -42,8 +43,10 @@ _here no voice while clustering; we start slow for letting the audience read and
 > TEMPO = 0.1
 
 > project(Projections.RADIUS)
+```
 
-__BREAK HERE__
+__STOP HERE__
+----
 
 "This is only a local understanding", says a new voice, one of the other participants gathered with you. "What are its relations to the whole?".
 
@@ -63,13 +66,13 @@ Dealing with the disgusting insides of the body and with severed body parts is, 
 
 ## Staging: perfection and ethics
 
-
+```
 > clean_surface() 
 
 > catalog.cluster(3, Measures.euclidean, ["preparation", "collection"], 20, resultfunc, false, OSC_OUT, console.log);
 
 > project(Projections.RADIUS)
-
+```
 
 For the 18th century Leiden anatomists Rau, Albinus, Van Doeveren, Bonn and Brugmans, perfection was at the core of their decisions for how to prepare and present objects of study.
 
@@ -91,17 +94,19 @@ https://anatomiesofintelligence.github.io/posts/2019-12-6-monster_instruments
 Pathological specimens like these appear often and are of great interest. They are the statistical outliers that in some cases break the model's delicate facia. But in most cases, they force a rethinking of the model's effectivity and are subsumed by it, reinforcing the model's power as a knowledge. By preserving monstrocities in preparations, the immediate danger implied by the visceral disgust such specimines provoke is averted. Instead, we shape them into didactic instruments and purveyors of meaning.
 
 
-__CONTINUE HERE__
+---
+__CONTINUE__
 
 
 ## Staging: the gesture of — measurement; tracing movement; distance; dimensionality
 
-
+```
 > clean_surface()
 
 > catalog.cluster(3, Measures.euclidean, ["skulls", "distance", "measurement"], 3, resultfunc, false, OSC_OUT, console.log);
 
 > project(Projections.RADIUS)
+```
 
 https://anatomiesofintelligence.github.io/posts/2018-11-6-ear-scar
 
@@ -156,14 +161,13 @@ From the centre to the edges. Feel the extremity of other body parts, your neck;
 
 Where does your body end? Where does it begin? You can now open your eyes
 
-> project(Projections.SIMPLE2D)
+```> project(Projections.SIMPLE2D)```
 
 The anatomist and the anatomized body. Iteration over iteration, calculating distances, orientations. Cutting across various lengths and dimensionalities. Performing a series of demonstrations, cutting through the body, through datasets, statistical models, refinement after refinement. Classified objects of knowledge, a new collection is born.
 
-- - -
+---
 
-
-_notes on dramaturgy_
+## notes on dramaturgy
 
 * [Basel —  narrative-like](https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io/blob/master/narration.md)
 * [Aarhus — more explanatory](https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io/blob/master/lecture_preformance.md)
