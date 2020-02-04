@@ -124,7 +124,7 @@ function clean_surface() {
 
 
 function showPopup(url, name) {
-  let win = window.open(url, name,'height=490,width=420,top=200,left=300,resizable=yes,scrollbars=yes,toolbar=no,location=no,status=no,menubar=no');
+  let win = window.open(url, name,'menubar=0,toolbar=no,location=0,personalbar=0,status=0, height=490,width=400,top=200,left=300,resizable=yes,scrollbars=yes');
   if(window.focus) { win.focus() }
 }
 
@@ -132,7 +132,7 @@ function showPopup(url, name) {
 function openEntry(entryID) {
   let entry_url = catalog.allEntries[entryID].url;
   console.log("OPENING: " + entry_url + entryID);
-  showPopup(entry_url, entryID);
+  showPopup(entry_url, "_blank");
 }
 
 
