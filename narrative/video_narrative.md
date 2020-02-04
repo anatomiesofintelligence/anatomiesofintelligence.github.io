@@ -6,6 +6,8 @@ _open https://anatomiesofintelligence.github.io/_
 
 On a rainy cold January afternoon, inside, you are with a small group of people gathered around an object. Everyone is leaning inwards towards what appears to be a body laying sprawled upon an inspection surface. 
 
+`CMD+ALT+K open web console`
+
 The body, on closer inspection, is a body of knowledge. On the left side of the body lies a book that seems ancient, although it is impossible to tell from what era it belongs. The book is open to a page presenting a system of notation you don't completely understand, but seems somehow familiar. You can recognize it as a recipe of some kind, and the diagrams give you an impression of directions, orientations, measures.
 
 `> catalog.allTags`
