@@ -95,7 +95,7 @@ Pathological specimens like these appear often and are of great interest. They a
 
 
 ---
-__CONTINUE__
+__RESUME HERE__
 
 
 ## Staging: the gesture of — measurement; tracing movement; distance; dimensionality
@@ -115,7 +115,7 @@ https://anatomiesofintelligence.github.io/posts/2019-09-2-Horizontal-section-bra
 https://anatomiesofintelligence.github.io/posts/2019-09-24-Skulls-Profiles
 
 
-Now, close your eyes. How is your body feeling today? Feel the weight and lightness of you body; pressing the surrounding surfaces; the limits between surfaces.
+Now, close your eyes. How is your body feeling today? 
 
 In anatomy, the dorsal surface of an organism refers to the back, or upper side of an organism. If talking about the skull, the dorsal side is the top. Keep the shoulders loose, relaxed and low, the neck stretched;
 
@@ -125,45 +125,79 @@ Keep breathing.
 
 Breathing is the bridge between the voluntary and involuntary — the sympathetic and the parasympathetic nervous system; the conscious and the unconscious; the inner and the outer.
 
-Activate the circulation. Inhalation (contract the abdomen) > Retention (3-5sec) > Exhalation (expand the abdomen); Breathing deeply helps circulation and oxygenation of the brain. Airstreams, generative circulation;
+Activate the circulation. Inhale, contract the abdomen ... (3-5sec) ... Exhale, expand the abdomen. 
+Breathing deeply helps circulation and oxygenation of the brain. Airstreams, generative circulation;
 
-The brain is irrigated by 2000 liters of blood everyday and this blood passes through many miles of capillaries. You are part of a vast circulatory network; which connects organs, functions, enactments. 
+The brain is irrigated by 2000 liters of blood every day and this blood passes through many miles of capillaries. 
+You are part of a vast circulatory network; which connects organs, functions, enactments. 
 
-Continue breathing. In and outward. Imagine a map inside you consisting of arteries and veins. Move through this pathways within your body, feel the empty spaces; the in-betweens. Differences and proximities, like a mapping exercise which can be described with relation to different anatomical landmarks. Imagine anatomical lines drawn through structures, circumventing anatomical locations. Most terms of anatomical location are relative to linear motion (translation) along the X- Y- and Z-axes, but there are other degrees of freedom as well, in particular, rotation around any of those three axes. Here though the relationship is based on euclidean distance: measuring a one dimensional distance between each feature vector in multiple dimensions; removing any sense of direction or orientation.
+Continue breathing. In and outward. 
+Imagine a map inside you consisting of arteries and veins. Move through this pathways within your body, feel the empty spaces; the in-betweens. Differences and proximities, like a mapping exercise which can be described with relation to different anatomical landmarks. 
 
-Now feel your spinal vertebras quiet and aligned, erect and perpendicular from your coccyx; Experience rotating towards the front of your body and towards the back of your body. Anteversion and retroversion are complementary anatomical terms of location, describing the degree to which an anatomical structure is rotated forwards or backwards respectively, relative to some datum position. 
+Imagine lines drawn through the structures of your body, but circumventing specific locations. Most terms of anatomical location are relative to linear motion (translation) along the X- Y- and Z-axes, but there are other degrees of freedom as well. 
+
+In particular, rotation around any of those three axes. In the other body, the body of knowledge, the relationship is based on euclidean distance: measuring a one dimensional distance between each feature vector in multiple dimensions; removing any sense of direction or orientation.
+
+Now feel your spinal vertebras quiet and aligned, erect and perpendicular from your coccyx 
+Rotate towards the front of your body and towards the back of your body. Experience this rotation.
+
+Anteversion and retroversion are complementary anatomical terms of location, describing the degree to which an anatomical structure is rotated forwards or backwards respectively, relative to some reference position. 
 
 Remember to continue breathing.
 
 “Distad" means "in the direction", and "distad of the femur" means "beyond the femur in the distal direction".
 
-Feel the distance between your forearm to the ankles; the distance between your shoulder blade to your chin;
-Feel the proximal (or 'nearest') organ to your cornea, in your left eye.
+Feel the distance between your forearm to the ankles; the distance between your shoulder blade to your chin.
 
 Locate and touch your fourth cervical vertebra.
+ 
 Locate the navel which is intermediating the left arm and the contralateral (or right) leg.
 
 While seemingly possible to map all the distances, the sacrum and coccyx are fused, and so they are not often used to provide location.
 
 Continue breathing.
 
-Consider subcutaneous, beneath the skin, the subterminal area near to the end of a structure. Sub- also may mean "nearly" or "more-or-less"; for instance subglobular means almost globular. In many usages sub- is similar in application to "hypo-“. Like as in hypolingual nerve beneath the tongue. Vocalizing anatomies, theorizing the body, flesh.
+Beneath the skin. 
+Sub- also may mean "nearly" or "more-or-less"; for instance subglobular means almost globular. 
+In many usages sub- is similar in application to "hypo-“. Like as in hypolingual nerve beneath the tongue. 
 
-Caudal (or the 'tail') is used to describe how close something is to the trailing end of an organism. What is the equivalent in your body?
+Caudal (or the 'tail') is used to describe how close something is to the trailing end of an organism. 
+
+What is the equivalent in your body?
 
 Visualize and light up your spine travelling from the tip of the tailbone, vertebra by vertebra up into the skull.
 
 Use your chin to align help align the spine.
 
-The spine is just one of many possible movement centres. The center, the medial. The body as poly centric. Polyrhythmic.
+The center line is the medial. 
+
+The spine is just one of many possible movement centres. 
+
+But the body is poly centric. Polyrhythmic.
 
 From the centre to the edges. Feel the extremity of other body parts, your neck; your stomach; your toes.
 
-Where does your body end? Where does it begin? You can now open your eyes
+Where does your body end? Where does it begin? 
+
+
+You can now open your eyes
 
 ```> project(Projections.SIMPLE2D)```
 
-The anatomist and the anatomized body. Iteration over iteration, calculating distances, orientations. Cutting across various lengths and dimensionalities. Performing a series of demonstrations, cutting through the body, through datasets, statistical models, refinement after refinement. Classified objects of knowledge, a new collection is born.
+The anatomist and the anatomized body. 
+
+Iteration over iteration, calculating distances, orientations. 
+
+Cutting across various lengths and dimensionalities. 
+Performing a series of demonstrations
+cutting through the body, through datasets, statistical models
+refinement
+after 
+refinement. 
+
+Classified objects of knowledge
+
+a new collection is born.
 
 ---
 
