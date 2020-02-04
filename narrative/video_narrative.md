@@ -33,7 +33,7 @@ A force, a diffraction of light, sound and sense, moves upon a part of the body 
 
 The body is cut open. It is necessary in order to properly examine its structures; in order to describe each organ and identify its functions. The force turns and rotates, a single organ is brought into the environment of your perception.
 
-_here no voice while clustering; we start slow for letting the audience read and speed up in the end_
+> _here no voice while clustering; we start slow for letting the audience read and speed up in the end_
 
 ```
 > clean_surface()
