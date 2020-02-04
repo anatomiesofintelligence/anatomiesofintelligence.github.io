@@ -22,7 +22,7 @@ Pages turn in the open book, settling upon a page with a new arrangement of symb
 > project(Projections.RADIUS)
 ```
 
-"Aesthesis.", continues the voice, "The term, Aesthesis, was used in 18th century scientific practices to refer to the power of sensation. More than simply a matter of pleasure, Aesthesis was an entire epistemological worldview, a way to collect, present and possess knowledge."
+"The term, Aesthesis, was used in 18th century scientific practices to refer to the power of sensation. More than simply a matter of pleasure, Aesthesis was an entire epistemological worldview, a way to collect, present and possess knowledge."
 
 ## Staging: the gesture of — cutting;
 
