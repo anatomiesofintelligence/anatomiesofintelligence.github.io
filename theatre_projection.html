@@ -124,10 +124,14 @@ function clean_surface() {
 
 
 function showPopup(url, name) {
-  let win = window.open(url, name,'menubar=0,toolbar=no,location=0,personalbar=0,status=0, height=490,width=400,top=200,left=300,resizable=yes,scrollbars=yes');
+  let win = window.open(url, name,'menubar=0,toolbar=no,location=0,personalbar=0,status=0, height=400,width=250,top=200,left=300,resizable=yes,scrollbars=yes');
   if(window.focus) { win.focus() }
 }
 
+/*
+Note that Mozilla and Firefox users can force new windows to always render the location bar by setting dom.disable_window_open_feature.location to true in about:config or in their user.js file.
+https://developer.mozilla.org/en-US/docs/Web/API/Window/open
+*/
 
 function openEntry(entryID) {
   let entry_url = catalog.allEntries[entryID].url;
