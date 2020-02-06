@@ -165,7 +165,7 @@ OSCdef(\initcentroid, {|msg|
   //msg.postln;
   msg[2] = msg[2].asString.split($,);
   "\n>>> INITIALIZE CENTROID % <<< to VECTOR %".format(msg[1], msg[2]).postln;
-  (instrument: \thud, freq: \d5.f, amp: 0.7, dur: 0.5, dt: 0.4, atk: 0.01, rel: 0.5, decay: 0.1, out: Project.outverb).play;
+  (instrument: \thud, freq: \d5.f, amp: 0.6, dur: 0.5, dt: 0.4, atk: 0.01, rel: 0.5, decay: 0.1, out: Project.outverb).play;
 }, "/kmeans/initcentroid");
 
 // stepwise updates for each iteration
@@ -190,7 +190,7 @@ OSCdef(\distance, {|msg|
   var cidx = msg[3], dist = msg[4];
   "\nThe measure of entry % to centroid C% is %\n Δ • Δ           (%: %)".format(eidx, cidx, dist.round(0.001), eidx, eid).postln;
   // If distance is very small, or 0, modhz will be 0 and this instrument will be silent.
-  (instrument: \fm01, freq: \g3.f * dist.asFloat, modhz: 100 * dist, amp: 1.0, atk: 0.01, rel: 0.1, dur: 0.01, pan: 0.0, out: Project.outverb).play;
+  (instrument: \fm01, freq: \g5.f * dist.asFloat, modhz: 100 * dist, amp: 0.4, atk: 0.01, rel: 0.1, dur: 0.01, pan: 0.0, out: Project.outverb).play;
 }, "/kmeans/distance");
 
 
@@ -201,7 +201,7 @@ OSCdef(\updateclosest, {|msg|
   var eidx = msg[1], eid = msg[2];
   var cidx = msg[3], dist = msg[4];
   "\nReconsider ENTRY % >> distance is % to category %\n⋱ ⋱ ⋱         (%: %)".format(eidx, dist, cidx, eidx, eid).postln;
-  (instrument: \pm, freq: eidx * 12, idx: 2.5, phase: msg[4], spread: 0.1, amp: 0.8, dur: 0.7 * dist, pan: 0.0, ratio: 2.5, co1: 2000, co2: 900, rq:0.2, out: Project.outverb).play;
+  (instrument: \pm, freq: eidx * 20, idx: 2.5, phase: msg[4], spread: 0.5, amp: 0.3, dur: 0.7 * dist, pan: 0.0, ratio: 2.5, co1: 2000, co2: 900, rq:0.2, out: 32).play;
 }, "/kmeans/updateClosestCentroid");
 
 // final cluster assignment for entry
@@ -211,7 +211,7 @@ OSCdef(\assigncluster, {|msg|
   var eidx = msg[1], eid = msg[2];
   var cidx = msg[3], dist = msg[4];
   "\nENTRY % will be placed in CATEGORY % \n⊙ ⊙ ⊙ ⊙ ⊙              (%: %)".format(eidx, cidx, eidx, eid).postln;
-  (instrument: \rezpad, freq: [\fs5.f, \fs6.f, \a4.f].wrapAt(cidx), amp: 3.0, dur: [0.01, 0.03, 0.06, 0.1].wrapAt(cidx), phase: 2.5, modhz: 2.1, out: Project.outverb).play;
+  (instrument: \rezpad, amp: 0.55, freq: [\fs3.f, \fs4.f, \a4.f].wrapAt(cidx), dur: [0.1, 0.07, 0.05, 0.06].wrapAt(eidx), phase: 2.5, modhz: 2.1, out: Project.outverb).play;
 }, "/kmeans/assignCluster");
 
 

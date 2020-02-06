@@ -1,52 +1,22 @@
 /******************************
-
-   _____                 __
-  /  _  \   ____ _____ _/  |_  ____   _____ ___.__.
- /  /_\  \ /    \\__  \\   __\/  _ \ /     <   |  |
-/    |    \   |  \/ __ \|  | (  <_> )  Y Y  \___  |
-\____|__  /___|  (____  /__|  \____/|__|_|  / ____|
-        \/     \/     \/                  \/\/
-OF A K MEANS CLUSTERING
-2019
-
+NOTE: RUN 2020_TRANSMEDIALE FIRST AS BASIS
+THIS FILE INCLUDES CODE MODIFICATION TO SHIFT THE ALGOIRTHMIC PROCESS INTO A MEDITATIVE STATE
 
 *******************************/
 
-Scenes.init;
-Scenes.gui;
-
-"../_main.scd".resolveRelative
-
-// run SO_Server (SimpleOSC Server)
-"python %/SimpleOSC/SO_Server.py".format("/Users/jon/Drive/DEV/anatomiesofintelligence/anatomiesofintelligence.github.io/code/sonification").runInTerminal;
-"open http://anatomiesofintelligence.github.io/theatre/kmeans".runInTerminal;
-
-"open %".format("..".resolveRelative).runInTerminal
-
 (
-Project.startup(s, false, true, false, 200, 20, true, rootpath: "..".resolveRelative, onBoot: {
-  "ANATOMIES OF INTELLIGENCE: AARHUS 13.12.2019".postln;
-  ~scope = s.scope(2,0);
-  ~scope.view.bounds_(Rect(400, 800, 1200, 1200));
-  ~scope.view.front;
-  ~scope.size = 1200;
-  ~scope.xZoom = 4.0;
-  ~scope.yZoom = 4.0;
-  ~scope.style = 2; // or 0, or 1
-  ~slib = [
+~slib = [
   "viscera_crunch01", "viscera_crunch02", "viscera_crunch03",
   "viscera_fluid01","viscera_fruit01", "viscera_fruit02",
   "viscera_hits01","viscera_various01",
 ];
+
    // Livesample, Bufs
   if(~buf.notNil) { ~buf.free };
   ~buf = Buffer.alloc(s, s.sampleRate * 10, 1);
-  Macros.prefixStr = "!!!!!!!"
 
-});
 );
-OSCFunc.trace(true);
-OSCFunc.trace(false);
+
 
 /*-------------
      ,\
@@ -68,7 +38,7 @@ s.scope;
 Ndef(\sawsweep, {
   var sig;
   sig = Saw.ar(\a4.f * Scale.major.ratios).sum * SinOsc.ar(10) * Line.ar(0.0, 1.0);
-  sig = Pan2.ar(sig, SinOsc.ar(0.5)) * 0.03 * SinOsc.ar(0.01).range(0.0, 1.0);
+  sig = Pan2.ar(sig, SinOsc.ar(0.5)) * 0.01 * SinOsc.ar(0.01).range(0.0, 1.0);
 }).play(out: 0, numChannels: 2);
 );
 Ndef(\sawsweep).clear(10);
