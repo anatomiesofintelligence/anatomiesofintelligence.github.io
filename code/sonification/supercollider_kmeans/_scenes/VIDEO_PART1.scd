@@ -30,8 +30,8 @@ Project.startup(s, false, true, false, 200, 20, true, rootpath: "..".resolveRela
   ~scope.view.bounds_(Rect(400, 800, 1200, 1200));
   ~scope.view.front;
   ~scope.size = 1200;
-  ~scope.xZoom = 4.0;
-  ~scope.yZoom = 4.0;
+  ~scope.xZoom = 10.0;
+  ~scope.yZoom = 10.0;
   ~scope.style = 2; // or 0, or 1
   ~slib = [
   "viscera_crunch01", "viscera_crunch02", "viscera_crunch03",

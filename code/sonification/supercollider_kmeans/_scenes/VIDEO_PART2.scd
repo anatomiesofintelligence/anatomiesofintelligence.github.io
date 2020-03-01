@@ -184,10 +184,10 @@ Ndef(\fx32, {
 Ndef(\fx30).clear(1);
 Ndef(\fx32).clear(1);
 
+Project.meter;
 
 
 /***********************************************
-OSC Responders
 
                 .aadddbbbbaa,       ,adddbbbbaaa.
              .ad"           "\bbmdd/"           "ba.
