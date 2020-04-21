@@ -17,14 +17,21 @@ Scenes.gui;
 
 "../_main.scd".resolveRelative
 
+// TODO: Report error to SC group, runInTerminal doesn't work on Linux Ubuntu?
+
+"ls %".format("../../SimpleOSC".resolveRelative).unixCmd({|a,b,c| [a,b,c].postln })
+
 // run SO_Server (SimpleOSC Server)
-"python %/SimpleOSC/SO_Server.py".format("/Users/jon/Drive/DEV/anatomiesofintelligence/anatomiesofintelligence.github.io/code/sonification").runInTerminal;
+~servercmd = "python %".format("../../SimpleOSC/SO_Server.py".resolveRelative);
+~servercmd.unixCmd({|a,b| [a,b].post}, true);
+
+
 "open http://anatomiesofintelligence.github.io/theatre/kmeans".runInTerminal;
 
 "open %".format("..".resolveRelative).runInTerminal
 
 (
-Project.startup(s, false, true, false, 200, 20, true, rootpath: "..".resolveRelative, onBoot: {
+Project.startup(s, slimLocal: 200, slimGlobal: 20, rootPath: "..".resolveRelative, onBoot: {
   "ANATOMIES OF INTELLIGENCE: AARHUS 13.12.2019".postln;
   ~scope = s.scope(2,0);
   ~scope.view.bounds_(Rect(400, 800, 1200, 1200));
@@ -49,13 +56,6 @@ OSCFunc.trace(true);
 OSCFunc.trace(false);
 
 /*-------------
-     ,\
-    # (_
-      _)\##
-  ###/((_
-       ))\####
-     _((
-####/  )\
      ,;;`;,
     (_______)
       \===/
@@ -64,22 +64,43 @@ OSCFunc.trace(false);
 ---------------*/
 s.scope;
 
+(// busses
+if(~mixgroup.isNil) { ~mixgroup = Group.new(s, \addToTail) };
+if(~synthgroup.isNil) { ~synthgroup = Group.new(s, \addToHead) };
+if(~clean.isNil) { ~clean = Bus.audio(s, 2) };
+if(~low.isNil) { ~low = Bus.audio(s, 2) };
+if(~verb.isNil) { ~verb = Bus.audio(s, 2) };
+Ndef(\mix, {|vmix=0.5|
+	var inclean, inlow, inverb, s1, s2, s3, mix;
+	inclean = In.ar(~clean, 2);
+	inlow = In.ar(~low, 2);
+	inverb = In.ar(~verb, 2);
+	s1 = inclean;
+	s2 = inverb;
+	s2 = JPverb.ar(s2, 5.0, 0.0, 2.0, 0.8, 0.5, 2.0).madd(vmix) + s2.madd(1-vmix);
+	mix = s1 + s2;
+	mix = LeakDC.ar(Limiter.ar(mix, 1.0, 0.001));
+	mix;
+}).play(out: 0, numChannels: 2, group: ~mixgroup, addAction: \addToTail);
+);
+
+
+
 (
 Ndef(\sawsweep, {
   var sig;
-  sig = Saw.ar(\a4.f * Scale.major.ratios).sum * SinOsc.ar(10) * Line.ar(0.0, 1.0);
+  sig = Saw.ar(\a4.f * Scale.major.ratios).sum * Pulse.ar(10) * Line.ar(0.0, 1.0);
   sig = Pan2.ar(sig, SinOsc.ar(0.5)) * 0.03 * SinOsc.ar(0.01).range(0.0, 1.0);
-}).play(out: 0, numChannels: 2);
+	sig;
+}).play(out: ~clean, numChannels: 2, group: ~synthgroup);
 );
 Ndef(\sawsweep).clear(10);
-
+Ndef.clear;
 
 
 
 Smpl.buf(~slib[1]);
-~slib[1];
 Ndef(\g1).clear(1);
-~slib.size;
 (
 ~sbuf = Smpl.buf(~slib[2]);
 ~sbuf = Smpl.buf(~slib[1]);
@@ -100,26 +121,19 @@ Ndef(\g2, {|amp=0.5,pre=0.9,co=18000,rq=1|
   sig = BLowPass4.ar(sig, co, rq);
   //sig = sig * Line.ar(0.0, 1.0, 10);
   sig = Limiter.ar(sig * amp);
-  //Out.ar(Project.outverb, sig);
   sig;
-}).play(out: Project.outverb, numChannels: 2);
+}).play(out: ~verb, numChannels: 2, group: ~synthgroup);
 );
 
 Ndef(\g2).clear(1);
 Ndef(\sawsweep).clear(10);
-Project.meter
-
-~scope.style=0;
-~scope.style=1;
-~scope.style=2;
-~scope.xZoom = 1.0;
-~scope.yZoom = 10.0;
+Ndef(\mix).set(\vmix, 0.2);
 Ndef(\g2).set(\pos, 0.2, \amp, 1.0, \gamp, 1.0);
 Ndef(\g2).set(\pos, 4.2, \amp, 1.0, \gamp, 0.7, \co, 12000, \gpan, -1.0);
 Ndef(\g2).set(\pos, 0.5, \amp, 1.0, \gamp, 0.3, \co, 12000, \gpan, 1.0);
 Ndef(\g2).set(\gdur, 0.1, \pos, rrand(0.0, ~sbuf.duration), \amp, 1.0, \gamp, 0.4, \co, 12000, \gpan, 0.0, \poslag, 5);
 Ndef(\g2).set(\pos, Ndef(\pos1, { LFNoise1.kr(0.2).range(0.0, 4.0) }), \amp, 0.4, \gamp, 0.5, \gdur, Ndef(\gdur, { LFNoise1.kr(5).range(0.01, 0.2) }), \dens, 100, \out, Project.outverb);
-Ndef(\g2).set(\rq, 0.3, \co, Ndef(\co, { LFNoise2.ar(10).range(80, 10000) }));
+Ndef(\g2).set(\gpan, { LFNoise2.ar(0.1).range(-1,1) }.ndef(\gpan) ,\rq, 0.2, \co, Ndef(\co, { LFNoise2.ar(10).range(80, 10000) }));
 Ndef(\g2).set(\dens, 0.4, \amp, 0.2, \gdur, 2.0, \prate, Ndef(\playpitch, { Saw.ar(0.1).range(-0.5, -0.2) }), \gpan, 0.0);
 Ndef(\g2).set(\dens, 2, \amp, 0.5, \gdur, 0.3, \prate, -0.3, \gpan, 0.0);
 Ndef(\g2).set(\pos, \amp, 0.2, Ndef(\pos, { SinOsc.ar(SinOsc.ar(0.4).range(0.05, 1.0)).range(0.0,4.0) } ), \prate, Ndef(\prate, { LFNoise0.ar(12).range(-0.4, 0.2) }) );
@@ -128,26 +142,16 @@ Ndef(\g2).set(\pre, 3.0, \co, 12700, \rq, 2, \pos, 0.2, \dens, 20, \dur, 0.2, \g
 Ndef(\g2).clear(10);
 
 Ndef(\g2).clear;
+Syn.gui;
 
-/***********************************************
+
+/* --------------------------------------------------
 OSC Responders
-
-                .aadddbbbbaa,       ,adddbbbbaaa.
-             .ad"           "\bbmdd/"           "ba.
-          .,d"                 `"'                 "b,.
-       .,ad"                                         "ba,.
-    .,amd"  __..,,,aaaaaadddddddMbbbbbbbaaaaaaa,,,..__  "bma,.
-,am8888ca8"""""''                                ``""""8ac88888ma,
-"""""]8a.                                               .a8["""""
-      "8ba.                                           .ad8"'
-        `"8bma,.                                .,amd88"'
-            `"""88bmm==Normand===Veilleux==mmd88"""'
-                    `""""""""""""""""""""""'
-
-
-************************************************/
-// OSC RESPONDERS
-//OSCdef(\status, {|msg| msg.postln}, "/browser/status");
+,am8888ca8"""""'' ``""""8ac88888ma,
+"""""]8a.    .a8["""""
+      "8ba.        .ad8"'
+        `"8bma,."'
+------------------------------- */
 (
 OSCdef(\status, {|msg| msg.postln}, "/browser/status");
 OSCdef(\browser, {|msg|

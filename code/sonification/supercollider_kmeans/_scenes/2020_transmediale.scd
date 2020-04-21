@@ -24,7 +24,7 @@ Scenes.gui;
 "open %".format("..".resolveRelative).runInTerminal
 
 (
-Project.startup(s, false, true, false, 200, 20, true, rootpath: "..".resolveRelative, onBoot: {
+Project.startup(s, meters: false, slimLocal: 200, slimGlobal: 20, rootPath: "..".resolveRelative, onBoot: {
   "ANATOMIES OF INTELLIGENCE: AARHUS 13.12.2019".postln;
   ~scope = s.scope(2,0);
   ~scope.view.bounds_(Rect(400, 800, 1200, 1200));

@@ -1,11 +1,7 @@
 #!/usr/bin/env python
 """
-Make a CSV file from all markdown posts in a given directory.
-Command line tool creates image thumbnails
-Either takes 1+ files (wildcards allowed)
-Or takes a single directory name
-By default writes thumbnails in place, but accepts
-an optional destination directory.
+Command line tool creates image thumbnails for images
+in a directory.
 """
 import argparse
 from PIL import Image
