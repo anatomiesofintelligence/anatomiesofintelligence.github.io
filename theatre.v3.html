@@ -47,6 +47,28 @@ catalog.addEntry(newexample);
 
 
 <script>
+
+// PARSE CSV FILE
+filepath = "metadata.csv"
+// Parse local CSV file
+Papa.parse(filepath, {
+  download: true,
+	complete: function(results) {
+		console.log("Finished reading CSV:", results.data);
+	}
+});
+
+// Stream big file in worker thread
+Papa.parse(filepath, {
+  download: true,
+	worker: true,
+	step: function(results) {
+		console.log("Row:", results.data);
+	}
+});
+
+
+
 // OSC connection to the local SimpleOSC Server
 var OSC_OUT = new SimpleOSC("localhost", 8080);
 OSC_OUT.init(function() {
