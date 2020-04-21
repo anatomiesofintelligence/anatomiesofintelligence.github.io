@@ -1,6 +1,7 @@
 ---
 layout: performance
 permalink: theatre
+comment: v3 theatre uses thumbnail images and reads entry data in from csv file/database
 ---
 
 <div id="categories" style="display:none">
@@ -27,9 +28,11 @@ var tag_weight, newexample;
 
 {% for post in site.posts %}
 {% assign post_id = post.title | slugify:"latin" %}
+{% assign image_thumb = post.image | replace: ".", "_th." %}
 <div class="refs" id="{{ post_id }}">
-  <a href="{{ post.url }}" onclick="openEntry('{{ post_id }}'); return false"><span style="display:none">{{ post.date | date: "%B %d, %Y" }}:</span>{{ post.title }}</a>
-{% if post.layout == "image" %}<img height="100" width="auto" src="/img/{{ post.image }}"/>{% endif %}
+  <a href="{{ post.url }}" onclick="openEntry('{{ post_id }}'); return false">
+    <span style="display:none">{{ post.date | date: "%B %d, %Y" }}:</span>{{ post.title }}</a>
+{% if post.layout == "image" %}<img src="/img/{{ image_thumb }}"/>{% endif %}
 <script>
 newexample = new Entry("{{ post_id }}", "{{ post.url }}");
 {% for tag in post.tags %}

@@ -71,13 +71,6 @@ body.performance {
     z-index: -1;
 }
 
-.performance .refs {
-    width: 100px;
-    height: 100px;
-    font-size: 8px;
-    position: absolute;
-}
-
 .performance .slide {
     position: absolute;
     font-family: Junction, monospace;
@@ -137,10 +130,15 @@ body.performance {
     color: #DB7093;
 }
 
+.performance .refs {
+    width: 100px;
+    height: 100px;
+    font-size: 8px;
+    position: absolute;
+}
+
 .performance .refs img{
-        max-width: 250px;
-        height: 50px;
-        width: 50px;
+        max-height: 50px;
         float: left;
         filter: grayscale(100%);
         mix-blend-mode: difference; /*   or: screen  saturation  difference */
