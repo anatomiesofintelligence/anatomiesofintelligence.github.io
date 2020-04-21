@@ -72,6 +72,6 @@ if __name__ == '__main__':
                         val = ""
                 row.append(val)
             csvwriter.writerow(row)
-            print("WRITING: {}".format(row))
+            print("WRITING: {}".format(row[0]))
 
     print("WROTE CSV FILE to '{}'".format(outfile))
