@@ -160,49 +160,17 @@ Ndef(\measure, {|amp=0.1,pre=0.9,co=18000,rq=1,f1=300,f2=400,depth1=20,pan=0.0,d
   sig = Pan2.ar(sig, pan);
   sig = sig.tanh * env;
   sig = Limiter.ar(sig * amp);
-  Out.ar(32, sig);
   sig;
-}).play(out: Project.outverb, numChannels: 2);
+}).play(out: ~verb, numChannels: 2, group: ~synthgroup, addAction: \addToTail);
 );
 
 
-( // General Processing
-Ndef(\fx30, {
-  var insig, mix;
-  insig = In.ar(30, 2);
-  mix = FreeVerb.ar(insig, 0.8, 0.2, 0.2);
-  Limiter.ar(mix, 1.0, 0.001) * 1.0;
-}).play(out: 0, numChannels: 2);
-Ndef(\fx32, {
-  var insig, mix;
-  insig = In.ar(32, 1);
-  mix = GVerb.ar(insig, 30, 3, 0.2, 0.3, 30, 0.5, 0.2, 0.8);
-  Limiter.ar(mix, 1.0, 0.001) * 0.1;
-}).play(out: 0, numChannels: 2);
-);
 
-Ndef(\fx30).clear(1);
-Ndef(\fx32).clear(1);
-
-Project.meter;
-
-
-/***********************************************
-
-                .aadddbbbbaa,       ,adddbbbbaaa.
-             .ad"           "\bbmdd/"           "ba.
-          .,d"                 `"'                 "b,.
-       .,ad"                                         "ba,.
-    .,amd"  __..,,,aaaaaadddddddMbbbbbbbaaaaaaa,,,..__  "bma,.
-,am8888ca8"""""''                                ``""""8ac88888ma,
-"""""]8a.                                               .a8["""""
-      "8ba.                                           .ad8"'
+/* ------------------------------------------------------
         `"8bma,.                                .,amd88"'
             `"""88bmm==Normand===Veilleux==mmd88"""'
                     `""""""""""""""""""""""'
-
-
-************************************************/
+*/
 // OSC RESPONDERS
 //OSCdef(\status, {|msg| msg.postln}, "/browser/status");
 (
@@ -212,7 +180,7 @@ OSCdef(\browser, {|msg|
   msg.postln;
   {
     PMOsc.ar(freq, mod, 1.0, 8) * Env.perc(0.01, dur).ar(2);
-  }.play;
+	}.play(outbus: ~clean, target: ~synthgroup, addAction: \addToTail);
 
 }, "/browser");
 
@@ -222,7 +190,7 @@ OSCdef(\initcentroid, {|msg|
   var cidx = msg[1], f_vec;
   f_vec = msg[2].asString.split($,);
   "\n>>> INITIALIZE CENTROID % <<< to VECTOR %".format(cidx, f_vec).postln;
-  (instrument: \thud, freq: \d4.f, amp: 0.4, dur: 2.0, dt: 0.4, atk: 1.0, rel: 0.1, decay: 1.0, out: Project.outverb).play;
+  (instrument: \thud, freq: \d4.f, amp: 0.4, dur: 2.0, dt: 0.4, atk: 1.0, rel: 0.1, decay: 1.0, out: ~verb).play;
 }, "/kmeans/initcentroid");
 
 // stepwise updates for each iteration
@@ -281,7 +249,7 @@ OSCdef(\assigncluster, {|msg|
   var dur;
   "\nENTRY % will be placed in CATEGORY % \n⊙ ⊙ ⊙ ⊙ ⊙              (%: %)".format(eidx, cidx, eidx, eid).postln;
   dur = [1,1,1,1].wrapAt(cidx);
-  (instrument: \rezpad, freq: [\f3.f, \f4.f, \a3.f].wrapAt(cidx), amp: 0.0, dur: [1, 1, 1, 1.0].wrapAt(cidx), \atk: 1.0, phase: 1.5, modhz: 0.4, out: Project.outverb).play;
+  (instrument: \rezpad, freq: [\f3.f, \f4.f, \a3.f].wrapAt(cidx), amp: 0.0, dur: [1, 1, 1, 1.0].wrapAt(cidx), \atk: 1.0, phase: 1.5, modhz: 0.4, out: ~verb).play;
 }, "/kmeans/assignCluster");
 
 
@@ -302,6 +270,7 @@ OSCdef(\recalccentroid, {|msg|
   pos = ~sbuf1.duration / (cidx + 1);
   Ndef(\g1).set(\gdur, 1.0, \pos, pos, \amp, 2.0, \gamp, 1.0, \co, (300 * f_vec[0]) + 1360, \gpan, pan, \pos_lag, 4.0, \rq, 0.5, \dens, 0.2, \pos_var, 0.1);
 }, "/kmeans/recalculateCentroid");
+
 
 );
 

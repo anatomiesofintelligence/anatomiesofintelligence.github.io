@@ -25,6 +25,7 @@ Scenes.gui;
 ~servercmd = "python %".format("../../SimpleOSC/SO_Server.py".resolveRelative);
 ~servercmd.unixCmd({|a,b| [a,b].post}, true);
 
+Syn.load
 
 "open http://anatomiesofintelligence.github.io/theatre/kmeans".runInTerminal;
 
@@ -77,7 +78,9 @@ Ndef(\mix, {|vmix=0.5|
 	inverb = In.ar(~verb, 2);
 	s1 = inclean;
 	s2 = inverb;
+	s3 = inlow;
 	s2 = JPverb.ar(s2, 5.0, 0.0, 2.0, 0.8, 0.5, 2.0).madd(vmix) + s2.madd(1-vmix);
+	s3 = BLowPass4.ar(s3, 400, 0.1);
 	mix = s1 + s2;
 	mix = LeakDC.ar(Limiter.ar(mix, 1.0, 0.001));
 	mix;
@@ -159,7 +162,7 @@ OSCdef(\browser, {|msg|
   msg.postln;
   {
     PMOsc.ar(freq, mod, 1.0, 8) * Env.perc(0.01, dur).ar(2);
-  }.play;
+  }.play(outbus: ~clean, target: ~synthgroup, addAction: \addToHead);
 
 }, "/browser");
 
@@ -169,7 +172,8 @@ OSCdef(\initcentroid, {|msg|
   //msg.postln;
   msg[2] = msg[2].asString.split($,);
   "\n>>> INITIALIZE CENTROID % <<< to VECTOR %".format(msg[1], msg[2]).postln;
-  (instrument: \thud, freq: \d5.f, amp: 0.6, dur: 0.5, dt: 0.4, atk: 0.01, rel: 0.5, decay: 0.1, out: Project.outverb).play;
+  (instrument: \thud, freq: \d5.f, amp: 0.6, dur: 0.5, dt: 0.4, atk: 0.01, rel: 0.5, decay: 0.1, out: ~verb).play;
+
 }, "/kmeans/initcentroid");
 
 // stepwise updates for each iteration
@@ -182,7 +186,7 @@ OSCdef(\iter, {|msg|
   } {
     "\nstage % (iter %)".format(msg[2].asString.toUpper, msg[1]).postln;
   };
-  (instrument: \thud, freq: \d4.f, amp: 0.8, dur: 0.1, atk: 0.01, rel: 0.05, decay: 0.1, out: Project.outverb).play;
+  (instrument: \thud, freq: \d4.f, amp: 0.8, dur: 0.1, atk: 0.01, rel: 0.05, decay: 0.1, out: ~verb).play;
 }, "/kmeans/iteration");
 
 
@@ -194,7 +198,7 @@ OSCdef(\distance, {|msg|
   var cidx = msg[3], dist = msg[4];
   "\nThe measure of entry % to centroid C% is %\n Δ • Δ           (%: %)".format(eidx, cidx, dist.round(0.001), eidx, eid).postln;
   // If distance is very small, or 0, modhz will be 0 and this instrument will be silent.
-  (instrument: \fm01, freq: \g5.f * dist.asFloat, modhz: 100 * dist, amp: 0.4, atk: 0.01, rel: 0.1, dur: 0.01, pan: 0.0, out: Project.outverb).play;
+  (instrument: \fm01, freq: \g5.f * dist.asFloat, modhz: 100 * dist, amp: 0.4, atk: 0.01, rel: 0.1, dur: 0.01, pan: 0.0, out: ~verb).play;
 }, "/kmeans/distance");
 
 
@@ -205,7 +209,7 @@ OSCdef(\updateclosest, {|msg|
   var eidx = msg[1], eid = msg[2];
   var cidx = msg[3], dist = msg[4];
   "\nReconsider ENTRY % >> distance is % to category %\n⋱ ⋱ ⋱         (%: %)".format(eidx, dist, cidx, eidx, eid).postln;
-  (instrument: \pm, freq: eidx * 20, idx: 2.5, phase: msg[4], spread: 0.5, amp: 0.3, dur: 0.7 * dist, pan: 0.0, ratio: 2.5, co1: 2000, co2: 900, rq:0.2, out: 32).play;
+  (instrument: \pm, freq: eidx * 20, idx: 2.5, phase: msg[4], spread: 0.5, amp: 0.3, dur: 0.7 * dist, pan: 0.0, ratio: 2.5, co1: 2000, co2: 900, rq:0.2, out: ~clean).play;
 }, "/kmeans/updateClosestCentroid");
 
 // final cluster assignment for entry
@@ -215,7 +219,7 @@ OSCdef(\assigncluster, {|msg|
   var eidx = msg[1], eid = msg[2];
   var cidx = msg[3], dist = msg[4];
   "\nENTRY % will be placed in CATEGORY % \n⊙ ⊙ ⊙ ⊙ ⊙              (%: %)".format(eidx, cidx, eidx, eid).postln;
-  (instrument: \rezpad, amp: 0.55, freq: [\fs3.f, \fs4.f, \a4.f].wrapAt(cidx), dur: [0.1, 0.07, 0.05, 0.06].wrapAt(eidx), phase: 2.5, modhz: 2.1, out: Project.outverb).play;
+  (instrument: \rezpad, amp: 0.55, freq: [\fs3.f, \fs4.f, \a4.f].wrapAt(cidx), dur: [0.1, 0.07, 0.05, 0.06].wrapAt(eidx), phase: 2.5, modhz: 2.1, out: ~verb).play;
 }, "/kmeans/assignCluster");
 
 
@@ -229,7 +233,7 @@ OSCdef(\recalccentroid, {|msg|
   } {
     "The ⊙ CENTER ⊙ of cluster % remains unchanged".format(msg[2]).postln;
   };
-  (instrument: \thud, freq: \d3.f, amp: 0.8, dur: 0.3, out: Project.outbass).play;
+  (instrument: \thud, freq: \d3.f, amp: 0.8, dur: 0.3, out: ~low).play;
 }, "/kmeans/recalculateCentroid");
 
 );
