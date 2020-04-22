@@ -71,7 +71,7 @@ if __name__ == '__main__':
     firstcolumns = ['filename', 'entry-date', 'entry-by', 'layout', 'entry-type', 'image', 'title']
     allcolumns = firstcolumns.copy()
     for key in [*allentries[0]]:
-        if key not in firstcolumns:
+        if key not in (firstcolumns + ['tags', 'weights']):
             allcolumns.append(key)
     allcolumns.append("TAGS:")
     for tag in alltags:
