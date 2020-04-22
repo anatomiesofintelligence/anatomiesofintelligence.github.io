@@ -68,9 +68,10 @@ if __name__ == '__main__':
     allentries.sort(key=getFilename)
 
     # compile column names
-    allcolumns = ['filename', 'entry-date', 'entry-by', 'layout', 'entry-type', 'image', 'title']
+    firstcolumns = ['filename', 'entry-date', 'entry-by', 'layout', 'entry-type', 'image', 'title']
+    allcolumns = firstcolumns.copy()
     for key in [*allentries[0]]:
-        if key not in ['tags', 'weights', 'title', 'entry-date', 'filename']:
+        if key not in firstcolumns:
             allcolumns.append(key)
     allcolumns.append("TAGS:")
     for tag in alltags:
