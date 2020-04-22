@@ -476,7 +476,7 @@ function help() {
     catalog.cluster(3, Measures.euclidean, ["measurement", "cutting"], 20, resultfunc, 1.0, OSC_OUT, console.log)
     catalog.cluster(3, Measures.euclidean, ["spectacle", "theatre"], 20, resultfunc, false)
     project(Projections.SIMPLE2D)
-    cut = ["aesthesis", "measurement", "cut", "spectacle", "theatre", "dimensionality", "", ]
+    cut = ["aesthesis", "measurement", "cut", "spectacle", "theatre"]
     cluster(cut, 5, 20, false)
     project(Projections.SIMPLE2D, {prioritizeFeatures: ["dimensionality", "measurement"], featuresDefinition: cut})
   `;
