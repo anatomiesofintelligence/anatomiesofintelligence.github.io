@@ -38,7 +38,7 @@ newexample = new Entry("{{ post_id }}", "{{ post.url }}");
 {% for tag in post.tags %}
 {% assign idx = forloop.index | minus: 1 %}
 tag_weight = ["{{ tag }}", {{ post.weights[idx] }}];
-newexample.addTag(tag_weight);
+newexample.addFeature(tag_weight);
 {% endfor %}
 catalog.addEntry(newexample);
 </script>
@@ -390,16 +390,22 @@ function resultfunc(err, clusters, centroids, featuresDef) {
 
 };
 
+
+
 // SIMPLIFIED clustering functions
 // TODO: finish this?
-function cluster(taglist, num_clusters, iterations=10, breakpoints=false) {
-  if(num_clusters != null) { K = num_clusters }
-  if(taglist != null) { CLUSTER_DIMENSIONS = taglist }
+function cluster(num_clusters, features, iterations=10, callback, interactive=false, post=false) {
+  K = num_clusters;
+  CLUSTER_DIMENSIONS = features;
 
-  if(breakpoints) {
-    catalog.cluster(K, MEASUREMENT, CLUSTER_DIMENSIONS, iterations, resultfunc, true, OSC_OUT, console.log);
+  if(callback == null) {
+    callback = CALLBACK_FUNC;
+  }
+
+  if(interactive) {
+    catalog.cluster(K, MEASUREMENT, CLUSTER_DIMENSIONS, iterations, resultfunc, 1.0, OSC_OUT, callback, post);
   } else {
-    catalog.cluster(K, MEASUREMENT, CLUSTER_DIMENSIONS, iterations, resultfunc, false);
+    catalog.cluster(K, MEASUREMENT, CLUSTER_DIMENSIONS, iterations, resultfunc, 0.0, null, callback, post);
   }
 }
 
@@ -485,6 +491,32 @@ function help() {
 
 //************** GLOBAL CONSTANTS *****************//
 
+// CALLBACK FUNC
+var CALLBACK_FUNC = function(step, info) {
+  console.log(step, info);
+  if(step == 'distance') {
+    let entry_idx = info[0], entry_id = info[1], cluster = info[2], dist = info[3];
+    entrydiv = document.querySelector("#"+entry_id);
+
+    entrydiv.style.border = 2 + "px solid rgba(" + CLUSTER_COLORS[cluster] + ", " + 0.8 + ")";
+    return 250; // pause 250 ms
+  }
+  if(step == 'decide') {
+    let entry_idx = info[0], entry_id = info[1], cluster = info[2], dist = info[3];
+    entrydiv = document.querySelector("#"+entry_id);
+    entrydiv.style.border = 2 + "px solid rgba(" + CLUSTER_COLORS[cluster] + ", " + 0.8 + ")";
+    return 500; // pause 250 ms
+  }
+
+
+
+  return 1000; // by default most steps delay 1000 ms
+};
+
+
+
+
+
 // CLUSTERING PARAMETERS
 var K = 3;
 var MEASUREMENT = Measures.euclidean;
@@ -503,7 +535,7 @@ var TEMPO = 0.5;          // timescale/tempo speed of algorithm steps
 // Visualization parameters
 var PROJECTION_TYPE = Projections.NONE; // default projection
 var PROJECTION_DIMENSIONS = CLUSTER_DIMENSIONS;
-var RADIAL_DENSITY = 500;   // used in the RADIAL projection
+var RADIAL_DENSITY = 50;   // used in the RADIAL projection
 var CENTROID_SYMBOL = "+";  // symbol printed at centroid position
 var SHOW_BORDERS = true;    // show cluster coloring / borders
 var BORDER_ALPHA = 0.5;     // cluster border alpha

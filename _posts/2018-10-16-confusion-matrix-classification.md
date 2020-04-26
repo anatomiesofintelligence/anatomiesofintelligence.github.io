@@ -1,23 +1,51 @@
 ---
-title: The Confusion Matrix, Evaluating Classification
-subtitle:
-layout: image
-entry-type: image
+copyright: ''
 entry-by: Jonathan Reus
-
-# if a url is available, put it here, otherwise leave empty
-source-url: https://towardsdatascience.com/understanding-confusion-matrix-a9ad42dcfd62
-source: Understanding Confusion Matrix, Sarang Narkhede
-
-# what is the copyright?
-copyright:
-
-summary: A Confusion Matrix is a performance measurement for machine learning classification. A table with 4 different combinations of predicted and actual values; True Positive, True Negative, False Positive, and False Negative.
-
+entry-date: '2018-10-16'
+entry-type: image
+filename: confusion-matrix-classification.md
 image: algorithms/confusion-matrix-classifier-evaluation.png
-
-# all tags separated by commas
-tags: [classification, optimization, evaluation, taxonomy, performance, truth, measurement, cuts]
-weights: [0.65, 0.9, 0.78, 0.3, 0.486, 0.25, 0.7111, 0.13]
-
+layout: image
+source: Understanding Confusion Matrix, Sarang Narkhede
+source-url: https://towardsdatascience.com/understanding-confusion-matrix-a9ad42dcfd62
+summary: A Confusion Matrix is a performance measurement for machine learning classification.
+  A table with 4 different combinations of predicted and actual values; True Positive,
+  True Negative, False Positive, and False Negative.
+tags: [Boerhaave, COGWEB, Chinese, LSTM, Leiden, PGM, RNN, Ruysch, actors, aesthesis,
+  agency, algorithm, analysis, anatomical, anatomy, androgynous, architecture, archive,
+  artificialia, axis, black-box, body, botanical, brain, categories, categorization,
+  channel, character recognition, chinese, classification, clustering, cnn, codes,
+  cognition, collecting, collection, collections, colonialism, commodification, concept,
+  conceptual-clustering, convolutional neural network, cost, counting, cut, cuts,
+  cutting, datasets, demonstration, diagram, dimensionality, disgust, dissection,
+  distance, domestication, elegance, epistemology, error, euclidean, evaluation, eye,
+  figures, finger, forecasting, forensics, frame, freakish, geometry, gesture, gestures,
+  gradient descent, graph, graphs, grouping, hacking, hand, hand writing, hands, hands-on,
+  handwriting, hardware, history, human, human body, imagination, imperfect, inscription,
+  instruments, joint, kmeans, knowledge, labeling, landmark, learning, location, machine
+    learning, machines, materiality, meaning, measurement, memory, mnist, model, models,
+  monsters, muscles, mystical, mythological, naturalia, nerves, nervous system, network,
+  networks, neural networks, neural-anatomy, neuron, nonlinearity, observation, offline,
+  online, ontologies, ontology, ontology-building, optimization, orientation, orthogonality,
+  parallel, pca, perception, perceptron, perfection, performance, planes, poetic,
+  position, prediction, preparation, preparations, projection, proportion, proportions,
+  psychology, python, races, representation, representations, rhetoric, rnn, segments,
+  selection, sensory experience, sensory perception, similarity, skeleton, skin, skull,
+  skulls, space, sparseness, spectacle, spectators, speech, standard, statistic-ontology,
+  statistical, statistical-ontology, svm, symbols, tacit, taxonomy, theatre, time-series,
+  timeseries, tools, topological, training, treatise, trial, truth, type, typography,
+  unsupervised, vision, visualization, wellcome, word2vec, writing, zodiac]
+title: The Confusion Matrix, Evaluating Classification
+weights: ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',
+  '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0.65', '0',
+  '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0.13', '0',
+  '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0.78', '0', '0', '0',
+  '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',
+  '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',
+  '0', '0', '0', '0', '0.7111', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',
+  '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0.9', '0', '0',
+  '0', '0', '0', '0', '0', '0.486', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',
+  '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',
+  '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0.3', '0', '0', '0', '0',
+  '0', '0', '0', '0', '0.25', '0', '0', '0', '0', '0', '0', '0', '0', '0']
 ---

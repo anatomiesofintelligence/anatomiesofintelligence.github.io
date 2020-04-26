@@ -1,15 +1,49 @@
 ---
-title: Parts of a monster and instruments.
-layout: image
-entry-type: image
-image: wc/Parts_monster_instruments.jpg
-entry-date: 2019-12-6
-entry-by: Joana Chicau
-source-url: https://wellcomecollection.org/works/sgggvfas
-source:
 copyright: Creative Commons Attribution (CC BY 4.0)
-tags: [body, anatomy, monsters, instruments, collections, wellcome, collection, preparation, spectacle]
-weights: [0.89, 0.91, 0.96, 0.99, 0.24, 0.55, 0.81, 0.02, 0.05]
-
-summary: "Parts of a monster and instruments. Credit: Wellcome Collection. CC BY"
+entry-by: Joana Chicau
+entry-date: 2019-12-6
+entry-type: image
+filename: monster_instruments.md
+image: wc/Parts_monster_instruments.jpg
+layout: image
+source: ''
+source-url: https://wellcomecollection.org/works/sgggvfas
+summary: 'Parts of a monster and instruments. Credit: Wellcome Collection. CC BY'
+tags: [Boerhaave, COGWEB, Chinese, LSTM, Leiden, PGM, RNN, Ruysch, actors, aesthesis,
+  agency, algorithm, analysis, anatomical, anatomy, androgynous, architecture, archive,
+  artificialia, axis, black-box, body, botanical, brain, categories, categorization,
+  channel, character recognition, chinese, classification, clustering, cnn, codes,
+  cognition, collecting, collection, collections, colonialism, commodification, concept,
+  conceptual-clustering, convolutional neural network, cost, counting, cut, cuts,
+  cutting, datasets, demonstration, diagram, dimensionality, disgust, dissection,
+  distance, domestication, elegance, epistemology, error, euclidean, evaluation, eye,
+  figures, finger, forecasting, forensics, frame, freakish, geometry, gesture, gestures,
+  gradient descent, graph, graphs, grouping, hacking, hand, hand writing, hands, hands-on,
+  handwriting, hardware, history, human, human body, imagination, imperfect, inscription,
+  instruments, joint, kmeans, knowledge, labeling, landmark, learning, location, machine
+    learning, machines, materiality, meaning, measurement, memory, mnist, model, models,
+  monsters, muscles, mystical, mythological, naturalia, nerves, nervous system, network,
+  networks, neural networks, neural-anatomy, neuron, nonlinearity, observation, offline,
+  online, ontologies, ontology, ontology-building, optimization, orientation, orthogonality,
+  parallel, pca, perception, perceptron, perfection, performance, planes, poetic,
+  position, prediction, preparation, preparations, projection, proportion, proportions,
+  psychology, python, races, representation, representations, rhetoric, rnn, segments,
+  selection, sensory experience, sensory perception, similarity, skeleton, skin, skull,
+  skulls, space, sparseness, spectacle, spectators, speech, standard, statistic-ontology,
+  statistical, statistical-ontology, svm, symbols, tacit, taxonomy, theatre, time-series,
+  timeseries, tools, topological, training, treatise, trial, truth, type, typography,
+  unsupervised, vision, visualization, wellcome, word2vec, writing, zodiac]
+title: Parts of a monster and instruments.
+weights: ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0.91',
+  '0', '0', '0', '0', '0', '0', '0.89', '0', '0', '0', '0', '0', '0', '0', '0', '0',
+  '0', '0', '0', '0', '0.81', '0.24', '0', '0', '0', '0', '0', '0', '0', '0', '0',
+  '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',
+  '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',
+  '0', '0', '0', '0', '0', '0', '0', '0', '0', '0.99', '0', '0', '0', '0', '0', '0',
+  '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0.96', '0', '0', '0', '0', '0',
+  '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',
+  '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0.02', '0', '0', '0', '0', '0',
+  '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',
+  '0', '0.05', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',
+  '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0.55', '0', '0', '0']
 ---

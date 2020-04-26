@@ -32,7 +32,6 @@ var Measures = new Object();
 Measures.euclidean = function(a, b, options) {
   var sum = 0;
   var n, feature_list;
-  //console.log("EUCLIDEAN: ",a,b,options);
   a = a.features;
   b = b.features;
   if(typeof a == "number") { // special case where feature vec is a single value
@@ -93,61 +92,64 @@ var Entry = function(id, url) {
         this.url = url;
         this.text;
         this.image;
-        this.tags = {};
+        this.features = {};
 }
 
-Entry.prototype.addTag = function(tag_weight) {
-        var weight, tag;
-        tag = this.cleanTag(tag_weight[0]);
-        if(tag_weight.length == 1) { // no weight given for tag
-                weight = Math.random();
+Entry.prototype.addFeature = function(feature) {
+        var value, feature_name;
+        feature_name = this.cleanFeatureName(feature[0]);
+        if(feature.length == 1) { // no value given for feature, treat it as a class and give a value of 1
+                value = 1;
         } else {
-                weight = tag_weight[1];
+                value = feature[1];
         }
-        this.tags[tag] = weight;
+        this.features[feature_name] = value;
 }
 
-// Remove spaces and other funky characters so the tag can be used as a dictionary id
-Entry.prototype.cleanTag = function(tag_string) {
-        return tag_string.trim().replace(/[\W]/g,'_');
+// Remove spaces and other funky characters so the feature name can be used as a dictionary id
+Entry.prototype.cleanFeatureName = function(feature_name_string) {
+        return feature_name_string.trim().replace(/[\W]/g,'_');
 }
 
-Entry.prototype.tagWeight = function(tag) {
-        var result = this.tags[tag];
-        // if this tag isn't present, give it a weight of 0.0
+// Get the value of given feature
+Entry.prototype.getFeatureValue = function(feature_name) {
+        var result = this.features[feature_name];
+        // if this feature isn't present, give it a random value close to 0.0
         if(result == undefined) {
-          this.tags[tag] = Math.random() * 0.1;
-          result = this.tags[tag];
+          this.features[feature_name] = Math.random() * 0.1;
+          result = this.features[feature_name];
         };
         return result;
 }
 
-// Generates a FeatureVec from a given entry based on what's in options.
-// for now options only contains one item: 'taglist' which is an array of tag names
-// to retrieve as features, but could in the future describe more complex features
+// Generates a feature vector from a given entry based on settings in the options dict.
+// NOTE: for now options only contains one item: 'features' which is an array of feature names
+// that will be returned in the feature vector.
+// In the future options could request more complex/self-learned features that have not been created manually.
 Entry.prototype.getFeatures = function(options) {
-    var taglist, tagweight, features;
-    taglist = options["taglist"];
-    features = new Array(taglist.length);
-    for(var i = 0; i < taglist.length; i++) { // create a feature vector from tag weights
-        tagweight = this.tags[taglist[i]];
-        if(tagweight == undefined) { // if entry does not have a value for this tag, use a weight of 0.0
-          this.tags[taglist[i]] = Math.random() * 0.00;
-          tagweight = this.tags[taglist[i]];
+    var requested_features, value, vec;
+    requested_features = options["features"];
+    vec = new Array(requested_features.length);
+    for(var i = 0; i < requested_features.length; i++) { // create a vector from feature values
+        value = this.features[requested_features[i]];
+        if(value == undefined) { // if entry does not have a value for this feature, throw an error
+          throw new Error("Feature '" + requested_features[i] + "' does not exist");
+          // Old response was to generate a feature value, but now all entries should contain values for all features
+          //this.features[requested_features[i]] = Math.random() * 0.00;
+          //value = this.features[requested_features[i]];
         };
-        features[i] = tagweight;
-        //console.log("Set features",i,"to",tagweight);
+        vec[i] = value;
     }
-    return new FeatureVec(this, features);
+    return new FeatureVec(this, vec);
 }
 
-/*************
+/********************
 // FeatureVec
-// An easier to work with feature vector with its related entry attached to it.
+// An easier to work with feature vector object that contains a reference to its entry.
 **************/
-var FeatureVec = function(entry, features) {
+var FeatureVec = function(entry, vec) {
     this.entry = entry;
-    this.features = features;
+    this.features = vec;
 }
 
 // Make a copy of this FeatureVec
@@ -155,54 +157,56 @@ FeatureVec.prototype.copy = function() {
     return new FeatureVec(this.entry, this.features.slice());
 }
 
-
-/*************
+/***************************************************************
 // CATALOG
-**************/
+// The core class handling all operations on the catalog
+***********************************/
 var Catalog = function() {
         this.allEntries = {}; // dictionary of entry id->Entry
-        this.allTags = [];
+        this.allFeatureNames = []; // array of hand-picked feature names (taken from catalog database)
+        // Algorithms:
         this.kmeans = new KMeans();
 }
 
+// Add a new entry to the catalog data structure
 Catalog.prototype.addEntry = function(newentry) {
-        for(let [tag, weight] of Object.entries(newentry.tags)) {
+        for(let [feature_name, weight] of Object.entries(newentry.features)) {
             var found = false;
-            for(var i=0; i < this.allTags.length; i++) {
-                if(this.allTags[i] == tag) {
+            for(var i=0; i < this.allFeatureNames.length; i++) {
+                if(this.allFeatureNames[i] == feature_name) {
                     found = true;
                 }
             }
             if(found != true) {
-                this.allTags.push(tag);
+                this.allFeatureNames.push(feature_name);
             }
         }
-        //this.allTags.sort();
+        //this.allFeatureNames.sort();
         this.allEntries[newentry.id] = newentry;
 }
 
-// Get entrys as an array of FeatureVecs
-// the number and types of features are determined by options
-// usually this is just a list of tag weights
+// Get entries as an array of FeatureVecs that can then be used for calculations.
+// The selection of features used is determined by options, which is passed to
+// the 'getFeatures' method of each entry.
 Catalog.prototype.entriesAsFeatures = function(options) {
-    var asfeatures, entrys_as_features = [];
+    var entry_as_features, entries_as_features = [];
     for(let entry of Object.values(this.allEntries)) {
-        asfeatures = entry.getFeatures(options);
-        entrys_as_features.push(asfeatures);
+        entry_as_features = entry.getFeatures(options);
+        entries_as_features.push(entry_as_features);
     }
-    return entrys_as_features;
+    return entries_as_features;
 }
 
-// Clusters using a number of clusters and a comparison function
-// uses KMEANS clustering/unsupervised learning
-Catalog.prototype.cluster = function(num_clusters, measure, thetaglist, iters, process_result_func, output=1.0, oscout, postfunc) {
-    var options, iterations, measurement, entrys_as_features;
-    iterations = iters || 100;
-    measurement = measure || Measures.euclidean;
-    options = {taglist: thetaglist, similarityFunc: measurement, iterations: iterations};
-    this.kmeans = new KMeans(num_clusters, options);
-    entrysAsFeatures = this.entriesAsFeatures(options);
-    process_result_func = process_result_func || this.processClusters;
+
+/*****************
+CATALOG META-CONTROL FUNCTIONS AND CONVENIENCE METHODS FOR ALGORITHM INTERVENTIONS
+******************/
+
+// Run a K-means clustering on the catalog.
+// This method wraps an instance of KMeans and calls KMeans.cluster
+Catalog.prototype.cluster = function(num_clusters=3, measurement, use_features, iterations=10, process_result_func, output=1.0, oscout, callback, post=true) {
+    var options, measurement, entries_as_features;
+    measurement = measurement || Measures.euclidean;
     if(output==true) {
       output = 1.0;
     } else {
@@ -211,15 +215,46 @@ Catalog.prototype.cluster = function(num_clusters, measure, thetaglist, iters, p
       }
     }
 
-    this.kmeans.cluster(entrysAsFeatures, process_result_func, output, oscout, postfunc);
+    // features: is passed directly to Entry.getFeatures
+    // similarityFunc: used by KMeans algorithm to determine distance between entries
+    // iterations: hyperparameter for KMeans algorithm, number of iterations
+    options = {features: use_features, similarityFunc: measurement, iterations: iterations,
+      callbackFunc: callback, post_steps: post, output_verbosity: output};
+
+    this.kmeans = new KMeans(num_clusters, options);
+    entriesAsFeatures = this.entriesAsFeatures(options);
+    process_result_func = process_result_func || this.processClusters;
+
+    this.kmeans.cluster(num_clusters, entriesAsFeatures, process_result_func, oscout);
 }
+
 
 // Hard stop clustering algorithm
 Catalog.prototype.stop = function() {
   if(this.kmeans.running == true) { this.kmeans.interrupt = true }
 }
 
-// Callback function for KMEANS algorithm
+// Set the tempo of the underlying algorithm in BPM
+Catalog.prototype.setTempo = function(tempo) {
+  tempo = tempo || 60;
+  this.kmeans.tempo = 60.0 / tempo;
+  return "Using "+tempo+"bpm";
+}
+
+// Update callback function
+Catalog.prototype.setCallback = function(func) {
+  this.kmeans.callback = func;
+}
+
+Catalog.prototype.setPost = function(should_post) {
+  this.kmeans.post_steps = should_post;
+}
+
+Catalog.prototype.setVerbosity = function(verbosity) {
+  this.kmeans.output_verbosity = verbosity;
+}
+
+// Final callback function for KMEANS algorithm that processes the resulting clusters.
 Catalog.prototype.processClusters = function(err, clusters, centroids) {
         // show any errors
         console.log("ERROR:",err);
@@ -228,8 +263,7 @@ Catalog.prototype.processClusters = function(err, clusters, centroids) {
         // show the centroids
         console.log("CENTROIDS:",centroids);
 
-        // REMAP THE DIVS BASED ON CLUSTER AND DISTANCES
-
+        // TODO: REMAP THE DIVS BASED ON CLUSTER AND DISTANCES
 }
 /***************************
 // END EXAMPLE AND CATALOG CLASSES
@@ -239,7 +273,8 @@ Catalog.prototype.processClusters = function(err, clusters, centroids) {
 
 
 /***************************
-// KMEANS CLASS ~ modified for analysis
+// KMEANS
+// Class manages an instance of the KMeans algorithm in realtime
 ****************************/
 var KMeans = function(K, options) {
   options = options || {};
@@ -247,230 +282,331 @@ var KMeans = function(K, options) {
   this.centroids = [];
   this.clusters = [];
   this.similarityFunc = options["similarityFunc"];
-  this.tagList = options["taglist"] || [];
-  this.iterations = options.iterations || 1000;
+  this.callback = options["callbackFunc"];
+  this.featureNames = options["features"] || [];
+  this.post_steps = options["post_steps"] || false;
+  this.output_verbosity = options["output_verbosity"] || 0;
+  this.iterations = options.iterations || 10;
   this.options = options || {};
+
+  // meta state variables
   this.interrupt = false;   // FLAG to interrupt clustering algorithm
   this.running = false;     // FLAG true if algorithm is running
+  this.tempo = 1.0;         // tempo
 
 }
 
+
+// Run a clustering algorithm on the given entries
+// entries must be an array of FeatureVec objects
+// donecallback is a function called when the clustering algorithm has finished
 // output gives different levels of verbosity 1.0->full output, 0.0->no output
-KMeans.prototype.cluster = async function(entrys, donecallback, output=1.0, oscout=null, postfunc=null) {
-  var self = this;
-  var osc, post;
-  if(typeof TEMPO === "undefined") { TEMPO = 1.0 };
-  post = postfunc;
-  if(post == null) { post = console.log };
+// oscout, if not null, is an object that must respond to the method .sendmsg(address, args)
+// callback, general callback function for algorithmic steps, receives the arguments: step, info -- where info is a dict
+//    callback can also, optionally, return a duration (in milliseconds) for the given step to pause the algorithm
+// post, if true, posts feedback to the console
+KMeans.prototype.cluster = async function(clusters=3, entries, donecallback, oscout=null) {
+  var osc, cb, dur;
+  this.K = clusters;
+
   if(oscout == null) {
     osc = function(address, args) { };
   } else {
     osc = function(address, args) { oscout.sendmsg(address, args) };
   }
-
-  if (!entrys) {
-    return callback(new Error('an array of entrys is required.'));
-} else if (!Array.isArray(entrys)) {
-    return callback(new Error('entrys must be an array.'));
-} else if (entrys.length < self.K) {
-    return callback(new Error('entrys must have at least K data points.'));
+  if(this.callback == null) {
+    this.callback = function(step, info) { return 1000 };
   }
 
-  //console.log("INCOMING_EXAMPLES:", entrys);
-  var normalizedEntrys = self.normalize(entrys);
-  //console.log("NORMALIZED_EXAMPLES:",normalizedEntrys);
+  if (!entries) {
+    throw new Error('an array of entries is required.');
+  } else if (!Array.isArray(entries)) {
+    throw new Error('entries must be an array.');
+  } else if (entries.length < this.K) {
+    throw new Error('entries must have at least K data points.');
+  }
+
+  var normalizedEntries = this.normalize(entries);
+  if(this.output_verbosity > 0.0) {
+    osc("/kmeans/normalize", ['entries']);
+    dur = this.callback('normalize', ['entries', normalizedEntries]);
+    dur = dur || 1000;
+    if(this.post_steps)
+      console.log("Normalize entries "+i);
+    await Util.sleep(dur * this.tempo);
+  }
 
   this.running = true;
+  this.interrupt = false;
 
   // initialize random centroids
-  for (var k = 0; k < self.K; k++) {
-    var newcentroid, randomIndex = Math.floor(Math.random() * normalizedEntrys.length);
-    newcentroid = new FeatureVec("centroid"+k, normalizedEntrys[randomIndex].features.slice());
-
-    if(output > 0.2) {
+  for (let k = 0; k < this.K; k++) {
+    let newcentroid, randomIndex = Math.floor(Math.random() * normalizedEntries.length);
+    newcentroid = new FeatureVec("centroid"+k, normalizedEntries[randomIndex].features.slice());
+    this.centroids.push(newcentroid);
+    if(this.output_verbosity > 0.0) { // reporting
       osc("/kmeans/initcentroid", [k, newcentroid.features]); // centroid centroid-features
-      post("NEW CENTROID " + k + " with " + newcentroid.features.map(x=>x.toFixed(2)));
-      await Util.sleep(1000 * TEMPO);
+      dur = this.callback("initcentroid", [k, newcentroid.features]);
+      dur = dur || 1000;
+      if(this.post_steps)
+        console.log("NEW CENTROID " + k + " with " + newcentroid.features.map(x=>x.toFixed(2)));
+      await Util.sleep(dur * this.tempo);
     }
-
-    self.centroids.push(newcentroid);
   }
 
-  //console.log("RANDOM CENTROIDS:", self.centroids);
+  // rhythm scales for each step {}
 
-  // Clustering Refinement Iterations...
-  for (var j = 0; j < self.iterations; j++) {
-
-    if(output > 0.0) {
+  // Begin Clustering Iterations
+  for (let j = 0; j < this.iterations; j++) {
+    if(this.output_verbosity > 0.0) {
       osc("/kmeans/iteration", [j, "start"]);
-      post("----------- Begin ITERATION "+j+" ---------");
-      await Util.sleep(1000 * TEMPO);
-    }
-    if(output > 0.3) {
-      // cluster assignment step, assign entry to closest centroid
-      osc("/kmeans/iteration", [j, "cluster-assignment"]);
-      post("--- I"+j+" Cluster Assignment ---");
-      await Util.sleep(1000 * TEMPO);
+      dur = this.callback("step", [j, "start"]);
+      dur = dur || 1000;
+      if(this.post_steps)
+        console.log("----------- Begin ITERATION "+j+" ---------");
+      await Util.sleep(dur * this.tempo);
     }
 
-    var clusterIndexes = []; // each entry index gets a cluster index [0,0,0,2,2,0,1... etc]
-    for (var i = 0; i < normalizedEntrys.length; i++) {
+    let clusterIndexes = []; // each entry index gets a cluster index [0,0,0,2,2,0,1... etc]
+    for (var i = 0; i < normalizedEntries.length; i++) {
 
-      if(this.interrupt == true) { // CHECK INTERRUPT FLAG
+      if(this.interrupt == true) { // CHECK INTERRUPT FLAG BEFORE EACH ENTRY IS EXAMINED
         this.interrupt = false;
         return null;
       }
 
-      // How close is each entry to centroid 0
-      var min;
-      min = this.similarityFunc(normalizedEntrys[i], self.centroids[0]);
+      let min;
+      min = this.similarityFunc(normalizedEntries[i], this.centroids[0]);
 
       // entry-idx entry-id centroid-idx distance
-      if(output > 0.6) {
-        osc("/kmeans/distance", [i, normalizedEntrys[i].entry.id, 0, min]);
-        post("Measured " + min.toFixed(3) + " from " + normalizedEntrys[i].entry.id+" to category "+0);
-        await Util.sleep(250 * TEMPO);
+      if(this.output_verbosity > 0.0) {
+        osc("/kmeans/distance", [i, normalizedEntries[i].entry.id, 0, min]);
+        dur = this.callback('distance', [i, normalizedEntries[i].entry.id, 0, min]);
+        dur = dur || 1000;
+        if(this.post_steps)
+          console.log("Measured " + min.toFixed(3) + " from " + normalizedEntries[i].entry.id+" to category "+0);
+        await Util.sleep(dur * this.tempo);
       }
+
       var closestCentroid = 0;
-      for (k = 1; k < self.K; k++) { // compare to other centroids
+      for (k = 1; k < this.K; k++) { // compare to other centroids
         var tmpDistance;
-        tmpDistance = this.similarityFunc(normalizedEntrys[i], self.centroids[k]);
+        tmpDistance = this.similarityFunc(normalizedEntries[i], this.centroids[k]);
         // entry-idx entry-id centroid-idx distance
-        if(output > 0.6) {
-          osc("/kmeans/distance", [i, normalizedEntrys[i].entry.id, k, tmpDistance]);
-          post("Measured " + tmpDistance.toFixed(3) + " from " + normalizedEntrys[i].entry.id + " to category "+k);
-          await Util.sleep(200 * TEMPO);
+        if(this.output_verbosity > 0) {
+          osc("/kmeans/distance", [i, normalizedEntries[i].entry.id, k, tmpDistance]);
+          dur = this.callback('distance', [i, normalizedEntries[i].entry.id, k, tmpDistance]);
+          dur = dur || 1000;
+          if(this.post_steps)
+            console.log("Measured " + tmpDistance.toFixed(3) + " from " + normalizedEntries[i].entry.id + " to category "+k);
+          await Util.sleep(dur * this.tempo);
         }
         if (tmpDistance < min) {
           min = tmpDistance;
           closestCentroid = k;
 
           // entry-idx entry-id centroid-idx distance
-          if(output > 0.5) {
-            osc("/kmeans/updateClosestCentroid", [i, normalizedEntrys[i].entry.id, k, tmpDistance]);
-            post("Reconsidering " + normalizedEntrys[i].entry.id + " for category "+ k);
-            await Util.sleep(300 * TEMPO);
+          if(this.output_verbosity > 0.0) {
+            osc("/kmeans/updateClosestCentroid", [i, normalizedEntries[i].entry.id, k, tmpDistance]);
+            dur = this.callback('reconsider', [i, normalizedEntries[i].entry.id, k, tmpDistance]);
+            dur = dur || 1000;
+            if(this.post_steps)
+              console.log("Reconsidering " + normalizedEntries[i].entry.id + " for category "+ k);
+            await Util.sleep(dur * this.tempo);
           }
         }
       }
       clusterIndexes.push(closestCentroid); // for each entry, push index of closest centroid
 
       // entry-idx entry-id centroid/cluster-idx distance
-      if(output > 0.4) {
-        osc("/kmeans/assignCluster", [i, normalizedEntrys[i].entry.id, closestCentroid, tmpDistance]);
-        post("Deciding that " + normalizedEntrys[i].entry.id + " is category "+closestCentroid);
-        await Util.sleep(400 * TEMPO);
+      if(this.output_verbosity > 0) {
+        osc("/kmeans/assignCluster", [i, normalizedEntries[i].entry.id, closestCentroid, tmpDistance]);
+        dur = this.callback('decide', [i, normalizedEntries[i].entry.id, closestCentroid, tmpDistance]);
+        dur = dur || 1000;
+        if(this.post_steps)
+          console.log("Deciding that " + normalizedEntries[i].entry.id + " is category "+closestCentroid);
+        await Util.sleep(dur * this.tempo);
       }
     }
 
-    if(output > 0.2) {
+    if(this.output_verbosity > 0) {
       osc("/kmeans/iteration", [j, "recalculate-centroids"]);
-      post("Recalculating cluster centers for iteration "+j);
-      await Util.sleep(1000 * TEMPO);
+      dur = this.callback('step', [j, "recalculate-centroids"]);
+      dur = dur || 1000;
+      if(this.post_steps)
+        console.log("Recalculating cluster centers for iteration "+j);
+      await Util.sleep(dur * this.tempo);
     }
 
     // Gather up entries by cluster & make better centroids
-    self.clusters = [];
+    this.clusters = [];
     var newCentroids = [];
-    for (var k = 0; k < self.centroids.length; k++) { // for each centroid/cluster
+    for (var k = 0; k < this.centroids.length; k++) { // for each centroid/cluster
 
       // Collect up all entries in that cluster
       var cluster = [];
       clusterIndexes.forEach(function(clusterIndex, index) {
         if (clusterIndex == k) {
-          cluster.push(normalizedEntrys[index]);
+          cluster.push(normalizedEntries[index]);
         }
       });
-      self.clusters.push(cluster);
+      this.clusters.push(cluster);
 
       // If there are entries in the cluster, recalculate the centroid to be more central
       var updatedCentroid;
       if (cluster.length > 0) {
-        // Add a new centroid for each new cluster, with its center at the mean of all entrys in the cluster
-        updatedCentroid = new FeatureVec("centroid"+k, self.mean(cluster));
+        // Add a new centroid for each new cluster, with its center at the mean of all entries in the cluster
+        updatedCentroid = new FeatureVec("centroid"+k, this.mean(cluster));
 
-        if(output > 0.15) {
+        if(this.output_verbosity > 0) {
           osc("/kmeans/recalculateCentroid", ["new", k, updatedCentroid.features]);
-          post("Recalculating the center of category "+k+" to vector "+updatedCentroid.features.map(x=>x.toFixed(2)));
-          await Util.sleep(400 * TEMPO);
+          dur = this.callback('recalculateCentroid', ["new", k, updatedCentroid.features]);
+          dur = dur || 1000;
+          if(this.post_steps)
+            console.log("Recalculating the center of category "+k+" to vector "+updatedCentroid.features.map(x=>x.toFixed(2)));
+          await Util.sleep(dur * this.tempo);
         }
       } else { // clusters with no entries keep their old centroid
-        updatedCentroid = self.centroids[k];
-
-        if(output > 0.15) {
+        updatedCentroid = this.centroids[k];
+        if(this.output_verbosity > 0) {
           osc("/kmeans/recalculateCentroid", ["keep", k, updatedCentroid.features]);
-          post("The vector center of category "+k+" remains unchanged");
-          await Util.sleep(500 * TEMPO);
+          dur = this.callback('recalculateCentroid', ["keep", k, updatedCentroid.features]);
+          dur = dur || 1000;
+          if(this.post_steps)
+            console.log("The vector center of category "+k+" remains unchanged");
+          await Util.sleep(dur * this.tempo);
         }
       }
       newCentroids.push(updatedCentroid);
     }
-    self.centroids = newCentroids;
-    if(output > 0.0) {
-      osc("/kmeans/iteration", [j, "end"]);
-      post("--- END of iteration "+j);
-      await Util.sleep(5000 * TEMPO);
+    this.centroids = newCentroids;
+    if(this.output_verbosity > 0.0) {
+      osc("/kmeans/iteration", [j, 'end']);
+      dur = this.callback('step', [j, 'end']);
+      dur = dur || 1000;
+      if(this.post_steps)
+        console.log("--- END of iteration "+j);
+      await Util.sleep(dur * this.tempo);
     }
 
   }
 
-  // denormalize clusters and centroids
-  self.centroids = self.denormalize(self.centroids);
-  self.clusters.forEach(function(cluster, index) {
-    self.clusters[index] = self.denormalize(cluster);
-  });
+  // NOTE: ADD A NORMALIZE / DENORMALIZE SONIFICATION...
+  // denormalize centroids and entries
+  this.centroids = this.denormalize(this.centroids);
+  if(this.output_verbosity > 0.0) {
+    osc("/kmeans/denormalize", ['centroids']);
+    dur = this.callback('denormalize', ['centroids']);
+    dur = dur || 1000;
+    if(this.post_steps)
+      console.log("--- denormalize centroids "+j);
+    await Util.sleep(dur * this.tempo);
+  }
+
+  for(let i = 0; i < this.clusters.size; i++) {
+    let cluster = this.clusters[i];
+    this.clusters[i] = this.denormalize(cluster);
+    if(this.output_verbosity > 0.0) {
+      osc("/kmeans/denormalize", ['cluster', i]);
+      dur = this.callback('denormalize', ['cluster', i]);
+      dur = dur || 1000;
+      if(this.post_steps)
+        console.log("--- denormalize cluster "+i);
+      await Util.sleep(dur * this.tempo);
+    }
+  }
 
   this.running = false;
-  return donecallback(null, self.clusters, self.centroids, self.tagList);
+  return donecallback(null, this.clusters, this.centroids, this.featureNames);
 };
+
+
+
+/*-----------------
+Math helper functions
+------------------*/
 
 // Returns an array of mean values for each feature of the entry set
 // E.G. if each entry has four features, mean will return the average across
 //  all samples of each feature [0.2, 0.34, 0.54, 0.4]
-// entrys is an array of FeatureVecs
-KMeans.prototype.mean = function(entrys) {
-  if (!Array.isArray(entrys)) {
-    throw new Error('mean requires an array of entrys as an argument.');
+// entries is an array of FeatureVecs
+KMeans.prototype.mean = function(entries) {
+  if (!Array.isArray(entries)) {
+    throw new Error('mean requires an array of entries as an argument.');
   }
-  if (entrys.length == 0) {
+  if (entries.length == 0) {
     return [];
   }
   var sum;
-  sum = new Array(entrys[0].features.length);
-  for (var i = 0; i < entrys.length; i++) {
-    for (var k = 0; k < sum.length; k++) {
-      sum[k] = (sum[k] || 0) + parseFloat(entrys[i].features[k], 10);
-      if (i == (entrys.length - 1)) {
-          sum[k] = sum[k] / entrys.length;
-      }
+  sum = new Array(entries[0].features.length);
+  for(let k = 0; k < sum.length; k++) {
+    sum[k] = 0.0;
+  }
+  for (let i = 0; i < entries.length; i++) { // for each entry
+    for (let k = 0; k < sum.length; k++) { // for each feature
+      sum[k] = sum[k] + parseFloat(entries[i].features[k]);
     }
+  }
+  for(let k = 0; k < sum.length; k++) {
+      sum[k] = sum[k] / entries.length;
   }
   return sum;
 };
 
-// entrys is an array of FeatureVecs
+// Returns an array of standard deviation values for each feature of the entry set
+// E.G. if each entry has four features, this will return the std_dev across
+//  all samples of each feature [0.2, 0.34, 0.54, 0.4]
+// entries is an array of FeatureVecs
+KMeans.prototype.standard_deviation = function(entries, means) {
+  if (!Array.isArray(entries)) {
+    throw new Error('standard_deviation requires an array of entries as an argument.');
+  }
+  if (entries.length == 0) {
+    return [];
+  }
+  var sum;
+  sum = new Array(entries[0].features.length);
+  for(let k = 0; k < sum.length; k++) {
+    sum[k] = 0.0;
+  }
+  for (let i = 0; i < entries.length; i++) { // for each entry
+    for (let k = 0; k < sum.length; k++) { // for each feature
+      sum[k] = (parseFloat(entries[i].features[k]) - means[k]) ** 2;
+    }
+  }
+  for(let k = 0; k < sum.length; k++) {
+      sum[k] = Math.sqrt(sum[k] * (1 / (entries.length - 1)));
+  }
+  return sum;
+}
+
+// entries is an array of FeatureVecs
 // normalizes a feature vector using the formula: (feature - mean) / mean
-KMeans.prototype.normalize = function(entrys) {
-  var mean = this.mean(entrys);
+KMeans.prototype.normalize = function(entries) {
+  var mean = this.mean(entries);
+  var std_dev = this.standard_deviation(entries, mean);
   this.originalMean = mean;
-  var normalizedEntrys = [];
-  entrys.forEach(function(entry, j) {
+  var normalizedEntries = [];
+  entries.forEach(function(entry, j) {
     var normalizedEntry, normalizedFeatures, features;
     features = entry.features;
     normalizedFeatures = new Array(features.length);
     for (var i = 0; i < features.length; i++) {
-        normalizedFeatures[i] = (features[i] - mean[i]) / mean[i];
+        normalizedFeatures[i] = (features[i] - mean[i]) / std_dev[i];
+        // Perhaps 'normalizing' is better than 'standardizing'
+        //normalizedFeatures[i] = (features[i] - mean[i]) / std_dev[i]; // old version - returns a NaN when mean is 0 :-/
+
     }
     normalizedEntry = new FeatureVec(entry.entry, normalizedFeatures);
-    normalizedEntrys.push(normalizedEntry);
+    normalizedEntries.push(normalizedEntry);
   });
-  return normalizedEntrys;
+  return normalizedEntries;
 };
 
-KMeans.prototype.denormalize = function(normalizedEntrys) {
+KMeans.prototype.denormalize = function(normalizedEntries) {
   var originalMean = this.originalMean;
-  var denormalizedEntrys = [];
-  normalizedEntrys.forEach(function(entry, j) {
+  var denormalizedEntries = [];
+  normalizedEntries.forEach(function(entry, j) {
     var normalizedFeatures, denormalizedFeatures, denormalizedEntry;
     normalizedFeatures = entry.features;
     denormalizedFeatures = new Array(normalizedFeatures.length);
@@ -478,9 +614,9 @@ KMeans.prototype.denormalize = function(normalizedEntrys) {
       denormalizedFeatures[i] = (normalizedFeatures[i] * originalMean[i]) + originalMean[i];
     }
     denormalizedEntry = new FeatureVec(entry.entry, denormalizedFeatures);
-    denormalizedEntrys.push(denormalizedEntry);
+    denormalizedEntries.push(denormalizedEntry);
   });
-  return denormalizedEntrys;
+  return denormalizedEntries;
 };
 
 var ai = new Object;
@@ -688,17 +824,17 @@ LinearRegression.prototype.trainWithGradientDescent = function(callback) {
 
 LinearRegression.prototype.predict = function(input) {
   var self = this;
-  if (self.trained) {
+  if (this.trained) {
     if (!Array.isArray(input)) {
       input = [input];
     }
 
-    if (self.normalized) {
-      input = input.map(function(val, index) { return (val - self.means[index]) / self.ranges[index]; });
+    if (this.normalized) {
+      input = input.map(function(val, index) { return (val - this.means[index]) / this.ranges[index]; });
     }
 
     var xInput = $V([1]).augment(input);
-    var output = self.theta.transpose().x(xInput);
+    var output = this.theta.transpose().x(xInput);
     return output.e(1,1);
   } else {
     throw new Error('cannot predict before training');

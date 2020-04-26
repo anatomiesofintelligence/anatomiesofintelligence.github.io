@@ -1,16 +1,54 @@
 ---
-title: Conceptual Clustering
-subtitle:
-layout: text
+copyright: ''
 entry-by: Jonathan Reus
-entry-date: 2019-06-21
+entry-date: '2019-06-21'
+entry-type: ''
+filename: conceptual-clustering.md
+image: ''
+layout: text
+source: Stepp, Robert E., and Ryszard S. Michalski. "Conceptual clustering- Inventing
+  goal-oriented classifications of structured objects." 1986.
 source-url: https://dl.acm.org/citation.cfm?id=1625057
-source: Stepp, Robert E., and Ryszard S. Michalski. "Conceptual clustering- Inventing goal-oriented classifications of structured objects." 1986.
-copyright:
-tags: [clustering, conceptual-clustering, concept, ontology-building, unsupervised, statistical-ontology]
-weights: [0.90, 1.0, 0.88, 0.67, 0.44, 0.23]
-summary: ""
+summary: ''
+tags: [Boerhaave, COGWEB, Chinese, LSTM, Leiden, PGM, RNN, Ruysch, actors, aesthesis,
+  agency, algorithm, analysis, anatomical, anatomy, androgynous, architecture, archive,
+  artificialia, axis, black-box, body, botanical, brain, categories, categorization,
+  channel, character recognition, chinese, classification, clustering, cnn, codes,
+  cognition, collecting, collection, collections, colonialism, commodification, concept,
+  conceptual-clustering, convolutional neural network, cost, counting, cut, cuts,
+  cutting, datasets, demonstration, diagram, dimensionality, disgust, dissection,
+  distance, domestication, elegance, epistemology, error, euclidean, evaluation, eye,
+  figures, finger, forecasting, forensics, frame, freakish, geometry, gesture, gestures,
+  gradient descent, graph, graphs, grouping, hacking, hand, hand writing, hands, hands-on,
+  handwriting, hardware, history, human, human body, imagination, imperfect, inscription,
+  instruments, joint, kmeans, knowledge, labeling, landmark, learning, location, machine
+    learning, machines, materiality, meaning, measurement, memory, mnist, model, models,
+  monsters, muscles, mystical, mythological, naturalia, nerves, nervous system, network,
+  networks, neural networks, neural-anatomy, neuron, nonlinearity, observation, offline,
+  online, ontologies, ontology, ontology-building, optimization, orientation, orthogonality,
+  parallel, pca, perception, perceptron, perfection, performance, planes, poetic,
+  position, prediction, preparation, preparations, projection, proportion, proportions,
+  psychology, python, races, representation, representations, rhetoric, rnn, segments,
+  selection, sensory experience, sensory perception, similarity, skeleton, skin, skull,
+  skulls, space, sparseness, spectacle, spectators, speech, standard, statistic-ontology,
+  statistical, statistical-ontology, svm, symbols, tacit, taxonomy, theatre, time-series,
+  timeseries, tools, topological, training, treatise, trial, truth, type, typography,
+  unsupervised, vision, visualization, wellcome, word2vec, writing, zodiac]
+title: Conceptual Clustering
+weights: ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',
+  '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0.9',
+  '0', '0', '0', '0', '0', '0', '0', '0', '0.88', '1', '0', '0', '0', '0', '0', '0',
+  '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',
+  '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',
+  '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',
+  '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',
+  '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0.67', '0', '0', '0', '0',
+  '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',
+  '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0',
+  '0', '0', '0', '0', '0', '0', '0.23', '0', '0', '0', '0', '0', '0', '0', '0', '0',
+  '0', '0', '0', '0', '0', '0', '0.44', '0', '0', '0', '0', '0', '0']
 ---
+
 Creating a classification' is typically the first step in developing a theory about a collection of observations or phenomena. This process is a form of learning from observation (learning without a teacher), and its goal is to structure given observations it to a hierarchy of meaningful categories. The problem of automatically cre- ating such a hierarchy has so far received little attention in AI.
 
 Yet creating classifications is a very basic and widely practiced intellectual process.
