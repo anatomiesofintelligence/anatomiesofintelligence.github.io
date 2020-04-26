@@ -53,8 +53,14 @@ Measures.euclidean = function(a, b, options) {
 ****************************/
 var Util = new Object();
 // Must be called in an async function with "await Util.sleep(100)"
-Util.sleep = function(time) {
-	return new Promise(resolve => setTimeout(resolve,time));
+Util.sleep_ms = function(time_milliseconds) {
+	return new Promise(resolve => setTimeout(resolve,time_milliseconds));
+}
+Util.sleep_s = function(time_seconds) {
+	return new Promise(resolve => setTimeout(resolve,time_seconds * 1000));
+}
+Util.sleep_beats = function(beats, seconds_per_beat) {
+	return new Promise(resolve => setTimeout(resolve, beats * seconds_per_beat * 1000));
 }
 /***************************
 // END UTILITY FUNCTIONS
@@ -235,6 +241,7 @@ Catalog.prototype.stop = function() {
 }
 
 // Set the tempo of the underlying algorithm in BPM
+// internall tempo is stored as seconds per beat
 Catalog.prototype.setTempo = function(tempo) {
   tempo = tempo || 60;
   this.kmeans.tempo = 60.0 / tempo;
@@ -292,7 +299,7 @@ var KMeans = function(K, options) {
   // meta state variables
   this.interrupt = false;   // FLAG to interrupt clustering algorithm
   this.running = false;     // FLAG true if algorithm is running
-  this.tempo = 1.0;         // tempo
+  this.tempo = 1.0;         // tempo in seconds per beat
 
 }
 
@@ -303,10 +310,10 @@ var KMeans = function(K, options) {
 // output gives different levels of verbosity 1.0->full output, 0.0->no output
 // oscout, if not null, is an object that must respond to the method .sendmsg(address, args)
 // callback, general callback function for algorithmic steps, receives the arguments: step, info -- where info is a dict
-//    callback can also, optionally, return a duration (in milliseconds) for the given step to pause the algorithm
+//    callback can also, optionally, return a duration (in beats) for the given step to wait until continuing.
 // post, if true, posts feedback to the console
 KMeans.prototype.cluster = async function(clusters=3, entries, donecallback, oscout=null) {
-  var osc, cb, dur;
+  var osc, cb, beats;
   this.K = clusters;
 
   if(oscout == null) {
@@ -315,7 +322,7 @@ KMeans.prototype.cluster = async function(clusters=3, entries, donecallback, osc
     osc = function(address, args) { oscout.sendmsg(address, args) };
   }
   if(this.callback == null) {
-    this.callback = function(step, info) { return 1000 };
+    this.callback = function(step, info) { return 1 };
   }
 
   if (!entries) {
@@ -329,11 +336,11 @@ KMeans.prototype.cluster = async function(clusters=3, entries, donecallback, osc
   var normalizedEntries = this.normalize(entries);
   if(this.output_verbosity > 0.0) {
     osc("/kmeans/normalize", ['entries']);
-    dur = this.callback('normalize', ['entries', normalizedEntries]);
-    dur = dur || 1000;
+    beats = this.callback('normalize', {what: 'entries', normalizedEntries: normalizedEntries});
+    beats = beats || 1;
     if(this.post_steps)
       console.log("Normalize entries "+i);
-    await Util.sleep(dur * this.tempo);
+    await Util.sleep_beats(beats, this.tempo);
   }
 
   this.running = true;
@@ -346,11 +353,11 @@ KMeans.prototype.cluster = async function(clusters=3, entries, donecallback, osc
     this.centroids.push(newcentroid);
     if(this.output_verbosity > 0.0) { // reporting
       osc("/kmeans/initcentroid", [k, newcentroid.features]); // centroid centroid-features
-      dur = this.callback("initcentroid", [k, newcentroid.features]);
-      dur = dur || 1000;
+      beats = this.callback("initcentroid", {centroid: k, features: newcentroid.features});
+      beats = beats || 1;
       if(this.post_steps)
         console.log("NEW CENTROID " + k + " with " + newcentroid.features.map(x=>x.toFixed(2)));
-      await Util.sleep(dur * this.tempo);
+      await Util.sleep_beats(beats, this.tempo);
     }
   }
 
@@ -360,16 +367,15 @@ KMeans.prototype.cluster = async function(clusters=3, entries, donecallback, osc
   for (let j = 0; j < this.iterations; j++) {
     if(this.output_verbosity > 0.0) {
       osc("/kmeans/iteration", [j, "start"]);
-      dur = this.callback("step", [j, "start"]);
-      dur = dur || 1000;
+      beats = this.callback("section", {iter: j, section: "start"});
+      beats = beats || 1;
       if(this.post_steps)
         console.log("----------- Begin ITERATION "+j+" ---------");
-      await Util.sleep(dur * this.tempo);
+      await Util.sleep_beats(beats, this.tempo);
     }
 
     let clusterIndexes = []; // each entry index gets a cluster index [0,0,0,2,2,0,1... etc]
     for (var i = 0; i < normalizedEntries.length; i++) {
-
       if(this.interrupt == true) { // CHECK INTERRUPT FLAG BEFORE EACH ENTRY IS EXAMINED
         this.interrupt = false;
         return null;
@@ -381,11 +387,11 @@ KMeans.prototype.cluster = async function(clusters=3, entries, donecallback, osc
       // entry-idx entry-id centroid-idx distance
       if(this.output_verbosity > 0.0) {
         osc("/kmeans/distance", [i, normalizedEntries[i].entry.id, 0, min]);
-        dur = this.callback('distance', [i, normalizedEntries[i].entry.id, 0, min]);
-        dur = dur || 1000;
+        beats = this.callback('distance', {idx: i, id: normalizedEntries[i].entry.id, cluster: 0, distance: min});
+        beats = beats || 1;
         if(this.post_steps)
           console.log("Measured " + min.toFixed(3) + " from " + normalizedEntries[i].entry.id+" to category "+0);
-        await Util.sleep(dur * this.tempo);
+        await Util.sleep_beats(beats, this.tempo);
       }
 
       var closestCentroid = 0;
@@ -395,11 +401,11 @@ KMeans.prototype.cluster = async function(clusters=3, entries, donecallback, osc
         // entry-idx entry-id centroid-idx distance
         if(this.output_verbosity > 0) {
           osc("/kmeans/distance", [i, normalizedEntries[i].entry.id, k, tmpDistance]);
-          dur = this.callback('distance', [i, normalizedEntries[i].entry.id, k, tmpDistance]);
-          dur = dur || 1000;
+          beats = this.callback('distance', {idx: i, id: normalizedEntries[i].entry.id, cluster: k, distance: tmpDistance});
+          beats = beats || 1;
           if(this.post_steps)
             console.log("Measured " + tmpDistance.toFixed(3) + " from " + normalizedEntries[i].entry.id + " to category "+k);
-          await Util.sleep(dur * this.tempo);
+          await Util.sleep_beats(beats, this.tempo);
         }
         if (tmpDistance < min) {
           min = tmpDistance;
@@ -408,11 +414,11 @@ KMeans.prototype.cluster = async function(clusters=3, entries, donecallback, osc
           // entry-idx entry-id centroid-idx distance
           if(this.output_verbosity > 0.0) {
             osc("/kmeans/updateClosestCentroid", [i, normalizedEntries[i].entry.id, k, tmpDistance]);
-            dur = this.callback('reconsider', [i, normalizedEntries[i].entry.id, k, tmpDistance]);
-            dur = dur || 1000;
+            beats = this.callback('reconsider', {idx: i, id: normalizedEntries[i].entry.id, cluster: k, distance: tmpDistance});
+            beats = beats || 1;
             if(this.post_steps)
               console.log("Reconsidering " + normalizedEntries[i].entry.id + " for category "+ k);
-            await Util.sleep(dur * this.tempo);
+            await Util.sleep_beats(beats, this.tempo);
           }
         }
       }
@@ -421,21 +427,21 @@ KMeans.prototype.cluster = async function(clusters=3, entries, donecallback, osc
       // entry-idx entry-id centroid/cluster-idx distance
       if(this.output_verbosity > 0) {
         osc("/kmeans/assignCluster", [i, normalizedEntries[i].entry.id, closestCentroid, tmpDistance]);
-        dur = this.callback('decide', [i, normalizedEntries[i].entry.id, closestCentroid, tmpDistance]);
-        dur = dur || 1000;
+        beats = this.callback('decide', {idx: i, id: normalizedEntries[i].entry.id, cluster: closestCentroid, distance: tmpDistance});
+        beats = beats || 1;
         if(this.post_steps)
           console.log("Deciding that " + normalizedEntries[i].entry.id + " is category "+closestCentroid);
-        await Util.sleep(dur * this.tempo);
+        await Util.sleep_beats(beats, this.tempo);
       }
     }
 
     if(this.output_verbosity > 0) {
       osc("/kmeans/iteration", [j, "recalculate-centroids"]);
-      dur = this.callback('step', [j, "recalculate-centroids"]);
-      dur = dur || 1000;
+      beats = this.callback('section', {iter: j, section: "recalculate-centroids"});
+      beats = beats || 1;
       if(this.post_steps)
         console.log("Recalculating cluster centers for iteration "+j);
-      await Util.sleep(dur * this.tempo);
+      await Util.sleep_beats(beats, this.tempo);
     }
 
     // Gather up entries by cluster & make better centroids
@@ -460,21 +466,21 @@ KMeans.prototype.cluster = async function(clusters=3, entries, donecallback, osc
 
         if(this.output_verbosity > 0) {
           osc("/kmeans/recalculateCentroid", ["new", k, updatedCentroid.features]);
-          dur = this.callback('recalculateCentroid', ["new", k, updatedCentroid.features]);
-          dur = dur || 1000;
+          beats = this.callback('recalculateCentroid', {action: "new", cluster: k, features: updatedCentroid.features});
+          beats = beats || 1;
           if(this.post_steps)
             console.log("Recalculating the center of category "+k+" to vector "+updatedCentroid.features.map(x=>x.toFixed(2)));
-          await Util.sleep(dur * this.tempo);
+          await Util.sleep_beats(beats, this.tempo);
         }
       } else { // clusters with no entries keep their old centroid
         updatedCentroid = this.centroids[k];
         if(this.output_verbosity > 0) {
           osc("/kmeans/recalculateCentroid", ["keep", k, updatedCentroid.features]);
-          dur = this.callback('recalculateCentroid', ["keep", k, updatedCentroid.features]);
-          dur = dur || 1000;
+          beats = this.callback('recalculateCentroid', {action:"keep", cluster: k, features: updatedCentroid.features});
+          beats = beats || 1;
           if(this.post_steps)
             console.log("The vector center of category "+k+" remains unchanged");
-          await Util.sleep(dur * this.tempo);
+          await Util.sleep_beats(beats, this.tempo);
         }
       }
       newCentroids.push(updatedCentroid);
@@ -482,11 +488,11 @@ KMeans.prototype.cluster = async function(clusters=3, entries, donecallback, osc
     this.centroids = newCentroids;
     if(this.output_verbosity > 0.0) {
       osc("/kmeans/iteration", [j, 'end']);
-      dur = this.callback('step', [j, 'end']);
-      dur = dur || 1000;
+      beats = this.callback('section', {iter: j, section:'end'});
+      beats = beats || 1;
       if(this.post_steps)
         console.log("--- END of iteration "+j);
-      await Util.sleep(dur * this.tempo);
+      await Util.sleep_beats(beats, this.tempo);
     }
 
   }
@@ -496,11 +502,11 @@ KMeans.prototype.cluster = async function(clusters=3, entries, donecallback, osc
   this.centroids = this.denormalize(this.centroids);
   if(this.output_verbosity > 0.0) {
     osc("/kmeans/denormalize", ['centroids']);
-    dur = this.callback('denormalize', ['centroids']);
-    dur = dur || 1000;
+    beats = this.callback('denormalize', {what:'centroids'});
+    beats = beats || 1;
     if(this.post_steps)
       console.log("--- denormalize centroids "+j);
-    await Util.sleep(dur * this.tempo);
+    await Util.sleep_beats(beats, this.tempo);
   }
 
   for(let i = 0; i < this.clusters.size; i++) {
@@ -508,11 +514,11 @@ KMeans.prototype.cluster = async function(clusters=3, entries, donecallback, osc
     this.clusters[i] = this.denormalize(cluster);
     if(this.output_verbosity > 0.0) {
       osc("/kmeans/denormalize", ['cluster', i]);
-      dur = this.callback('denormalize', ['cluster', i]);
-      dur = dur || 1000;
+      beats = this.callback('denormalize', {what:'entries-cluster', cluster: i});
+      beats = beats || 1;
       if(this.post_steps)
         console.log("--- denormalize cluster "+i);
-      await Util.sleep(dur * this.tempo);
+      await Util.sleep_beats(beats, this.tempo);
     }
   }
 

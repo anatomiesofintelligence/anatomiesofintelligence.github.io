@@ -391,9 +391,10 @@ function resultfunc(err, clusters, centroids, featuresDef) {
 };
 
 
-
-// SIMPLIFIED clustering functions
-// TODO: finish this?
+/*=============================================
+Easier interface functions
+==============================================*/
+// SIMPLIFIED clustering
 function cluster(num_clusters, features, iterations=10, callback, interactive=false, post=false) {
   K = num_clusters;
   CLUSTER_DIMENSIONS = features;
@@ -408,6 +409,21 @@ function cluster(num_clusters, features, iterations=10, callback, interactive=fa
     catalog.cluster(K, MEASUREMENT, CLUSTER_DIMENSIONS, iterations, resultfunc, 0.0, null, callback, post);
   }
 }
+
+// set tempo in BPM
+function tempo(newtempo) { catalog.setTempo(newtempo); }
+
+// change the callback function
+function callback(newcallback) { catalog.setCallback(newcallback); }
+
+// halt the clustering algorithm
+function stop() { catalog.stop(); }
+
+// post to console toggle
+function setPost(post_to_console) { catalog.setPost(post_to_console); }
+
+// set algorithm verbosity, 0.0 is the same as breakpoints === false
+function setVerbosity(verbosity_level) { catalog.setVerbosity(verbosity_level); }
 
 function distance(a, b) {
   var sum = 0;
@@ -438,28 +454,10 @@ function help() {
     clean_surface()     //remove all clusters and sweep entries to upper left
     reset()             //reload page
     randomize()         //randomize entry locations, clusters are not effected
-    getEntryDivs()
-    getCentroidDivs()
-    catalog.allTags     //full list of tags
-    catalog.allEntries  //full list of entries
-
-     //run a clustering on the catalog
-    catalog.cluster(K, MEASUREMENT, CLUSTER_DIMENSIONS, ITERATIONS, resultfunc, USE_BREAKPOINTS, OSC_OUT, console.log)
-    cluster(FEATURES_ARRAY, K, ITERATIONS, USE_BREAKPOINTS)   // simplified cluster function
-    catalog.stop()      //halt clustering algorithm
-
-    -- temporal parameters --
-    BREAKPOINTS = false           //break the algorithm up into temporal chunks
-    BREAKPOINT_VERBOSITY = 0.8   // alternatively, provide a breakpoint "verbosity" 0.0-1.0
-    TEMPO = 0.5           //timescale/tempo speed of algorithm steps
-    RESOLUTION = 1        //resolution of algorithm reporting
-
-    -- global clustering parameters --
-    K = 3 //K-number of clusters
-    MEASUREMENT = Measures.euclidean //measurement metric
-    ITERATIONS = 5 //number of K-means iterations
-    CLUSTER_DIMENSIONS = ["aesthesis", "models", "preparations"];
-
+    getEntryDivs()              //full list of entry divs
+    getCentroidDivs()           //full list of centroid divs
+    catalog.allFeatureNames     //full list of hand-made features
+    catalog.allEntries          //full list of catalog entries
 
     -- projection types --
     Projections.NONE        //entries stay in place
@@ -467,23 +465,70 @@ function help() {
     Projections.SIMPLE2D    //entries are projected in 2D using one feature per axis
     Projections.RADIUS      //entries arranged radially around centroids
 
-    -- visualization parameters --
-    PROJECTION_TYPE = Projections.NONE              //default projection
-    PROJECTION_DIMENSIONS = ["aesthesis, models"]   //projection axes for SIMPLE2D
-    RADIAL_DENSITY = 500                            //visual density for RADIAL
+    -- run a clustering on the catalog --
+    NUM_CLUSTERS = 3                               // number of clusters to form
+    FEATURES = ["aesthesis", "spectacle", "cut"]   // features to use for distance measurements
+    ITERATIONS = 10                                // number of algorithm iterations
+    CALLBACK = function(step, info) { console.log(step, info); return 1.0 }  // callback function
+    BREAKPOINTS = true
+    PRINT_TO_CONSOLE = false
+    cluster(NUM_CLUSTERS, FEATURES, ITERATIONS, CALLBACK, BREAKPOINTS, PRINT_TO_CONSOLE)
 
-    -- example clusterings --
-    catalog.cluster(K, MEASUREMENT, CLUSTER_DIMENSIONS, ITERATIONS, resultfunc, BREAKPOINTS)
+    -- interact with running algorithm --
+    callback(CALLBACK)        // change callback function
+    setPost(PRINT_TO_CONSOLE)    // toggle printing steps to console
+    setVerbosity(BREAKPOINTS)    // set output verbosity, 0.0 is equivalent to breakpoints==false
+    tempo(60)                 // set the tempo in beats per minute
+    stop()            // halt clustering algorithm
+
+    -- apply different projections --
+    project(Projections.SIMPLE2D)
+    project(Projections.RADIUS)
+
+    -- the callback function --
+    // the simplest callback function, all steps take 1 beat
+    cb1 = function(step, info) { return 1; }
+
+    // same as above, but also prints step and info to the console
+    cb2 = function(step, info) { console.log(step, info); return 1; }
+
+    // distance measurements last 1/4 beat (16th note), all other steps take 1 beat
+    cb3 = function(step, info) { if(step == 'distance') { return 0.25 } else { return 1 } }
+
+    // change the callback while algorithm is running
+    callback(cb2)
+    callback(cb3)
+
+    // more complex example; a callback that visually manipulates the catalog
+    cb4 = function(step, info) {
+      console.log(step, info);
+      let colors = ["0,0,255", "238,130,238", "0,250,154", "119,136,153", "100,149,237"];
+      if(step == 'distance') {
+        entrydiv = document.querySelector("#"+info.id);
+        entrydiv.style.background = "rgb(" + colors[info.cluster % 5] + ")";
+        return 1/4; // pause 1/4 beat
+      }
+      if(step == 'decide') {
+        entrydiv = document.querySelector("#"+info.id);
+        entrydiv.style.background = "rgb(" + colors[info.cluster % 5] + ")";
+        return 1/2; // pause 1/2 beat
+      }
+      return 1; // all other steps are 1 beat
+    }
+
+    -- more example commands --
+    cluster(5, ["theatre", "cut"], 5, null, false, false)   // quick cluster in place
     project(Projections.RADIUS)
     randomize()
-    catalog.cluster(3, Measures.euclidean, ["measurement", "cutting"], 20, resultfunc, BREAKPOINT_VERBOSITY, OSC_OUT, console.log)
-    TEMPO = 0.25
-    catalog.stop()
-    catalog.cluster(3, Measures.euclidean, ["measurement", "cutting"], 20, resultfunc, 1.0, OSC_OUT, console.log)
-    catalog.cluster(3, Measures.euclidean, ["spectacle", "theatre"], 20, resultfunc, false)
+    cluster(3, ["measurement", "dimensionality"], 20, null, true, false)
+    tempo(180)
+    stop()      //halt clustering algorithm
+    cluster(3, ["spectacle", "theatre"], 10, null, true, false)
+    callback(cb4)
     project(Projections.SIMPLE2D)
     cut = ["aesthesis", "measurement", "cut", "spectacle", "theatre"]
-    cluster(cut, 5, 20, false)
+    clean_surface()
+    cluster(5, cut, 20, null, false, false)
     project(Projections.SIMPLE2D, {prioritizeFeatures: ["dimensionality", "measurement"], featuresDefinition: cut})
   `;
   console.log(str);
@@ -491,26 +536,20 @@ function help() {
 
 //************** GLOBAL CONSTANTS *****************//
 
-// CALLBACK FUNC
+// DEFAULT CALLBACK FUNC ... we could have more ...
 var CALLBACK_FUNC = function(step, info) {
   console.log(step, info);
   if(step == 'distance') {
-    let entry_idx = info[0], entry_id = info[1], cluster = info[2], dist = info[3];
-    entrydiv = document.querySelector("#"+entry_id);
-
-    entrydiv.style.border = 2 + "px solid rgba(" + CLUSTER_COLORS[cluster] + ", " + 0.8 + ")";
-    return 250; // pause 250 ms
+    entrydiv = document.querySelector("#"+info.id);
+    entrydiv.style.border = 2 + "px solid rgba(" + CLUSTER_COLORS[info.cluster] + ", " + 0.8 + ")";
+    return 1/4; // pause 1/4 beat
   }
   if(step == 'decide') {
-    let entry_idx = info[0], entry_id = info[1], cluster = info[2], dist = info[3];
-    entrydiv = document.querySelector("#"+entry_id);
-    entrydiv.style.border = 2 + "px solid rgba(" + CLUSTER_COLORS[cluster] + ", " + 0.8 + ")";
-    return 500; // pause 250 ms
+    entrydiv = document.querySelector("#"+info.id);
+    entrydiv.style.border = 2 + "px solid rgba(" + CLUSTER_COLORS[info.cluster] + ", " + 0.8 + ")";
+    return 1/2; // pause 1/2 beat
   }
-
-
-
-  return 1000; // by default most steps delay 1000 ms
+  return 1; // all other steps are 1 beat
 };
 
 
