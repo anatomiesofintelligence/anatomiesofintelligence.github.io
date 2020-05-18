@@ -1,0 +1,6 @@
+[submodule "code/webvr-boilerplate"]
+	path = code/webvr-boilerplate
+	url = https://github.com/borismus/webvr-boilerplate.git
+[submodule "code/webvr-starter-kit"]
+	path = code/webvr-starter-kit
+	url = https://github.com/povdocs/webvr-starter-kit.git

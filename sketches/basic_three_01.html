@@ -1,0 +1,151 @@
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="content-type">
+
+<!-- See: https://github.com/povdocs/webvr-starter-kit -->
+
+<title>Anatomies of Intelligence</title>
+<style type="text/css">
+body{ margin: 5%; }
+@font-face {
+  font-family: Autopia-Italic;
+  src: url(Autopia-Italic.ttf);
+}
+#thing1 {
+	position: absolute;
+	z-index: 100;
+	display: inline;
+	width: 500px;
+	height: 500px;
+	background-color: #9911FF;
+}
+#thing2 {
+	position: absolute;
+	z-index: 100;
+	display: inline;
+	width: 500px;
+	height: 500px;
+}
+img {
+  position: absolute;
+  width: 20%;
+  height: 20%;
+}
+</style>
+
+<script src="../code/lib/three/three.js"></script>
+<script src="../code/lib/three/controls/OrbitControls.js"></script>
+
+<body>
+
+<img style="top: 0px; left: 0px" src="../img/screenshotai.gif">
+
+<canvas id="canvas3d"></canvas>
+
+<script>
+  //----------------------------------------------
+  // Basic Three JS setup code
+  //----------------------------------------------
+  var camera, controls, cube;
+  var renderer;
+  var scene;
+  var WIDTH = window.innerWidth; var HEIGHT = window.innerHeight;
+  var VIEW_ANGLE = 90; var NEAR_PLANE = 0.1; var FAR_PLANE = 100;
+
+  init();
+  animate();
+
+  function init() {
+    var canvas = document.getElementById( 'canvas3d' );
+    renderer = new THREE.WebGLRenderer({canvas: canvas});
+    //renderer.setClearColor("#000000");
+    renderer.setPixelRatio( window.devicePixelRatio );
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    document.body.appendChild( renderer.domElement );
+
+    scene = new THREE.Scene();
+
+    camera = new THREE.PerspectiveCamera( VIEW_ANGLE, WIDTH / HEIGHT, NEAR_PLANE, FAR_PLANE );
+    // the camera starts at 0,0,0 so pull it back...
+    //camera.position.z = 0.01;
+    camera.position.z = 1;
+
+
+    // TODO: Look at simple mouse following / mouse look...
+    controls = new THREE.OrbitControls( camera, renderer.domElement );
+    controls.enableZoom = false;
+    controls.enablePan = false;
+    controls.enableDamping = true;
+    controls.rotateSpeed = - 0.25;
+
+    var textures = getTexturesFromAtlasFile( "assets/sun_temple_stripe.jpg", 6 );
+    var materials = [];
+
+    for ( var i = 0; i < 6; i ++ ) {
+      materials.push( new THREE.MeshBasicMaterial( { map: textures[ i ] } ) );
+    }
+    var skyBox = new THREE.Mesh( new THREE.BoxBufferGeometry( 10, 10, 10 ), materials );
+    skyBox.geometry.scale( 1, 1, - 1 );
+    scene.add( skyBox );
+
+
+    // ------------------------------------------------
+    // FUN STARTS HERE
+    // ------------------------------------------------
+
+    // Create a Cube Mesh with basic material
+    var geometry = new THREE.BoxGeometry( 0.1, 0.1, 0.1 );
+    var material = new THREE.MeshBasicMaterial( { color: "#433F81" } );
+    cube = new THREE.Mesh( geometry, material );
+    // Add cube to Scene
+    scene.add( cube );
+
+    window.addEventListener( 'resize', onWindowResize, false );
+  }
+
+  function getTexturesFromAtlasFile( atlasImgUrl, tilesNum ) {
+    var textures = [];
+    for ( var i = 0; i < tilesNum; i ++ ) {
+      textures[ i ] = new THREE.Texture();
+    }
+    var imageObj = new Image();
+    imageObj.crossOrigin = "anonymous";
+    imageObj.onload = function () {
+      var canvas, context;
+      var tileWidth = imageObj.height;
+      for ( var i = 0; i < textures.length; i ++ ) {
+        canvas = document.createElement( 'canvas' );
+        context = canvas.getContext( '2d' );
+        canvas.height = tileWidth;
+        canvas.width = tileWidth;
+        context.drawImage( imageObj, tileWidth * i, 0, tileWidth, tileWidth, 0, 0, tileWidth, tileWidth );
+        textures[ i ].image = canvas;
+        textures[ i ].needsUpdate = true;
+      }
+    };
+    imageObj.src = atlasImgUrl;
+    return textures;
+  }
+
+  function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize( window.innerWidth, window.innerHeight );
+  }
+
+  function animate() {
+    requestAnimationFrame( animate );
+    animateCube();
+    controls.update(); // required when damping is enabled
+    renderer.render( scene, camera );
+  }
+
+  function animateCube() {
+    cube.rotation.x += 0.01;
+    cube.rotation.y += 0.01;
+  }
+</script>
+
+</body>
+
+</html>
