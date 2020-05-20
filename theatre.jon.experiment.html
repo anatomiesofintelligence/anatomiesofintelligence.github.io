@@ -56,7 +56,7 @@ var tag_weight, newexample;
 
 {% for post in site.posts %}
 {% assign post_id = post.title | slugify:"latin" %}
-{% assign image_thumb = post.image | replace: ".", "_th." %}
+{% assign image_thumb = post.image | replace: ".", "_mid." %}
 <div class="refs" id="{{ post_id }}">
   <a href="{{ post.url }}" onclick="openEntry('{{ post_id }}'); return false">
     <span style="display:none">{{ post.date | date: "%B %d, %Y" }}:</span>{{ post.title }}</a>
