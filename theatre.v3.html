@@ -395,7 +395,7 @@ function resultfunc(err, clusters, centroids, featuresDef) {
 Easier interface functions
 ==============================================*/
 // SIMPLIFIED clustering
-function cluster(num_clusters, features, iterations=10, callback, interactive=false, post=false) {
+function cluster(num_clusters, features, iterations=10, interactive=false, callback=null, post=false) {
   K = num_clusters;
   CLUSTER_DIMENSIONS = features;
 
@@ -538,7 +538,7 @@ function help() {
 
 // DEFAULT CALLBACK FUNC ... we could have more ...
 var CALLBACK_FUNC = function(step, info) {
-  console.log(step, info);
+  //console.log(step, info);
   if(step == 'distance') {
     entrydiv = document.querySelector("#"+info.id);
     entrydiv.style.border = 2 + "px solid rgba(" + CLUSTER_COLORS[info.cluster] + ", " + 0.8 + ")";

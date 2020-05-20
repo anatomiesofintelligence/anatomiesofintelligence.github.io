@@ -504,8 +504,9 @@ KMeans.prototype.cluster = async function(clusters=3, entries, donecallback, osc
     osc("/kmeans/denormalize", ['centroids']);
     beats = this.callback('denormalize', {what:'centroids'});
     beats = beats || 1;
-    if(this.post_steps)
-      console.log("--- denormalize centroids "+j);
+    if(this.post_steps) {
+      console.log("--- denormalize centroids");
+    };
     await Util.sleep_beats(beats, this.tempo);
   }
 
