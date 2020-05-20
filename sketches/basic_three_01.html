@@ -35,6 +35,8 @@ img {
 
 <script src="../code/lib/three/three.js"></script>
 <script src="../code/lib/three/controls/OrbitControls.js"></script>
+<script src="../code/lib/three/controls/FlyControls.js"></script>
+<script src="../code/lib/three/controls/FirstPersonControls.js"></script>
 
 <body>
 
@@ -49,8 +51,13 @@ img {
   var camera, controls, cube;
   var renderer;
   var scene;
-  var WIDTH = window.innerWidth; var HEIGHT = window.innerHeight;
+  var WIDTH = window.innerWidth / 2; var HEIGHT = window.innerHeight / 2;
   var VIEW_ANGLE = 90; var NEAR_PLANE = 0.1; var FAR_PLANE = 100;
+  VIEW_ANGLE = 90;
+  var PIXEL_RATIO = window.devicePixelRatio;
+
+  let scale_dir = 0.01;
+
 
   init();
   animate();
@@ -59,8 +66,8 @@ img {
     var canvas = document.getElementById( 'canvas3d' );
     renderer = new THREE.WebGLRenderer({canvas: canvas});
     //renderer.setClearColor("#000000");
-    renderer.setPixelRatio( window.devicePixelRatio );
-    renderer.setSize( window.innerWidth, window.innerHeight );
+    renderer.setPixelRatio( PIXEL_RATIO );
+    renderer.setSize( WIDTH, HEIGHT );
     document.body.appendChild( renderer.domElement );
 
     scene = new THREE.Scene();
@@ -69,24 +76,63 @@ img {
     // the camera starts at 0,0,0 so pull it back...
     //camera.position.z = 0.01;
     camera.position.z = 1;
+    camera.position.y = 1;
+
 
 
     // TODO: Look at simple mouse following / mouse look...
+
+
     controls = new THREE.OrbitControls( camera, renderer.domElement );
-    controls.enableZoom = false;
-    controls.enablePan = false;
+    controls.enableZoom = true;
+    controls.enablePan = true;
     controls.enableDamping = true;
     controls.rotateSpeed = - 0.25;
 
-    var textures = getTexturesFromAtlasFile( "assets/sun_temple_stripe.jpg", 6 );
+
+    /*
+    controls = new THREE.FlyControls( camera, renderer.domElement );
+    controls.movementSpeed = 0.01;
+    controls.rollSpeed = 0.001;
+    controls.dragToLook = false;
+    controls.autoForward = false;
+    */
+
+    /*
+    controls = new THREE.FirstPersonControls( camera, renderer.domElement );
+    controls.enabled = true;
+  	controls.movementSpeed = 0.01;
+  	controls.lookSpeed = 0.005;
+  	controls.lookVertical = true;
+  	controls.autoForward = false;
+  	controls.activeLook = true;
+    */
+
     var materials = [];
+    /*
+    var textures = getTexturesFromAtlasFile( "/sketches/assets/sun_temple_stripe.jpg", 6 );
 
     for ( var i = 0; i < 6; i ++ ) {
       materials.push( new THREE.MeshBasicMaterial( { map: textures[ i ] } ) );
     }
-    var skyBox = new THREE.Mesh( new THREE.BoxBufferGeometry( 10, 10, 10 ), materials );
-    skyBox.geometry.scale( 1, 1, - 1 );
-    scene.add( skyBox );
+    */
+
+    // Alternative Materials...
+    // see: https://threejsfundamentals.org/threejs/lessons/threejs-materials.html
+    for ( var i = 0; i < 6; i ++ ) {
+      let mat = new THREE.MeshPhongMaterial();
+      mat.color.setHSL(Math.random(), 1, .5);  // red
+      mat.flatShading = true;
+      materials.push( mat );
+    }
+
+
+    // This is the box the viewer will be inside of....
+    var roomsize = 30;
+    //roomsize = 10;
+    var skyBox = new THREE.Mesh( new THREE.BoxBufferGeometry( roomsize, roomsize, roomsize ), materials );
+    skyBox.geometry.scale( 1, 1, - 1 ); // this turns it inside out?
+    //scene.add( skyBox );
 
 
     // ------------------------------------------------
@@ -94,12 +140,59 @@ img {
     // ------------------------------------------------
 
     // Create a Cube Mesh with basic material
-    var geometry = new THREE.BoxGeometry( 0.1, 0.1, 0.1 );
-    var material = new THREE.MeshBasicMaterial( { color: "#433F81" } );
-    cube = new THREE.Mesh( geometry, material );
+    const c_geometry = new THREE.BoxGeometry( 0.1, 0.1, 0.1 );
+    let c_material = new THREE.MeshPhongMaterial();
+    c_material.color.setHSL(0, 1, .5);  // red
+    c_material.flatShading = true;
+    const cubeSize = 0.2;
+    const cubeGeo = new THREE.BoxBufferGeometry(cubeSize, cubeSize, cubeSize);
+    const cubeMat = new THREE.MeshPhongMaterial({color: '#8AC'});
+    cube = new THREE.Mesh(cubeGeo, cubeMat);
+    cube.position.set(0, cubeSize, -1 * cubeSize);
+     //var material = new THREE.MeshBasicMaterial( { color: "#433F81" } );
+    //material = new THREE.MeshDepthMaterial();
+    //material = new THREE.MeshNormalMaterial();
     // Add cube to Scene
     scene.add( cube );
 
+
+    // Create a plane with a texture...
+    const planeSize = 20;
+    const loader = new THREE.TextureLoader();
+    const texture = loader.load('../img/algorithms/3d-brownian-motion-markov-property.png');
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.wrapT = THREE.RepeatWrapping;
+    texture.magFilter = THREE.NearestFilter;
+    const repeats = planeSize / 2;
+    texture.repeat.set(repeats, repeats);
+    const planeGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
+    const planeMat = new THREE.MeshPhongMaterial({
+      map: texture,
+      side: THREE.DoubleSide,
+    });
+    const planemesh = new THREE.Mesh(planeGeo, planeMat);
+    planemesh.rotation.x = Math.PI * -.5;
+    planemesh.position.y = -1;
+    scene.add(planemesh);
+
+    // Add ambient light to the space to keep the darks from being so dark...
+    const l_color = 0xFFFFFF;
+    const l_intensity = 0.4;
+    const light = new THREE.AmbientLight(l_color, l_intensity);
+    //scene.add(light);
+
+    // Add Hemispherical Light (simple landscape lighting ... good for simple depth illusions)
+    const h_skyColor = 0xB1E1FF;  // light blue
+    const h_groundColor = 0xB97A20;  // brownish orange
+    const h_intensity = 1;
+    const h_light = new THREE.HemisphereLight(h_skyColor, h_groundColor, h_intensity);
+    scene.add(h_light);
+
+
+    console.log("Hemi light... 2");
+
+
+    // Call a function when the window is resized...
     window.addEventListener( 'resize', onWindowResize, false );
   }
 
@@ -136,13 +229,21 @@ img {
   function animate() {
     requestAnimationFrame( animate );
     animateCube();
-    controls.update(); // required when damping is enabled
+    controls.update(); // if animating...
     renderer.render( scene, camera );
   }
 
   function animateCube() {
     cube.rotation.x += 0.01;
     cube.rotation.y += 0.01;
+
+    cube.scale.x += scale_dir;
+    if(cube.scale.x > 2) {
+      scale_dir = -0.01;
+    } else if(cube.scale.x < 0.1) {
+      scale_dir = 0.01;
+    }
+    cube.scale.y = cube.scale.z = cube.scale.x;
   }
 </script>
 
