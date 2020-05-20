@@ -537,7 +537,7 @@ function help() {
 //************** GLOBAL CONSTANTS *****************//
 
 // DEFAULT CALLBACK FUNC ... we could have more ...
-var CALLBACK_FUNC = function(step, info) {
+const CALLBACK_FUNC = function(step, info) {
   //console.log(step, info);
   if(step == 'distance') {
     entrydiv = document.querySelector("#"+info.id);
@@ -551,6 +551,14 @@ var CALLBACK_FUNC = function(step, info) {
   }
   return 1; // all other steps are 1 beat
 };
+
+// STEP COUNTER
+let STEP_COUNT = 0;
+const CALLBACK_COUNTER = function(step, info) {
+  STEP_COUNT++;
+  console.log(STEP_COUNT);
+  return 1;
+}
 
 
 
