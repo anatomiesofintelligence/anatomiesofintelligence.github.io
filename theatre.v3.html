@@ -471,14 +471,14 @@ function help() {
     FEATURES = ["aesthesis", "spectacle", "cut"]   // features to use for distance measurements
     ITERATIONS = 10                                // number of algorithm iterations
     CALLBACK = function(step, info) { console.log(step, info); return 1.0 }  // callback function
-    BREAKPOINTS = true
-    PRINT_TO_CONSOLE = false
-    cluster(NUM_CLUSTERS, FEATURES, ITERATIONS, CALLBACK, BREAKPOINTS, PRINT_TO_CONSOLE)
+    INTERACTIVE = true
+    CONSOLE_LOG = false
+    cluster(NUM_CLUSTERS, FEATURES, ITERATIONS, INTERACTIVE, CALLBACK, CONSOLE_LOG)
 
     -- interact with running algorithm --
     callback(CALLBACK)        // change callback function
-    setPost(PRINT_TO_CONSOLE)    // toggle printing steps to console
-    setVerbosity(BREAKPOINTS)    // set output verbosity, 0.0 is equivalent to breakpoints==false
+    setPost(CONSOLE_LOG)    // toggle printing steps to console
+    setVerbosity(BREAKPOINTS)    // set output verbosity, 0.0 is equivalent to disabling interactive mode
     tempo(60)                 // set the tempo in beats per minute
     stop()            // halt clustering algorithm
 
@@ -518,18 +518,18 @@ function help() {
     }
 
     -- more example commands --
-    cluster(5, ["theatre", "cut"], 5, null, false, false)   // quick cluster in place
+    cluster(5, ["theatre", "cut"], 5)   // non-interactive clustering
     project(Projections.RADIUS)
     randomize()
-    cluster(3, ["measurement", "dimensionality"], 20, null, true, false)
-    tempo(180)
-    stop()      //halt clustering algorithm
-    cluster(3, ["spectacle", "theatre"], 10, null, true, false)
-    callback(cb4)
+    cluster(3, ["measurement", "dimensionality"], 20, true)  // interactive clustering
+    tempo(180)   // 180 beats per minute
+    stop()      // completely stop the clustering algorithm
+    cluster(3, ["spectacle", "theatre"], 10, true)
+    callback(cb4)   // set the callback function
     project(Projections.SIMPLE2D)
     cut = ["aesthesis", "measurement", "cut", "spectacle", "theatre"]
     clean_surface()
-    cluster(5, cut, 20, null, false, false)
+    cluster(5, cut, 20)
     project(Projections.SIMPLE2D, {prioritizeFeatures: ["dimensionality", "measurement"], featuresDefinition: cut})
   `;
   console.log(str);
@@ -577,8 +577,9 @@ var CLUSTERS = [];    // populated after running catalog.cluster()
 var CENTROIDS = [];   // populated after running catalog.cluster()
 
 // Algorithmic time parameters
-var BREAKPOINTS = false;   // break the algorithm up into temporal chunks
+var INTERACTIVE = false;   // enable INTERACTIVE mode, break the algorithm up into interactive chunks
 var TEMPO = 0.5;          // timescale/tempo speed of algorithm steps
+var CONSOLE_LOG = false; // log algorithm steps to console, only meaningful when running in INTERACTIVE mode
 
 // Visualization parameters
 var PROJECTION_TYPE = Projections.NONE; // default projection
