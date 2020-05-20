@@ -783,10 +783,39 @@ var CALLBACK_EXPERIMENT = function(step, info) {
     entrydiv.style.border = info.distance + "px solid rgba(" + CLUSTER_COLORS[info.cluster] + ", " + 0.8 + ")";
     return 1/2; // pause 1/2 beat
   }
-  console.log(step, info);
+
   if(step == 'reconsider') {
-    console.log("Reconsider");
+    console.log("Reconsider", info);
   }
+
+  if(step == 'section') {
+    if(info.section == 'start') {
+      console.log("Entering section START:", info);
+    }
+    if(info.section == 'recalculate-centroids') {
+      console.log("Entering section RECALCULATE CENTROIDS:", info);
+    }
+    if(info.section == 'end') {
+      console.log("Entering section END:", info);
+    }
+  }
+
+  if(step == "initcentroid") {
+    console.log("Init Centroid", info);
+  }
+
+  if(step == "recalculateCentroid") {
+    console.log("Recalculate Centroid", info);
+  }
+
+  if(step == "normalize") {
+    console.log("Normalize", info);
+  }
+
+  if(step == "denormalize") {
+    console.log("DE Normalize", info);
+  }
+
   return 1; // all other steps are 1 beat
 };
 

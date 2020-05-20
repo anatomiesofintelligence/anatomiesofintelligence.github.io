@@ -561,6 +561,50 @@ const CALLBACK_COUNTER = function(step, info) {
   return 1;
 }
 
+var CALLBACK_ALL_STEPS = function(step, info) {
+  if(step == 'distance') {
+    console.log("Distance", info);
+  }
+
+  if(step == 'decide') {
+    console.log("Decide", info);
+
+  }
+
+  if(step == 'reconsider') {
+    console.log("Reconsider", info);
+  }
+
+  if(step == 'section') {
+    if(info.section == 'start') {
+      console.log("Entering section START:", info);
+    }
+    if(info.section == 'recalculate-centroids') {
+      console.log("Entering section RECALCULATE CENTROIDS:", info);
+    }
+    if(info.section == 'end') {
+      console.log("Entering section END:", info);
+    }
+  }
+
+  if(step == "initcentroid") {
+    console.log("Init Centroid", info);
+  }
+
+  if(step == "recalculateCentroid") {
+    console.log("Recalculate Centroid", info);
+  }
+
+  if(step == "normalize") {
+    console.log("Normalize", info);
+  }
+
+  if(step == "denormalize") {
+    console.log("DE Normalize", info);
+  }
+
+  return 1; // all other steps are 1 beat
+};
 
 
 
