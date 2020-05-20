@@ -1,0 +1,365 @@
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="content-type">
+
+<title>Moving Architecture</title>
+<style type="text/css">
+body{ margin: 5%; }
+@font-face {
+  font-family: Autopia-Italic;
+  src: url(Autopia-Italic.ttf);
+}
+#canvas3d {
+  margin: 0;
+  border: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0; left: 0;
+  z-index: -10
+}
+#thing1 {
+	position: absolute;
+	z-index: 4;
+	display: inline;
+	width: 200px;
+  height: 200px;
+	background-color: #9911FF;
+}
+#thing2 {
+	position: absolute;
+	z-index: 2;
+	display: inline;
+  width: 200px;
+  height: 200px;
+
+}
+#thing3 {
+	position: absolute;
+	z-index: 1;
+	display: inline;
+  width: 200px;
+  height: 200px;
+
+}
+img {
+  width: 100%;
+  height: 100%;
+}
+</style>
+
+<script src="../code/lib/three/three.js"></script>
+<script src="../code/lib/three/controls/OrbitControls.js"></script>
+<script src="../code/lib/three/controls/FlyControls.js"></script>
+<script src="../code/lib/three/controls/FirstPersonControls.js"></script>
+
+<body>
+<div id="thing1"><img src="../img/screenshotai_mid.gif"></div>
+<div id="thing2"><img src="../img/ainew_mid.gif"></div>
+<div id="thing3"><img src="../img/joanachicau_mid.png"></div>
+
+<script>
+let thing1 = document.getElementById("thing1");
+let thing2 = document.getElementById("thing2");
+let thing3 = document.getElementById("thing3");
+let elements = [thing1, thing2, thing3];
+
+thing1.style.left = 200; thing1.style.top = 200; thing1.style.zIndex = 1;
+thing2.style.left = 150; thing2.style.top = 150; thing2.style.zIndex = 2;
+thing3.style.left = 100; thing3.style.top = 100; thing3.style.zIndex = 3;
+
+
+
+console.log("WTD");
+
+function printMouseEvent(e) {
+  // See MouseMove event: https://developer.mozilla.org/en-US/docs/Web/API/Element/mousemove_event
+  let button, buttons, xpos, ypos, target, xoff, yoff;
+  let path, src, view;
+  let log;
+  buttons = e.buttons;
+
+  // Global x,y position
+  xpos = e.clientX;
+  ypos = e.clientY;
+
+  // x,y position within element below mouse
+  xoff = e.offsetX;
+  yoff = e.offsetY;
+
+  path = e.path;
+  src = e.srcElement;
+  view = e.view;
+
+  // element below mouse
+  target = e.target;
+  log = "Buttons:" + buttons + " x,y:" + [xpos, ypos];
+  log = log + " x,yoff:" + [xoff, yoff];
+  console.log(e);
+  console.log(log);
+  console.log("Element PATH"); console.log(e.path);
+  console.log("Element SRC"); console.log(e.srcElement);
+
+}
+</script>
+
+
+<canvas id="canvas3d"></canvas>
+
+<script>
+  // global normalized mouse position.
+  let mouse = {x: 0.0, y: 0.0};
+
+  //----------------------------------------------
+  // Basic Three JS setup code
+  // See: https://aerotwist.com/tutorials/getting-started-with-three-js/
+  //----------------------------------------------
+  let camera, controls, cube, sphere, sphere_lines, floor, floor_lines;
+  let renderer;
+  let scene;
+  const WIDTH = window.innerWidth, HEIGHT = window.innerHeight;
+  const VIEW_ANGLE = 90, NEAR_PLANE = 0.1, FAR_PLANE = 200;
+  const PIXEL_RATIO = window.devicePixelRatio;
+
+  let scale_dir = 0.01;
+
+  init();
+  animate();
+
+  console.log("wte");
+
+  let i; // general counter
+
+  let elements_positions = new Array(elements.length);
+  for(i = 0; i < elements_positions.length; i++) {
+    elements_positions[i] = [elements[i].offsetLeft, elements[i].offsetTop];
+  }
+
+  function mouseMoveLook(e) {
+    // See MouseMove event: https://developer.mozilla.org/en-US/docs/Web/API/Element/mousemove_event
+    let button, buttons, xpos, ypos, target, xoff, yoff, xmv, ymv;
+    buttons = e.buttons;
+    // Global x,y position - normalized to a -1/1 range
+    xpos = (e.clientX / window.innerWidth) * 2 - 1;
+    ypos = (e.clientY / window.innerHeight) * 2 - 1;
+    // Absolute movement of mouse
+    xmv = e.movementX;
+    ymv = e.movementY;
+
+    // x,y position within element below mouse
+    xoff = e.offsetX;
+    yoff = e.offsetY;
+
+    // Update the mouse variable
+    mouse.x = xpos;
+    mouse.y = ypos;
+    //console.log("X,Y", [xpos, ypos]);
+    //console.log("X,Y mov", [xmv, ymv]);
+
+    //camera.quaternion.x += xmv / 1000;
+    //camera.quaternion.y += ymv / 1000;
+    camera.rotateY(xmv / -1000);
+    camera.rotateX(ymv / -1000);
+    camera.position.x += xmv / 1000;
+    camera.position.y += ymv / 1000;
+
+    for(let i = 0; i < elements.length; i++) {
+      let el = elements[i], pos = elements_positions[i];
+      let t, l, z;
+      z = parseInt(el.style.zIndex);
+      t = (ypos * z * z * z) + pos[1];
+      l = (xpos * z * z * z) + pos[0];
+      //console.log(xpos, ypos, z, t, l);
+      el.style.top = t + "px";
+      el.style.left = l + "px";
+    }
+  }
+
+  console.log("yah3");
+
+  function init() {
+    var canvas = document.getElementById( 'canvas3d' );
+    renderer = new THREE.WebGLRenderer({canvas: canvas});
+    //renderer.setClearColor("#000000");
+    renderer.setPixelRatio( PIXEL_RATIO );
+    renderer.setSize( WIDTH, HEIGHT );
+    document.body.appendChild( renderer.domElement );
+
+    scene = new THREE.Scene();
+
+    camera = new THREE.PerspectiveCamera( VIEW_ANGLE, WIDTH / HEIGHT, NEAR_PLANE, FAR_PLANE );
+    // the camera starts at 0,0,0 so pull it back...
+    //camera.position.z = 0.01;
+    camera.position.z = 1;
+    camera.position.y = 1;
+
+    var materials = [];
+
+    // Alternative Materials...
+    // see: https://threejsfundamentals.org/threejs/lessons/threejs-materials.html
+    for ( var i = 0; i < 6; i ++ ) {
+      let mat = new THREE.MeshPhongMaterial();
+      mat.color.setHSL(Math.random(), 1, .5);  // red
+      mat.flatShading = true;
+      materials.push( mat );
+    }
+
+
+    // This is the box the viewer will be inside of....
+    var roomsize = 30;
+    //roomsize = 10;
+    var skyBox = new THREE.Mesh( new THREE.BoxBufferGeometry( roomsize, roomsize, roomsize ), materials );
+    skyBox.geometry.scale( 1, 1, - 1 ); // this turns it inside out?
+    //scene.add( skyBox );
+
+
+    // ------------------------------------------------
+    // FUN STARTS HERE
+    // ------------------------------------------------
+
+    // Create a Cube Mesh with basic material
+    const c_geometry = new THREE.BoxGeometry( 0.1, 0.1, 0.1 );
+    let c_material = new THREE.MeshPhongMaterial();
+    c_material.color.setHSL(0, 1, .5);  // red
+    c_material.flatShading = true;
+    const cubeSize = 0.2;
+    const cubeGeo = new THREE.BoxBufferGeometry(cubeSize, cubeSize, cubeSize);
+    const cubeMat = new THREE.MeshPhongMaterial({color: '#8AC'});
+    cube = new THREE.Mesh(cubeGeo, cubeMat);
+    cube.position.set(0, cubeSize, -1 * cubeSize);
+     //var material = new THREE.MeshBasicMaterial( { color: "#433F81" } );
+    //material = new THREE.MeshDepthMaterial();
+    //material = new THREE.MeshNormalMaterial();
+    // Add cube to Scene
+    scene.add( cube );
+
+    let wireframe;
+
+    // Create a plane with a texture...
+    const planeSize = 20;
+    const loader = new THREE.TextureLoader();
+    const texture = loader.load('../img/algorithms/3d-brownian-motion-markov-property.png');
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.wrapT = THREE.RepeatWrapping;
+    texture.magFilter = THREE.NearestFilter;
+    const repeats = planeSize / 2;
+    texture.repeat.set(repeats, repeats);
+    const planeGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
+    const planeMat = new THREE.MeshPhongMaterial({
+      map: texture,
+      side: THREE.DoubleSide,
+    });
+    floor = new THREE.Mesh(planeGeo, planeMat);
+    floor.rotation.x = Math.PI * -.5;
+    floor.position.y = -1;
+    scene.add( floor );
+
+    wireframe = new THREE.WireframeGeometry( planeGeo );
+    floor_lines = new THREE.LineSegments( wireframe );
+    floor_lines.material.opacity = 1.0;
+    floor_lines.material.depthTest = false;
+    scene.add( floor_lines );
+    floor_lines.visible = false;
+
+    // Create a spherical room...
+    let s_geom = new THREE.SphereBufferGeometry( 50, 32, 32 );
+    let s_mat = planeMat;
+    s_geom.scale(2.0, 0.5, -1);
+    sphere = new THREE.Mesh( s_geom, s_mat );
+    wireframe = new THREE.WireframeGeometry( s_geom );
+    sphere_lines = new THREE.LineSegments( wireframe );
+    sphere_lines.material.opacity = 1.0;
+    sphere_lines.material.depthTest = true;
+    scene.add( sphere );
+    sphere.visible = false;
+    scene.add(sphere_lines);
+
+    // Add ambient light to the space to keep the darks from being so dark...
+    const l_color = 0xFFFFFF;
+    const l_intensity = 0.4;
+    const light = new THREE.AmbientLight(l_color, l_intensity);
+    //scene.add(light);
+
+    // Add Hemispherical Light (simple landscape lighting ... good for simple depth illusions)
+    const h_skyColor = 0xB1E1FF;  // light blue
+    const h_groundColor = 0xB97A20;  // brownish orange
+    const h_intensity = 1;
+    const h_light = new THREE.HemisphereLight(h_skyColor, h_groundColor, h_intensity);
+    scene.add(h_light);
+
+
+    console.log("Hemi light... 2");
+
+
+    // Call a function when the window is resized...
+    window.addEventListener( 'resize', onWindowResize, false );
+  }
+
+  function getTexturesFromAtlasFile( atlasImgUrl, tilesNum ) {
+    var textures = [];
+    for ( var i = 0; i < tilesNum; i ++ ) {
+      textures[ i ] = new THREE.Texture();
+    }
+    var imageObj = new Image();
+    imageObj.crossOrigin = "anonymous";
+    imageObj.onload = function () {
+      var canvas, context;
+      var tileWidth = imageObj.height;
+      for ( var i = 0; i < textures.length; i ++ ) {
+        canvas = document.createElement( 'canvas' );
+        context = canvas.getContext( '2d' );
+        canvas.height = tileWidth;
+        canvas.width = tileWidth;
+        context.drawImage( imageObj, tileWidth * i, 0, tileWidth, tileWidth, 0, 0, tileWidth, tileWidth );
+        textures[ i ].image = canvas;
+        textures[ i ].needsUpdate = true;
+      }
+    };
+    imageObj.src = atlasImgUrl;
+    return textures;
+  }
+
+  function onWindowResize() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize( window.innerWidth, window.innerHeight );
+  }
+
+  function animate() {
+    requestAnimationFrame( animate );
+    animateCube();
+    //controls.update(); // if animating...
+    renderer.render( scene, camera );
+  }
+
+  function animateCube() {
+    cube.rotation.x += 0.01;
+    cube.rotation.y += 0.01;
+
+    cube.scale.x += scale_dir;
+    if(cube.scale.x > 2) {
+      scale_dir = -0.01;
+    } else if(cube.scale.x < 0.1) {
+      scale_dir = 0.01;
+    }
+    cube.scale.y = cube.scale.z = cube.scale.x;
+  }
+</script>
+
+
+<!-- MOUSE INTERACTION -->
+<!-- MOUSE INTERACTION -->
+<!-- MOUSE INTERACTION -->
+<script>
+document.addEventListener('mousemove', mouseMoveLook);
+
+
+</script>
+<!-- END MOUSE INTERACTION -->
+<!-- END MOUSE INTERACTION -->
+<!-- END MOUSE INTERACTION -->
+
+
+</body>
+
+</html>
