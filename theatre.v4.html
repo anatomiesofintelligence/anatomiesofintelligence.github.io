@@ -741,7 +741,7 @@ function resultfunc(err, clusters, centroids, featuresDef) {
 Easier interface functions
 ==============================================*/
 // SIMPLIFIED clustering
-function cluster(num_clusters, features, iterations=10, interactive=false, callback=null, post=false) {
+function cluster(num_clusters, features, iterations=10, interactive=false, callback=null, log=false) {
   K = num_clusters;
   CLUSTER_DIMENSIONS = features;
 
@@ -750,9 +750,9 @@ function cluster(num_clusters, features, iterations=10, interactive=false, callb
   }
 
   if(interactive) {
-    catalog.cluster(K, MEASUREMENT, CLUSTER_DIMENSIONS, iterations, resultfunc, 1.0, OSC_OUT, callback, post);
+    catalog.cluster(K, MEASUREMENT, CLUSTER_DIMENSIONS, iterations, resultfunc, 1.0, OSC_OUT, callback, log);
   } else {
-    catalog.cluster(K, MEASUREMENT, CLUSTER_DIMENSIONS, iterations, resultfunc, 0.0, null, callback, post);
+    catalog.cluster(K, MEASUREMENT, CLUSTER_DIMENSIONS, iterations, resultfunc, 0.0, null, callback, log);
   }
 }
 

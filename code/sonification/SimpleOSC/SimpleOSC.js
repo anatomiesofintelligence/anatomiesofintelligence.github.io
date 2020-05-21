@@ -98,6 +98,7 @@ SimpleOSC.prototype.init = function (onConnectFunc) {
 
 SimpleOSC.prototype.sendmsg = function(addr, args, verbose=false) {
   var jsonmsg, argsmsg = [];
+  if((this.ws != null) && (this.ws.readyState == 1)) { // websocket is connected
   args.forEach(function (item, index) {
     var osctype;
     switch(typeof item) {
@@ -130,4 +131,10 @@ SimpleOSC.prototype.sendmsg = function(addr, args, verbose=false) {
     this.post(str);
   }
   this.ws.send(JSON.stringify(jsonmsg));
+} else {
+  // if websocket is not open, simply ignore message
+  if(verbose) {
+    this.post("Websocket is not connected, readyState: " + this.ws.readyState);
+  }
+}
 };
