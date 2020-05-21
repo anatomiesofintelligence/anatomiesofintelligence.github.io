@@ -36,6 +36,16 @@ comment: v4 includes 3-dimensional canvas
 // ****Initialize the catalog****
 let catalog = new Catalog();
 let tag_weight, newexample;
+
+window.addEventListener('DOMContentLoaded', function(e) {
+  console.log('DOM loaded...');
+  randomize(); // randomize example divs
+  onWindowResize(); // resize 3D canvas
+  entryLocationsSnapshot(); // take a snapshot of entry root locations for 3D effect
+});
+window.addEventListener('load', function(e) {
+  console.log('resources loaded...'); // this is called when all images & resources are loaded
+});
 </script>
 
 <!-- USING 800px MID RESOLUTION IMAGES -->
@@ -1020,13 +1030,5 @@ var CLUSTER_COLORS = [      // cluster border color palette
     "255,255,0", //yellow
     "0,255,255", // dark cyan
 ];
-
-// Once everything is loaded...
-window.addEventListener('load', function(e) {
-  console.log('theatre loaded...');
-  randomize(); // randomize example divs
-  onWindowResize(); // resize 3D canvas
-  entryLocationsSnapshot(); // take a snapshot of entry root locations for 3D effect
-});
 
 </script>
