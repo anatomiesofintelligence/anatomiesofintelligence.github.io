@@ -1,13 +1,8 @@
 ---
 layout: performance
-permalink: jon
-comment: v3 theatre uses thumbnail images and reads entry data in from csv file/database
+permalink: theatre
+comment: v4 includes 3-dimensional canvas
 ---
-<!-- EXPERIMENTAL THEATRE by Jon -->
-
-<script src="./code/lib/three/three.js"></script>
-<script src="./code/lib/three/controls/OrbitControls.js"></script>
-
 
 <style>
 .active { z-index: 2 }
@@ -31,15 +26,6 @@ comment: v3 theatre uses thumbnail images and reads entry data in from csv file/
 
 </style>
 
-
-<div id="categories" style="display:none">
-All Categories:
-{% assign sortedcats = site.categories | sort: '' %}
-{% for cat in sortedcats %}
-<br/><a href="{{ site.url }}{{ cat[0] }}">{{ cat[0] }}</a>
-{% endfor %}
-</div>
-
 <div id="tags" style="display:none">
 {% capture site_tags %}{% for tag in site.tags %}{{ tag[0] }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
 {% assign tag_words = site_tags | split:',' | sort %}
@@ -49,13 +35,15 @@ All Tags:
 
 <script>
 // ****Initialize the catalog****
-var catalog = new Catalog();
-var tag_weight, newexample;
+let catalog = new Catalog();
+let tag_weight, newexample;
+let tagdiv = document.getElementById("tags");
 </script>
 
 
 {% for post in site.posts %}
 {% assign post_id = post.title | slugify:"latin" %}
+<!-- USING 800px MID RESOLUTION IMAGES -->
 {% assign image_thumb = post.image | replace: ".", "_mid." %}
 <div class="refs" id="{{ post_id }}">
   <a href="{{ post.url }}" onclick="openEntry('{{ post_id }}'); return false">
@@ -70,16 +58,36 @@ newexample.addFeature(tag_weight);
 {% endfor %}
 catalog.addEntry(newexample);
 </script>
+<div class="reftext">{{ post.content }}</div>
 </div>
 {% endfor %}
 
+<!-- Parse Dataset -->
+<script>
+filepath = "metadata.csv"
+
+// Load via local download
+Papa.parse(filepath, {
+  download: true,
+	complete: function(results) {
+		console.log("Finished reading CSV:", results.data);
+	}
+});
+
+// Stream big file asynchronously in worker thread
+Papa.parse(filepath, {
+  download: true,
+	worker: true,
+	step: function(results) {
+		console.log("Row:", results.data);
+	}
+});
+</script>
+<!-- END DATASET PARSING -->
 
 
-<!-- THREE JS CODE -->
-<!-- THREE JS CODE -->
-<!-- THREE JS CODE -->
 <canvas id="canvas3d"></canvas>
-
+<!-- THREE JS CODE -->
 <script>
   // global normalized mouse position.
   let mouse = {x: 0.0, y: 0.0};
@@ -203,47 +211,48 @@ catalog.addEntry(newexample);
 
     let wireframe;
 
-    // Create a plane with a texture...
-    const planeSize = 50;
-    const loader = new THREE.TextureLoader();
-    const texture = loader.load('../img/algorithms/3d-brownian-motion-markov-property.png');
-    texture.wrapS = THREE.RepeatWrapping;
-    texture.wrapT = THREE.RepeatWrapping;
-    texture.magFilter = THREE.NearestFilter;
-    const repeats = planeSize / 2;
-    texture.repeat.set(repeats, repeats);
-    const planeGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize, 24, 24);
+    // FLOOR GEOMETRY
+    const floorSize = 50, floorSegments = 20;
+    //const textloader = new THREE.TextureLoader();
+    //const texture = textloader.load('../img/algorithms/3d-brownian-motion-markov-property.png');
+    //texture.wrapS = THREE.RepeatWrapping;
+    //texture.wrapT = THREE.RepeatWrapping;
+    //texture.magFilter = THREE.NearestFilter;
+    //const textrepeats = floorSize / 2;
+    //texture.repeat.set(textrepeats, textrepeats);
+    const floor_geom = new THREE.PlaneBufferGeometry(floorSize, floorSize, floorSegments, floorSegments);
     /*
-    const planeMat = new THREE.MeshPhongMaterial({
+    const floor_mat = new THREE.MeshPhongMaterial({
       map: texture,
       side: THREE.DoubleSide,
     });
     */
     // See: https://threejs.org/docs/#api/en/materials/MeshPhongMaterial
-    const planeMat = new THREE.MeshPhongMaterial( { color: '#ccc' } );
-    floor = new THREE.Mesh(planeGeo, planeMat);
+    const floor_mat = new THREE.MeshPhongMaterial( { color: '#ccc' } );
+    floor = new THREE.Mesh(floor_geom, floor_mat);
     floor.rotation.x = Math.PI * -.5;
-    floor.position.y = -10;
+    floor.position.y = -15;
+    floor.position.z = 20;
     floor.visible = true;
-    //floor.visible = false;
     scene.add( floor );
 
-    /*
+    /* One method for creating a wireframe as geometry ...
     wireframe = new THREE.WireframeGeometry( planeGeo );
     floor_lines = new THREE.LineSegments( wireframe );
     floor_lines.material.opacity = 1.0;
     floor_lines.material.depthTest = true;
     */
-    const floorLinesMat = new THREE.MeshPhongMaterial( { color: '#ccc', wireframe: true } );
-    floor_lines = new THREE.Mesh(planeGeo, floorLinesMat);
+    // alternatively, create a wireframe material ...
+    const floor_lines_mat = new THREE.MeshPhongMaterial( { color: '#ccc', wireframe: true } );
+    floor_lines = new THREE.Mesh(floor_geom, floor_lines_mat);
     floor_lines.rotation.x = Math.PI * -.5;
-    floor_lines.position.y = -10;
+    floor_lines.position.y = -5;
     scene.add( floor_lines );
     floor_lines.visible = true;
 
-    // Create a spherical room...
+    // ROOM GEOMETRY
     let s_geom = new THREE.SphereBufferGeometry( 50, 32, 32 );
-    let s_mat = planeMat;
+    let s_mat = floor_mat;
     s_geom.scale(2.0, 0.5, -1);
     sphere = new THREE.Mesh( s_geom, s_mat );
     wireframe = new THREE.WireframeGeometry( s_geom );
@@ -325,7 +334,8 @@ catalog.addEntry(newexample);
   function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
-    renderer.setSize( window.innerWidth, window.innerHeight );
+    // expand a bit beyond the window to catch all the entries?
+    renderer.setSize( window.innerWidth + 100, window.innerHeight + 100 );
   }
 
   function animate() {
@@ -352,37 +362,15 @@ catalog.addEntry(newexample);
   document.addEventListener('mousemove', mouseMoveLook);
 
 </script>
-<!-- END THREE JS -->
-<!-- END THREE JS -->
-<!-- END THREE JS -->
+<!-- END THREE -->
 
 
-<!-- CATALOG API -->
-<!-- CATALOG API -->
+
+
+
+
 <!-- CATALOG API -->
 <script>
-
-// PARSE CSV FILE
-filepath = "metadata.csv"
-// Parse local CSV file
-Papa.parse(filepath, {
-  download: true,
-	complete: function(results) {
-		console.log("Finished reading CSV:", results.data);
-	}
-});
-
-// Stream big file in worker thread
-Papa.parse(filepath, {
-  download: true,
-	worker: true,
-	step: function(results) {
-		console.log("Row:", results.data);
-	}
-});
-
-
-
 // OSC connection to the local SimpleOSC Server
 var OSC_OUT = new SimpleOSC("localhost", 8080);
 OSC_OUT.init(function() {
@@ -390,9 +378,13 @@ OSC_OUT.init(function() {
     //catalog.cluster(K, MEASUREMENT, CLUSTER_DIMENSIONS, ITERATIONS, resultfunc, BREAKPOINTS, OSC_OUT, console.log);
 });
 
-
-// ***ADDITIONAL FUNCTIONS****
-
+/* ----------------------------------------------------
+.######..##..##..##..##...####...######..######...####...##..##...####..
+.##......##..##..###.##..##..##....##......##....##..##..###.##..##.....
+.####....##..##..##.###..##........##......##....##..##..##.###...####..
+.##......##..##..##..##..##..##....##......##....##..##..##..##......##.
+.##.......####...##..##...####.....##....######...####...##..##...####..
+-------------------------------------------------------*/
 function reset() { location.reload() }
 
 // Get all entry divs, optionally by a specific cluster
@@ -460,7 +452,6 @@ function clean_surface() {
   CLUSTERS = null;
   CENTROIDS = null;
 }
-
 
 function showPopup(url, name) {
   let win = window.open(url, name,'menubar=0,toolbar=no,location=0,personalbar=0,status=0, height=400,width=250,top=200,left=300,resizable=yes,scrollbars=yes');
@@ -548,7 +539,7 @@ function project(projectionType, options={}, centroids, clusters) {
   }
 
   // STYLE ENTRY DIVS FOR EACH CLUSTER ASSOCIATION
-  for(var i = 0; i < centroids.length; i++) {
+  for(let i = 0; i < centroids.length; i++) {
     for(let j = 0; j < clusters[i].length; j++) {
       var entrydiv, item = clusters[i][j];
       entrydiv = document.querySelector("#"+item.entry.id);
@@ -569,7 +560,7 @@ function project(projectionType, options={}, centroids, clusters) {
 
   // Remove any previous centroid divs
   let old_centroid_divs = getCentroidDivs();
-  for(var i = old_centroid_divs.length-1; i >= 0; i--) {
+  for(let i = old_centroid_divs.length-1; i >= 0; i--) {
     old_centroid_divs[i].remove();
   }
 
@@ -673,8 +664,8 @@ function project(projectionType, options={}, centroids, clusters) {
       }
       // END CIRCLE PROJECTION
     };
-    entryLocationsSnapshot(); // take a snapshot of entry locations after every projection.
-} // end project()
+    entryLocationsSnapshot(); // every time entry divs are moved make a new snapshot
+} // end project
 
 // Callback responds to clustering results and redraws the HTML
 function resultfunc(err, clusters, centroids, featuresDef) {
@@ -710,7 +701,7 @@ function resultfunc(err, clusters, centroids, featuresDef) {
 Easier interface functions
 ==============================================*/
 // SIMPLIFIED clustering
-function cluster(num_clusters, features, iterations=10, interactive=false, callback, post=false) {
+function cluster(num_clusters, features, iterations=10, interactive=false, callback=null, post=false) {
   K = num_clusters;
   CLUSTER_DIMENSIONS = features;
 
@@ -785,14 +776,14 @@ function help() {
     FEATURES = ["aesthesis", "spectacle", "cut"]   // features to use for distance measurements
     ITERATIONS = 10                                // number of algorithm iterations
     CALLBACK = function(step, info) { console.log(step, info); return 1.0 }  // callback function
-    BREAKPOINTS = true
-    PRINT_TO_CONSOLE = false
-    cluster(NUM_CLUSTERS, FEATURES, ITERATIONS, CALLBACK, BREAKPOINTS, PRINT_TO_CONSOLE)
+    INTERACTIVE = true
+    CONSOLE_LOG = false
+    cluster(NUM_CLUSTERS, FEATURES, ITERATIONS, INTERACTIVE, CALLBACK, CONSOLE_LOG)
 
     -- interact with running algorithm --
     callback(CALLBACK)        // change callback function
-    setPost(PRINT_TO_CONSOLE)    // toggle printing steps to console
-    setVerbosity(BREAKPOINTS)    // set output verbosity, 0.0 is equivalent to breakpoints==false
+    setPost(CONSOLE_LOG)    // toggle printing steps to console
+    setVerbosity(BREAKPOINTS)    // set output verbosity, 0.0 is equivalent to disabling interactive mode
     tempo(60)                 // set the tempo in beats per minute
     stop()            // halt clustering algorithm
 
@@ -832,18 +823,18 @@ function help() {
     }
 
     -- more example commands --
-    cluster(5, ["theatre", "cut"], 5, null, false, false)   // quick cluster in place
+    cluster(5, ["theatre", "cut"], 5)   // non-interactive clustering
     project(Projections.RADIUS)
     randomize()
-    cluster(3, ["measurement", "dimensionality"], 20, null, true, false)
-    tempo(180)
-    stop()      //halt clustering algorithm
-    cluster(3, ["spectacle", "theatre"], 10, null, true, false)
-    callback(cb4)
+    cluster(3, ["measurement", "dimensionality"], 20, true)  // interactive clustering
+    tempo(180)   // 180 beats per minute
+    stop()      // completely stop the clustering algorithm
+    cluster(3, ["spectacle", "theatre"], 10, true)
+    callback(cb4)   // set the callback function
     project(Projections.SIMPLE2D)
     cut = ["aesthesis", "measurement", "cut", "spectacle", "theatre"]
     clean_surface()
-    cluster(5, cut, 20, null, false, false)
+    cluster(5, cut, 20)
     project(Projections.SIMPLE2D, {prioritizeFeatures: ["dimensionality", "measurement"], featuresDefinition: cut})
   `;
   console.log(str);
@@ -852,8 +843,8 @@ function help() {
 //************** GLOBAL CONSTANTS *****************//
 
 // DEFAULT CALLBACK FUNC ... we could have more ...
-var CALLBACK_FUNC = function(step, info) {
-  console.log(step, info);
+const CALLBACK_FUNC = function(step, info) {
+  //console.log(step, info);
   if(step == 'distance') {
     entrydiv = document.querySelector("#"+info.id);
     entrydiv.style.border = 2 + "px solid rgba(" + CLUSTER_COLORS[info.cluster] + ", " + 0.8 + ")";
@@ -867,63 +858,68 @@ var CALLBACK_FUNC = function(step, info) {
   return 1; // all other steps are 1 beat
 };
 
-var CALLBACK_EXPERIMENT = function(step, info) {
+// STEP COUNTER
+let STEP_COUNT = 0;
+const CALLBACK_COUNTER = function(step, info) {
+  STEP_COUNT++;
+  console.log(STEP_COUNT);
+  return 1;
+}
+
+// Can be used as a template
+var CALLBACK_TEMPLATE = function(step, info) {
   if(step == 'distance') {
-    entrydiv = document.querySelector("#"+info.id);
-    entrydiv.classList.toggle("active");
-    entrydiv.style.border = info.distance + "px solid rgba(" + CLUSTER_COLORS[info.cluster] + ", " + 0.8 + ")";
-    return 1/4; // pause 1/4 beat
+    console.log("Distance", info);
+    return 1; // wait 1 beat
   }
   if(step == 'decide') {
-    entrydiv = document.querySelector("#"+info.id);
-    entrydiv.classList.toggle("decided");
-    entrydiv.classList.toggle("active");
-    entrydiv.style.border = info.distance + "px solid rgba(" + CLUSTER_COLORS[info.cluster] + ", " + 0.8 + ")";
-    return 1/2; // pause 1/2 beat
+    console.log("Decide", info);
+    return 1;
   }
-
   if(step == 'reconsider') {
     console.log("Reconsider", info);
+    return 1;
   }
-
   if(step == 'section') {
     if(info.section == 'start') {
       console.log("Entering section START:", info);
+      return 1;
     }
     if(info.section == 'recalculate-centroids') {
       console.log("Entering section RECALCULATE CENTROIDS:", info);
+      return 1;
     }
     if(info.section == 'end') {
       console.log("Entering section END:", info);
+      return 1;
     }
   }
 
   if(step == "initcentroid") {
     console.log("Init Centroid", info);
+    return 1;
   }
 
   if(step == "recalculateCentroid") {
     console.log("Recalculate Centroid", info);
+    return 1;
   }
 
   if(step == "normalize") {
     console.log("Normalize", info);
+    return 1;
   }
 
   if(step == "denormalize") {
     console.log("DE Normalize", info);
+    return 1;
   }
 
-  return 1; // all other steps are 1 beat
+  // we should never reach this point if all step names are accounted for above
+  throw "Unrecognized step name: " + step;
+  // if not, then remember to add a return statement here with a default time value
+  //return 1;
 };
-
-
-
-
-
-
-
-
 
 // CLUSTERING PARAMETERS
 var K = 3;
@@ -937,8 +933,9 @@ var CLUSTERS = [];    // populated after running catalog.cluster()
 var CENTROIDS = [];   // populated after running catalog.cluster()
 
 // Algorithmic time parameters
-var BREAKPOINTS = false;   // break the algorithm up into temporal chunks
+var INTERACTIVE = false;   // enable INTERACTIVE mode, break the algorithm up into interactive chunks
 var TEMPO = 0.5;          // timescale/tempo speed of algorithm steps
+var CONSOLE_LOG = false; // log algorithm steps to console, only meaningful when running in INTERACTIVE mode
 
 // Visualization parameters
 var PROJECTION_TYPE = Projections.NONE; // default projection
@@ -959,12 +956,12 @@ var CLUSTER_COLORS = [      // cluster border color palette
     "0,255,255", // dark cyan
 ];
 
-// Test clustering with 3 clusters and 10 iterations
-//catalog.cluster(3, Measures.euclidean, tagscut, 10, resultfunc);
+// Once everything is loaded...
+window.addEventListener('load', function(e) {
+  console.log('theatre loaded...');
+  randomize(); // randomize example divs
+  onWindowResize(); // resize 3D canvas
+  entryLocationsSnapshot(); // take a snapshot of entry root locations for 3D effect
+});
 
-// ****COMMANDS***
-
-randomize(); // randomize example divs
-onWindowResize(); // scale canvas to the screen
-entryLocationsSnapshot(); // capture new locations.
 </script>

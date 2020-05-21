@@ -144,3 +144,7 @@ body.performance {
         mix-blend-mode: difference; /*   or: screen  saturation  difference */
         /*	display: none; */
 }
+
+.performance .refs .reftext {
+  display: none;
+}
