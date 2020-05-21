@@ -36,7 +36,6 @@ comment: v4 includes 3-dimensional canvas
 // ****Initialize the catalog****
 let catalog = new Catalog();
 let tag_weight, newexample;
-let tagdiv = document.getElementById("tags");
 </script>
 
 <!-- USING 800px MID RESOLUTION IMAGES -->
@@ -390,19 +389,52 @@ OSC_OUT.init(function() {
 .##......##..##..##..##..##..##....##......##....##..##..##..##......##.
 .##.......####...##..##...####.....##....######...####...##..##...####..
 -------------------------------------------------------*/
-function reset() { location.reload() }
+
+let tagdiv = document.getElementById("tags");
+let entryDivs = document.getElementsByClassName("refs");
 
 // Get all entry divs, optionally by a specific cluster
 function getEntryDivs(cluster=-1) {
   let result, classval;
-  if(cluster == -1) {
-    classval = "refs";
+  if(cluster == -1) { // ignore clusters
+    return entryDivs;
   } else {
     classval = "cluster"+cluster;
   }
   result = document.getElementsByClassName(classval);
   return result;
 }
+
+function showTags(show=true) {
+  if(show)
+    tagdiv.style.display = "inline";
+  else
+    tagdiv.style.display = "none";
+}
+
+function showText(show=true,entry_id=null) {
+  let el;
+  if(entry_id == null) {
+    // apply to all
+    for(let i = 0; i < entryDivs.length; i++) {
+      el = entryDivs[i].querySelector(".reftext");
+      if(show)
+        el.style.display = "inline";
+      else
+        el.style.display = "none";
+    }
+
+  } else {
+    el = document.getElementById(entry_id).querySelector(".reftext");
+    if(show)
+      el.style.display = "inline";
+    else
+      el.style.display = "none";
+  }
+
+}
+
+function reset() { location.reload() }
 
 // Get all centroid divs
 function getCentroidDivs() {
@@ -460,18 +492,21 @@ function clean_surface() {
 
 function showPopup(url, name) {
   let win = window.open(url, name,'menubar=0,toolbar=no,location=0,personalbar=0,status=0, height=400,width=250,top=200,left=300,resizable=yes,scrollbars=yes');
-  if(window.focus) { win.focus() }
+  if(window.focus) { win.focus() };
+  return win;
 }
 
 /*
 Note that Mozilla and Firefox users can force new windows to always render the location bar by setting dom.disable_window_open_feature.location to true in about:config or in their user.js file.
 https://developer.mozilla.org/en-US/docs/Web/API/Window/open
 */
-
+let popups = {};
 function openEntry(entryID) {
-  let entry_url = catalog.allEntries[entryID].url;
+  let win, entry_url = catalog.allEntries[entryID].url;
   console.log("OPENING: " + entry_url + entryID);
-  showPopup(entry_url, "_blank");
+  win = showPopup(entry_url, "_blank");
+  popups[entryID] = win;
+  return win;
 }
 
 
