@@ -29,8 +29,7 @@ comment: v4 includes 3-dimensional canvas
 <div id="tags" style="display:none">
 {% capture site_tags %}{% for tag in site.tags %}{{ tag[0] }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
 {% assign tag_words = site_tags | split:',' | sort %}
-All Tags:
-<br />{% for tag in tag_words %}"{{ tag }}", {% endfor %}
+{% for tag in tag_words %}{{ tag }}, {% endfor %}
 </div>
 
 <script>
