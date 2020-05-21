@@ -39,10 +39,9 @@ let tag_weight, newexample;
 let tagdiv = document.getElementById("tags");
 </script>
 
-
+<!-- USING 800px MID RESOLUTION IMAGES -->
 {% for post in site.posts %}
 {% assign post_id = post.title | slugify:"latin" %}
-<!-- USING 800px MID RESOLUTION IMAGES -->
 {% assign image_thumb = post.image | replace: ".", "_mid." %}
 <div class="refs" id="{{ post_id }}">
   <a href="{{ post.url }}" onclick="openEntry('{{ post_id }}'); return false">
@@ -118,10 +117,10 @@ Papa.parse(filepath, {
   // Basic Three JS setup code
   // See: https://aerotwist.com/tutorials/getting-started-with-three-js/
   //----------------------------------------------
-  let camera, controls, cube, sphere, sphere_lines, floor, floor_lines;
+  let camera, controls, cube, room, room_wire, floor, floor_wire;
   let renderer;
   let scene;
-  let sun, ambience, sky, lamp;
+  let sun, ambience, sky, lamp; // lights...
   const WIDTH = window.innerWidth, HEIGHT = window.innerHeight;
   const VIEW_ANGLE = 70, NEAR_PLANE = 0.1, FAR_PLANE = 400;
   const PIXEL_RATIO = window.devicePixelRatio;
@@ -211,7 +210,7 @@ Papa.parse(filepath, {
     let wireframe;
 
     // FLOOR GEOMETRY
-    const floorSize = 50, floorSegments = 20;
+    const floorSize = 60, floorSegments = 20;
     //const textloader = new THREE.TextureLoader();
     //const texture = textloader.load('../img/algorithms/3d-brownian-motion-markov-property.png');
     //texture.wrapS = THREE.RepeatWrapping;
@@ -237,55 +236,62 @@ Papa.parse(filepath, {
 
     /* One method for creating a wireframe as geometry ...
     wireframe = new THREE.WireframeGeometry( planeGeo );
-    floor_lines = new THREE.LineSegments( wireframe );
-    floor_lines.material.opacity = 1.0;
-    floor_lines.material.depthTest = true;
+    floor_wire = new THREE.LineSegments( wireframe );
+    floor_wire.material.opacity = 1.0;
+    floor_wire.material.depthTest = true;
     */
     // alternatively, create a wireframe material ...
-    const floor_lines_mat = new THREE.MeshPhongMaterial( { color: '#ccc', wireframe: true } );
-    floor_lines = new THREE.Mesh(floor_geom, floor_lines_mat);
-    floor_lines.rotation.x = Math.PI * -.5;
-    floor_lines.position.y = -5;
-    scene.add( floor_lines );
-    floor_lines.visible = true;
+    const floor_wire_mat = new THREE.MeshPhongMaterial( { color: '#ccc', wireframe: true } );
+    floor_wire = new THREE.Mesh(floor_geom, floor_wire_mat);
+    floor_wire.rotation.x = Math.PI * -.5;
+    floor_wire.position.y = -5;
+    floor_wire.position.z = -10;
+    scene.add( floor_wire );
+    floor_wire.visible = true;
 
     // ROOM GEOMETRY
     let s_geom = new THREE.SphereBufferGeometry( 50, 32, 32 );
     let s_mat = floor_mat;
     s_geom.scale(2.0, 0.5, -1);
-    sphere = new THREE.Mesh( s_geom, s_mat );
+    room = new THREE.Mesh( s_geom, s_mat );
     wireframe = new THREE.WireframeGeometry( s_geom );
-    sphere_lines = new THREE.LineSegments( wireframe );
-    sphere_lines.material.opacity = 1.0;
-    sphere_lines.material.depthTest = true;
-    scene.add( sphere );
-    sphere.visible = false;
-    scene.add(sphere_lines);
+    room_wire = new THREE.LineSegments( wireframe );
+    room_wire.material.opacity = 1.0;
+    room_wire.material.depthTest = true;
+    scene.add( room );
+    room.visible = true;
+    scene.add(room_wire);
+    room_wire.visible = false;
 
-
-    // LIGHTS. See: https://threejsfundamentals.org/threejs/lessons/threejs-lights.html
+    // LIGHTS
+    // LIGHTS.
+    // See: https://threejsfundamentals.org/threejs/lessons/threejs-lights.html
 
     // Add ambient light to the space to keep the darks from being so dark...
+    /*
     const am_color = 0xFFFFFF;
     const am_intensity = 0.1;
     ambience = new THREE.AmbientLight(am_color, am_intensity);
-    //scene.add(ambience);
+    scene.add(ambience);
+    */
 
     // Add Hemispherical Light (simple landscape lighting ... good for simple depth illusions)
+    /*
     const sk_skyColor = 0xB1E1FF;  // light blue
     const sk_groundColor = 0xB97A20;  // brownish orange
     const sk_intensity = 0.1;
     sky = new THREE.HemisphereLight(sk_skyColor, sk_groundColor, sk_intensity);
-    //scene.add(sky);
+    scene.add(sky);
+    */
 
     // Add a directional light (sun)
     const s_color = 0xFFFFFF;
-    const s_intensity = 0.5;
-    const sun = new THREE.DirectionalLight(s_color, s_intensity);
-    sun.position.set(-20, 2, 40);
-    sun.target.position.set(-10, -25, -15);
+    const s_intensity = 0.2;
+    sun = new THREE.DirectionalLight(s_color, s_intensity);
+    sun.position.set(0, 0, 10);
+    sun.target.position.set(0, -10, 200);
     scene.add(sun);
-    //scene.add(sun.target); // where it is pointed...
+    scene.add(sun.target); // where it is pointed...
 
     /*
     // Visualize the light
