@@ -961,6 +961,31 @@ var CALLBACK_TEMPLATE = function(step, info) {
   //return 1;
 };
 
+let CALLBACK_EXPERIMENT = function(step, info) {
+  if(step == 'distance') {
+    entrydiv = document.querySelector("#"+info.id);
+    entrydiv.classList.toggle("active");
+    entrydiv.style.border = info.distance + "px solid rgba(" + CLUSTER_COLORS[info.cluster] + ", " + 0.8 + ")";
+    return 1/6; // 1/6 beat
+  }
+  if(step == 'decide') {
+    entrydiv = document.querySelector("#"+info.id);
+    entrydiv.classList.toggle("decided");
+    entrydiv.classList.toggle("active");
+    entrydiv.style.border = info.distance + "px solid rgba(" + CLUSTER_COLORS[info.cluster] + ", " + 0.8 + ")";
+    return 1/2; // 1/2 beat
+  }
+  if(step == 'reconsider') {
+    console.log("Reconsider", info);
+    return 1; // one beat
+  }
+
+  // everything else lasts 1.5 beats
+  return 1.5;
+};
+
+
+
 // CLUSTERING PARAMETERS
 var K = 3;
 var MEASUREMENT = Measures.euclidean;
