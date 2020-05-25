@@ -16,19 +16,16 @@ Scenes.init;
 Scenes.gui;
 
 "../_main.scd".resolveRelative
-
 // TODO: Report error to SC group, runInTerminal doesn't work on Linux Ubuntu?
-
 "ls %".format("../../SimpleOSC".resolveRelative).unixCmd({|a,b,c| [a,b,c].postln })
-
 // run SO_Server (SimpleOSC Server)
 ~servercmd = "python %".format("../../SimpleOSC/SO_Server.py".resolveRelative);
+~servercmd.runInTerminal;
+"gnome-terminal -- bash -c \"%; exec bash\"".format(~servercmd.shellQuote).unixCmd;
+"gnome-terminal -x \"bash\" -c \"python\"".unixCmd;
+
 ~servercmd.unixCmd({|a,b| [a,b].post}, true);
-
-Syn.load
-
 "open http://anatomiesofintelligence.github.io/theatre/kmeans".runInTerminal;
-
 "open %".format("..".resolveRelative).runInTerminal
 
 (
@@ -87,7 +84,7 @@ Ndef(\mix, {|vmix=0.5|
 }).play(out: 0, numChannels: 2, group: ~mixgroup, addAction: \addToTail);
 );
 
-
+Ndef.clear;
 
 (
 Ndef(\sawsweep, {
@@ -146,7 +143,7 @@ Ndef(\g2).clear(10);
 
 Ndef(\g2).clear;
 Syn.gui;
-
+Ndef.clear(10);
 
 /* --------------------------------------------------
 OSC Responders
@@ -198,7 +195,7 @@ OSCdef(\distance, {|msg|
   var cidx = msg[3], dist = msg[4];
   "\nThe measure of entry % to centroid C% is %\n Δ • Δ           (%: %)".format(eidx, cidx, dist.round(0.001), eidx, eid).postln;
   // If distance is very small, or 0, modhz will be 0 and this instrument will be silent.
-  (instrument: \fm01, freq: \g5.f * dist.asFloat, modhz: 100 * dist, amp: 0.4, atk: 0.01, rel: 0.1, dur: 0.01, pan: 0.0, out: ~verb).play;
+  (instrument: \fm01, freq: \g5.f * dist.asFloat, modhz: 100 * dist, amp: 0.6, atk: 0.01, rel: 0.1, dur: 0.01, pan: 0.0, out: ~verb).play;
 }, "/kmeans/distance");
 
 
@@ -209,7 +206,7 @@ OSCdef(\updateclosest, {|msg|
   var eidx = msg[1], eid = msg[2];
   var cidx = msg[3], dist = msg[4];
   "\nReconsider ENTRY % >> distance is % to category %\n⋱ ⋱ ⋱         (%: %)".format(eidx, dist, cidx, eidx, eid).postln;
-  (instrument: \pm, freq: eidx * 20, idx: 2.5, phase: msg[4], spread: 0.5, amp: 0.3, dur: 0.7 * dist, pan: 0.0, ratio: 2.5, co1: 2000, co2: 900, rq:0.2, out: ~clean).play;
+  (instrument: \pm, freq: eidx * 20, idx: 2.5, phase: msg[4], spread: 0.5, amp: 0.25, dur: 0.3 * dist, pan: 0.0, ratio: 2.5, co1: 2000, co2: 900, rq:0.2, out: ~clean).play;
 }, "/kmeans/updateClosestCentroid");
 
 // final cluster assignment for entry
@@ -219,7 +216,7 @@ OSCdef(\assigncluster, {|msg|
   var eidx = msg[1], eid = msg[2];
   var cidx = msg[3], dist = msg[4];
   "\nENTRY % will be placed in CATEGORY % \n⊙ ⊙ ⊙ ⊙ ⊙              (%: %)".format(eidx, cidx, eidx, eid).postln;
-  (instrument: \rezpad, amp: 0.55, freq: [\fs3.f, \fs4.f, \a4.f].wrapAt(cidx), dur: [0.1, 0.07, 0.05, 0.06].wrapAt(eidx), phase: 2.5, modhz: 2.1, out: ~verb).play;
+  (instrument: \rezpad, amp: 0.6, freq: [\fs3.f, \fs4.f, \a4.f].wrapAt(cidx), dur: [0.1, 0.07, 0.05, 0.06].wrapAt(eidx), phase: 2.5, modhz: 2.1, out: ~verb).play;
 }, "/kmeans/assignCluster");
 
 

@@ -523,6 +523,15 @@ KMeans.prototype.cluster = async function(clusters=3, entries, donecallback, osc
     }
   }
 
+  if(this.output_verbosity > 0.0) {
+    osc("/kmeans/done", []);
+    beats = this.callback('done', {});
+    beats = beats || 1;
+    if(this.post_steps)
+      console.log("... done clustering");
+    await Util.sleep_beats(beats, this.tempo);
+  }
+
   this.running = false;
   return donecallback(null, this.clusters, this.centroids, this.featureNames);
 };

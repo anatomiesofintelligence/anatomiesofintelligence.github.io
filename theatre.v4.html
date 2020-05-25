@@ -5,17 +5,35 @@ comment: v4 includes 3-dimensional canvas
 ---
 
 <style>
-.active { z-index: 2; 
-  transform: matrix3d( 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,1 )}
-.active img { transform: scale(16); border-radius: 0%;
+.active {
+  /*transform: matrix3d( 1,0,0,0,  0,1,0,0,  0,0,1,0,  0,0,0,1 );*/
+  mix-blend-mode: normal;
+  opacity: 1;
 }
-.decided { z-index: -1;}
-.decided img {transform: scale(5); opacity: 0.50}
-.decided a {}
+.active img {
+  transform: scale(16);
+  border-radius: 0% 0%;
+}
+.decided {
+}
+.decided img {
+  transform: scale(3);
+  opacity: 0.50;
+  border-radius: 50% 30%;
+}
+.decided a {
 
-.reconsider { transform: skewY(20deg);}
+}
+.reconsider {
+  transform: skewY(20deg);
+}
 
-.performance .refs:hover { z-index: 2; transform: scale(5) }
+.performance .refs:hover {
+  z-index: 5;
+  transform: scale(8);
+  opacity: 1;
+  mix-blend-mode: normal;
+}
 
 #canvas3d {
   margin: 0;
@@ -29,6 +47,16 @@ comment: v4 includes 3-dimensional canvas
 
 </style>
 
+<div id="dummy" style="display: none" class="active decided reconsider">
+<a href="./">
+<span style="display:none">MAR 23 2020:</span>Dummy Entry Title</a>
+<img src="/img/AoI_screenshot_cluster_mid.png"/>
+<div class="reftext">lorem impsum lorem impsum lorem impsum lorem impsum
+lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum
+lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum
+</div>
+</div>
+
 <div id="tags" style="display:none">
 {% capture site_tags %}{% for tag in site.tags %}{{ tag[0] }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
 {% assign tag_words = site_tags | split:',' | sort %}
@@ -38,7 +66,9 @@ comment: v4 includes 3-dimensional canvas
 <script>
 // ****Initialize the catalog****
 let catalog = new Catalog();
+let dummy = document.getElementById("dummy");
 let tag_weight, newexample;
+let css;
 
 window.addEventListener('DOMContentLoaded', function(e) {
   console.log('DOM loaded...');
@@ -47,6 +77,7 @@ window.addEventListener('DOMContentLoaded', function(e) {
   entryLocationsSnapshot(); // take a snapshot of entry root locations for 3D effect
 });
 window.addEventListener('load', function(e) {
+  css = document.styleSheets[1].rules; // shortcut for accessing & modifying stylesheets
   console.log('resources loaded...'); // this is called when all images & resources are loaded
 });
 </script>
@@ -218,6 +249,7 @@ Papa.parse(filepath, {
     //material = new THREE.MeshNormalMaterial();
     // Add cube to Scene
     scene.add( cube );
+    cube.visible = false;
 
     let wireframe;
 
@@ -357,7 +389,7 @@ Papa.parse(filepath, {
 
   function animate() {
     requestAnimationFrame( animate );
-    animateCube();
+    //animateCube();
     //controls.update(); // if animating...
     renderer.render( scene, camera );
   }
@@ -935,15 +967,15 @@ var CALLBACK_TEMPLATE = function(step, info) {
   }
   if(step == 'section') {
     if(info.section == 'start') {
-      console.log("Entering section START:", info);
+      console.log("Entering section START ITERATION " + info.iter, info);
       return 1;
     }
     if(info.section == 'recalculate-centroids') {
-      console.log("Entering section RECALCULATE CENTROIDS:", info);
+      console.log("Entering section RECALCULATE CENTROIDS " + info.iter, info);
       return 1;
     }
     if(info.section == 'end') {
-      console.log("Entering section END:", info);
+      console.log("Entering section END ITERATION" + info.iter, info);
       return 1;
     }
   }
@@ -965,6 +997,11 @@ var CALLBACK_TEMPLATE = function(step, info) {
 
   if(step == "denormalize") {
     console.log("DE Normalize", info);
+    return 1;
+  }
+
+  if(step == "done") {
+    console.log("End of Clustering", info);
     return 1;
   }
 
@@ -992,6 +1029,19 @@ let CALLBACK_EXPERIMENT = function(step, info) {
     entrydiv.classList.toggle("reconsider");
     //console.log("Reconsider", info);
     return 1; // one beat
+  }
+
+  if(step == 'section') {
+    if(info.section == 'start') {
+      // start iteration, remove all entrydiv classes
+      for(i=0; i < entryDivs.length; i++) {
+        entryDivs[i].classList.remove("active", "decided", "reconsider");
+      }
+      return 1;
+    }
+    if(info.section == 'end') {
+      return 1;
+    }
   }
 
   // everything else lasts 1.5 beats
