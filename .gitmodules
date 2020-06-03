@@ -4,3 +4,7 @@
 [submodule "code/webvr-starter-kit"]
 	path = code/webvr-starter-kit
 	url = https://github.com/povdocs/webvr-starter-kit.git
+[submodule "code/sonification/SimpleOSC"]
+	path = code/sonification/SimpleOSC
+	url = https://github.com/jreus/SimpleOSC.git
+	branch = master
