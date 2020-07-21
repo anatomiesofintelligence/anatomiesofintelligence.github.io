@@ -1,51 +1,129 @@
 ---
 layout: performance
-permalink: theatre
-comment: v4 includes 3-dimensional canvas
+permalink: theatre-audio
+comment: Based on theatre.v4.html with added audio engine
 libraries:
   - './code/lib/ai-instruments.js'
   - './code/lib/simple-statistics.min.js'
   - './code/sonification/SimpleOSC/SimpleOSC.js'
   - './code/lib/papaparse.min.js'
   - './code/lib/three/three.min.js'
-
+  - './code/lib/gibberish/gibberish.min.js'
 ---
-<div id="dummy" style="display: none" class="active decided reconsider">
-<a href="./">
-<span style="display:none">MAR 23 2020:</span>Dummy Entry Title</a>
-<img src="/img/AoI_screenshot_cluster_mid.png"/>
-<div class="reftext">lorem impsum lorem impsum lorem impsum lorem impsum
-lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum
-lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum lorem impsum
-</div>
-</div>
-
-<div id="tags" style="display:none">
-{% capture site_tags %}{% for tag in site.tags %}{{ tag[0] }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
-{% assign tag_words = site_tags | split:',' | sort %}
-{% for tag in tag_words %}{{ tag }}, {% endfor %}
-</div>
-
 <script>
 // ****Initialize the catalog****
 let catalog = new Catalog();
-let dummy = document.getElementById("dummy");
 let tag_weight, newexample;
-let css;
+const csv_filepath = "metadata.csv"
 
-window.addEventListener('DOMContentLoaded', function(e) {
-  console.log('DOM loaded...');
-  randomize(); // randomize example divs
-  onWindowResize(); // resize 3D canvas
-  entryLocationsSnapshot(); // take a snapshot of entry root locations for 3D effect
-});
-window.addEventListener('load', function(e) {
-  css = document.styleSheets[1].rules; // shortcut for accessing & modifying stylesheets
-  console.log('resources loaded...'); // this is called when all images & resources are loaded
+Papa.parse(csv_filepath, { // Load catalog data in one big download...
+  download: true, complete: (res) => { console.log("Finished reading CSV:", res.data); }
 });
 </script>
 
-<!-- USING 800px MID RESOLUTION IMAGES -->
+<style>
+.active {
+  /*transform: matrix3d( 1,0,0,0,  0,1,0,0,  0,0,1,0,  0,0,0,1 );*/
+  mix-blend-mode: normal;
+  opacity: 1;
+}
+.active img {
+  transform: scale(16);
+  border-radius: 0% 0%;
+}
+.decided {
+}
+.decided img {
+  transform: scale(3);
+  opacity: 0.50;
+  border-radius: 50% 30%;
+}
+.decided a {
+
+}
+.reconsider {
+  transform: skewY(20deg);
+}
+
+.performance .refs:hover {
+  z-index: 5;
+  transform: scale(8);
+  opacity: 1;
+  mix-blend-mode: normal;
+}
+
+button {
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+#overlay {
+  position: absolute;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height:100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  background-color: #000000;
+  color: #ffffff;
+}
+
+#overlay > div {
+  text-align: center;
+}
+
+#overlay > div > button {
+  height: 20px;
+  background: transparent;
+  color: #ffffff;
+  outline: 1px solid #ffffff;
+  border: 0px;
+  cursor: pointer;
+}
+
+#overlay > div > p {
+  color: #777777;
+  font-size: 12px;
+}
+
+#canvas3d {
+  display: block
+  margin: 0;
+  border: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0; left: 0;
+  z-index: -10
+}
+</style>
+
+<div id="overlay">
+  <div>
+    <button id="startButton">Click to Allow Audio</button>
+    <p>Audio playback requires user interaction.</p>
+  </div>
+</div>
+
+
+<div id="tags" style="display:none">
+  {% capture site_tags %}{% for tag in site.tags %}{{ tag[0] }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
+  {% assign tag_words = site_tags | split:',' | sort %}
+  {% for tag in tag_words %}{{ tag }}, {% endfor %}
+</div>
+
+<canvas id="canvas3d"></canvas>
+
+
+<!-- ##########   ENTRY DIVS   ########### -->
+<!-- ##########   ENTRY DIVS   ########### -->
+<!-- ##########   ENTRY DIVS   ########### -->
+<!-- ##########   ENTRY DIVS   ########### -->
+<!-- ##########   ENTRY DIVS   ########### -->
 {% for post in site.posts %}
 {% assign post_id = post.title | slugify:"latin" %}
 {% assign image_thumb = post.image | replace: ".", "_mid." %}
@@ -53,6 +131,7 @@ window.addEventListener('load', function(e) {
   <a href="{{ post.url }}" onclick="openEntry('{{ post_id }}'); return false">
     <span style="display:none">{{ post.date | date: "%B %d, %Y" }}:</span>{{ post.title }}</a>
 {% if post.layout == "image" %}<img src="/img/{{ image_thumb }}"/>{% endif %}
+
 <script>
 newexample = new Entry("{{ post_id }}", "{{ post.url }}");
 {% for tag in post.tags %}
@@ -62,51 +141,56 @@ newexample.addFeature(tag_weight);
 {% endfor %}
 catalog.addEntry(newexample);
 </script>
+
 <div class="reftext">{{ post.content }}</div>
 </div>
 {% endfor %}
+<!-- ##########   END ENTRY DIVS   ########### -->
+<!-- ##########   END ENTRY DIVS   ########### -->
+<!-- ##########   END ENTRY DIVS   ########### -->
+<!-- ##########   END ENTRY DIVS   ########### -->
 
-<!-- Parse Dataset -->
+
+
+
+
+
 <script>
-filepath = "metadata.csv"
-
-// Load via local download
-Papa.parse(filepath, {
-  download: true,
-	complete: function(results) {
-		console.log("Finished reading CSV:", results.data);
-	}
-});
-
-// Stream big file asynchronously in worker thread
-Papa.parse(filepath, {
-  download: true,
-	worker: true,
-	step: function(results) {
-		console.log("Row:", results.data);
-	}
-});
-</script>
-<!-- END DATASET PARSING -->
-
-
-<canvas id="canvas3d"></canvas>
-<!-- THREE JS CODE -->
-<script>
-  // global normalized mouse position.
-  let mouse = {x: 0.0, y: 0.0};
-  let canvas = document.getElementById( 'canvas3d' );
-  canvas.style.zIndex = -1;
-
   let i; // general counter
-  let elements = document.getElementsByClassName( 'refs' );
+  let camera, controls, cube, room, room_wire, floor, floor_wire;
+  let renderer;
+  let scene;
+  let sun, ambience, sky, lamp; // lights...
+  let scale_dir = 0.01;
+  let mouse = {x: 0.0, y: 0.0};
+  const WIDTH = window.innerWidth, HEIGHT = window.innerHeight;
+  const VIEW_ANGLE = 70, NEAR_PLANE = 0.1, FAR_PLANE = 400;
+  const PIXEL_RATIO = window.devicePixelRatio;
+  let elements_positions;
 
-  // Give all elements a Z index value
-  for(i = 0; i < elements.length; i++) {
+  const canvas = document.getElementById( 'canvas3d' );
+  canvas.style.zIndex = -10;
+  let elements = document.getElementsByClassName( 'refs' );
+  for(i = 0; i < elements.length; i++) {   // Give all elements a Z index value
     elements[i].style.zIndex = Math.ceil(Math.random() * 3);
   }
 
-  let elements_positions;
+  const startButton = document.querySelector('#startButton');
+  const splashElm = document.querySelector('#overlay');
+  splashElm.style.zIndex = 10;
+
+  window.addEventListener('load', function(e) {
+    css = document.styleSheets[1].rules; // shortcut for accessing & modifying stylesheets
+    console.log('resources loaded...'); // this is called when all images & resources are loaded
+    randomize(); // randomize example divs
+    entryLocationsSnapshot(); // take a snapshot of entry root locations for 3D effect
+  });
+
+  startButton.addEventListener('click', function(ev) {
+    splashElm.style.display = 'none'; // remove loading screen
+    init();
+    animate();
+  });
 
   // RUN THIS WHENEVER DOING A PROJECTION or MOVING ENTRIES
   // record all entry div locations
@@ -116,25 +200,6 @@ Papa.parse(filepath, {
       elements_positions[i] = [elements[i].offsetLeft, elements[i].offsetTop];
     }
   }
-
-
-
-  //----------------------------------------------
-  // Basic Three JS setup code
-  // See: https://aerotwist.com/tutorials/getting-started-with-three-js/
-  //----------------------------------------------
-  let camera, controls, cube, room, room_wire, floor, floor_wire;
-  let renderer;
-  let scene;
-  let sun, ambience, sky, lamp; // lights...
-  const WIDTH = window.innerWidth, HEIGHT = window.innerHeight;
-  const VIEW_ANGLE = 70, NEAR_PLANE = 0.1, FAR_PLANE = 400;
-  const PIXEL_RATIO = window.devicePixelRatio;
-
-  let scale_dir = 0.01;
-
-  init();
-  animate();
 
   function mouseMoveLook(e) { // See MouseMove event: https://developer.mozilla.org/en-US/docs/Web/API/Element/mousemove_event
     let button, buttons, xpos, ypos, target, xoff, yoff, xmv, ymv;
@@ -169,6 +234,18 @@ Papa.parse(filepath, {
   }
 
   function init() {
+    console.log("Go - Init!");
+    initScene();
+    initAudio();
+
+    onWindowResize(); // resize 3D canvas
+    window.addEventListener( 'resize', onWindowResize, false ); // Call a function when the window is resized...
+    document.addEventListener('mousemove', mouseMoveLook);     // enable mouse interaction
+  }
+
+  function initScene() {
+    console.log("Building 3D scene...");
+
     renderer = new THREE.WebGLRenderer({canvas: canvas});
     //renderer.setClearColor("#000000");
     renderer.setPixelRatio( PIXEL_RATIO );
@@ -192,11 +269,6 @@ Papa.parse(filepath, {
       materials.push( mat );
     }
 
-
-    // ------------------------------------------------
-    // FUN STARTS HERE
-    // ------------------------------------------------
-
     // Create a Cube Mesh with basic material
     const c_geometry = new THREE.BoxGeometry( 0.1, 0.1, 0.1 );
     let c_material = new THREE.MeshPhongMaterial();
@@ -207,10 +279,6 @@ Papa.parse(filepath, {
     const cubeMat = new THREE.MeshPhongMaterial({color: '#8AC'});
     cube = new THREE.Mesh(cubeGeo, cubeMat);
     cube.position.set(0, cubeSize, -1 * cubeSize);
-     //var material = new THREE.MeshBasicMaterial( { color: "#433F81" } );
-    //material = new THREE.MeshDepthMaterial();
-    //material = new THREE.MeshNormalMaterial();
-    // Add cube to Scene
     scene.add( cube );
     cube.visible = false;
 
@@ -218,20 +286,8 @@ Papa.parse(filepath, {
 
     // FLOOR GEOMETRY
     const floorSize = 60, floorSegments = 20;
-    //const textloader = new THREE.TextureLoader();
-    //const texture = textloader.load('../img/algorithms/3d-brownian-motion-markov-property.png');
-    //texture.wrapS = THREE.RepeatWrapping;
-    //texture.wrapT = THREE.RepeatWrapping;
-    //texture.magFilter = THREE.NearestFilter;
-    //const textrepeats = floorSize / 2;
-    //texture.repeat.set(textrepeats, textrepeats);
     const floor_geom = new THREE.PlaneBufferGeometry(floorSize, floorSize, floorSegments, floorSegments);
-    /*
-    const floor_mat = new THREE.MeshPhongMaterial({
-      map: texture,
-      side: THREE.DoubleSide,
-    });
-    */
+
     // See: https://threejs.org/docs/#api/en/materials/MeshPhongMaterial
     const floor_mat = new THREE.MeshPhongMaterial( { color: '#ccc' } );
     floor = new THREE.Mesh(floor_geom, floor_mat);
@@ -241,12 +297,6 @@ Papa.parse(filepath, {
     floor.visible = true;
     scene.add( floor );
 
-    /* One method for creating a wireframe as geometry ...
-    wireframe = new THREE.WireframeGeometry( planeGeo );
-    floor_wire = new THREE.LineSegments( wireframe );
-    floor_wire.material.opacity = 1.0;
-    floor_wire.material.depthTest = true;
-    */
     // alternatively, create a wireframe material ...
     const floor_wire_mat = new THREE.MeshPhongMaterial( { color: '#ccc', wireframe: true } );
     floor_wire = new THREE.Mesh(floor_geom, floor_wire_mat);
@@ -270,27 +320,6 @@ Papa.parse(filepath, {
     scene.add(room_wire);
     room_wire.visible = false;
 
-    // LIGHTS
-    // LIGHTS.
-    // See: https://threejsfundamentals.org/threejs/lessons/threejs-lights.html
-
-    // Add ambient light to the space to keep the darks from being so dark...
-    /*
-    const am_color = 0xFFFFFF;
-    const am_intensity = 0.1;
-    ambience = new THREE.AmbientLight(am_color, am_intensity);
-    scene.add(ambience);
-    */
-
-    // Add Hemispherical Light (simple landscape lighting ... good for simple depth illusions)
-    /*
-    const sk_skyColor = 0xB1E1FF;  // light blue
-    const sk_groundColor = 0xB97A20;  // brownish orange
-    const sk_intensity = 0.1;
-    sky = new THREE.HemisphereLight(sk_skyColor, sk_groundColor, sk_intensity);
-    scene.add(sky);
-    */
-
     // Add a directional light (sun)
     const s_color = 0xFFFFFF;
     const s_intensity = 0.2;
@@ -300,48 +329,56 @@ Papa.parse(filepath, {
     scene.add(sun);
     scene.add(sun.target); // where it is pointed...
 
-    /*
-    // Visualize the light
-    const sun_helper = new THREE.DirectionalLightHelper(sun);
-    scene.add(sun_helper);
-    */
-
     // Add a point light (lamp)
     const lm_color = 0xFFFFFF;
     const lm_intensity = 1;
     lamp = new THREE.PointLight(lm_color, lm_intensity);
     lamp.position.set(0, 10, 0);
     scene.add(lamp);
-
-
-
-    // Call a function when the window is resized...
-    window.addEventListener( 'resize', onWindowResize, false );
   }
 
-  function getTexturesFromAtlasFile( atlasImgUrl, tilesNum ) {
-    let textures = [];
-    for ( i = 0; i < tilesNum; i ++ ) {
-      textures[ i ] = new THREE.Texture();
-    }
-    let imageObj = new Image();
-    imageObj.crossOrigin = "anonymous";
-    imageObj.onload = function () {
-      let canvas, context;
-      let tileWidth = imageObj.height;
-      for ( i = 0; i < textures.length; i ++ ) {
-        canvas = document.createElement( 'canvas' );
-        context = canvas.getContext( '2d' );
-        canvas.height = tileWidth;
-        canvas.width = tileWidth;
-        context.drawImage( imageObj, tileWidth * i, 0, tileWidth, tileWidth, 0, 0, tileWidth, tileWidth );
-        textures[ i ].image = canvas;
-        textures[ i ].needsUpdate = true;
+  function initAudio() {
+    console.log("Initializing audio thread...");
+    Gibberish.workletPath = './code/js/gibberish/gibberish_worklet.js';
+    Gibberish.init({debug: true}).then( () => {
+      Gibberish.export( window ); // export gibberish namespace to window
+      console.log("Initialize audio context...");
+      audioInitialized = true;
+      // MAKE AUDIO UNITS... ...LOAD SAMPLE FILES...
+        /*
+        samplePlayer = Sampler({
+            filename: './audio/Koiwana_ChrisRippey.mp3',
+            loops: true,
+            gain: 1.0
+        });
+        samplePlayer.onload = function() {
+          console.log("Sample loaded....");
+        };
+        samplePlayer.connect();
+        */
+    });
+  }
+
+  let audioInitialized = false;
+  function startAudio(val) {
+    if(val===true) {
+      if(audioInitialized) {
+        startSounds();
+        //samplePlayer.note( 0.9 );
+      } else {
+        console.log("Cannot Start Audio: Audio Not Initialized");
       }
-    };
-    imageObj.src = atlasImgUrl;
-    return textures;
+    } else {
+      console.log("Clear all gibberish connections");
+      Gibberish.clear(); // clear all connections and sequencers
+    }
   }
+
+  function startSounds() {
+    console.log("Start sounds...");
+    // start any sounds / notes that are needed
+  }
+
 
   function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
@@ -369,9 +406,6 @@ Papa.parse(filepath, {
     }
     cube.scale.y = cube.scale.z = cube.scale.x;
   }
-
-  // enable mouse interaction
-  document.addEventListener('mousemove', mouseMoveLook);
 
 </script>
 <!-- END THREE -->

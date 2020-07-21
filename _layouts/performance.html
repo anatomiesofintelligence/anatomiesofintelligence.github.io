@@ -11,11 +11,9 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
 
-    <script src="/code/lib/simple-statistics.min.js"></script>
-    <script src="/code/lib/ai-instruments.js"></script>
-    <script src="/code/sonification/SimpleOSC/SimpleOSC.js"></script>
-    <script src="/code/lib/papaparse.min.js"></script>
-    <script src="./code/lib/three/three.min.js"></script>
+    {% for libsrc in page.libraries %}
+      <script src="{{ libsrc }}"></script>
+    {% endfor %}
 
   </head>
   <body class="performance">
