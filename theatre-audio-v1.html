@@ -52,7 +52,7 @@ Papa.parse(csv_filepath, { // Load catalog data in one big download...
   mix-blend-mode: normal;
 }
 
-button {
+#startButton {
   cursor: pointer;
   text-transform: uppercase;
 }
@@ -62,8 +62,8 @@ button {
   z-index: 20;
   top: 0;
   left: 0;
-  width: 100%;
-  height:100%;
+  width: 100vw;
+  height:100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -91,7 +91,7 @@ button {
 }
 
 #canvas3d {
-  display: block
+  display: block;
   margin: 0;
   border: 0;
   width: 100%;
@@ -103,7 +103,10 @@ button {
 </style>
 
 <div id="overlay">
-  <div>
+  <div id="loadingmsg">
+    <p>loading</p>
+  </div>
+  <div id="startmsg">
     <button id="startButton">Click to Allow Audio</button>
     <p>Audio playback requires user interaction.</p>
   </div>
@@ -156,93 +159,62 @@ catalog.addEntry(newexample);
 
 
 <script>
+  // STATE
+  const DEBUG = false;
+  let audioInitialized = false;
   let i; // general counter
-  let camera, controls, cube, room, room_wire, floor, floor_wire;
-  let renderer;
-  let scene;
-  let sun, ambience, sky, lamp; // lights...
-  let scale_dir = 0.01;
-  let mouse = {x: 0.0, y: 0.0};
+
+  // DISPLAY
   const WIDTH = window.innerWidth, HEIGHT = window.innerHeight;
   const VIEW_ANGLE = 70, NEAR_PLANE = 0.1, FAR_PLANE = 400;
   const PIXEL_RATIO = window.devicePixelRatio;
-  let elements_positions;
-
   const canvas = document.getElementById( 'canvas3d' );
   canvas.style.zIndex = -10;
+  let renderer;
+  let scene;
+  let camera, controls, cube, room, room_wire, floor, floor_wire;
+  let sun, ambience, sky, lamp; // lights...
+  let elements_positions;
   let elements = document.getElementsByClassName( 'refs' );
   for(i = 0; i < elements.length; i++) {   // Give all elements a Z index value
     elements[i].style.zIndex = Math.ceil(Math.random() * 3);
   }
 
+  // INTERACTION
+  let scale_dir = 0.01;
+  let mouse = {x: 0.0, y: 0.0};
   const startButton = document.querySelector('#startButton');
+  const loadingMsg = document.querySelector('#loadingmsg');
+  const startMsg = document.querySelector('#startmsg');
+  startMsg.style.display = "none";
   const splashElm = document.querySelector('#overlay');
   splashElm.style.zIndex = 10;
 
   window.addEventListener('load', function(e) {
     css = document.styleSheets[1].rules; // shortcut for accessing & modifying stylesheets
     console.log('resources loaded...'); // this is called when all images & resources are loaded
-    randomize(); // randomize example divs
-    entryLocationsSnapshot(); // take a snapshot of entry root locations for 3D effect
+    initAudio();
+
+    startMsg.style.display = "initial";
+    loadingMsg.style.display = "none";
   });
 
   startButton.addEventListener('click', function(ev) {
     splashElm.style.display = 'none'; // remove loading screen
-    init();
+    console.log("Go!");
+
+    initScene();
+    window.addEventListener( 'resize', onWindowResize, false ); // Call a function when the window is resized...
+    randomize(); // randomize example divs
+    entryLocationsSnapshot(); // take a snapshot of entry root locations for 3D effect
+    document.addEventListener('mousemove', mouseMoveLook);     // enable mouse interaction
     animate();
+
+    setTimeout(() => makeAudioGraph(), 2000);
   });
 
-  // RUN THIS WHENEVER DOING A PROJECTION or MOVING ENTRIES
-  // record all entry div locations
-  function entryLocationsSnapshot() {
-    elements_positions = new Array(elements.length);
-    for(i = 0; i < elements_positions.length; i++) {
-      elements_positions[i] = [elements[i].offsetLeft, elements[i].offsetTop];
-    }
-  }
 
-  function mouseMoveLook(e) { // See MouseMove event: https://developer.mozilla.org/en-US/docs/Web/API/Element/mousemove_event
-    let button, buttons, xpos, ypos, target, xoff, yoff, xmv, ymv;
-    buttons = e.buttons; // mouse button state
-    // convert mouse position to the range -1,1
-    xpos = (e.clientX / window.innerWidth) * 2 - 1;
-    ypos = (e.clientY / window.innerHeight) * 2 - 1;
-    xmv = e.movementX; ymv = e.movementY;
-    xoff = e.offsetX; yoff = e.offsetY; // mousepos related to div below mouse
-    mouse.x = xpos; mouse.y = ypos; // update global var
-    /*
-    camera.quaternion.x += xmv / 1000;
-    camera.quaternion.y += ymv / 1000;
-    */
-    camera.quaternion.x = ypos;
-    camera.quaternion.y = xpos;
-
-    //camera.rotateY(xmv / -1000);
-    //camera.rotateX(ymv / -1000);
-    camera.position.x += xmv / 1000;
-    camera.position.y += ymv / 1000;
-    for(let i = 0; i < elements.length; i++) {
-      let el = elements[i], pos = elements_positions[i];
-      let t, l, z;
-      z = parseInt(el.style.zIndex);
-      t = (ypos * z * z * z) + pos[1];
-      l = (xpos * z * z * z) + pos[0];
-      //console.log(xpos, ypos, z, t, l);
-      el.style.top = t + "px";
-      el.style.left = l + "px";
-    }
-  }
-
-  function init() {
-    console.log("Go - Init!");
-    initScene();
-    initAudio();
-
-    onWindowResize(); // resize 3D canvas
-    window.addEventListener( 'resize', onWindowResize, false ); // Call a function when the window is resized...
-    document.addEventListener('mousemove', mouseMoveLook);     // enable mouse interaction
-  }
-
+  // PLUMBING FUNCTIONS ...
   function initScene() {
     console.log("Building 3D scene...");
 
@@ -337,48 +309,78 @@ catalog.addEntry(newexample);
     scene.add(lamp);
   }
 
+  let beat, verb, bass, bassSeq, kik, kikseq;
   function initAudio() {
     console.log("Initializing audio thread...");
-    Gibberish.workletPath = './code/js/gibberish/gibberish_worklet.js';
-    Gibberish.init({debug: true}).then( () => {
+    Gibberish.workletPath = './code/lib/gibberish/gibberish_worklet.js';
+    Gibberish.init({debug: DEBUG}).then( () => {
       Gibberish.export( window ); // export gibberish namespace to window
       console.log("Initialize audio context...");
       audioInitialized = true;
-      // MAKE AUDIO UNITS... ...LOAD SAMPLE FILES...
-        /*
-        samplePlayer = Sampler({
-            filename: './audio/Koiwana_ChrisRippey.mp3',
-            loops: true,
-            gain: 1.0
-        });
-        samplePlayer.onload = function() {
-          console.log("Sample loaded....");
-        };
-        samplePlayer.connect();
-        */
     });
   }
 
-  let audioInitialized = false;
-  function startAudio(val) {
-    if(val===true) {
-      if(audioInitialized) {
-        startSounds();
-        //samplePlayer.note( 0.9 );
-      } else {
-        console.log("Cannot Start Audio: Audio Not Initialized");
-      }
+  function makeAudioGraph() {
+    console.log("Build audio graph...", audioInitialized);
+    if(audioInitialized) {
+    // MAKE AUDIO UNITS... ...LOAD SAMPLE FILES...
+    beat = 22050;
+    verb = Freeverb({ roomSize:.875, damping:.5 }).connect();
+    bass = Synth({ Q:.85 }).connect( verb );
+    bass.cutoff = Add( .45, Sine({ frequency:.125, gain:.4 }) );
+    bassSeq = Sequencer({
+        target:bass,
+        key:'note',
+        values:[55,110,165,220,273,330,385,440],
+        timings:[beat / 4]
+      }).start();
+      kik = Kick().connect();
+      kikseq = Sequencer.make( [.5], [beat], kik, 'trigger' ).start();
     } else {
-      console.log("Clear all gibberish connections");
-      Gibberish.clear(); // clear all connections and sequencers
+      console.error("Audio is not yet initialized! Cannot make audio graph.");
     }
   }
 
-  function startSounds() {
-    console.log("Start sounds...");
-    // start any sounds / notes that are needed
+  // RUN THIS WHENEVER DOING A PROJECTION or MOVING ENTRIES
+  // record all entry div locations
+  function entryLocationsSnapshot() {
+    elements_positions = new Array(elements.length);
+    for(i = 0; i < elements_positions.length; i++) {
+      elements_positions[i] = [elements[i].offsetLeft, elements[i].offsetTop];
+    }
   }
 
+  function mouseMoveLook(e) { // See MouseMove event: https://developer.mozilla.org/en-US/docs/Web/API/Element/mousemove_event
+    let button, buttons, xpos, ypos, target, xoff, yoff, xmv, ymv;
+    buttons = e.buttons; // mouse button state
+    // convert mouse position to the range -1,1
+    xpos = (e.clientX / window.innerWidth) * 2 - 1;
+    ypos = (e.clientY / window.innerHeight) * 2 - 1;
+    xmv = e.movementX; ymv = e.movementY;
+    xoff = e.offsetX; yoff = e.offsetY; // mousepos related to div below mouse
+    mouse.x = xpos; mouse.y = ypos; // update global var
+    /*
+    camera.quaternion.x += xmv / 1000;
+    camera.quaternion.y += ymv / 1000;
+    */
+    camera.quaternion.x = ypos;
+    camera.quaternion.y = xpos;
+
+    //camera.rotateY(xmv / -1000);
+    //camera.rotateX(ymv / -1000);
+    camera.position.x += xmv / 1000;
+    camera.position.y += ymv / 1000;
+    for(let i = 0; i < elements.length; i++) {
+      let el = elements[i], pos = elements_positions[i];
+      let t, l, z;
+      z = parseInt(el.style.zIndex);
+      t = (ypos * z * z * z) + pos[1];
+      l = (xpos * z * z * z) + pos[0];
+      //console.log(xpos, ypos, z, t, l);
+      el.style.top = t + "px";
+      el.style.left = l + "px";
+    }
+  }
 
   function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
@@ -394,43 +396,16 @@ catalog.addEntry(newexample);
     renderer.render( scene, camera );
   }
 
-  function animateCube() {
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
-
-    cube.scale.x += scale_dir;
-    if(cube.scale.x > 2) {
-      scale_dir = -0.01;
-    } else if(cube.scale.x < 0.1) {
-      scale_dir = 0.01;
-    }
-    cube.scale.y = cube.scale.z = cube.scale.x;
-  }
-
-</script>
-<!-- END THREE -->
 
 
+  /********** CATALOG API FUNCTIONS ***********/
+  /********** CATALOG API FUNCTIONS ***********/
+  /********** CATALOG API FUNCTIONS ***********/
+  /********** CATALOG API FUNCTIONS ***********/
+  /********** CATALOG API FUNCTIONS ***********/
+  /********** CATALOG API FUNCTIONS ***********/
+  /********** CATALOG API FUNCTIONS ***********/
 
-
-
-
-<!-- CATALOG API -->
-<script>
-// OSC connection to the local SimpleOSC Server
-var OSC_OUT = new SimpleOSC("localhost", 8080);
-OSC_OUT.init(function() {
-    // Put code here that should run once an OSC connection is established.
-    //catalog.cluster(K, MEASUREMENT, CLUSTER_DIMENSIONS, ITERATIONS, resultfunc, BREAKPOINTS, OSC_OUT, console.log);
-});
-
-/* ----------------------------------------------------
-.######..##..##..##..##...####...######..######...####...##..##...####..
-.##......##..##..###.##..##..##....##......##....##..##..###.##..##.....
-.####....##..##..##.###..##........##......##....##..##..##.###...####..
-.##......##..##..##..##..##..##....##......##....##..##..##..##......##.
-.##.......####...##..##...####.....##....######...####...##..##...####..
--------------------------------------------------------*/
 
 let tagdiv = document.getElementById("tags");
 let entryDivs = document.getElementsByClassName("refs");
