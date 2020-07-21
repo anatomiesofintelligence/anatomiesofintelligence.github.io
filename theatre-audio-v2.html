@@ -326,14 +326,9 @@ catalog.addEntry(newexample);
     verb = Freeverb({ roomSize:.875, damping:.5 }).connect();
     bass = Synth({ Q:.85 }).connect( verb );
     bass.cutoff = Add( .45, Sine({ frequency:.125, gain:.4 }) );
-    bassSeq = Sequencer({
-        target:bass,
-        key:'note',
-        values:[55,110,165,220,273,330,385,440],
-        timings:[beat / 4]
-      }).start();
-      kik = Kick().connect();
-      kikseq = Sequencer.make( [.5], [beat], kik, 'trigger' ).start();
+
+    kik = Kick().connect();
+
     } else {
       console.error("Audio is not yet initialized! Cannot make audio graph.");
     }
@@ -765,7 +760,8 @@ function cluster(num_clusters, features, iterations=10, interactive=false, callb
   }
 
   if(interactive) {
-    catalog.cluster(K, MEASUREMENT, CLUSTER_DIMENSIONS, iterations, resultfunc, 1.0, OSC_OUT, callback, log);
+    //catalog.cluster(K, MEASUREMENT, CLUSTER_DIMENSIONS, iterations, resultfunc, 1.0, OSC_OUT, callback, log);
+    catalog.cluster(K, MEASUREMENT, CLUSTER_DIMENSIONS, iterations, resultfunc, 1.0, null, callback, log);
   } else {
     catalog.cluster(K, MEASUREMENT, CLUSTER_DIMENSIONS, iterations, resultfunc, 0.0, null, callback, log);
   }
@@ -895,34 +891,17 @@ function help() {
   console.log(str);
 }
 
-//************** GLOBAL CONSTANTS *****************//
-
-// DEFAULT CALLBACK FUNC ... we could have more ...
-const CALLBACK_FUNC = function(step, info) {
-  //console.log(step, info);
-  if(step == 'distance') {
-    entrydiv = document.querySelector("#"+info.id);
-    entrydiv.style.border = 2 + "px solid rgba(" + CLUSTER_COLORS[info.cluster] + ", " + 0.8 + ")";
-    return 1/4; // pause 1/4 beat
-  }
-  if(step == 'decide') {
-    entrydiv = document.querySelector("#"+info.id);
-    entrydiv.style.border = 2 + "px solid rgba(" + CLUSTER_COLORS[info.cluster] + ", " + 0.8 + ")";
-    return 1/2; // pause 1/2 beat
-  }
-  return 1; // all other steps are 1 beat
-};
-
-// STEP COUNTER
-let STEP_COUNT = 0;
-const CALLBACK_COUNTER = function(step, info) {
-  STEP_COUNT++;
-  console.log(STEP_COUNT);
-  return 1;
-}
-
-// Can be used as a template
-var CALLBACK_TEMPLATE = function(step, info) {
+//************** CALLBACK FUNTIONS FOR ALGORITHM STEPS *****************//
+//************** CALLBACK FUNTIONS FOR ALGORITHM STEPS *****************//
+//************** CALLBACK FUNTIONS FOR ALGORITHM STEPS *****************//
+//************** CALLBACK FUNTIONS FOR ALGORITHM STEPS *****************//
+//************** CALLBACK FUNTIONS FOR ALGORITHM STEPS *****************//
+//************** CALLBACK FUNTIONS FOR ALGORITHM STEPS *****************//
+//************** CALLBACK FUNTIONS FOR ALGORITHM STEPS *****************//
+//************** CALLBACK FUNTIONS FOR ALGORITHM STEPS *****************//
+//************** CALLBACK FUNTIONS FOR ALGORITHM STEPS *****************//
+// USE THIS AS THE BASIS FOR NEW CALLBACK FUNCTIONS
+const CALLBACK_TEMPLATE = function(step, info) {
   if(step == 'distance') {
     console.log("Distance", info);
     return 1; // wait 1 beat
@@ -949,39 +928,60 @@ var CALLBACK_TEMPLATE = function(step, info) {
       return 1;
     }
   }
-
   if(step == "initcentroid") {
     console.log("Init Centroid", info);
     return 1;
   }
-
   if(step == "recalculateCentroid") {
     console.log("Recalculate Centroid", info);
     return 1;
   }
-
   if(step == "normalize") {
     console.log("Normalize", info);
     return 1;
   }
-
   if(step == "denormalize") {
     console.log("DE Normalize", info);
     return 1;
   }
-
   if(step == "done") {
     console.log("End of Clustering", info);
     return 1;
   }
-
   // we should never reach this point if all step names are accounted for above
   throw "Unrecognized step name: " + step;
   // if not, then remember to add a return statement here with a default time value
   //return 1;
 };
 
-let CALLBACK_EXPERIMENT = function(step, info) {
+
+// DEFAULT CALLBACK FUNCTION
+const CALLBACK_FUNC = function(step, info) {
+  //console.log(step, info);
+  if(step == 'distance') {
+    entrydiv = document.querySelector("#"+info.id);
+    entrydiv.style.border = 2 + "px solid rgba(" + CLUSTER_COLORS[info.cluster] + ", " + 0.8 + ")";
+    return 1/4; // pause 1/4 beat
+  }
+  if(step == 'decide') {
+    entrydiv = document.querySelector("#"+info.id);
+    entrydiv.style.border = 2 + "px solid rgba(" + CLUSTER_COLORS[info.cluster] + ", " + 0.8 + ")";
+    return 1/2; // pause 1/2 beat
+  }
+  return 1; // all other steps are 1 beat
+};
+
+// STEP COUNTING CALLBACK FUNCTION -> USEFUL FOR ESTIMATING TIMING OF A CLUSTERING
+let STEP_COUNT = 0;
+const CALLBACK_COUNTER = function(step, info) {
+  STEP_COUNT++;
+  console.log(STEP_COUNT);
+  return 1;
+}
+
+
+// CALLBACK THAT ANIMATES DROP SHADOWS
+const CALLBACK_SHADOW = function(step, info) {
   if(step == 'distance') {
     entrydiv = document.querySelector("#"+info.id);
     entrydiv.classList.toggle("active");
@@ -1000,7 +1000,6 @@ let CALLBACK_EXPERIMENT = function(step, info) {
     //console.log("Reconsider", info);
     return 1; // one beat
   }
-
   if(step == 'section') {
     if(info.section == 'start') {
       // start iteration, remove all entrydiv classes
@@ -1013,11 +1012,66 @@ let CALLBACK_EXPERIMENT = function(step, info) {
       return 1;
     }
   }
-
-  // everything else lasts 1.5 beats
   return 1.5;
 };
 
+// CALLBACK WITH AUDIO EVENTS
+const CALLBACK_AUDIO = function(step, info) {
+  if(step == 'distance') {
+    console.log("Distance", info);
+    bass.note(60);
+    return 1; // wait 1 beat
+  }
+  if(step == 'decide') {
+    console.log("Decide", info);
+    kik.note(30);
+    return 1;
+  }
+  if(step == 'reconsider') {
+    console.log("Reconsider", info);
+    bass.note(30);
+    return 1;
+  }
+  if(step == 'section') {
+    if(info.section == 'start') {
+      console.log("Entering section START ITERATION " + info.iter, info);
+      return 1;
+    }
+    if(info.section == 'recalculate-centroids') {
+      console.log("Entering section RECALCULATE CENTROIDS " + info.iter, info);
+      return 1;
+    }
+    if(info.section == 'end') {
+      console.log("Entering section END ITERATION" + info.iter, info);
+      return 1;
+    }
+  }
+  if(step == "initcentroid") {
+    console.log("Init Centroid", info);
+    return 1;
+  }
+  if(step == "recalculateCentroid") {
+    console.log("Recalculate Centroid", info);
+    return 1;
+  }
+  if(step == "normalize") {
+    console.log("Normalize", info);
+    return 1;
+  }
+  if(step == "denormalize") {
+    console.log("DE Normalize", info);
+    return 1;
+  }
+  if(step == "done") {
+    console.log("End of Clustering", info);
+    bass.note(20);
+    return 1;
+  }
+  // we should never reach this point if all step names are accounted for above
+  throw "Unrecognized step name: " + step;
+  // if not, then remember to add a return statement here with a default time value
+  //return 1;
+};
 
 
 // CLUSTERING PARAMETERS
