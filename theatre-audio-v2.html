@@ -1020,21 +1020,33 @@ const CALLBACK_AUDIO = function(step, info) {
   if(step == 'distance') {
     console.log("Distance", info);
     bass.note(60);
-    return 1; // wait 1 beat
+    entrydiv = document.querySelector("#"+info.id);
+    entrydiv.classList.toggle("active");
+    entrydiv.style.filter = "drop-shadow(30px 6px 6px " + "rgba(" + CLUSTER_COLORS[info.cluster] + ", " + 0.8 + ")" + ")";
+    return 1/6; // 1/6 beat
   }
   if(step == 'decide') {
     console.log("Decide", info);
     kik.note(30);
-    return 1;
+    entrydiv = document.querySelector("#"+info.id);
+    entrydiv.classList.toggle("decided");
+    entrydiv.style.filter = "drop-shadow(2px 2px 2px " + "rgba(" + CLUSTER_COLORS[info.cluster] + ", " + 0.8 + ")" + ")";
+    return 1/2; // 1/2 beat
   }
   if(step == 'reconsider') {
     console.log("Reconsider", info);
+    entrydiv = document.querySelector("#"+info.id);
+    entrydiv.classList.toggle("reconsider");
     bass.note(30);
     return 1;
   }
   if(step == 'section') {
     if(info.section == 'start') {
       console.log("Entering section START ITERATION " + info.iter, info);
+      // start iteration, remove all entrydiv classes
+      for(i=0; i < entryDivs.length; i++) {
+        entryDivs[i].classList.remove("active", "decided", "reconsider");
+      }
       return 1;
     }
     if(info.section == 'recalculate-centroids') {
