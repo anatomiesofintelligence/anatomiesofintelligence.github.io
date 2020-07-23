@@ -191,7 +191,7 @@ catalog.addEntry(newexample);
   splashElm.style.zIndex = 10;
 
   window.addEventListener('load', async function(e) {
-    css = document.styleSheets[1].rules; // shortcut for accessing & modifying stylesheets
+    //css = document.styleSheets[1].rules; // shortcut for accessing & modifying stylesheets
     console.log('resources loaded...'); // this is called when all images & resources are loaded
 
     startMsg.style.display = "initial";
@@ -1019,7 +1019,7 @@ const CALLBACK_SHADOW = function(step, info) {
 const CALLBACK_AUDIO = function(step, info) {
   if(step == 'distance') {
     console.log("Distance", info);
-    bass.note(60);
+    kik.note(60);
     entrydiv = document.querySelector("#"+info.id);
     entrydiv.classList.toggle("active");
     entrydiv.style.filter = "drop-shadow(30px 6px 6px " + "rgba(" + CLUSTER_COLORS[info.cluster] + ", " + 0.8 + ")" + ")";
@@ -1027,7 +1027,7 @@ const CALLBACK_AUDIO = function(step, info) {
   }
   if(step == 'decide') {
     console.log("Decide", info);
-    kik.note(30);
+    bass.note(42);
     entrydiv = document.querySelector("#"+info.id);
     entrydiv.classList.toggle("decided");
     entrydiv.style.filter = "drop-shadow(2px 2px 2px " + "rgba(" + CLUSTER_COLORS[info.cluster] + ", " + 0.8 + ")" + ")";
@@ -1037,7 +1037,7 @@ const CALLBACK_AUDIO = function(step, info) {
     console.log("Reconsider", info);
     entrydiv = document.querySelector("#"+info.id);
     entrydiv.classList.toggle("reconsider");
-    bass.note(30);
+    bass.note(80);
     return 1;
   }
   if(step == 'section') {
