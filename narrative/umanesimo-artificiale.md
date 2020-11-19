@@ -1,6 +1,6 @@
 # Pre-Stage
 
-_Waiting Room — Ideas_
+__Waiting Room — Ideas__
 
 * body measuring ritual: warming up for the anatomic journey;
 
@@ -8,7 +8,7 @@ _Waiting Room — Ideas_
 
 * the anatomist and the anatomized body.
 
-<span style="color:gray">voice snippets</span>
+<p style="color:gray">voice snippets</p>
 
 Welcome to the Anatomies of Intelligence waiting room. You will be soon taken on a an anatomic journey. — > voice repeats like in waiting rooms;
 
@@ -48,17 +48,17 @@ Remember to continue breathing.
 
 ## Phase 01: the dataset;
 
-*notes on narrative*
+__notes on narrative__
 
 * audience introduced to the actors in the networks; 
 
-<span style="color:blue">on style</span>
+<p style="color:blue">on style</p>
 
 * entries display as list or grid;
 
 * entries display are spatialised;
 
-<span style="color:pink">code</span>
+<p style="color:pink">code</p>
 
 * catalog.allEntries //full list of entries
 
@@ -70,7 +70,7 @@ Remember to continue breathing.
 
 ## Phase 02: clustering beggins;
 
-*notes on narrative*
+__notes on narrative__
 
 * introduction to the algorithm;
 
@@ -95,7 +95,7 @@ Aesthesis or “the faculty or power of sensation” was often used to describe 
 
 ## Phase 03
 
-*notes on narrative*
+__notes on narrative__
 
 * the viewpoint of a node in the network;
 
