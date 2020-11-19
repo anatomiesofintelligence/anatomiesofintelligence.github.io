@@ -1,3 +1,11 @@
+```diff
+- text in red
++ text in green
+! text in orange
+# text in gray
+@@ text in purple (and bold)@@
+```
+
 # Pre-Stage
 
 __Waiting Room — Ideas__
