@@ -125,6 +125,12 @@ __IMMEDIATE CLUSTER__
 
 * background-image: url(".png"); // image of cutting table;
 
+```diff
+- record voice: when we define the culstering
+```
+
+* we now need your attention please; read step by step aspects of the algorithm;
+
 
 ```diff
 - record voice:
