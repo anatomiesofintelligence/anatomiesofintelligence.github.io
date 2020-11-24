@@ -135,11 +135,16 @@ __IMMEDIATE CLUSTER__
 Aesthesis or “the faculty or power of sensation” was often used to describe scientific practices in eighteenth-century European medical and philosophical dictionaries. "Laying bare and learning about the inner structures of the human body, was best done through the use of one’s own hands and eyes. (...) However, although the hand and the eye were indeed considered to be the anatomists’ most important instruments, all senses, including smell, taste, and hearing were involved in the practice of anatomy."
 
 
-__ANIMATED SLOW CLUSTERING__
+# Phase 03: Clustering Slow Motion;
+
+* voice dialog / now we make this process at a human scale
+* stretching it out in time and space
+* begin new clustering (interactive mode - features to be chosen ... cutting & measurement )
+
+* catalog.cluster(3, Measures.euclidean, ["cutting", "measurement"], 10, resultfunc, true, OSC_OUT, console.log);
 
 
-## Phase 03: Viewpoints — the outlier;
-
+## Phase 04: PAUSE: Viewpoints — the outlier;
 
 ```diff
 # notes narrative:
@@ -189,7 +194,7 @@ But in most cases, they force a rethinking of the model's effectivity and are su
 
 * Instead, we shape them into didactic instruments and purveyors of meaning.
 
-## Phase 04: End;
+# Phase 05: End;
 
 
 ```diff
