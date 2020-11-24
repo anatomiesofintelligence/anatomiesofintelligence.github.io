@@ -43,7 +43,7 @@ Who else is breathing in the room? Write us a few words to introduce yourself fr
 * Welcome to the Anatomies of Intelligence waiting room. You will be soon taken on a an anatomic journey.
 
 * Feel the distance and proximity between you and other bodies in this room.
-Proximal in anatomy is the nearest organ to another one, like your cornea in your left eye. 
+Proximal in anatomy is the nearest organ to another one. 
 Inter- (from Latin inter, meaning 'between'): between two other structures, such as the intercostal muscles running between the ribs.
 The location of anatomical structures, like a mapping exercise, can be described with relation to different anatomical landmarks. 
 Here the relationship is based on euclidean distancing: measuring the distance between each entry; 
