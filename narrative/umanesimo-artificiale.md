@@ -1,3 +1,4 @@
+<!---
 ```diff
 - text in red
 + text in green
@@ -5,6 +6,7 @@
 # text in gray
 @@ text in purple (and bold)@@
 ```
+-->
 
 # Pre-Stage: Waiting Room
 
@@ -199,7 +201,7 @@ But in most cases, they force a rethinking of the model's effectivity and are su
 * sun.intensity=0.6 (fade in dark space)
 
 ```diff
-# repeat voice:
+- repeat voice:
 ```
 
 * The anatomist and the anatomized body. Iteration over iteration, calculating distances cutting across various lengths. 
