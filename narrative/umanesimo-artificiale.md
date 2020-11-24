@@ -61,7 +61,7 @@ __notes on narrative__
 
 
 ```diff
-@@ code
+@@ code@@
 ```
 * room_wire.visible = false
 * floor_wire.visible = false
@@ -98,7 +98,7 @@ __notes on narrative__
 
 
 ```diff
-@@ code
+@@ code@@
 ```
 * K = 3 //K-number of clusters
 * MEASUREMENT = Measures.euclidean //measurement metric
@@ -126,7 +126,7 @@ __notes on narrative__
 * The ex-negativo; the outlier; the monster;
 
 ```diff
-@@ code
+@@ code@@
 ```
 
 * document.querySelectorAll(".refs").style.visibility="hidden";
@@ -172,7 +172,7 @@ But in most cases, they force a rethinking of the model's effectivity and are su
 Performing a series of dissections, cutting through corpses, data, our anatomic dataset collection. Classified objects of knowledge, a new collection is born.
 
 ```diff
-@@ code
+@@ code@@
 ```
 
 * floor_wire.visible=false
