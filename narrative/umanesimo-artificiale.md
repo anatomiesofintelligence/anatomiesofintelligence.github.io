@@ -21,7 +21,6 @@
 ```diff
 - record voice: export mp3 mone 32kb; force export to mono; constant bitrate (quality); variable speed standard;
 ```
-* ADD: questions for chat; 
 
 * Welcome to the Anatomies of Intelligence waiting room. You will be soon taken on a an anatomic journey. // — > voice repeats like in waiting rooms;
 
