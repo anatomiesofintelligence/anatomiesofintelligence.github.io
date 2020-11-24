@@ -65,7 +65,7 @@ Remember to continue breathing.
 # notes narrative:
 ```
 
-* audience introduced to the actors in the networks; 
+* audience introduced to the points in the dataset/ actors in the networks; 
 
 
 ```diff
