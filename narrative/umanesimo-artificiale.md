@@ -143,6 +143,17 @@ Aesthesis or “the faculty or power of sensation” was often used to describe 
 
 * catalog.cluster(3, Measures.euclidean, ["cutting", "measurement"], 10, resultfunc, true, OSC_OUT, console.log);
 
+  
+```diff
+- record voice:
+```
+
+
+* In the past demonstrations were usually spread over several days, and limited to the winter months, in an unheated room facing northward to keep the sun out. 
+These measures are no longer necessary. In the air there no longer lingers a smell of incense. There is no, far stronger, smell of rot. 
+Although we still attempt to start with the most perishable parts of the corpus. There is still something unnerving, and unpleasant.
+
+
 
 ## Phase 04: PAUSE: Viewpoints — the outlier;
 
@@ -170,10 +181,6 @@ Aesthesis or “the faculty or power of sensation” was often used to describe 
 ```diff
 - record voice:
 ```
-
-* In the past demonstrations were usually spread over several days, and limited to the winter months, in an unheated room facing northward to keep the sun out. 
-These measures are no longer necessary. In the air there no longer lingers a smell of incense. There is no, far stronger, smell of rot. 
-Although we still attempt to start with the most perishable parts of the corpus. There is still something unnerving, and unpleasant.
 
 * Dealing with the disgusting insides of the body and with severed body parts is, of course inevitable for anatomists. 
 Paradoxically, is is also a manner in which to gain access to knowledge about the beauty and perfection of a data corpus. Can you imagine? 
