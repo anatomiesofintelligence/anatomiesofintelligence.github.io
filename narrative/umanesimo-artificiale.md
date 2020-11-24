@@ -87,13 +87,13 @@ Remember to continue breathing.
 * clearInterval(moveit)
 * floor_wire.visible= true
 
-* catalog.allEntries //full list of entries
+* catalog.allEntries // full list of entries
 
 ```diff
 - record voice:
 ```
 
-* [read list of entries;](https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io/blob/master/narrative/all-tags.md)
+* [read list of all entries;](https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io/blob/master/narrative/all-tags.md)
 
 
 ## Phase 02: Clustering Beggins;
