@@ -58,7 +58,7 @@ Remember to continue breathing.
 
 # on Stage
 
-## Phase 01: the dataset;
+## Phase 01: The Dataset;
 
 
 ```diff
@@ -97,7 +97,7 @@ Remember to continue breathing.
 * [read list of entries;](https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io/blob/master/narrative/all-tags.md)
 
 
-## Phase 02: clustering beggins;
+## Phase 02: Clustering Beggins;
 
 
 ```diff
@@ -129,7 +129,7 @@ Remember to continue breathing.
 * Learning the best techniques to dissect the body to effectively observe each muscle and how the body is laid out. Learning from each cut, hands-on, a humid sensation activates the smells in the room.
 Aesthesis or “the faculty or power of sensation” was often used to describe scientific practices in eighteenth-century European medical and philosophical dictionaries. "Laying bare and learning about the inner structures of the human body, was best done through the use of one’s own hands and eyes. (...) However, although the hand and the eye were indeed considered to be the anatomists’ most important instruments, all senses, including smell, taste, and hearing were involved in the practice of anatomy."
 
-## Phase 03
+## Phase 03: Viewpoints — the outlier;
 
 
 ```diff
@@ -180,7 +180,7 @@ But in most cases, they force a rethinking of the model's effectivity and are su
 
 * Instead, we shape them into didactic instruments and purveyors of meaning.
 
-## Phase 04: end
+## Phase 04: End;
 
 
 ```diff
