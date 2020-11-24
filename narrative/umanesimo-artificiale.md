@@ -19,7 +19,7 @@
 * chatroom quiet, whispering;
 
 ```diff
-- record voice: export mp3 mono 15kb; force export to mono; medium quality; variable speed standard;
+- record voice: export mp3 mone 32kb; force export to mono; constant bitrate (quality); variable speed standard;
 ```
 * ADD: questions for chat; 
 
