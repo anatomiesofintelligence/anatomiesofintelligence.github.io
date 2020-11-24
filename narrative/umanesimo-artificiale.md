@@ -6,15 +6,18 @@
 @@ text in purple (and bold)@@
 ```
 
-# Pre-Stage
+# Pre-Stage: Waiting Room
 
-__Waiting Room — Ideas__
+
+```diff
+# notes narrative:
+```
 
 * body measuring ritual: warming up for the anatomic journey;
 * chatroom quiet, whispering;
 
 ```diff
-# record voice:
+- record voice:
 ```
 
 * Welcome to the Anatomies of Intelligence waiting room. You will be soon taken on a an anatomic journey. — > voice repeats like in waiting rooms;
@@ -55,7 +58,10 @@ Remember to continue breathing.
 
 ## Phase 01: the dataset;
 
-__notes on narrative__
+
+```diff
+# notes narrative:
+```
 
 * audience introduced to the actors in the networks; 
 
@@ -83,7 +89,7 @@ __notes on narrative__
 # catalog.allEntries //full list of entries
 
 ```diff
-# record voice:
+- record voice:
 ```
 
 * [read list of entries;](https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io/blob/master/narrative/all-tags.md)
@@ -91,7 +97,10 @@ __notes on narrative__
 
 ## Phase 02: clustering beggins;
 
-__notes on narrative__
+
+```diff
+# notes narrative:
+```
 
 * introduction to the algorithm;
 * the anatomist and the anatomized body.
@@ -110,7 +119,7 @@ __notes on narrative__
 
 
 ```diff
-# record voice:
+- record voice:
 ```
 
 * Starting with a simple gesture: cutting. To cut open, to examine, in order to describe each organ and identify their functions, while discovering its relations to the whole — from organ to organisation, organicity. The begginings of exploring a vast circulatory network circumventing anatomical locations which connects functions and enactments. Some call it an empirical system to perform systematic dissection of the human body.
@@ -120,7 +129,10 @@ Aesthesis or “the faculty or power of sensation” was often used to describe 
 
 ## Phase 03
 
-__notes on narrative__
+
+```diff
+# notes narrative:
+```
 
 * The viewpoint of a node in the network;
 * The ex-negativo; the outlier; the monster;
@@ -140,7 +152,7 @@ __notes on narrative__
 * add distinct style to div  — box-shadow? (aesthesis-negativo);
   
 ```diff
-# record voice:
+- record voice:
 ```
 
 * In the past demonstrations were usually spread over several days, and limited to the winter months, in an unheated room facing northward to keep the sun out. 
@@ -166,10 +178,15 @@ But in most cases, they force a rethinking of the model's effectivity and are su
 
 * Instead, we shape them into didactic instruments and purveyors of meaning.
 
-## Phase 04: ending of clustering; leaving the space.
+## Phase 04: end
 
-* The anatomist and the anatomized body. Iteration over iteration, calculating distances cutting across various lengths. 
-Performing a series of dissections, cutting through corpses, data, our anatomic dataset collection. Classified objects of knowledge, a new collection is born.
+
+```diff
+# notes narrative:
+```
+
+* ending of clustering; 
+* leaving the space.
 
 ```diff
 @@ code@@
@@ -184,6 +201,9 @@ Performing a series of dissections, cutting through corpses, data, our anatomic 
 ```diff
 # repeat voice:
 ```
+
+* The anatomist and the anatomized body. Iteration over iteration, calculating distances cutting across various lengths. 
+Performing a series of dissections, cutting through corpses, data, our anatomic dataset collection. Classified objects of knowledge, a new collection is born.
 
 * [read list of entries;](https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io/blob/master/narrative/all-tags.md)
 
