@@ -23,39 +23,36 @@
 ```
 * ADD: questions for chat; 
 
-* Welcome to the Anatomies of Intelligence waiting room. You will be soon taken on a an anatomic journey. — > voice repeats like in waiting rooms;
+* Welcome to the Anatomies of Intelligence waiting room. You will be soon taken on a an anatomic journey. // — > voice repeats like in waiting rooms;
 
-* How is your body feeling today? Feel the weight and lightness of you body; pressing the surrounding surfaces; the limits between surfaces.
-Make space between you and other in the room; 
-Choose one part of your body, and slowly rotate around the different axis.
-Most terms of anatomical location are relative to linear motion (translation) along the X- Y- and Z-axes, 
+* How is your body feeling today?
+Feel the weight and lightness of your body. Choose one part of your body, and slowly rotate around the different axis.
+Most terms of anatomical location are relative to linear motion, for example translation along the X- Y- and Z-axes, 
 but there are other degrees of freedom as well, in particular, rotation around any of those three axes.
 Take a deep breath.
+How is your body feeling today? Write down, and share a few words. 
 
 * Welcome to the Anatomies of Intelligence waiting room. You will be soon taken on a an anatomic journey.
 
 * Breathe in and out. Breathing is the bridge between the voluntary and involuntary — the sympathetic and the parasympathetic nervous system; 
-the conscious and the unconscious; the inner and the outer. Activate the circulation.
-Inhalation (contract the abdomen) > Retention (3-5sec) > Exhalation (expand the abdomen);
+the conscious and the unconscious; the inner and the outer. 
+Inhale (contract the abdomen) > Retain  for 3 to 5sec > Exhale (expand the abdomen);
 Breathing deeply helps circulation and oxygenation of the brain. Airstreams, generative circulation;
 The brain is irrigated by 2000 liners of blood everyday and this blood passes through many miles of capillaries.
 You are part of a vast circulatory network; which connects organs, functions, enactments.
-Who else is breathing in the room?
+Who else is breathing in the room? Write us a few words to introduce yourself from the viewpoint of one of your organs.
 
 * Welcome to the Anatomies of Intelligence waiting room. You will be soon taken on a an anatomic journey.
 
-* Feel the distance and proximity between you and other in this room. 
+* Feel the distance and proximity between you and other bodies in this room.
 Proximal in anatomy is the nearest organ to another one, like your cornea in your left eye. 
 Inter- (from Latin inter, meaning 'between'): between two other structures, such as the intercostal muscles running between the ribs.
 The location of anatomical structures, like a mapping exercise, can be described with relation to different anatomical landmarks. 
 Here the relationship is based on euclidean distancing: measuring the distance between each entry; 
 while having no sense of direction nor orientation.
-Stretch your arms, do you touch someone?
+Stretch your arms, did you touch someone? This is a tight room, write us if you feel soreness or pain in your body, we will avoid close contact.
 
-* We are now ready to enter the main stage, the anatomic theatre. A few important rules to follow:
-
-* By mindful of other bodies in the room, move quietly and slowly to avoid echoing;
-Remember to continue breathing.
+* We are now ready to enter the main stage, the anatomic theatre. A few important rules to follow: be mindful of other bodies in the room, move quietly and slowly to avoid echoing. Remember to continue breathing.
 
 # on Stage
 
@@ -126,20 +123,21 @@ __IMMEDIATE CLUSTER__
 * background-image: url(".png"); // image of cutting table;
 
 ```diff
-- record voice: when we define the culstering
+- record voice: when we define the culstering MISSING IMPORTANT
 ```
 
-* we now need your attention please; read step by step aspects of the algorithm;
+* We now need your attention please; read step by step aspects of the algorithm;
 
 
 ```diff
 - record voice:
 ```
 
-* Starting with a simple gesture: cutting. To cut open, to examine, in order to describe each organ and identify their functions, while discovering its relations to the whole — from organ to organisation, organicity. The begginings of exploring a vast circulatory network circumventing anatomical locations which connects functions and enactments. Some call it an empirical system to perform systematic dissection of the human body.
+* Starting with a simple gesture: cutting. To cut open, to examine, in order to describe each organ and identify their functions, and discover its relations to the whole — from organ to organisation, organicity. These are the begginings of exploring a vast circulatory network circumventing anatomical locations which connects functions and enactments. Some call it an empirical system to perform a systematic dissection of the human body.
 
-* Learning the best techniques to dissect the body to effectively observe each muscle and how the body is laid out. Learning from each cut, hands-on, a humid sensation activates the smells in the room.
-Aesthesis or “the faculty or power of sensation” was often used to describe scientific practices in eighteenth-century European medical and philosophical dictionaries. "Laying bare and learning about the inner structures of the human body, was best done through the use of one’s own hands and eyes. (...) However, although the hand and the eye were indeed considered to be the anatomists’ most important instruments, all senses, including smell, taste, and hearing were involved in the practice of anatomy."
+* Learning the best techniques to dissect the body, to effectively observe each muscle and how the body is laid out. Learning from each cut, hands-on, a humid sensation activates the smells in the room.
+
+* Aesthesis or “the faculty or power of sensation” was often used to describe scientific practices in eighteenth-century European medical and philosophical dictionaries. "Laying bare and learning about the inner structures of the human body, was best done through the use of one’s own hands and eyes. (...) However, although the hand and the eye were indeed considered to be the anatomists’ most important instruments, all senses, including smell, taste, and hearing were involved in the practice of anatomy."
 
 
 # Phase 03: Clustering Slow Motion;
@@ -155,10 +153,8 @@ Aesthesis or “the faculty or power of sensation” was often used to describe 
 - record voice:
 ```
 
-
 * In the past demonstrations were usually spread over several days, and limited to the winter months, in an unheated room facing northward to keep the sun out. 
-These measures are no longer necessary. In the air there no longer lingers a smell of incense. There is no, far stronger, smell of rot. 
-Although we still attempt to start with the most perishable parts of the corpus. There is still something unnerving, and unpleasant.
+These measures are no longer necessary. In the air there no longer lingers a smell of incense. There is no, far stronger, smell of rot. Although we still attempt to start with the most perishable parts of the corpus. There is still something unnerving, and unpleasant.
 
 
 
@@ -189,29 +185,23 @@ Although we still attempt to start with the most perishable parts of the corpus.
 - record voice:
 ```
 
-* Dealing with the disgusting insides of the body and with severed body parts is, of course inevitable for anatomists. 
-Paradoxically, is is also a manner in which to gain access to knowledge about the beauty and perfection of a data corpus. Can you imagine? 
-
-* That under all the bloody bias there is indeed something of profound beauty?
+* Dealing with the disgusting insides of the body and with severed body parts is, of course, inevitable for anatomists. 
+Paradoxically, is is also a manner in which to gain access to knowledge about the beauty and perfection of a data corpus. 
+Can you imagine, that under all the bloody bias there is indeed something of profound beauty?
 
 * The majority of anatomical preparations in the collections of the 18th-century Leiden anatomists appear to be predominantly examples of normal - or even perfect - human anatomy, prepared in such a way that they convey the aesthesis of anatomy. 
 This aesthesis is the result of particular yet tacit ideas of beauty, perfection and elegance. 
 Most of the body parts were chosen for these preparations because they were already in themselves perfect specimens: there are no obvious pathologies, and most of them were (part of) young, lean, healthy bodies. Yet ultimately, they remain severed body parts on the brink of decay - the ultimate emblem of disgust.
 
-* As this early Enlightenment-era anatomy developed, the study of pathology and abnormalities became increasingly important, and a new aesthesis of monstrosities emerged. 
-An aesthesis of the ugly and the imperfect. An aesthesis ex negativo.
+* As this early Enlightenment-era anatomy developed, the study of pathology and abnormalities became increasingly important, and a new aesthesis of monstrosities emerged. An aesthesis of the ugly and the imperfect. An aesthesis ex negativo.
 
 * Pathological specimens like these appear often and are of great interest. They are the statistical outliers that in some cases break the model's delicate facia. 
-But in most cases, they force a rethinking of the model's effectivity and are subsumed by it, reinforcing the model's power as a knowledge. 
+But in most cases, they force a rethinking of the model's effectivity and are subsumed by it, reinforcing the model's power as a knowledge. By preserving monstrocities in preparations, the immediate danger implied by the visceral disgust such specimines provoke is averted. Instead, we shape them into didactic instruments and purveyors of meaning.
 
-* By preserving monstrocities in preparations, the immediate danger implied by the visceral disgust such specimines provoke is averted. 
+* All deceiving measurements, the distance between the perfect and the imperfect, from worship to disgust and reverse. Far away coming closer, cutting through perceptual fields, blending in. We initiate a new path, we follow the shadow, the unwanted and the most wanted, the outlier, the monster, and the sublime.
 
-* Instead, we shape them into didactic instruments and purveyors of meaning.
-
-* ADD: how perfect = disgust; imperfect = sublime; the outlier.
 
 # Phase 05: End;
-
 
 ```diff
 # notes narrative:
