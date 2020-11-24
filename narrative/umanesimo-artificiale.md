@@ -110,11 +110,17 @@ Remember to continue breathing.
 ```diff
 @@ code@@
 ```
+
+__IMMEDIATE CLUSTER__
+
 * K = 3 //K-number of clusters
 * MEASUREMENT = Measures.euclidean //measurement metric
 * ITERATIONS = 5 //number of K-means iterations
 * PROJECTION_DIMENSIONS = ["cutting", "measurement"]
 * catalog.cluster(3, Measures.euclidean, ["cutting", "measurement"], 10, resultfunc, true, OSC_OUT, console.log);
+
+* Projections.SIMPLE2D //entries are projected in 2D using one feature per axis Projections.RADIUS //entries arranged radially around centroids
+* project(Projections.SIMPLE2D)
 
 * background-image: url(".png"); // image of cutting table;
 
@@ -127,6 +133,10 @@ Remember to continue breathing.
 
 * Learning the best techniques to dissect the body to effectively observe each muscle and how the body is laid out. Learning from each cut, hands-on, a humid sensation activates the smells in the room.
 Aesthesis or “the faculty or power of sensation” was often used to describe scientific practices in eighteenth-century European medical and philosophical dictionaries. "Laying bare and learning about the inner structures of the human body, was best done through the use of one’s own hands and eyes. (...) However, although the hand and the eye were indeed considered to be the anatomists’ most important instruments, all senses, including smell, taste, and hearing were involved in the practice of anatomy."
+
+
+__ANIMATED SLOW CLUSTERING__
+
 
 ## Phase 03: Viewpoints — the outlier;
 
@@ -194,8 +204,8 @@ But in most cases, they force a rethinking of the model's effectivity and are su
 ```
 
 * floor_wire.visible=false
-* Projections.SIMPLE2D //entries are projected in 2D using one feature per axis Projections.RADIUS //entries arranged radially around centroids
-* project(Projections.SIMPLE2D)
+* Projections.RADIUS //entries arranged radially around centroids
+* project(Projections.Raduis)
 * clean_surface() 
 * sun.intensity=0.6 (fade in dark space)
 
