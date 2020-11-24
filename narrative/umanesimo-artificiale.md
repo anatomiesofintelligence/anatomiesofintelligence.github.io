@@ -201,7 +201,7 @@ But in most cases, they force a rethinking of the model's effectivity and are su
 
 * Instead, we shape them into didactic instruments and purveyors of meaning.
 
-* ADD: how perfect = disgust; imperfect = sublime; 
+* ADD: how perfect = disgust; imperfect = sublime; the outlier.
 
 # Phase 05: End;
 
