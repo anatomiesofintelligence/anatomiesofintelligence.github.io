@@ -87,8 +87,7 @@ Remember to continue breathing.
 * clearInterval(moveit)
 * floor_wire.visible= true
 
-
-# catalog.allEntries //full list of entries
+* catalog.allEntries //full list of entries
 
 ```diff
 - record voice:
