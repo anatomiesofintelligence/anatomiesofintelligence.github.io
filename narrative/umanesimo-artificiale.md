@@ -19,8 +19,9 @@
 * chatroom quiet, whispering;
 
 ```diff
-- record voice:
+- record voice: export mp3 mono 15kb; force export to mono; medium quality; variable speed standard;
 ```
+* ADD: questions for chat; 
 
 * Welcome to the Anatomies of Intelligence waiting room. You will be soon taken on a an anatomic journey. — > voice repeats like in waiting rooms;
 
