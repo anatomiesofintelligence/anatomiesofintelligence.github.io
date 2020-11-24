@@ -26,8 +26,7 @@
 
 * How is your body feeling today?
 Feel the weight and lightness of your body. Choose one part of your body, and slowly rotate around the different axis.
-Most terms of anatomical location are relative to linear motion, for example translation along the X- Y- and Z-axes, 
-but there are other degrees of freedom as well, in particular, rotation around any of those three axes.
+Most terms of anatomical location are relative to linear motion, for example translation along the X- Y- and Z-axes, continue slowly rotating. 
 Take a deep breath.
 How is your body feeling today? Write down, and share a few words. 
 
