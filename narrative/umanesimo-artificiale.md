@@ -22,8 +22,7 @@
 - record voice: export mp3 mone 32kb; force export to mono; constant bitrate (quality); variable speed standard;
 ```
 
-* Welcome to the Anatomies of Intelligence waiting room. You will be soon taken on a an anatomic journey. // — > voice repeats like in waiting rooms;
-
+* Welcome to the Anatomies of Intelligence waiting room. You will be soon taken on a an anatomic journey.
 * How is your body feeling today?
 Feel the weight and lightness of your body. Choose one part of your body, and slowly rotate around the different axis.
 Most terms of anatomical location are relative to linear motion, for example translation along the X- Y- and Z-axes, continue slowly rotating. 
