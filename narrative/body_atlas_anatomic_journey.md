@@ -9,7 +9,7 @@ How is your body feeling today? Feel the weight and lightness of your body. Choo
 
 Welcome to the Anatomies of Intelligence, you will be soon taken on an anatomic journey.
 
-Breathe in and out. Breathing is the bridge between the voluntary and involuntary — the sympathetic and the parasympathetic nervous system; the conscious and the unconscious; the inner and the outer. Inhale (contract the abdomen) > Retain for 3 to 5sec > Exhale (expand the abdomen); Breathing deeply helps circulation and oxygenation of the brain. Airstreams, generative circulation; The brain is irrigated by 2000 liners of blood everyday and this blood passes through many miles of capillaries. You are part of a vast circulatory network; which connects organs, functions, enactments. Who else is breathing in the room?
+Breathe in and out. Breathing is the bridge between the voluntary and involuntary — the sympathetic and the parasympathetic nervous system; the conscious and the unconscious; the inner and the outer. Inhale (contract the abdomen) > Retain for 3 to 5sec > Exhale (expand the abdomen); - - - - accelerate Inhale - Exhale; Breathing deeply helps circulation and oxygenation of the brain. Airstreams, generative circulation; The brain is irrigated by 2000 liters of blood everyday and this blood passes through many miles of capillaries. You are part of a vast circulatory network; which connects organs, functions, enactments. Who else is breathing in the room?
 
 Welcome to the Anatomies of Intelligence, you will be soon taken on an anatomic journey.
 
