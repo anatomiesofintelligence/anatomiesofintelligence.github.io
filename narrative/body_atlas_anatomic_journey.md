@@ -1,7 +1,7 @@
 ### Body Atlas — an Anatomic Journey 
 _or "visceral cues, which order (...) movement of one's body through space". - quote by Rifkind_
 
-__On the floor: breathing__
+__on the floor: breathing__
 
 Welcome to the Anatomies of Intelligence, you will be soon taken on a an anatomic journey.
 
@@ -16,12 +16,19 @@ Welcome to the Anatomies of Intelligence, you will be soon taken on a an anatomi
 Feel the distance and proximity between you and other bodies in this room. Proximal in anatomy is the nearest organ to another one. Inter- (from Latin inter, meaning 'between'): between two other structures, such as the intercostal muscles running between the ribs. The location of anatomical structures, like a mapping exercise, can be described with relation to different anatomical landmarks. Here the relationship is based on euclidean distancing: measuring the distance between each entry; while having no sense of direction nor orientation. Stretch your body, did you touch someone?
 Where does your body end? Where does it begin?
 
-You can now stand up, walk slowly through the space; observe the space, how the bodies fade into the light and darkness. Feel the distances in-between bodies. 
+__standing up: breathing__
+
+You can now stand up, walk slowly through the space; observe the space, how the bodies fade into the light and darkness. Remember to continue breathing. Feel the distances in-between bodies. 
 
 We are now ready to experience our virtual anatomic theatre. A few important rules to follow: be mindful of other bodies in the room, You can choose to stand or lay down, if you move do it quietly and slowly to avoid echoing. And remember to continue breathing.
 
 
-- - - - - - - - - - - more text - - - - - - - - - - - - -
+- 
+- 
+- - 
+- - - -
+- - - - - - - more text 
+- - - - - - - - - - - - - -
 
 In anatomy, the dorsal surface of an organism refers to the back, or upper side of an organism. If talking about the skull, the dorsal side is the top. How hard is your head pressing the ground?
 
