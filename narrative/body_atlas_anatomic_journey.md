@@ -22,10 +22,6 @@ You can now stand up, walk slowly through the space; observe the space, how the 
 We are now ready to experience our virtual anatomic theatre. A few important rules to follow: be mindful of other bodies in the room. You can choose to stand or lay down, if you move do it quietly and slowly to avoid echoing. And remember to continue breathing.
 
 
-__end__
-
-This is the end of your anatomic journey. If you have moved in space, return to the same starting point. How is your body feeling? Remember to continue breathing. 
-
 - 
 - 
 - - 
