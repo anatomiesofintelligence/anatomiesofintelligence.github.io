@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Anatomies of Intelligence</title>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="second theatre projection for performance Anatomies of Intelligence">
+        <meta name="author" content="Joana Chicau and Jonathan Reus">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+          
+
+    <style type="text/css">
+
+@font-face {
+  font-family: Libertinage;
+  src: url(Libertinage.ttf);
+}
+html {
+    box-sizing: border-box;
+    font-size: 21px;
+    line-height: 24px;  
+    height: 100%
+}
+*, *:before, *:after { 
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit; 
+}
+body {
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+    background-color: #000;
+}
+
+.shine {
+    -webkit-animation: glow 3s infinite alternate;
+}
+@-webkit-keyframes glow {
+    to {
+        text-shadow: 0 0 8px #ff029c;
+    }
+}
+@keyframes glow {
+    to {
+        box-shadow: 0 0 8px #ff029c;
+    }
+}
+#stage01, #stage02, #stage03, #stage04, #stage05 {
+    z-index: 1;
+}
+#writing-stage {
+	z-index: 99;
+  width: 100%;
+}
+
+/*  SHAPES  */     
+
+#circle01 {
+    position: absolute;
+    border-radius: 50% 50%; 
+    width: 55vw;
+    height: 55vw;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 2px 20px 100px #fff;
+    background-color: #000;
+}
+
+.otherthan {
+	animation: morph  22s  linear infinite;
+    -webkit-animation: morph  22s linear infinite;  
+}
+.same{
+	animation: none;
+    -webkit-animation: none; 
+}
+
+@keyframes morph {
+    0% {
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    }
+    25% { 
+      border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%;
+    }
+    50% {
+      border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%;
+    }
+    75% {
+      border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%;
+    }
+    100% {
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    }
+  }
+
+.breathing {
+  animation: breathe 15s ease-in-out infinite; 
+  -webkit-animation: breathe 15s infinite alternate; /* Safari 4+ */
+    -moz-animation:  breathe 15s infinite alternate; /* Fx 5+ */
+    -o-animation:    breathe 15s infinite alternate; /* Opera 12+ */
+    animation:       breathe 15s infinite alternate; /* IE 10+, Fx 29+ */    
+}
+.colouring{
+  animation: colorchange 5s infinite; 
+    -webkit-animation: colorchange 5s infinite; 
+}
+.nocolouring{
+  animation: none; 
+  -webkit-animation: none; 
+}
+
+@keyframes slide {
+  0% { transform:translateX(-500px) }
+  10% { transform:translateX(0px) }
+  50% { transform:translateY(-500px) }
+  100% { transform:translateX(-500px) }
+}
+
+@keyframes slide {
+  0% { transform:translateX(-500px) }
+  10% { transform:translateX(0px) }
+  50% { transform:translateY(-500px) }
+  100% { transform:translateX(-500px) }
+}
+
+@-webkit-keyframes breathe {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-moz-keyframes breathe {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-o-keyframes breathe {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes breathe {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes colorchange
+    {
+      0%   {background: #000;}
+      100% {background: #FFF; }
+}
+
+@-webkit-keyframes colorchange
+    {
+      0%   {background: #000;}
+      100% {background: #FFF;}
+} 
+
+  </style>  
+</head>
+
+<body class="">
+
+  	<div  id="stage02"> 
+        <div id="circle01"></div>
+    </div> 
+
+
+<script type="text/javascript">
+
+// MOVEMENTS
+// joana's constants
+
+let x = document.querySelector("#stage02");
+let y = document.querySelector(".stage03");
+let z = document.querySelector("body");
+
+
+// function breathing () {    
+//      if (document.querySelector("#stage02").style.transform=="") {
+//            (document.querySelector("#stage02").style.transform="scale(2, 2)");
+//               return 'breathing out';
+//          }
+//      else  {
+//          (document.querySelector("#stage02").style.transform="");
+//               return 'breathing in';
+//          }
+// }
+
+function breathing() {
+    currentScale = 1;
+    currenttime = setInterval(function() {
+          z.style.transform="scale(" + currentScale + ")";
+    currentScale = Math.random() * 5
+          }, 800); 
+    return 'breathing in and out';
+} 
+
+function noBreathing() { 
+      clearInterval(currenttime); 
+} 
+
+
+var currentScale = 1;
+
+function breathing (paramvar) { 
+      currentScale = paramvar;
+      x.style.transform="scale(" + currentScale + ")";
+      return 'breathing';
+}
+
+
+function dissolving () {
+			var disDiv = document.querySelector("html");
+	 	 		if (disDiv.className == 'colouring') {
+	    	disDiv.className = 'nocolouring';
+	  			} else {
+	    	disDiv.className = 'colouring';
+	  		}
+	  	return 'dissolving';
+}
+
+	function morphing () {
+		var morDiv = document.querySelector("#circle01");
+ 	 		if (morDiv.className == 'otherthan') {
+    	morDiv.className = 'same';
+  			} else {
+    	morDiv.className = 'otherthan';
+  		}
+  	  	return 'morphing';
+	}
+
+</script>
+
+</body>
+</html>
