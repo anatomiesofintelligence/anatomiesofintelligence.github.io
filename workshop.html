@@ -1,0 +1,510 @@
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="content-type">
+
+<title>Anatomies of Intelligence</title>
+<style type="text/css">
+
+body{
+	margin: 5%;
+}
+
+
+@font-face {
+  font-family: Autopia-Italic;
+  src: url(Autopia-Italic.ttf);
+}
+
+
+@font-face {
+  font-family: Autopia;
+  src: url(Autopia-Regular.ttf);
+}
+
+
+h1{
+	font-family: "Autopia-Italic", serif;
+	margin: 5%;
+	font-size: 82pt;
+}
+
+h2{
+	font-family: "Autopia-Italic", serif;
+	margin: 2%;
+	margin-top: 5%;
+	font-size: 30pt;
+}
+
+
+h3{
+	font-family: sans-serif;
+	margin-top: 5%;
+	font-size: 14pt;
+	color: blue;
+}
+p{
+	font-family: sans-serif;
+	font-size: 12pt;
+	line-height: 16pt;
+	max-width: 60%;
+	font-weight: bold;
+}
+.title{
+	font-family: serif;
+	font-size: 14pt;
+	line-height: 16pt;
+	max-width: 60%;
+	font-weight: normal;
+}
+.bio {
+	font-size: 11pt;
+	line-height: 14pt;
+	max-width: 70%;
+}
+
+.exercise {
+	font-size: 10pt;
+	line-height: 13pt;
+}
+
+#contact{
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+li {
+  list-style-type: upper-roman;
+	font-family: serif;
+	font-size: 22pt;
+	line-height: 36pt;
+	margin-left: 5%;
+	font-weight: bold;
+}
+
+li a{
+	font-family: sans-serif;
+	font-weight: normal;
+}
+
+.small li {
+    list-style-type: circle;
+	font-size: 12pt;
+	line-height: 16pt;
+}
+
+.small ol li {
+    list-style-type: lower-roman;
+	font-size: 12pt;
+	line-height: 16pt;
+	font-weight: normal;
+  list-style-position: inside;
+}
+
+p.small {
+	font-family: serif;
+	font-size: 10pt;
+	line-height: 12pt;
+	font-weight: bold;
+}
+
+.smalltitle{
+	font-weight: normal;
+}
+
+
+.menu{
+	margin-top: 10%;
+	margin-bottom: 10%;
+	font-family: "Autopia", serif;
+	font-size: 16pt;
+}
+
+.menu a{
+	text-decoration: none;
+	padding-right: 28pt;
+}
+
+a{
+	text-decoration: none;
+	color: blue;
+}
+
+.credits{
+	margin-top: 10%;
+	font-family: sans-serif;
+	font-weight: bold;
+	font-size:10pt;
+}
+
+.credits a{
+	color: black;
+}
+
+.backbutton {
+	font-family: "Autopia-Italic", serif;
+	text-decoration: none;
+	color: black;
+}
+
+.backbutton a:visited{
+	color: black;
+}
+
+img{
+	width:70%;
+	max-width: 800px;
+}
+
+.light {
+        -webkit-animation: color-change 5s infinite;
+        -moz-animation: color-change 5s infinite;
+        -o-animation: color-change 5s infinite;
+        -ms-animation: color-change 5s infinite;
+        animation: color-change 5s infinite;
+}
+
+    @-webkit-keyframes color-change {
+        0% { color: blue; }
+        20% { color: blue; }
+        50% { color: white; }
+        100% { color: blue; }
+    }
+    @-moz-keyframes color-change {
+        0% { color: blue; }
+        20% { color: blue; }
+        50% { color: white; }
+        100% { color: blue; }
+    }
+    @-o-keyframes color-change {
+        0% { color: blue; }
+        20% { color: blue; }
+        50% { color: white; }
+        100% { color: blue; }
+    }
+    @keyframes color-change {
+        0% { color: blue; }
+        20% { color: blue; }
+        50% { color: white; }
+        100% { color: blue; }
+	}
+
+
+</style>
+
+<body>
+
+<h1 class="light">Anatomies of Intelligence</h1>
+
+<h3>Researchers</h3>
+<div class="bio">
+<p>
+Joana Chicau [PT/UK] is a designer, coder, researcher — with a background in dance. Her trans-disciplinary project interweaves web programming languages and environments with choreography. In her practice she researches the intersection of the body with the constructed, designed, programmed environment, aiming at in widening the ways in which digital sciences is presented and made accessible to the public. She has been actively participating and organizing events with performances involving multi-location collaborative coding, algorithmic improvisation, open discussions on gender equality and activism.
+</p>
+
+	<a href="http://joanachicau.com"> joanachicau.com </a>
+
+<p>
+Jonathan Reus [US/NL] is a musician and artist who explores expanded forms of music-making and improvisational performance through technological artefacts. His practice is cross-disciplinary and research-based, involving open and iterative processes of collaboration with practitioners from across the arts, sciences and humanities. His work tries to confront and challenge the representational capacities of mathematical-logistical systems, algorithms, and infrastructure through a practice of invasive intuition and trust in the diversity of lived experiences.
+</p>
+<a href="https://jonathanreus.com/ "> jonathanreus.com </a>
+</div>
+
+<br><br><br><br><br>
+
+<p style="margin-left: 5%;"> * Agenda * </p>
+<br><br>
+<li>Welcome to the <a href="Intro_Anatomies_Intelligence">Anatomies of Intelligence</a>  project research: concepts; tools and methodology;</li>
+<li>Warm-up exercise: <a href="" href="https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io/blob/master/anatomies_exercise.md" target="_blank">Body Atlas, an anatomic journey</a>;</li>
+<li>Introduction: <a href="#Intro_Classification_Clustering"></a>Data Classification & Clustering;</li>
+<li>In focus: <a href="#Intro_K-means">K-means clustering and notions of (Euclidean) space and distance</a>;</li>
+<li>Group exercise <a href="#Exercise">The anatomies of a K-means clustering algorithm</a>;</li>
+<li>Wrapping up: <a href="#Presentations_Feedback">Presentations and Feedback </a>;</li>
+<li><a href="#end">Resources</a>;</li>
+
+<br><br><br><br><br>
+<h2 id="Intro_Anatomies_Intelligence">Anatomies of Intelligence</h2>
+<p>Anatomies of Intelligence is an artistic research initiative seeking to make connections between the formats and collections of anatomical knowledge and investigations into the “anatomy” of computational learning and prediction processes, datasets and machine learning models.</p>
+<a href="https://anatomiesofintelligence.github.io/about.html">Continue reading about project research: concepts; tools and methodology.</a><br>
+<br><br>
+<i> “Aesthesis in eighteenth-century anatomy was characterized by several factors: gaining knowledge through sensory perception; searching for perfection and elegance; dealing with disgust by either using visual or literary strategies; seeking systems and meanings in the negatives of deformation and pathologies; and a stabilization and categorization of the human body through commodification and decoration.”</i>
+<br><br>  
+<i>“The eighteenth-century Leiden anatomical preparations are the result of a profound eighteenth-century aesthesis which includes both the continuous use of sensory perception as a source of knowledge and a permanent tacit quest for finding and understanding beauty, as well as dealing with the disgusting aspects of anatomy, along with the desire to commodify and objectify the human body.”</i>
+<a href="https://anatomiesofintelligence.github.io/posts/2018-10-14-aesthesis-elegant-anatomy">Excerpt on Aesthesis and the epistemology of 18th century anatomical research. From Elegant Anatomy, Marieke M. A. Hendriksen</a>
+
+<h2 id="Intro_Classification_Clustering">Intro to anatomical concepts: orientations and distance in the body;</h2>
+  
+<li>Warm-up exercise: <a href="https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io/blob/master/anatomies_exercise.md" target="_blank">Body Atlas, an anatomic journey</a>;</li>
+
+<a href="https://en.wikipedia.org/wiki/Anatomical_terms_of_location#/media/File:Human_anatomy_planes,_labeled.jpg">Key concepts of anatomical relationship</a> <br>
+<a href="https://en.wikipedia.org/wiki/History_of_measurement">History of measurement</a><br>
+  
+<div>
+  
+<h2 id="Intro_Classification_Clustering">Data classification and Clustering</h2>
+
+<p><span class="title">Classification</span> is the problem of identifying to which of a set of categories a new observation belongs, on the basis of a training set of data containing observations (or instances) whose category membership is known. Examples are assigning a given email to the "spam" or "non-spam" class, and assigning a diagnosis to a given patient based on observed characteristics of the patient (sex, blood pressure, presence or absence of certain symptoms, etc.). Classification is an example of pattern recognition. <a href="#Refs">[2]</a></p>
+
+<p><span class="title">Cluster analysis</span> (clustering) is a task in unsupervised learning of grouping a set of objects in such a way that objects in the same group (called a cluster) are more "similar" to each other than to those in other clusters.</p>
+<p>Instead of "learning" from feedback provided by ideal behavior or reinforcement phenomena, cluster analysis identifies commonalities in the data and "learns" in response to the presence or absence of such commonalities in each new piece of data. This approach helps detect anomalous data points that do not fit easily into groups. As the results of clustering, data in the same group has higher similarity metric to each other than to those in other groups, and each group have a centroid to represent the group as a whole. <a href="#Refs">[1]</a></p>
+
+<h3 id="Intro_K-means">K-means and notions of (Euclidean) space &amp distance</h2>
+
+<br>
+<p><span class="title">K-means clustering</span> intends to partition n objects into k clusters in which each object belongs to the cluster with the nearest mean. This method produces exactly k different clusters of greatest possible distinction. The best number of clusters k leading to the greatest separation (distance) is not known as a priori and must be computed from the data. The objective of K-Means clustering is to minimize total intra-cluster variance, or, the squared error function: <a href="#Refs"> [3]</a></p>
+
+<img src="img/k/kmeans_clustering_formula.png" alt="k-means error formula" />
+
+<p>is a method of vector quantization, originally from signal processing, that is popular for cluster analysis in data mining. k-means clustering aims to partition n observations into k clusters in which each observation belongs to the cluster with the nearest mean, serving as a prototype of the cluster. This results in a partitioning of the data space into Voronoi cells. k-Means minimizes within-cluster variances (squared Euclidean distances), but not regular Euclidean distances, which would be the more difficult Weber problem: the mean optimizes squared errors, whereas only the geometric median minimizes Euclidean distances. Better Euclidean solutions can for example be found using k-medians and k-medoids. </p>
+<br><br>
+
+<img style="width: 30%" src="img/k/K-means_convergence.gif" alt="image k-means clustering animation">
+
+<br><br><br>
+
+<h3>The K-means Algorithm</h3>
+<br>
+<div class="small">
+<ol>
+	Begin with a dataset, each item (datapoint <b>x</b>) of the dataset should be reduced to a set of <b>N</b> features.
+	To make things easier, we choose to represent each feature by a number from 0.0 and 1.0 (<b>normalization</b>).<br><br>
+	For example, if we choose to describe our data using five features (<b>N=5</b>), one data entry
+	could be described by the set of feature values [0.2, 0.44, 0.87, 0.1, 1.0]
+	<br><br>
+	<li> Choose the number of desired clusters <b>K</b></li>
+	<li> Choose starting cluster centroids <b>c<sub>1</sub>-c<sub>k</sub></b>: either randomly or by choosing from existing data points.</li>
+	<li> ITERATE the following until the algorithm convergences on a specific set of clusters, or until the end of a fixed number of ITERATIONS
+		<ol>ITERATION: For each data point <b>x<sub>i</sub></b>:
+       <li> Calculate the distance from the datapoint to each of the centroids: <b>c<sub>1</sub>, c<sub>2</sub> .. c<sub>k</sub></b>);</li>
+       <li> ASSIGN the datapoint to the cluster represented by the closest centroid</li>
+		</ol>
+		<ol>ITERATION: For each cluster <b>i</b> with centroid <b>c<sub>i</sub></li>
+		     <li>Calculate a new centroid for cluster i which is the means (average) of all the datapoints assigned to that cluster. </li>
+			 </ol>
+	</li>
+<li> End.</li>
+</ol>
+</div>
+<br>
+<p>K-Means is relatively an efficient method. However, we need to specify the number of clusters, in advance and the final results are sensitive to initialization and often terminates at a local optimum. Unfortunately there is no global theoretical method to find the optimal number of clusters. A practical approach is to compare the outcomes of multiple runs with different k and choose the best one based on a predefined criterion. In general, a large k probably decreases the error but increases the risk of overfitting.</p>
+
+
+<p><span class="title">Dimensionality reduction</span> or dimension reduction, is the process of reducing the number of random variables under consideration by obtaining a set of principal variables. It can be divided into feature selection and feature extraction. <a href="#Refs">[1]</a></p>
+
+<p><span class="title">Distances</span> in mathematics, a metric or distance function is a function that defines a distance between each pair of elements of a set. A set with a metric is called a metric space. <a href="#Refs">[1]</a> A metric induces a topology on a set, but not all topologies can be generated by a metric. A topological space whose topology can be described by a metric is called metrizable. <a href="#Refs">[4]</a></p>
+
+
+<p>"In machine learning, many supervised and unsupervised algorithms use Distance Metrics to understand patterns in the input data. Also, it is used to recognize similarities among the data." <a href="#Refs">[5]</a></p>
+
+<p>The Euclidean distance or Euclidean metric is the "ordinary" straight-line distance between two points in N-dimensional Euclidean space. <a href="#Refs">[6]</a></p>
+<br>
+<img style="width: 20%"
+src="https://upload.wikimedia.org/wikipedia/commons/5/55/Euclidean_distance_2d.svg" alt="Euclidean distance in R2" />
+
+<br><br>
+<img src="img/e/ed1.gif" style="width:auto" />
+<br><br>
+<img src="img/e/ed2.gif" style="width:auto" />
+<br><br>
+<img src="img/e/ed3.gif" style="width:auto" />
+<br><br>
+<img src="img/e/ed4.gif" style="width:auto" />
+<br><br>
+<img src="img/e/ed5.gif" style="width:auto" />
+<br><br>
+
+
+<p>Commonly used distance metrics in machine learning are: </p>
+
+<div class="small">
+<li>Euclidean Distance</li>
+<li>Manhattan distance</li>
+<li>Minkowski Distance</li>
+<li>Mahalanobis Distance</li>
+<li>Cosine Distance</li>
+<li>Jaccard distance</li>
+</div>
+
+<img style="width: 30%"
+src="https://upload.wikimedia.org/wikipedia/commons/0/08/Manhattan_distance.svg" alt="Manhattan distance on a grid">
+
+<p class="small">Figure illustrating Manhattan versus Euclidean distance. The red, blue, and yellow lines all have the same Manhattan length <b>(12)</b>, whereas the green (Euclidean) distance between the points has length of about <b>8.48</b>.</p>
+
+<br><br>
+
+<h3>Catalog API</h3>
+<code>
+// calculate distance between two points<br>
+<b>distance([0.0, 0.0], [6.0, 6.0])</b>
+</code>
+<p>Simple Catalog Clustering:</p>
+<br>
+<div class="small">
+<br><br>
+<b>cluster(FEATURES_ARRAY, K, ITERATIONS, USE_BREAKPOINTS)<b>
+<br><br>
+<b>catalog.allTags.sort() // show feature names in alphabetical order<b>
+<br><br>
+<b>cluster(["knowledge", "materiality", "measurement"], 4, 10, false)<b>
+<br><br>
+<b>project(Projections.RADIUS)<b>
+<br><br>
+<b>project(Projections.SIMPLE2D)<b>
+<br><br>
+<b>cluster(["cutting", "measurement", "spectacle"], 5, 10, true)<b>
+<br><br>
+<b>TEMPO = 2<b>
+<br><br>
+<b>TEMPO = 0.01<b>
+<br><br>
+<b>project(Projections.RADIUS)<b>
+<br><br>
+<b>project(Projections.SIMPLE2D)<b>
+<br><br>
+<b>also see help()<b>
+<br><br>
+<br>
+<p>Test the clustering using the <a href="https://anatomiesofintelligence.github.io/theatre/kmeans">AoI Theatre</a> JavaScript web api as an observational tool. Open the web console and type the script, as in the example:</p>
+<br>
+<br><br>
+
+
+
+<p id="Refs">References:</p> <br>
+[1] <a href="https://en.wikipedia.org/wiki/Glossary_of_artificial_intelligence">Glossary of artificial intelligence</a> <br>
+[2] <a href="https://en.wikipedia.org/wiki/Statistical_classification">Classification</a> <br>
+[3] <a href="https://www.saedsayad.com/clustering_kmeans.htm">K-means clustering algorithm</a> <br>
+[4] <a href="https://en.wikipedia.org/wiki/Metric_(mathematics)">Distance metrics  (mathematics)</a>
+<br>
+[5] <a href="https://towardsdatascience.com/how-to-measure-distances-in-machine-learning-13a396aa34ce">How to measure distances in machine learning</a>
+<br>
+[6] <a href="https://en.wikipedia.org/wiki/Euclidean_distance">Euclidean distance</a>
+[7] <a href="https://towardsdatascience.com/k-means-clustering-introduction-to-machine-learning-algorithms-c96bf0d5d57a">K-means Clustering</a>
+<br>
+<br> <br>
+
+<p>Further references:</p>
+
+— > <a href="https://en.wikipedia.org/wiki/History_of_artificial_intelligence">History of artificial intelligence</a> <br>
+— > <a href="https://en.wikipedia.org/wiki/Timeline_of_machine_learning">Timeline of machine learning</a><br>
+— > <a href="https://macwright.org/2012/09/16/k-means.html">Article on k-means clustering</a><br>
+— > <a href="https://en.wikipedia.org/wiki/Distance">Wikipedia article on distances</a><br>
+— > <a href="https://towardsdatascience.com/importance-of-distance-metrics-in-machine-learning-modelling-e51395ffe60d">Machine Learning Modelling and distance metrics</a><br>
+
+<h2 id="Exercise">The anatomies of a K-means clustering algorithm</h2>
+
+<br>
+
+<img style="width: 20%"
+src="https://anatomiesofintelligence.github.io/img/wiki/Human_Anatomy_Planes.jpg" alt="Human anatomy planes, 2014"><img style="width: 18%"
+src="https://upload.wikimedia.org/wikipedia/commons/2/2e/View_of_Viscera_Page_82.jpg"> <img style="width: 17.5%"
+src="https://anatomiesofintelligence.github.io/img/wc/Body-Measurements-Chinese-Woodcut.jpg" alt="Body measurements, back view, Chinese woodcut, 1443">
+<p class="small"><span class="smalltitle">[left]</span> Anatomical planes, 2014: including median (red), parasagittal (yellow), frontal or coronal plane (blue) and transverse or axial plane (green). Made with the default MakeHuman model (intermediate gender proportions) with breast size reduced to be more androgynous, posed in standard anatomical position. Blender source available on GitHub. </p>
+<p class="small"><span class="smalltitle">[middle]</span> From the book, "The Human Body and Health Revised" by Alvin Davison, published in 1908 by Alvin Davison. This book has a copyright of 1908 by Alvin Davison and one in 1924 by American Book Company. The first copyright was pre-1923 and the copyright was never renewed; therefore, the book should be in the public domain Flickr data on 2011-08-17: Tags: vintage, book, medical, image, illustration, drawing, public domain, copyright free License: CC BY 2.0 User: perpetualplum Sue Clark</p>
+<p class="small"><span class="smalltitle">[right]</span> Body measurements, back view, Chinese woodcut, 1443: Woodcut from Tong ren shu xue zhen jiu tu jing (Illustrated Manual of Acupoints on the Bronze Man) by Wang Weiyi, published in 1443 CE (8th year of the Zhengtong reign period of the Ming Dynasty), illustrating the system of proportionate body measurements. This illustration consists of a simple outline drawing of a human body, viewed from the back. Captions on the image indicate the distances between various landmarks on the surface of the body, as an aid in establishing the location of acupoints and the paths of the channels at the back of the body. The units of measurement are the chi and cun, the length of the cun being based on the proportions of the individual's body, i.e. 1 cun = the distance from the base of the middle finger to the end of the crease of the middle joint. 10 cun = 1 chi. See 'Lettering' for further details.</p>
+
+<h3>Exercise: rethinking distances &amp proximities</h3>
+
+<div class="exercise">
+<img style="width: 60%" src="AoI_screenshot_ruller.png" alt="AoI screenshot of theatre interface and clustering">
+
+<br>
+<p>In groups, briefly analize your dataset; then follow the four main tasks bellow:</p>
+<br>
+
+<b style="color:blue">— > (1) Define distance</b>
+<br>
+<p>Collect and discuss diferent notions around defining 'distance' (or the concept of difference);</p>
+<p>Consider existing methods, but also scales and orientations for observation, affective response & affinity. </p>
+<p>Finally choose a choose a measurement system.</p>
+<br>
+<div class="small">
+<li>What measurements and distances could be used?</li>
+<li>Is your notion of difference multi-dimensional? What are its dimensions?</li>
+<li>How do embodied experience inform new thinking around measuring and sensing distances?</li>
+</div>
+<br><br>
+<b style="color:blue">— > (2) Tagging and Weighting</b>
+<br>
+<p>Create a collection of tags to be assigned to the data samples/ each entry of the data set.</p>
+<p>Assign the tags and give values to each of them.</p>
+<br>
+<div class="small">
+<li>What vocabularies emerge from the categorization and analysis of the dataset?</li>
+<li>What can be 'put into words' and what is left unspoken?</li>
+<li>How does the process influence the knowledge of the current dataset?</li>
+</div>
+<br><br>
+
+
+
+
+<b style="color:blue">— > (3) Clustering</b>
+<br><br>
+<img style="width: 60%" src="AoI_screenshot_cluster.png" alt="AoI screenshot of theatre interface and clustering">
+<br>
+<p>Execute the k-means clustering algorithm and document each iteration of results;</p>
+
+
+<b style="color:blue">— > (4) System representation</b>
+<br>
+<p>Discuss how to represent the knowledge system you are building. And how to best communicate the process from tags (processual happening on the data collection) to the clustering iterations.</p>
+
+<p>Consider dimensionality reduction and its implications (what is preserved and what is left out).</p>
+<p>Discuss and list potential entry points for performativity, critical and aesthetic interventions in this algorithmic process. </p>
+
+<br>
+
+<p>Further questions:</p>
+
+<div class="small">
+<li>How to visualize the clustering?</li>
+<li>What different viewpoints and perpectives and can used?</li>
+<li>What other ways of making the process sensible can be explored? Which other senses can take part beyond visual? For eg. sonification.</li>
+</div>
+<br><br>
+
+<h3>New Iteration</h3>
+<b style="color:blue">— > (0) Restart</b>
+<br>
+<p>Experiment the process with another dataset; with different measurement systems; parameters; and analyse how it impacts the clustering. </p>
+<div class="small">
+<li>What thoughts emerge after the experiments? </li>
+<li>What different knowledge ontologies emerge through other geometries and directionalities based in bodily experiences and physicalities? </li>
+<li>What is a unit of anatomical space and how can that inform embodied approaches to machine learning? </li>
+</div>
+
+<br>
+</div>
+
+<br><br><br>
+
+<h2 id="end">Resources:</h2>
+
+<h3>Machine Learning - Glossary</h3>
+
+<p><span class="title">Machine learning (ML)</span> is the scientific study of algorithms and statistical models that computer systems use to perform a specific task without using explicit instructions, relying on patterns and inference instead. It is seen as a subset of artificial intelligence. <a href="#Refs">[1]</a></p>
+
+<p><span class="title">Supervised learning</span> is the machine learning task of learning a function that maps an input to an output based on example input-output pairs. It infers a function from labeled training data consisting of a set of training examples. In supervised learning, each example is a pair consisting of an input object (typically a vector) and a desired output value (also called the supervisory signal). A supervised learning algorithm analyzes the training data and produces an inferred function, which can be used for mapping new examples. An optimal scenario will allow for the algorithm to correctly determine the class labels for unseen instances. This requires the learning algorithm to generalize from the training data to unseen situations in a "reasonable" way. <a href="#Refs">[1]</a></p>
+
+<p><span class="title">Unsupervised learning</span> is a type of learning that helps find previously unknown patterns in data set. In contrast to supervised learning, unsupervised learning can be used to develop knowledge about the structure and internal relationships of a dataset without pre-existing labels, classifications or categories. Two of the main methods used in unsupervised learning are principal component and cluster analysis. <a href="#Refs">[1]</a></p>
+
+<p><span class="title">Semi-supervised learning</span> (bootstrapping) is a class of machine learning tasks and techniques that also make use of unlabeled data for training – typically a small amount of labeled data with a large amount of unlabeled data. Semi-supervised learning falls between unsupervised learning (without any labeled training data) and supervised learning (with completely labeled training data). Semi-supervised learning is also of theoretical interest in machine learning and as a model for human learning. </p>
+
+<p><span class="title">Reinforcement learning</span> is an area of machine learning concerned with how software agents ought to take actions in an "environment" in order to maximize some notion of cumulative reward. It differs from supervised learning in not needing labelled input/output pairs be presented, and in not needing sub-optimal actions to be explicitly corrected. Instead the focus is on finding a balance between exploration (of uncharted territory) and exploitation (of current knowledge).<a href="#Refs">[1]</a></p>
+
+<p><span class="title">Deep learning</span> is part of a broad family of machine learning methods used to learn complex and non-linear models of data, usually through the implementation of various "deep" or heirarchical structures such as a neural network. The learning techniques can be supervised, semi-supervised or unsupervised.
+</p>
+  
+<h3>Further Links</h3>
+ 
+<a href="https://anatomiesofintelligence.github.io/catalogue.html">The Catalogue</a> <br>
+<a href="https://anatomiesofintelligence.github.io//theatre">The Theatre</a>
+<br><br>
+<a href="https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io/tree/master/code">Code Repository</a><br>
+Project's classification system: <a href="https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io/blob/master/glossary.md">a growing glossary (/expansion of “all tags”)</a><br><br>
+<br><br><br><br>
+  
+<h3><span class="light"><i>Thank you all for taking part, and looking forward to hearing your feedback! </i></span></h3>
+
+</body>
+</html>
