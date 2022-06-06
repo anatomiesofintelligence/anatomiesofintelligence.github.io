@@ -213,30 +213,38 @@ Jonathan Reus [US/NL] is a musician and artist who explores expanded forms of mu
 
 <p style="margin-left: 5%;"> * Agenda * </p>
 <br><br>
-<li>Welcome to the <a href="Intro_Anatomies_Intelligence">Anatomies of Intelligence</a>  project research: concepts; tools and methodology;</li>
-<li>Warm-up exercise: <a href="" href="https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io/blob/master/anatomies_exercise.md" target="_blank">Body Atlas, an anatomic journey</a>;</li>
+<li>Welcome to the <a href="Intro_Anatomies_Intelligence">Anatomies of Intelligence</a> research project;</li>
+<li>Intro to anatomical concepts: <a href="Warmup" >Body Atlas, orientations and distance in the body;</a>;</li>
 <li>Introduction: <a href="#Intro_Classification_Clustering"></a>Data Classification & Clustering;</li>
 <li>In focus: <a href="#Intro_K-means">K-means clustering and notions of (Euclidean) space and distance</a>;</li>
 <li>Group exercise <a href="#Exercise">The anatomies of a K-means clustering algorithm</a>;</li>
 <li>Wrapping up: <a href="#Presentations_Feedback">Presentations and Feedback </a>;</li>
-<li><a href="#end">Resources</a>;</li>
+<li><a href="#End">Resources</a>;</li>
 
 <br><br><br><br><br>
 <h2 id="Intro_Anatomies_Intelligence">Anatomies of Intelligence</h2>
 <p>Anatomies of Intelligence is an artistic research initiative seeking to make connections between the formats and collections of anatomical knowledge and investigations into the “anatomy” of computational learning and prediction processes, datasets and machine learning models.</p>
-<a href="https://anatomiesofintelligence.github.io/about.html">Continue reading about project research: concepts; tools and methodology.</a><br>
+<a href="https://anatomiesofintelligence.github.io/about.html"> Continue reading about project research: concepts; tools and methodology.</a><br>
+<br><br><br>
+<img src="https://anatomiesofintelligence.github.io/img/poster/anatomical-theatre-leiden1.gif" alt="Copperplate Engraving of Anatomical Theatre Leiden (1615)" />
+Copperplate Engraving of Anatomical Theatre Leiden (1615)
 <br><br>
 <i> “Aesthesis in eighteenth-century anatomy was characterized by several factors: gaining knowledge through sensory perception; searching for perfection and elegance; dealing with disgust by either using visual or literary strategies; seeking systems and meanings in the negatives of deformation and pathologies; and a stabilization and categorization of the human body through commodification and decoration.”</i>
 <br><br>  
 <i>“The eighteenth-century Leiden anatomical preparations are the result of a profound eighteenth-century aesthesis which includes both the continuous use of sensory perception as a source of knowledge and a permanent tacit quest for finding and understanding beauty, as well as dealing with the disgusting aspects of anatomy, along with the desire to commodify and objectify the human body.”</i>
 <a href="https://anatomiesofintelligence.github.io/posts/2018-10-14-aesthesis-elegant-anatomy">Excerpt on Aesthesis and the epistemology of 18th century anatomical research. From Elegant Anatomy, Marieke M. A. Hendriksen</a>
 
-<h2 id="Intro_Classification_Clustering">Intro to anatomical concepts: orientations and distance in the body;</h2>
+<h2 id="Warmup">Intro to anatomical concepts: orientations and distance in the body;</h2>
   
-<li>Warm-up exercise: <a href="https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io/blob/master/anatomies_exercise.md" target="_blank">Body Atlas, an anatomic journey</a>;</li>
+<h2>Intro to anatomical concepts: orientations and distance in the body; </h2>
 
-<a href="https://en.wikipedia.org/wiki/Anatomical_terms_of_location#/media/File:Human_anatomy_planes,_labeled.jpg">Key concepts of anatomical relationship</a> <br>
-<a href="https://en.wikipedia.org/wiki/History_of_measurement">History of measurement</a><br>
+Warm-up exercise: <a href="https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io/blob/master/anatomies_exercise.md" target="_blank">Body Atlas, an anatomic journey</a>;
+
+<img src="https://anatomiesofintelligence.github.io/img/wc/Diagram-Proportion-Figures.jpg" alt="Tableau des proportions du corps humain à l'usage des artists, 1830" />
+Tableau des proportions du corps humain à l'usage des artists, 1830
+<br><br>
+<li><a href="https://en.wikipedia.org/wiki/Anatomical_terms_of_location">Key concepts of anatomical terms of location</a></li> <br>
+<li><a href="https://en.wikipedia.org/wiki/History_of_measurement">History of measurement</a></li><br>
   
 <div>
   
@@ -284,6 +292,8 @@ Jonathan Reus [US/NL] is a musician and artist who explores expanded forms of mu
 <li> End.</li>
 </ol>
 </div>
+	
+	
 <br>
 <p>K-Means is relatively an efficient method. However, we need to specify the number of clusters, in advance and the final results are sensitive to initialization and often terminates at a local optimum. Unfortunately there is no global theoretical method to find the optimal number of clusters. A practical approach is to compare the outcomes of multiple runs with different k and choose the best one based on a predefined criterion. In general, a large k probably decreases the error but increases the risk of overfitting.</p>
 
@@ -331,44 +341,6 @@ src="https://upload.wikimedia.org/wikipedia/commons/0/08/Manhattan_distance.svg"
 
 <br><br>
 
-<h3>Catalog API</h3>
-<code>
-// calculate distance between two points<br>
-<b>distance([0.0, 0.0], [6.0, 6.0])</b>
-</code>
-<p>Simple Catalog Clustering:</p>
-<br>
-<div class="small">
-<br><br>
-<b>cluster(FEATURES_ARRAY, K, ITERATIONS, USE_BREAKPOINTS)<b>
-<br><br>
-<b>catalog.allTags.sort() // show feature names in alphabetical order<b>
-<br><br>
-<b>cluster(["knowledge", "materiality", "measurement"], 4, 10, false)<b>
-<br><br>
-<b>project(Projections.RADIUS)<b>
-<br><br>
-<b>project(Projections.SIMPLE2D)<b>
-<br><br>
-<b>cluster(["cutting", "measurement", "spectacle"], 5, 10, true)<b>
-<br><br>
-<b>TEMPO = 2<b>
-<br><br>
-<b>TEMPO = 0.01<b>
-<br><br>
-<b>project(Projections.RADIUS)<b>
-<br><br>
-<b>project(Projections.SIMPLE2D)<b>
-<br><br>
-<b>also see help()<b>
-<br><br>
-<br>
-<p>Test the clustering using the <a href="https://anatomiesofintelligence.github.io/theatre/kmeans">AoI Theatre</a> JavaScript web api as an observational tool. Open the web console and type the script, as in the example:</p>
-<br>
-<br><br>
-
-
-
 <p id="Refs">References:</p> <br>
 [1] <a href="https://en.wikipedia.org/wiki/Glossary_of_artificial_intelligence">Glossary of artificial intelligence</a> <br>
 [2] <a href="https://en.wikipedia.org/wiki/Statistical_classification">Classification</a> <br>
@@ -381,14 +353,6 @@ src="https://upload.wikimedia.org/wikipedia/commons/0/08/Manhattan_distance.svg"
 [7] <a href="https://towardsdatascience.com/k-means-clustering-introduction-to-machine-learning-algorithms-c96bf0d5d57a">K-means Clustering</a>
 <br>
 <br> <br>
-
-<p>Further references:</p>
-
-— > <a href="https://en.wikipedia.org/wiki/History_of_artificial_intelligence">History of artificial intelligence</a> <br>
-— > <a href="https://en.wikipedia.org/wiki/Timeline_of_machine_learning">Timeline of machine learning</a><br>
-— > <a href="https://macwright.org/2012/09/16/k-means.html">Article on k-means clustering</a><br>
-— > <a href="https://en.wikipedia.org/wiki/Distance">Wikipedia article on distances</a><br>
-— > <a href="https://towardsdatascience.com/importance-of-distance-metrics-in-machine-learning-modelling-e51395ffe60d">Machine Learning Modelling and distance metrics</a><br>
 
 <h2 id="Exercise">The anatomies of a K-means clustering algorithm</h2>
 
@@ -478,7 +442,7 @@ src="https://anatomiesofintelligence.github.io/img/wc/Body-Measurements-Chinese-
 
 <br><br><br>
 
-<h2 id="end">Resources:</h2>
+<h2 id="End">Resources:</h2>
 
 <h3>Machine Learning - Glossary</h3>
 
@@ -498,12 +462,21 @@ src="https://anatomiesofintelligence.github.io/img/wc/Body-Measurements-Chinese-
 <h3>Further Links</h3>
  
 <a href="https://anatomiesofintelligence.github.io/catalogue.html">The Catalogue</a> <br>
-<a href="https://anatomiesofintelligence.github.io//theatre">The Theatre</a>
+<a href="https://anatomiesofintelligence.github.io//theatre">The Theatre - display dataset version;</a>
 <br><br>
 <a href="https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io/tree/master/code">Code Repository</a><br>
 Project's classification system: <a href="https://github.com/anatomiesofintelligence/anatomiesofintelligence.github.io/blob/master/glossary.md">a growing glossary (/expansion of “all tags”)</a><br><br>
 <br><br><br><br>
-  
+
+	
+<p>Further references:</p>
+
+— > <a href="https://en.wikipedia.org/wiki/History_of_artificial_intelligence">History of artificial intelligence</a> <br>
+— > <a href="https://en.wikipedia.org/wiki/Timeline_of_machine_learning">Timeline of machine learning</a><br>
+— > <a href="https://macwright.org/2012/09/16/k-means.html">Article on k-means clustering</a><br>
+— > <a href="https://en.wikipedia.org/wiki/Distance">Wikipedia article on distances</a><br>
+— > <a href="https://towardsdatascience.com/importance-of-distance-metrics-in-machine-learning-modelling-e51395ffe60d">Machine Learning Modelling and distance metrics</a><br>
+
 <h3><span class="light"><i>Thank you all for taking part, and looking forward to hearing your feedback! </i></span></h3>
 
 </body>
