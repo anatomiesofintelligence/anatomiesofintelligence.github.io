@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+
+    <title>Anatomies of Intelligence ~ Theatre</title>
+    <link rel="stylesheet" href="../css/theatre.css">
+
+    <script src="../js/simple-statistics.min.js"></script>
+    <script src="../js/papaparse.min.js"></script>
+    <script src="../js/aoi/catalog.js"></script>
+    <script src="../js/three/three.min.js"></script>
+
+    <script src="../js/tween-1.0.0/tweenjs.min.js"></script>
+    <script src="../js/tone/Tone.js"></script>
+
+    <script type="text/javascript">
+    /* CONFIGURATION PARAMETERS */
+    const ENABLE_DEFAULT_AUDIO_CALLBACKS = true;  // Use default audio callbacks (see callbacks.js)
+    const DEBUG = false;                          // verbose debugging
+    const SOCKET_SERVER = "http://localhost:8000/socket.io/";
+    const DEFAULT_ENTRY_ICON = "/img/ball3d-icon.png";
+    const DATASET_ASSETS_PATH = "/dataset/"
+    const DATASET_METADATA_PATH = "/dataset/dataset_JUL10_2022.csv";
+    const AUDIO_PATH = "/audio/";
+    </script>
+
+
+    <style type="text/css">
+      @font-face {
+      font-family: Autopia;
+      src: url(Autopia-Regular.ttf);
+      }
+
+      body{
+          cursor: crosshair;
+      }
+      h1{
+        font-family: 'Autopia';
+      }
+s
+      #audienceInfoDiv {
+        width: 10vw;
+      }
+
+      .highlight {
+        transition: transform 2s;
+        box-shadow: 2px 2px 20px #000;
+        transform: scale(2.5);
+      }
+
+      #info {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 30vw;
+        border: none;
+        box-shadow: 1px 1px 50px #f7f7f7;
+        padding: 2rem;
+        background-color: #000;
+        color: #ffdada;
+        opacity: 1.0;
+        transition: opacity 2s;
+        z-index: 200;
+        transform: skewY(-10deg) translate(10%, 10%);
+      }
+
+      button#arrowInfo {
+        margin: 2rem 1rem;
+        color: #ffdada;
+        font-size: 2rem;
+        background-color: transparent;
+        border: none;
+        z-index: 999;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      #arrowInfo:hover {
+        cursor: pointer;
+        color: #A19EFF;
+        font-size: 2.2rem;
+      }
+
+      #buttonsBottom {
+        z-index: 999;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        margin: 1rem;
+        background-color: #000;
+        color: #ffdada;
+        box-shadow: 1px 1px 50px #6c6c6c;
+        border: none;
+      }
+
+      #buttonsBottom a {
+        font-family: "Autopia", serif;
+        font-size: 1rem;
+        color: #ffdada;
+      }
+    #buttonsBottom a:hover {
+        cursor: pointer;
+        color: #A19EFF;
+      }
+
+      .bluelink {
+      color: #A19EFF !important;
+      }
+
+      a#ourWeb, a#ourWeb:visited{
+        color: #ffdada !important;
+        text-decoration: underline;
+      }
+    </style>
+    <script>
+    function hideShowInfo () { 
+      var iDiv = document.querySelector("#info"); 
+      if (iDiv.style.display == 'none') { 
+       iDiv.style.display = 'initial'; 
+      } 
+       else { iDiv.style.display = 'none'; } 
+    }
+    </script>
+  </head>
+  <body>
+    <!--  Based on theatre.v4.html with audio engine / sequencer attached to clustering -->
+
+    <div id="overlay">
+      <div id="loadingmsg">
+        <p>loading</p>
+      </div>
+      <div id="startmsg">
+        <button id="startButton">Click to Allow Audio</button>
+        <p>Audio playback requires user interaction.</p>
+      </div>
+    </div>
+
+    <div>
+      <button id="arrowInfo" onclick="hideShowInfo()">ⓘ</button>
+      <div id="info">
+        <!-- changed ID userInputDiv -->
+        <h1>Welcome to the Anatomies of Intelligence Theatre</h1>
+        <p>an artistic research project led by Joana Chicau and Jonathan Chaim Reus.
+        <a id="ourWeb" href="https://anatomiesofintelligence.github.io/" target="_blank"> Continue reading... ←</a></p>
+        <br>
+        <p>→ Quick instructions and recommendations:</p>
+        <p> ◦ this website is best experienced in medium-large screen size device (instead of via the phone);
+        </p>
+        <p> ◦ enable sound in your browser and device; </p>
+        <p> ◦ enable pop-ups in your browser, to test, please click <a href="entry.html" class="bluelink" id="popuptest">here</a> a window should pop open. If you do not see a popup window, check <a href="https://support.thebigword.com/hc/en-gb/articles/115007453467-How-to-Enable-Pop-Up-Windows-in-Web-Browsers" class="bluelink" target="_blank">this link</a> for browser specific instructions on enabling popups.</p>
+      </div>
+  </div>
+
+    <div id="audienceInfoDiv">
+      <h2>spectators: <span id="numVisitors"></span></h2>
+    </div>
+
+
+    <div id="buttonsBottom">
+        <a href="Categories-Print.pdf" download>catalogue.allTags</a>
+    </div>
+
+
+    <div id="log_output_container">
+      <ol id="log_output_messages"></ol>
+    </div>
+
+    <div id="entriesContainerDiv"></div>
+
+    <canvas id="canvas3d"></canvas>
+
+  <script src="../socket.io/socket.io.js"></script> <!-- socket.io server must be running -->
+  <script src="../js/aoi/sockets.js"></script>
+  <script src="../js/aoi/callbacks.js"></script>
+  <script src="../js/aoi/theatre.js"></script>
+
+  <script>
+    // ENTER BUTTON submits chat message
+    userInputDiv.addEventListener("keypress", function(ev) {
+      if (ev.key === "Enter") {
+        ev.preventDefault();
+        sendMsgButton.click();
+      }
+    });
+
+    // POPUP TESTING link callback
+    const poplink = document.querySelector('#popuptest');
+    poplink.onclick = () => { theatre.open( 'expectation-maximization-algorithm' ); return false; };
+  </script>
+
+
+  </body>
+</html>
