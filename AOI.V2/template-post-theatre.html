@@ -1,0 +1,211 @@
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="content-type">
+
+<title>Anatomies of Intelligence</title>
+<style type="text/css">
+
+
+@font-face {
+  font-family: Autopia;
+  src: url(Autopia-Regular.ttf);
+}
+
+html{
+background: linear-gradient(180deg, #0000FF 0% ,#8585FF  10% ,  #0000FF 80%);
+background: -moz-linear-gradient(180deg, #0000FF 0% ,#8585FF  10% ,  #0000FF 80%);
+background: -webkit-linear-gradient(180deg, #0000FF 0% ,#8585FF  10% ,  #0000FF 80%);
+background-repeat:no-repeat ;
+height: auto;
+}
+
+body{
+	width: 100%;
+	height: auto;
+	font-family: "Autopia", serif;
+	font-size: 16pt;
+	color: #e3e3fe;
+}
+
+h1{
+	font-family: "Autopia", serif;
+	text-align: center;
+	font-size: 10vw;
+	line-height: 12vw;
+	margin-top: 8%;
+	padding-top: 0pt;
+	margin-bottom: 0%;
+	padding-bottom: 0pt;
+	color: #e3e3fe;
+	margin-left: -10%;
+}
+
+h3 {
+	font-family: "Autopia", serif;
+	font-family: "Autopia", serif;
+	text-align: center;
+}
+
+.menu a{
+		font-family: "Autopia-Italic", serif;
+	  padding-right: 20pt;
+		color: #e3e3fe;
+}
+
+.menu a:hover{
+	color: white;
+	text-decoration: overline;
+}
+
+.menu a:visited{
+	color: #e3e3fe;
+}
+
+
+.closebtn{
+background-color: blue;
+padding: 2%;
+}
+
+.intro {
+	width: 85%;
+	padding: 10%;
+}
+
+.imagegallery {
+margin-top: 100px;      	
+margin-bottom: 50px;      
+margin-left: auto;
+margin-right: auto;  
+width: 90%;
+transform: skewY(-10deg);    
+}
+
+/* The grid: Four equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 30%;
+  padding: 10px;
+}
+
+/* Style the images inside the grid */
+.column img {
+  opacity: 0.8; 
+  cursor: pointer; 
+}
+
+.column img:hover {
+  opacity: 1;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* The expanding image container */
+.container {
+  position: absolute;
+  top: 0;
+  width: 95%;
+  display: none;
+}
+
+/* Expanding image text */
+#imgtext {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  color: white;
+  font-size: 20px;
+}
+
+/* Closable button inside the expanded image */
+.closebtn {
+  margin-top: 5% !important;
+  margin-bottom: 5%  !important;
+  top:5px;
+  color: white;
+  background-color: blue  !important;
+  font-size: 20pt;
+  cursor: pointer;
+  line-height: 100pt;
+  position: absolute;
+	top: 0;
+	height: min-content;
+	right: 0;
+}
+
+#expandedImg{
+    margin-top: 5%;
+}
+
+</style>
+
+<body>
+
+<h3>This Theatre is closed.</h3>
+
+<div class="imagegallery">
+<div class="row">
+  <div class="column">
+    <img src="https://instrumentinventors.org/wp-content/uploads/2022/05/image04_Chicau_Joana__and_Reus_Jonathan_AnatomiesOfIntillegence_credit_Nesso-scaled.jpg" alt="" style="width:100%" onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="https://instrumentinventors.org/wp-content/uploads/2022/05/image04_Chicau_Joana__and_Reus_Jonathan_AnatomiesOfIntillegence_credit_Nesso-scaled.jpg" alt="" style="width:100%" onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="https://instrumentinventors.org/wp-content/uploads/2022/05/image04_Chicau_Joana__and_Reus_Jonathan_AnatomiesOfIntillegence_credit_Nesso-scaled.jpg" alt="" style="width:100%" onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="https://instrumentinventors.org/wp-content/uploads/2022/05/image04_Chicau_Joana__and_Reus_Jonathan_AnatomiesOfIntillegence_credit_Nesso-scaled.jpg" alt="" style="width:100%" onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="https://instrumentinventors.org/wp-content/uploads/2022/05/image04_Chicau_Joana__and_Reus_Jonathan_AnatomiesOfIntillegence_credit_Nesso-scaled.jpg" alt="" style="width:100%" onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="https://instrumentinventors.org/wp-content/uploads/2022/05/image04_Chicau_Joana__and_Reus_Jonathan_AnatomiesOfIntillegence_credit_Nesso-scaled.jpg" alt="" style="width:100%" onclick="myFunction(this);">
+  </div>
+
+
+	<div class="container">
+	  <span onclick="this.parentElement.style.display='none'" class="closebtn">×</span>
+	  <img id="expandedImg" style="width:100%">
+	  <div id="imgtext"></div>
+	</div> 
+
+</div>
+
+
+<script>
+function myFunction(imgs) {
+  var expandImg = document.getElementById("expandedImg");
+  var imgText = document.getElementById("imgtext");
+  expandImg.src = imgs.src;
+  imgText.innerHTML = imgs.alt;
+  expandImg.parentElement.style.display = "block";
+}
+</script>
+
+<p>The images above are screen captures of the performances that took place at <a href="https://www.tanzmesse.com/en/programme/2022/digital/"></a>Tanzemesse 2022.</p>
+
+</div>
+
+<div class="intro">
+	<h1>Anatomies of Intelligence</h1>
+
+	<p>is an artistic research project led by Joana Chicau and Jonathan Chaim Reus, who together work to make connections between the formats and collections of anatomical knowledge and investigations into the “anatomy” of computational learning and prediction processes, datasets and machine learning models.</p>
+
+
+	<p>The project manifests in various forms: from live algorithmic performances to participatory workshops, where they tease out hands-on, embodied experiences for existing with and within the organisms of data science.</p>
+
+
+	<div class="menu">
+	<a href="https://anatomiesofintelligence.github.io/"> → Click here for further information on future performances and demonstrations. ←</a> 
+	</div>
+</div>
+
+</body>
+</html>
