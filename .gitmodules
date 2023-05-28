@@ -8,3 +8,6 @@
 	path = code/sonification/SimpleOSC
 	url = https://github.com/jreus/SimpleOSC.git
 	branch = master
+[submodule "dataset"]
+	path = dataset
+	url = git@github.com:anatomiesofintelligence/dataset.git
